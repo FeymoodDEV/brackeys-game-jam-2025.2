@@ -9,6 +9,7 @@ radius = 14.0357
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_g2els")
+bullets_per_shot = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dqkch")
@@ -20,3 +21,7 @@ texture = ExtResource("2_qhqgy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("3_gmlin")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

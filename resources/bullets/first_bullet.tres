@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BulletData" load_steps=5 format=3 uid="uid://c6ptu7yswng0u"]
+
+[ext_resource type="Script" uid="uid://blyfl04bkccem" path="res://scripts/bullets/bullet_data.gd" id="1_d27uv"]
+[ext_resource type="PackedScene" uid="uid://cbqgxhuvoxtgg" path="res://scenes/bullets/first_bullet/first_hit_vfx.tscn" id="1_tbqtg"]
+[ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="2_nu8ba"]
+[ext_resource type="PackedScene" uid="uid://dv7y8svel5iok" path="res://scenes/bullets/first_bullet/first_trail.tscn" id="3_572yy"]
+
+[resource]
+script = ExtResource("1_d27uv")
+speed = 600.0
+damage = 10.0
+lifetime = 1.5
+pierce_count = 1
+knockback = 0.0
+texture = ExtResource("2_nu8ba")
+scale = 0.175
+hit_vfx = ExtResource("1_tbqtg")
+trail_vfx = ExtResource("3_572yy")
+metadata/_custom_type_script = "uid://blyfl04bkccem"

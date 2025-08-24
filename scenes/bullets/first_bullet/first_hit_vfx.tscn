@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbqgxhuvoxtgg"]
+
+[ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="1_k8w8s"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jyhfs"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+radial_velocity_min = 0.999978
+radial_velocity_max = 35.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 34.49
+radial_accel_max = 34.49
+scale_min = 0.1
+scale_max = 0.12
+
+[node name="hit_vfx" type="GPUParticles2D"]
+emitting = false
+amount = 100
+texture = ExtResource("1_k8w8s")
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_jyhfs")
