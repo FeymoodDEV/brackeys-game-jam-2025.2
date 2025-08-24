@@ -15,11 +15,19 @@ run/main_scene="uid://u6edsroarm37"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Spawning="*res://addons/BulletUpHell/Spawning.tscn"
+
 [debug]
 
 gdscript/warnings/untyped_declaration=1
 gdscript/warnings/inferred_declaration=1
 gdscript/warnings/return_value_discarded=1
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg")
 
 [input]
 
