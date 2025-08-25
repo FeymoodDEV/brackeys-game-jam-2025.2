@@ -1,10 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=12 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://scripts/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dmyvil000yl58" path="res://assets/player/Ginger_Biscuit_Man.png" id="2_qhqgy"]
 [ext_resource type="Script" uid="uid://c6dd72g31782" path="res://scripts/player/player_camera.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://okf4mtltak8l" path="res://addons/BulletUpHell/Nodes/BuHSpawnPoint.gd" id="4_lvxji"]
 [ext_resource type="Script" uid="uid://dr4tgyjj2y33d" path="res://scenes/player/gun.gd" id="4_p47bc"]
+[ext_resource type="Script" uid="uid://b2l0jlbk7oecc" path="res://addons/xsm/state_regions.gd" id="6_0owmy"]
+[ext_resource type="Script" uid="uid://yw44daxcsxw0" path="res://scenes/player/movement.gd" id="7_h17s1"]
+[ext_resource type="Script" uid="uid://5yo5iu6shjs3" path="res://addons/xsm/state.gd" id="7_qek5x"]
+[ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://scenes/player/normal.gd" id="8_qek5x"]
+[ext_resource type="Script" uid="uid://des4f477v63vn" path="res://scenes/player/circling.gd" id="9_5gtgg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
 radius = 14.0357
@@ -59,3 +64,38 @@ auto_start_at_distance = 5.0
 auto_distance_from = NodePath("")
 trigger_container = NodePath("")
 metadata/_custom_type_script = "uid://okf4mtltak8l"
+
+[node name="DashCooldownTimer" type="Timer" parent="."]
+
+[node name="Root" type="Node" parent="."]
+script = ExtResource("6_0owmy")
+history_size = 0
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://b2l0jlbk7oecc"
+
+[node name="Movement" type="Node" parent="Root"]
+script = ExtResource("7_h17s1")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="Normal" type="Node" parent="Root/Movement"]
+script = ExtResource("8_qek5x")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="Circling" type="Node" parent="Root/Movement"]
+script = ExtResource("9_5gtgg")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="NomDash" type="Node" parent="Root/Movement"]
+script = ExtResource("7_qek5x")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
