@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BlockData" load_steps=3 format=3 uid="uid://rkugwk6r1rih"]
+
+[ext_resource type="Script" uid="uid://8nf8txfcbwru" path="res://scripts/block/block_data.gd" id="1_b60jj"]
+[ext_resource type="Texture2D" uid="uid://dv1i3t6frtk7o" path="res://assets/blocks/block_2.png" id="2_b60jj"]
+
+[resource]
+script = ExtResource("1_b60jj")
+health = 3
+isDestructable = false
+texture = ExtResource("2_b60jj")
+metadata/_custom_type_script = "uid://8nf8txfcbwru"
