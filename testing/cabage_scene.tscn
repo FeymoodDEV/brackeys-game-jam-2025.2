@@ -1,0 +1,122 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsi7y5pro2w6d"]
+
+[ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_l6rfs"]
+[ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="2_c4vfy"]
+[ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://scenes/block.tscn" id="3_1kt5j"]
+[ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://scenes/enemies/enemy.tscn" id="4_c4vfy"]
+
+[node name="CabageScene" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("2_c4vfy")]
+position = Vector2(-5, -1)
+
+[node name="Block" parent="." instance=ExtResource("3_1kt5j")]
+position = Vector2(10, 323)
+
+[node name="Block2" parent="." instance=ExtResource("3_1kt5j")]
+position = Vector2(725, 327)
+
+[node name="Block3" parent="." instance=ExtResource("3_1kt5j")]
+position = Vector2(364, 569)
+
+[node name="Block4" parent="." instance=ExtResource("3_1kt5j")]
+position = Vector2(354, 43)
+
+[node name="Enemy" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(222, 227)
+
+[node name="Enemy2" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(275, 226)
+
+[node name="Enemy3" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(327, 225)
+
+[node name="Enemy4" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(384, 223)
+
+[node name="Enemy5" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(452, 222)
+
+[node name="Enemy6" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(511, 225)
+
+[node name="Enemy7" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(220, 267)
+
+[node name="Enemy8" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(273, 266)
+
+[node name="Enemy9" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(325, 265)
+
+[node name="Enemy10" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(382, 263)
+
+[node name="Enemy11" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(450, 262)
+
+[node name="Enemy12" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(509, 265)
+
+[node name="Enemy13" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(218, 309)
+
+[node name="Enemy14" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(271, 308)
+
+[node name="Enemy15" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(323, 307)
+
+[node name="Enemy16" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(380, 305)
+
+[node name="Enemy17" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(448, 304)
+
+[node name="Enemy18" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(507, 307)
+
+[node name="Enemy19" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(222, 353)
+
+[node name="Enemy20" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(275, 352)
+
+[node name="Enemy21" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(327, 351)
+
+[node name="Enemy22" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(384, 349)
+
+[node name="Enemy23" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(452, 348)
+
+[node name="Enemy24" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(511, 351)
+
+[node name="Enemy25" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(221, 391)
+
+[node name="Enemy26" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(274, 390)
+
+[node name="Enemy27" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(326, 389)
+
+[node name="Enemy28" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(383, 387)
+
+[node name="Enemy29" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(451, 386)
+
+[node name="Enemy30" parent="." instance=ExtResource("4_c4vfy")]
+position = Vector2(510, 389)
+
+[node name="BG" type="TextureRect" parent="."]
+z_index = -1
+offset_left = -1671.0
+offset_top = -1015.0
+offset_right = 1593.0
+offset_bottom = 1087.0
+texture = ExtResource("1_l6rfs")
+stretch_mode = 1

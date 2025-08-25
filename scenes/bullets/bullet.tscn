@@ -8,6 +8,7 @@
 radius = 3.0
 
 [node name="Bullet" type="Area2D"]
+collision_mask = 3
 script = ExtResource("1_5f1na")
 data = ExtResource("2_tocqt")
 
