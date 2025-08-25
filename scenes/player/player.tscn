@@ -1,11 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=9 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://scripts/player/player_controller.gd" id="1_g2els"]
+[ext_resource type="Shader" uid="uid://b6ckillfbc0ed" path="res://scenes/player/indexed_colors.gdshader" id="2_lvxji"]
 [ext_resource type="Texture2D" uid="uid://dmyvil000yl58" path="res://assets/player/Ginger_Biscuit_Man.png" id="2_qhqgy"]
 [ext_resource type="Script" uid="uid://c6dd72g31782" path="res://scripts/player/player_camera.gd" id="3_gmlin"]
+[ext_resource type="Script" uid="uid://d3e3qcnsv2nd3" path="res://scenes/player/index_sprite_2d.gd" id="4_p47bc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
 radius = 14.0357
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p47bc"]
+shader = ExtResource("2_lvxji")
+
+[sub_resource type="ColorPalette" id="ColorPalette_p47bc"]
+colors = PackedColorArray(0.780716, 0.703144, 0.66402, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_g2els")
@@ -15,9 +23,12 @@ bullets_per_shot = 2
 shape = SubResource("CircleShape2D_dqkch")
 
 [node name="GingerBiscuitMan" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_p47bc")
 position = Vector2(1, 1)
 rotation = 1.5708
 texture = ExtResource("2_qhqgy")
+script = ExtResource("4_p47bc")
+replacement_color_palette = SubResource("ColorPalette_p47bc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("3_gmlin")
