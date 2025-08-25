@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Brackeys Game Jam 2025.2"
-run/main_scene="uid://u6edsroarm37"
+run/main_scene="uid://byrr1q8tb2blo"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 

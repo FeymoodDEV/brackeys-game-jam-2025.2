@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdmeut6gpnrdx"]
+
+[ext_resource type="Script" path="res://scenes/player/gun.gd" id="1_bn6os"]
+[ext_resource type="Script" uid="uid://okf4mtltak8l" path="res://addons/BulletUpHell/Nodes/BuHSpawnPoint.gd" id="2_62esh"]
+
+[node name="Gun" type="Node2D"]
+script = ExtResource("1_bn6os")
+
+[node name="ShotTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(2, -22)
+script = ExtResource("2_62esh")
+active = false
+auto_pattern_id = "one"
+shared_area_name = "0"
+rotating_speed = 0.0
+pool_amount = 50
+auto_start_on_cam = true
+auto_start_after_time = 0.0
+auto_start_at_distance = 5.0
+auto_distance_from = NodePath("")
+trigger_container = NodePath("")
+metadata/_custom_type_script = "uid://okf4mtltak8l"
+
+[node name="SpawnPoint2" type="Node2D" parent="."]
+position = Vector2(2, 22)
+script = ExtResource("2_62esh")
+active = false
+auto_pattern_id = "one"
+shared_area_name = "0"
+rotating_speed = 0.0
+pool_amount = 50
+auto_start_on_cam = true
+auto_start_after_time = 0.0
+auto_start_at_distance = 5.0
+auto_distance_from = NodePath("")
+trigger_container = NodePath("")
+metadata/_custom_type_script = "uid://okf4mtltak8l"

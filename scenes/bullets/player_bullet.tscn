@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://du1vpmt2ssqik"]
+
+[ext_resource type="Script" uid="uid://bwbchnqxu1f4m" path="res://addons/BulletUpHell/Nodes/BuHBulletNode.gd" id="1_om8qi"]
+[ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="2_48eg6"]
+
+[node name="PlayerBullet" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_om8qi")
+metadata/_custom_type_script = "uid://bwbchnqxu1f4m"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_48eg6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64, 59.6, 64, 63.9, 59, 64, -61.1)
+
+[node name="BulletData" type="Node2D" parent="."]

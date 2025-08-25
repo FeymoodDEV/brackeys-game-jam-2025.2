@@ -52,6 +52,6 @@ func shoot() -> void:
 		#bullet.direction = Vector2(cos(angle), sin(angle))
 	#endregion
 
-	Spawning.spawn($SpawnPoint, "one")
-	Spawning.spawn($SpawnPoint2, "one")
+	Spawning.spawn(get_parent().get_parent(), "one")
+	Spawning.spawn(get_parent().get_parent(), "one")
 	
