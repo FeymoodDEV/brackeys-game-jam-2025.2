@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://u6edsroarm37"]
+[gd_scene load_steps=22 format=3 uid="uid://u6edsroarm37"]
 
 [ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="1_o5qli"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://lvqk3b38lm1n" path="res://scenes/bullets/bullet.tscn" id="11_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="11_trceg"]
 [ext_resource type="Script" uid="uid://gbdy54rnh22y" path="res://scripts/look_at_player.gd" id="12_a8y0u"]
+[ext_resource type="Script" uid="uid://okf4mtltak8l" path="res://addons/BulletUpHell/Nodes/BuHSpawnPoint.gd" id="14_a8y0u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkv2x"]
 size = Vector2(129, 128)
@@ -79,7 +80,7 @@ center = 3
 symmetric = true
 bullet = "1"
 nbr = 5
-iterations = 1
+iterations = -1
 pattern_angle = -0.8006
 pattern_angle_target = NodePath("")
 pattern_angle_mouse = false
@@ -165,3 +166,18 @@ curve = SubResource("Curve2D_trceg")
 script = ExtResource("5_tefeu")
 id = "v-shape"
 pattern = SubResource("NavigationPolygon_a8y0u")
+
+[node name="SpawnPoint" type="Node2D" parent="BulletManager"]
+position = Vector2(140, 204)
+script = ExtResource("14_a8y0u")
+active = true
+auto_pattern_id = "v-shape"
+shared_area_name = "0"
+rotating_speed = 0.0
+pool_amount = 50
+auto_start_on_cam = true
+auto_start_after_time = 0.0
+auto_start_at_distance = 5.0
+auto_distance_from = NodePath("")
+trigger_container = NodePath("")
+metadata/_custom_type_script = "uid://okf4mtltak8l"
