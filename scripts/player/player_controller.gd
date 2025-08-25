@@ -24,27 +24,42 @@ func _physics_process(delta: float) -> void:
 func handle_movement(delta: float) -> void:
 	# CybrNight: Calculate normalized look_direction vector
 	var mouse_pos: Vector2 = get_global_mouse_position();
-	var look_direction: Vector2 = (mouse_pos - self.global_position).normalized();
+	var mouse_vector: Vector2 = (mouse_pos - self.global_position);
 	
+	var look_direction = mouse_vector.normalized();
+
 	self.rotation = look_direction.angle();
 	
-	var input_dir: Vector2 = Vector2(
-		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-		Input.get_action_strength("move_down")  - Input.get_action_strength("move_up")
-	).normalized()
+	#Old input code
+	#var input_dir: Vector2 = Vector2(
+		#Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+		#Input.get_action_strength("move_down")  - Input.get_action_strength("move_up")
+	#).normalized()
+	#var target_vel: Vector2 = input_dir * speed
+	
 	
 	var input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down");
 	var direction = Vector2.ZERO;
 
-	var target_vel: Vector2 = input_dir * speed
+	
 	
 	# CybrNight: Calculate the relative left and right vectors
-	var left: Vector2 = look_direction.rotated(deg_to_rad(90));
-	var right: Vector2 = look_direction.rotated(deg_to_rad(-90));
+	var left: Vector2 = mouse_vector.rotated(deg_to_rad(90));
+	var right: Vector2 = mouse_vector.rotated(deg_to_rad(-90));
+	var forward: Vector2 = look_direction;
+	var back: Vector2 = -look_direction;
+	var center: Vector2 = self.global_position;
 
 	# CybrNight: Apply each physics componenet separately
-	direction += input_vector.y * -look_direction;
-	direction += input_vector.x * left;
+	# When mouse is far away move normally, when close orbit around
+	if mouse_vector.length() > 100:
+		direction += input_vector.y * back;
+	else:
+		direction = input_vector.y * right;
+		
+	var length = minf(mouse_vector.length(), 200);
+	
+	direction += input_vector.x * left * length;
 	
 	if direction.length() > 0:
 		direction = direction.normalized()
