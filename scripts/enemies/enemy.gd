@@ -25,4 +25,4 @@ func shoot():
 		"position":gun.global_position,
 		"rotation":gun.rotation,
 		"source_node": get_node("/root/Main")
-		}, "one")
+		}, "circle")
