@@ -16,28 +16,41 @@ const spread_angle_multiplier: int = 10
 #endregion
 
 func _physics_process(delta: float) -> void:
-	look_at(get_global_mouse_position())
+	#look_at(get_global_mouse_position())
 	handle_movement(delta)
 	
 	handle_shooting()
 
 func handle_movement(delta: float) -> void:
+	# CybrNight: Calculate normalized look_direction vector
+	var mouse_pos: Vector2 = get_global_mouse_position();
+	var look_direction: Vector2 = (mouse_pos - self.global_position).normalized();
+	
+	self.rotation = look_direction.angle();
+	
 	var input_dir: Vector2 = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down")  - Input.get_action_strength("move_up")
 	).normalized()
+	
+	var input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down");
+	var direction = Vector2.ZERO;
 
 	var target_vel: Vector2 = input_dir * speed
+	
+	# CybrNight: Calculate the relative left and right vectors
+	var left: Vector2 = look_direction.rotated(deg_to_rad(90));
+	var right: Vector2 = look_direction.rotated(deg_to_rad(-90));
 
-	if input_dir != Vector2.ZERO:
-		velocity = velocity.move_toward(target_vel, accel * delta)
-	else:
-		if velocity.length() > 0.0:
-			var drop: float = friction * delta
-			velocity = velocity.move_toward(Vector2.ZERO, drop)
-		else:
-			velocity = Vector2.ZERO
+	# CybrNight: Apply each physics componenet separately
+	direction += input_vector.y * -look_direction;
+	direction += input_vector.x * left;
+	
+	if direction.length() > 0:
+		direction = direction.normalized()
 
+	# Apply movement
+	velocity = direction * speed
 	move_and_slide()
 
 func handle_shooting() -> void:
