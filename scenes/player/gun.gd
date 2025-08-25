@@ -11,13 +11,15 @@ extends Node2D
 
 const spread_angle_multiplier: int = 10
 
+func _ready() -> void:
+	shot_cooldown_timer.wait_time = shot_cooldown
+	shot_cooldown_timer.stop()
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("shoot"):
 		if shot_cooldown_timer.is_stopped():
 			shoot()
-			shot_cooldown_timer.wait_time = shot_cooldown
-			shot_cooldown_timer.start
+			shot_cooldown_timer.start(shot_cooldown)
 
 func shoot() -> void:
 	#region Pre-BHU code
