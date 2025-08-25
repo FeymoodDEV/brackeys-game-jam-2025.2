@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://4h0yuoj0gvq6" path="res://scripts/bullets/bullet.gd" id="1_5f1na"]
 [ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="2_lj7gv"]
-[ext_resource type="Script" uid="uid://blyfl04bkccem" path="res://scripts/bullets/bullet_data.gd" id="2_tocqt"]
+[ext_resource type="Resource" uid="uid://c6ptu7yswng0u" path="res://resources/bullets/first_bullet.tres" id="2_tocqt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tocqt"]
 radius = 3.0

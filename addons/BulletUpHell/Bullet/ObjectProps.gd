@@ -15,4 +15,3 @@ class_name ObjectProps
 #@export var r_trigger_choice:String
 
 var node_container:Node2D
-

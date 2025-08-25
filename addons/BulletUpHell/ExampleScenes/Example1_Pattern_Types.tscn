@@ -196,9 +196,9 @@ wait_tween_time = 0.0
 
 [sub_resource type="Curve2D" id="Curve2D_kjhx3"]
 
-[sub_resource type="Curve" id="Curve_vbs6u"]
+[sub_resource type="Curve" id="Curve_ae60u"]
 
-[sub_resource type="Curve" id="Curve_2xsyn"]
+[sub_resource type="Curve" id="Curve_6myam"]
 
 [sub_resource type="PackedDataContainer" id="PackedDataContainer_yktta"]
 script = ExtResource("10_tkfof")
@@ -220,7 +220,7 @@ death_outside_box = Rect2(0, 0, 0, 0)
 death_from_collision = true
 a_direction_equation = ""
 a_curve_movement = 0
-a_speed_multiplier = SubResource("Curve_vbs6u")
+a_speed_multiplier = SubResource("Curve_ae60u")
 a_speed_multi_iterations = 0
 a_speed_multi_scale = 0.0
 trigger_container = ""
@@ -231,7 +231,7 @@ homing_steer = 0.0
 homing_time_start = 0.0
 homing_duration = 999.0
 scale_multi_iterations = 0
-scale_multiplier = SubResource("Curve_2xsyn")
+scale_multiplier = SubResource("Curve_6myam")
 scale_multi_scale = 1.0
 r_randomisation_chances = 1.0
 r_speed_choice = PackedFloat32Array()
