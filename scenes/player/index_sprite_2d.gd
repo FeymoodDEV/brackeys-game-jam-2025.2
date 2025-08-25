@@ -12,12 +12,17 @@ func read_palette_from_texture(texture: Texture2D) -> ColorPalette:
 	if texture == null:
 		return null
 	var img = texture.get_image()
-	var palette = ColorPalette.new()
+	
+	var colors : PackedColorArray = []
+	
 	for x in img.get_width():
 		for y in img.get_height():
 			var rgb = img.get_pixel(x, y)
-			if rgb not in palette.colors:
-				palette.colors.append(rgb)
+			if rgb not in colors:
+				colors.append(rgb)
+	
+	var palette = ColorPalette.new()
+	palette.colors = colors
 	return palette
 
 func convert_palette_to_img(palette: ColorPalette) -> Image :
@@ -32,13 +37,26 @@ func convert_palette_to_img(palette: ColorPalette) -> Image :
 	return palette_img
 
 func feed_shader():
+	# get the base palette from current sprite
 	base_color_palette = read_palette_from_texture(texture)
-	if base_color_palette.colors.size() >= replacement_color_palette.colors.size():
-		base_color_palette.colors.resize(replacement_color_palette.colors.size())
-	else:
-		replacement_color_palette.colors.resize(base_color_palette.colors.size())
 	
-	material.set_shader_parameter("base_colors", convert_palette_to_img(base_color_palette)) 
+	# truncate the larger palette to the size of the smaller one
+	if base_color_palette.colors.size() >= replacement_color_palette.colors.size():
+		var truncated_palette = base_color_palette.colors
+		truncated_palette.resize(replacement_color_palette.colors.size())
+		base_color_palette.colors = truncated_palette
+	else:
+		var truncated_palette = replacement_color_palette.colors
+		truncated_palette.resize(base_color_palette.colors.size())
+		replacement_color_palette.colors = truncated_palette
+	
+	# convert palettes to images and give them to the shader
+	material.set_shader_parameter(
+		"base_colors", 
+		convert_palette_to_img(base_color_palette)
+	) 
+	# if no replacement palette is set, just use the base one
+	# i know this sucks bum
 	material.set_shader_parameter(
 		"replacement_colors", 
 		convert_palette_to_img(replacement_color_palette) if replacement_color_palette != null else null
