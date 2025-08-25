@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=12 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://scripts/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dmyvil000yl58" path="res://assets/player/Ginger_Biscuit_Man.png" id="2_qhqgy"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://okf4mtltak8l" path="res://addons/BulletUpHell/Nodes/BuHSpawnPoint.gd" id="4_lvxji"]
 [ext_resource type="Script" uid="uid://dr4tgyjj2y33d" path="res://scenes/player/gun.gd" id="4_p47bc"]
 [ext_resource type="Script" uid="uid://b2l0jlbk7oecc" path="res://addons/xsm/state_regions.gd" id="6_0owmy"]
-[ext_resource type="Script" uid="uid://cakas5aqbjelv" path="res://scenes/player/dash_cooldown_timer.gd" id="6_je7p5"]
 [ext_resource type="Script" uid="uid://yw44daxcsxw0" path="res://scenes/player/movement.gd" id="7_h17s1"]
 [ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://scenes/player/normal.gd" id="8_qek5x"]
 [ext_resource type="Script" uid="uid://des4f477v63vn" path="res://scenes/player/circling.gd" id="9_5gtgg"]
@@ -17,6 +16,8 @@ radius = 14.0357
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_g2els")
+dash_power = 1000.0
+dash_friction = 0.9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dqkch")
@@ -67,7 +68,7 @@ trigger_container = NodePath("")
 metadata/_custom_type_script = "uid://okf4mtltak8l"
 
 [node name="DashCooldownTimer" type="Timer" parent="."]
-script = ExtResource("6_je7p5")
+one_shot = true
 
 [node name="Root" type="Node" parent="."]
 script = ExtResource("6_0owmy")

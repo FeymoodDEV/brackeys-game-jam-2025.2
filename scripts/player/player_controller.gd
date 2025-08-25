@@ -42,5 +42,5 @@ func get_look_relative_vector() -> Vector2:
 	var input_vector = get_movement_vector()
 
 	# We can actually just rotate the vector 
-	var look_relative = input_vector.rotated(look_direction.angle() + (PI/2))
+	var look_relative = input_vector.rotated(look_direction.angle())
 	return look_relative

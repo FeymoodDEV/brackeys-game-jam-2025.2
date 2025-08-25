@@ -9,7 +9,8 @@ func _on_update(_delta) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("nom_dash"):# and target.dash_cooldown_timer.is_stopped():
-		print(target.dash_cooldown_timer.wait_time)
-		if target.dash_cooldown_timer.is_stopped():
-			change_state("NomDash", target.get_movement_vector())
+	if event.is_action_pressed("nom_dash") and target.dash_cooldown_timer.is_stopped():
+		var direction = target.get_movement_vector()
+		print("direction: %s" % direction)
+		if direction != Vector2.ZERO:
+			change_state("NomDash", direction)
