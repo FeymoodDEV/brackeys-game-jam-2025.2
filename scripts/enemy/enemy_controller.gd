@@ -13,6 +13,8 @@ var current_direction: Vector2 = Vector2.ZERO
 var player: PlayerController = null
 var move_timer: float = 0.0
 
+var shoot_counter = 0;
+
 func _ready() -> void:
 	spawn_position = global_position
 	player = get_tree().get_first_node_in_group("player")
@@ -32,6 +34,15 @@ func handle_movement(delta: float) -> void:
 			move_timer = randf_range(0.5, 1.5)
 	
 	velocity = current_direction * speed
+	
+	shoot_counter += delta;
+	if shoot_counter > 1:
+		var spawn_pos = global_position;
+		var rot = global_rotation
+		var node = get_parent();
+
+		Spawning.spawn({"position": spawn_pos, "rotation": rot, "source_node": node}, "circle")
+		shoot_counter = 0;
 	move_and_slide()
 
 func path_is_blocked(dir: Vector2) -> bool:

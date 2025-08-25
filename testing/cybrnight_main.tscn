@@ -1,55 +1,27 @@
-[gd_scene load_steps=17 format=3 uid="uid://byrr1q8tb2blo"]
+[gd_scene load_steps=26 format=3 uid="uid://ccrxh34dcnijy"]
 
 [ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_sijxs"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="2_ko3n4"]
 [ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://scenes/block.tscn" id="3_fcsxm"]
 [ext_resource type="Script" uid="uid://c8ydhn2yvq3dc" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="4_lqjba"]
 [ext_resource type="Script" uid="uid://b6cup3hdpqd6v" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="5_uqxb7"]
+[ext_resource type="Script" uid="uid://c36h0owyoculh" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="6_dbqtp"]
 [ext_resource type="Script" uid="uid://bjmse0liopcrp" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="6_td6b6"]
 [ext_resource type="Script" uid="uid://bapo6jcdsje8y" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="7_dbqtp"]
 [ext_resource type="Script" uid="uid://dgryahi3uqase" path="res://addons/BulletUpHell/Bullet/BulletNodeProps.gd" id="8_sijxs"]
 [ext_resource type="Script" uid="uid://qc1ehcnju62l" path="res://addons/BulletUpHell/Nodes/BuHInstanceLister.gd" id="9_ko3n4"]
-[ext_resource type="PackedScene" uid="uid://du1vpmt2ssqik" path="res://scenes/bullets/player_bullet.tscn" id="10_fcsxm"]
+[ext_resource type="PackedScene" uid="uid://b44c5ncrptvhv" path="res://scenes/bullets/player_bullet.tscn" id="10_fcsxm"]
+[ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://scenes/enemies/enemy.tscn" id="11_lqjba"]
+[ext_resource type="Script" uid="uid://csxp6a77ij7sk" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="11_rwh7c"]
 
-[sub_resource type="Curve2D" id="Curve2D_rwh7c"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 701, 125, 0, 0, 0, 0, 753, 91, 0, 0, 0, 0, 799, 123, 0, 0, 0, 0, 787, 73, 0, 0, 0, 0, 832, 48, 0, 0, 0, 0, 777, 39, 0, 0, 0, 0, 758, -13, 0, 0, 0, 0, 731, 36, 0, 0, 0, 0, 686, 41, 0, 0, 0, 0, 723, 71)
-}
-point_count = 10
+[sub_resource type="Curve2D" id="Curve2D_w3c6p"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_7hhsh"]
-resource_name = "PatternOne"
-script = ExtResource("5_uqxb7")
-bullet = "1"
-nbr = 1
-iterations = 1
-pattern_angle = 0.0
-pattern_angle_target = NodePath("")
-pattern_angle_mouse = false
-forced_angle = 0.0
-forced_target = NodePath("")
-forced_lookat_mouse = true
-forced_pattern_lookat = false
-cooldown_stasis = false
-cooldown_spawn = 1.0
-cooldown_shoot = 0.0
-cooldown_next_spawn = 0.0
-cooldown_next_shoot = 0.0
-wait_tween_momentum = 0
-wait_tween_length = 0.0
-wait_tween_time = 0.0
-metadata/_custom_type_script = "uid://b6cup3hdpqd6v"
+[sub_resource type="Curve" id="Curve_ae60u"]
 
-[sub_resource type="Curve2D" id="Curve2D_aga20"]
+[sub_resource type="Curve" id="Curve_6myam"]
 
-[sub_resource type="Curve" id="Curve_ko3n4"]
-
-[sub_resource type="Curve" id="Curve_fcsxm"]
-
-[sub_resource type="PackedDataContainer" id="PackedDataContainer_lqjba"]
-script = ExtResource("8_sijxs")
-instance_id = "PlayerBullet"
-overwrite_groups = false
+[sub_resource type="PackedDataContainer" id="PackedDataContainer_rwh7c"]
+script = ExtResource("6_dbqtp")
 anim_more = Array[ExtResource("7_dbqtp")]([])
 damage = 1.0
 speed = 100.0
@@ -64,6 +36,86 @@ spec_trail_width = 0.0
 spec_trail_modulate = Color(1, 1, 1, 1)
 spec_rotating_speed = 0.0
 death_after_time = 30.0
+death_outside_box = Rect2(0, 0, 0, 0)
+death_from_collision = true
+a_direction_equation = ""
+a_curve_movement = 0
+a_speed_multiplier = SubResource("Curve_ae60u")
+a_speed_multi_iterations = 0
+a_speed_multi_scale = 0.0
+trigger_container = ""
+trigger_wait_for_shot = true
+homing_type = 0
+homing_target = NodePath("")
+homing_steer = 0.0
+homing_time_start = 0.0
+homing_duration = 999.0
+scale_multi_iterations = 0
+scale_multiplier = SubResource("Curve_6myam")
+scale_multi_scale = 1.0
+r_randomisation_chances = 1.0
+r_speed_choice = PackedFloat32Array()
+r_speed_variation = Vector3(0, 0, 0)
+r_scale_choice = PackedFloat32Array()
+r_scale_variation = Vector3(0, 0, 0)
+r_angle_choice = PackedFloat32Array()
+r_angle_variation = Vector3(0, 0, 0)
+r_group_choice = []
+r_bounce_choice = PackedInt32Array()
+r_bounce_variation = Vector3(0, 0, 0)
+r_no_coll_chances = 0.0
+r_modulate_variation = Vector3(0, 0, 0)
+r_trail_length_variation = Vector3(0, 0, 0)
+r_trail_color_variation = Vector3(0, 0, 0)
+r_rotating_variation = Vector3(0, 0, 0)
+r_death_after_choice = PackedFloat32Array()
+r_death_after_variation = Vector3(0, 0, 0)
+r_death_outside_chances = 0.0
+r_dir_equation_choice = PackedStringArray()
+r_curve_choice = []
+r_speed_multi_curve_choice = []
+r_speed_multi_iter_variation = Vector3(0, 0, 0)
+r_speed_multi_scale_variation = Vector3(0, 0, 0)
+r_trigger_choice = PackedStringArray()
+r_wait_for_shot_chances = 0.0
+r_homing_target_choice = []
+r_special_target_choice = PackedStringArray()
+r_group_target_choice = PackedStringArray()
+r_pos_target_choice = PackedVector2Array()
+r_steer_choice = PackedFloat32Array()
+r_steer_variation = Vector3(0, 0, 0)
+r_homing_delay_choice = PackedFloat32Array()
+r_homing_delay_variation = Vector3(0, 0, 0)
+r_homing_dur_choice = PackedFloat32Array()
+r_homing_dur_variation = Vector3(0, 0, 0)
+r_scale_multi_curve_choice = []
+r_scale_multi_iter_variation = Vector3(0, 0, 0)
+r_scale_multi_scale_variation = Vector3(0, 0, 0)
+
+[sub_resource type="Curve2D" id="Curve2D_aga20"]
+
+[sub_resource type="Curve" id="Curve_ko3n4"]
+
+[sub_resource type="Curve" id="Curve_fcsxm"]
+
+[sub_resource type="PackedDataContainer" id="PackedDataContainer_lqjba"]
+script = ExtResource("8_sijxs")
+instance_id = "PlayerBullet"
+overwrite_groups = false
+anim_more = Array[ExtResource("7_dbqtp")]([])
+damage = 1.0
+speed = 500.0
+scale = 1.0
+angle = 0.0
+groups = PackedStringArray()
+spec_bounces = 0
+spec_no_collision = false
+spec_modulate_loop = 0.0
+spec_trail_length = 0.0
+spec_trail_width = 0.0
+spec_trail_modulate = Color(1, 1, 1, 1)
+spec_rotating_speed = 0.0
+death_after_time = 0.5
 death_outside_box = Rect2(0, 0, 0, 0)
 death_from_collision = true
 a_direction_equation = ""
@@ -121,6 +173,70 @@ r_scale_multi_iter_variation = Vector3(0, 0, 0)
 r_scale_multi_scale_variation = Vector3(0, 0, 0)
 metadata/_custom_type_script = "uid://dgryahi3uqase"
 
+[sub_resource type="Curve2D" id="Curve2D_ttg52"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 701, 125, 0, 0, 0, 0, 753, 91, 0, 0, 0, 0, 799, 123, 0, 0, 0, 0, 787, 73, 0, 0, 0, 0, 832, 48, 0, 0, 0, 0, 777, 39, 0, 0, 0, 0, 758, -13, 0, 0, 0, 0, 731, 36, 0, 0, 0, 0, 686, 41, 0, 0, 0, 0, 723, 71)
+}
+point_count = 10
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0ek73"]
+resource_name = "PatternOne"
+source_geometry_group_name = &"navigation_polygon_source_group"
+script = ExtResource("5_uqxb7")
+bullet = "PBullet"
+nbr = 1
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 5.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+
+[sub_resource type="Curve2D" id="Curve2D_td6b6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 701, 125, 0, 0, 0, 0, 753, 91, 0, 0, 0, 0, 799, 123, 0, 0, 0, 0, 787, 73, 0, 0, 0, 0, 832, 48, 0, 0, 0, 0, 777, 39, 0, 0, 0, 0, 758, -13, 0, 0, 0, 0, 731, 36, 0, 0, 0, 0, 686, 41, 0, 0, 0, 0, 723, 71)
+}
+point_count = 10
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_dbqtp"]
+resource_name = "PatternCircle"
+source_geometry_group_name = &"navigation_polygon_source_group"
+script = ExtResource("11_rwh7c")
+radius = 0
+angle_total = 6.28319
+angle_decal = 0.0
+symmetric = false
+center = 0
+symmetry_type = 0
+bullet = "PBullet"
+nbr = 5
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 5.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+
 [node name="CybrnightMain" type="Node2D"]
 
 [node name="BG" type="TextureRect" parent="."]
@@ -134,28 +250,148 @@ stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_ko3n4")]
+collision_layer = 0
+collision_mask = 0
 
-[node name="Block" parent="." instance=ExtResource("3_fcsxm")]
-position = Vector2(345, 56)
+[node name="Static" type="Node2D" parent="."]
 
-[node name="Block2" parent="." instance=ExtResource("3_fcsxm")]
-position = Vector2(659, 56)
+[node name="Block" parent="Static" instance=ExtResource("3_fcsxm")]
+position = Vector2(10, 323)
 
-[node name="SpawnPattern2" type="Path2D" parent="."]
-curve = SubResource("Curve2D_rwh7c")
-script = ExtResource("4_lqjba")
-id = "one"
-pattern = SubResource("NavigationPolygon_7hhsh")
+[node name="Block2" parent="Static" instance=ExtResource("3_fcsxm")]
+position = Vector2(725, 327)
 
-[node name="BulletPattern" type="Path2D" parent="."]
-curve = SubResource("Curve2D_aga20")
+[node name="Block3" parent="Static" instance=ExtResource("3_fcsxm")]
+position = Vector2(364, 569)
+
+[node name="Block4" parent="Static" instance=ExtResource("3_fcsxm")]
+position = Vector2(354, 43)
+
+[node name="BulletProps2" type="Node2D" parent="."]
+
+[node name="BulletPattern" type="Path2D" parent="BulletProps2"]
+curve = SubResource("Curve2D_w3c6p")
 script = ExtResource("6_td6b6")
 id = "1"
+props = SubResource("PackedDataContainer_rwh7c")
+
+[node name="BulletProps" type="Node2D" parent="."]
+
+[node name="PlayerPattern" type="Path2D" parent="BulletProps"]
+curve = SubResource("Curve2D_aga20")
+script = ExtResource("6_td6b6")
+id = "PBullet"
 props = SubResource("PackedDataContainer_lqjba")
 
-[node name="InstanceLister" type="Node" parent="."]
+[node name="BulletNodes" type="Node2D" parent="."]
+
+[node name="InstanceLister" type="Node" parent="BulletNodes"]
 script = ExtResource("9_ko3n4")
 metadata/_custom_type_script = "uid://qc1ehcnju62l"
 
-[node name="PlayerBullet" parent="InstanceLister" instance=ExtResource("10_fcsxm")]
+[node name="PlayerBullet" parent="BulletNodes/InstanceLister" instance=ExtResource("10_fcsxm")]
 ID = "PlayerBullet"
+
+[node name="Patterns" type="Node2D" parent="."]
+
+[node name="SpawnPattern" type="Path2D" parent="Patterns"]
+curve = SubResource("Curve2D_ttg52")
+script = ExtResource("4_lqjba")
+id = "one"
+pattern = SubResource("NavigationPolygon_0ek73")
+
+[node name="SpawnPattern2" type="Path2D" parent="Patterns"]
+curve = SubResource("Curve2D_td6b6")
+script = ExtResource("4_lqjba")
+id = "circle"
+pattern = SubResource("NavigationPolygon_dbqtp")
+
+[node name="Enemy" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(222, 227)
+
+[node name="Enemy2" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(275, 226)
+
+[node name="Enemy3" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(327, 225)
+
+[node name="Enemy4" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(384, 223)
+
+[node name="Enemy5" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(452, 222)
+
+[node name="Enemy6" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(511, 225)
+
+[node name="Enemy7" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(220, 267)
+
+[node name="Enemy8" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(273, 266)
+
+[node name="Enemy9" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(325, 265)
+
+[node name="Enemy10" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(382, 263)
+
+[node name="Enemy11" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(450, 262)
+
+[node name="Enemy12" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(509, 265)
+
+[node name="Enemy13" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(218, 309)
+
+[node name="Enemy14" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(271, 308)
+
+[node name="Enemy15" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(323, 307)
+
+[node name="Enemy16" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(380, 305)
+
+[node name="Enemy17" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(448, 304)
+
+[node name="Enemy18" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(507, 307)
+
+[node name="Enemy19" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(222, 353)
+
+[node name="Enemy20" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(275, 352)
+
+[node name="Enemy21" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(327, 351)
+
+[node name="Enemy22" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(384, 349)
+
+[node name="Enemy23" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(452, 348)
+
+[node name="Enemy24" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(511, 351)
+
+[node name="Enemy25" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(221, 391)
+
+[node name="Enemy26" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(274, 390)
+
+[node name="Enemy27" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(326, 389)
+
+[node name="Enemy28" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(383, 387)
+
+[node name="Enemy29" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(451, 386)
+
+[node name="Enemy30" parent="." instance=ExtResource("11_lqjba")]
+position = Vector2(510, 389)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cdmeut6gpnrdx"]
 
-[ext_resource type="Script" path="res://scenes/player/gun.gd" id="1_bn6os"]
+[ext_resource type="Script" uid="uid://dr4tgyjj2y33d" path="res://scenes/player/gun.gd" id="1_bn6os"]
 [ext_resource type="Script" uid="uid://okf4mtltak8l" path="res://addons/BulletUpHell/Nodes/BuHSpawnPoint.gd" id="2_62esh"]
 
 [node name="Gun" type="Node2D"]

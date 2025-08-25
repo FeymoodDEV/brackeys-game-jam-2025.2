@@ -51,7 +51,12 @@ func shoot() -> void:
 		#var angle: float = start_angle + step_angle * i
 		#bullet.direction = Vector2(cos(angle), sin(angle))
 	#endregion
+	
+	var spawn_pos = $SpawnPoint.global_position;
+	var spawn_pos2 = $SpawnPoint2.global_position;
+	var rot = global_rotation
+	var node = get_parent().get_parent();
 
-	Spawning.spawn(get_parent().get_parent(), "one")
-	Spawning.spawn(get_parent().get_parent(), "one")
+	Spawning.spawn({"position": spawn_pos, "rotation": rot, "source_node": node}, "one")
+	Spawning.spawn({"position": spawn_pos2, "rotation": rot, "source_node": node}, "one")
 	

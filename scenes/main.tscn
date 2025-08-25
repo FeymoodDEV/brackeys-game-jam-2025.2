@@ -129,6 +129,8 @@ stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
+dash_power = 100.0
+dash_friction = 10.0
 
 [node name="Block" parent="." instance=ExtResource("3_sugp2")]
 position = Vector2(345, 56)
