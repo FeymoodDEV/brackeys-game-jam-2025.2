@@ -26,11 +26,14 @@ func _physics_process(delta: float) -> void:
 	#if not is_dashing:
 		#velocity = get_movement_vector(delta) * speed
 
+## Returns vector from this node to the mouse.
 func get_mouse_vector() -> Vector2:
 	return get_global_mouse_position() - self.global_position
 
+## Returns the input vector rotated in relation to the look direction.
 func get_look_relative_vector(delta: float) -> Vector2:
 	var input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down");
 
+	# We can actually just rotate the vector 
 	var look_relative = input_vector.rotated(look_direction.angle() + (PI/2))
 	return look_relative
