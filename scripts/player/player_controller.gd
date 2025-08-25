@@ -10,6 +10,10 @@ var look_direction : Vector2
 
 #region Dash variables
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
+@export var dash_cooldown : float = 3.0
+@export var dash_power : float = 100.0
+@export var dash_duration : float = 0.5
+@export var dash_friction : float = 10.0
 #endregion
 
 func _physics_process(delta: float) -> void:
@@ -26,13 +30,16 @@ func _physics_process(delta: float) -> void:
 	#if not is_dashing:
 		#velocity = get_movement_vector(delta) * speed
 
+func get_movement_vector() -> Vector2:
+	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
+
 ## Returns vector from this node to the mouse.
 func get_mouse_vector() -> Vector2:
 	return get_global_mouse_position() - self.global_position
 
 ## Returns the input vector rotated in relation to the look direction.
-func get_look_relative_vector(delta: float) -> Vector2:
-	var input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down");
+func get_look_relative_vector() -> Vector2:
+	var input_vector = get_movement_vector()
 
 	# We can actually just rotate the vector 
 	var look_relative = input_vector.rotated(look_direction.angle() + (PI/2))
