@@ -8,17 +8,17 @@ class_name PlayerController
 #endregion
 
 #region shooting_variables
-@export var bullet_scene: PackedScene = preload("res://scenes/bullets/bullet.tscn")
-@export var bullet_data: BulletData = preload("res://resources/bullets/first_bullet.tres")
-@onready var cooldown_timer: Timer = $Timer
-@export var bullets_per_shot: int = 1
-const spread_angle_multiplier: int = 10
+#@export var bullet_scene: PackedScene = preload("res://scenes/bullets/bullet.tscn")
+#@export var bullet_data: BulletData = preload("res://resources/bullets/first_bullet.tres")
+#@onready var shot_cooldown_timer: Timer = $ShotTimer
+#@export var bullets_per_shot: int = 1
+#const spread_angle_multiplier: int = 10
 #endregion
 
 func _ready():
-	cooldown_timer.one_shot = true;
-	cooldown_timer.wait_time = 0.1;
-	cooldown_timer.timeout.connect(shoot)
+	#shot_cooldown_timer.one_shot = true;
+	#shot_cooldown_timer.wait_time = 0.1;
+	#shot_cooldown_timer.timeout.connect(shoot)
 	pass
 
 func _physics_process(delta: float) -> void:
@@ -26,9 +26,10 @@ func _physics_process(delta: float) -> void:
 	handle_movement(delta)
 
 func _process(delta):
-	if Input.is_action_pressed("shoot"):
-		if cooldown_timer.is_stopped():
-			cooldown_timer.start()
+	#if Input.is_action_pressed("shoot"):
+		#if shot_cooldown_timer.is_stopped():
+			#shot_cooldown_timer.start()
+	pass
 
 func handle_movement(delta: float) -> void:
 	# CybrNight: Calculate normalized look_direction vector
