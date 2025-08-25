@@ -379,6 +379,7 @@ func spawn(spawner, id:String, shared_area:String="0"):
 			ori_angle = spawner.global_rotation
 			pos = spawner.global_position
 		elif spawner is Dictionary:
+			print(spawner["position"])
 			pos = spawner["position"]
 			ori_angle = spawner["rotation"]
 		else: push_error("spawner isn't a Node2D or a bullet RID")
