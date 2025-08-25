@@ -15,11 +15,20 @@ class_name PlayerController
 const spread_angle_multiplier: int = 10
 #endregion
 
+func _ready():
+	cooldown_timer.one_shot = true;
+	cooldown_timer.wait_time = 0.1;
+	cooldown_timer.timeout.connect(shoot)
+	pass
+
 func _physics_process(delta: float) -> void:
 	#look_at(get_global_mouse_position())
 	handle_movement(delta)
-	
-	handle_shooting()
+
+func _process(delta):
+	if Input.is_action_pressed("shoot"):
+		if cooldown_timer.is_stopped():
+			cooldown_timer.start()
 
 func handle_movement(delta: float) -> void:
 	# CybrNight: Calculate normalized look_direction vector
@@ -68,12 +77,7 @@ func handle_movement(delta: float) -> void:
 	velocity = direction * speed
 	move_and_slide()
 
-func handle_shooting() -> void:
-	if cooldown_timer.is_stopped():
-		shoot(get_global_mouse_position())
-		cooldown_timer.start()
-
-func shoot(to_world: Vector2) -> void:
+func shoot() -> void:
 	#if bullets_per_shot <= 0:
 		#return
 	#
@@ -100,4 +104,5 @@ func shoot(to_world: Vector2) -> void:
 		#var angle: float = start_angle + step_angle * i
 		#bullet.direction = Vector2(cos(angle), sin(angle))
 
-	Spawning.spawn(self, "one")
+	Spawning.spawn($SpawnPoint, "one")
+	Spawning.spawn($SpawnPoint2, "one")
