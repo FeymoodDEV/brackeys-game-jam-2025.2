@@ -7,7 +7,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
 radius = 14.0357
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 4
 script = ExtResource("1_g2els")
 bullets_per_shot = 2
 
