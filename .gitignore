@@ -16,3 +16,11 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# ----------------------
+# Our ignores
+# ----------------------
+
+# Editor plugins
+addons/editor/*
+!addons/editor/.gitkeep
