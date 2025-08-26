@@ -109,7 +109,7 @@ default_delete = SubResource("Resource_tl1ht")
 
 [node name="0" type="Area2D" parent="SharedAreas"]
 collision_layer = 224
-collision_mask = 3
+collision_mask = 2
 
 [node name="1" type="Area2D" parent="SharedAreas"]
 collision_layer = 16

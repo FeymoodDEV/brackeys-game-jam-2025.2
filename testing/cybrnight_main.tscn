@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_sijxs"]
 [ext_resource type="Script" uid="uid://bc7o63ppdn8uw" path="res://testing/cybrnight_main.gd" id="1_w3c6p"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="2_ko3n4"]
-[ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://scenes/block.tscn" id="3_fcsxm"]
 [ext_resource type="Script" uid="uid://c8ydhn2yvq3dc" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="4_lqjba"]
+[ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://scenes/blocks/block_1.tscn" id="4_w3c6p"]
 [ext_resource type="Script" uid="uid://b6cup3hdpqd6v" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="5_uqxb7"]
 [ext_resource type="Script" uid="uid://bjmse0liopcrp" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="6_td6b6"]
 [ext_resource type="Script" uid="uid://bapo6jcdsje8y" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="7_dbqtp"]
@@ -296,21 +296,17 @@ collision_mask = 225
 
 [node name="Static" type="Node2D" parent="."]
 
-[node name="Block" parent="Static" instance=ExtResource("3_fcsxm")]
-position = Vector2(10, 323)
-collision_mask = 3
+[node name="Block" parent="Static" instance=ExtResource("4_w3c6p")]
+position = Vector2(102, 99)
 
-[node name="Block2" parent="Static" instance=ExtResource("3_fcsxm")]
-position = Vector2(725, 327)
-collision_mask = 3
+[node name="Block2" parent="Static" instance=ExtResource("4_w3c6p")]
+position = Vector2(443, 156)
 
-[node name="Block3" parent="Static" instance=ExtResource("3_fcsxm")]
-position = Vector2(364, 569)
-collision_mask = 3
+[node name="Block3" parent="Static" instance=ExtResource("4_w3c6p")]
+position = Vector2(163, 352)
 
-[node name="Block4" parent="Static" instance=ExtResource("3_fcsxm")]
-position = Vector2(354, 43)
-collision_mask = 3
+[node name="Block4" parent="Static" instance=ExtResource("4_w3c6p")]
+position = Vector2(441, 317)
 
 [node name="BulletProps" type="Node2D" parent="."]
 
