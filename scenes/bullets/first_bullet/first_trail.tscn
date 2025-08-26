@@ -1,15 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://dv7y8svel5iok"]
+[gd_scene load_steps=5 format=3 uid="uid://dv7y8svel5iok"]
 
 [ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="1_08l2u"]
+
+[sub_resource type="Curve" id="Curve_08l2u"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_42v3o"]
+curve = SubResource("Curve_08l2u")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lj7gv"]
 lifetime_randomness = 0.5
 particle_flag_disable_z = true
 emission_shape = 1
-emission_sphere_radius = 61.14
+emission_sphere_radius = 0.01
 gravity = Vector3(0, 50, 0)
 scale_min = 0.1
 scale_max = 0.1
+alpha_curve = SubResource("CurveTexture_42v3o")
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
 
 [node name="GPUParticles2D" type="GPUParticles2D"]
 z_index = -1
