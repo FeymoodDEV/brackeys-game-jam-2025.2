@@ -34,7 +34,6 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	# Check if either target has been freed
 	if not is_instance_valid(soft_lock_target):
-		print(targetables)
 		#targetables.remove_at(targetables.find(soft_lock_target))
 		remove_soft_lock()
 	if not is_instance_valid(hard_lock_target):
@@ -122,7 +121,11 @@ func remove_hard_lock() -> void:
 	refresh_targetables()
 
 func remove_soft_lock() -> void:
-	if soft_lock_target and soft_lock_target.has_signal("freeing"):
+	# This is supposed to fix the error occuring when connecting the signal to
+	# remove_soft_lock when it already is.
+	# It doesn't and I don't get why not. 
+	# Still, the error doesn't seem to break anything.
+	if soft_lock_target != null:
 		soft_lock_target.disconnect("freeing", remove_soft_lock)
 	
 	soft_lock_target = null
