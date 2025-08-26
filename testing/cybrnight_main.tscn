@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ccrxh34dcnijy"]
 
 [ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_sijxs"]
-[ext_resource type="Script" path="res://testing/cybrnight_main.gd" id="1_w3c6p"]
+[ext_resource type="Script" uid="uid://bc7o63ppdn8uw" path="res://testing/cybrnight_main.gd" id="1_w3c6p"]
 [ext_resource type="PackedScene" uid="uid://do3kmq6olly6f" path="res://scenes/player/player.tscn" id="2_ko3n4"]
 [ext_resource type="PackedScene" uid="uid://chjrmgc7vavve" path="res://testing/manager/cybr_bullet_manager.tscn" id="2_npses"]
 [ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://scenes/blocks/block_1.tscn" id="4_w3c6p"]
@@ -133,3 +133,5 @@ collision_mask = 8
 position = Vector2(444, 454)
 collision_layer = 2
 collision_mask = 8
+
+[editable path="BulletManager"]
