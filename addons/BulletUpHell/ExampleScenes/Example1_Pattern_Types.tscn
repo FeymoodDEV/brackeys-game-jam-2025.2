@@ -327,7 +327,7 @@ props = SubResource("PackedDataContainer_yktta")
 [node name="SpawnPoints" type="Node2D" parent="."]
 
 [node name="SpawnPoint" type="Node2D" parent="SpawnPoints"]
-position = Vector2(86, 58)
+position = Vector2(87.0003, 58.9996)
 script = ExtResource("11_iv1jv")
 active = true
 auto_pattern_id = "one"

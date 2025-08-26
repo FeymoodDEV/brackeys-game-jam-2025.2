@@ -21,26 +21,57 @@ func _physics_process(delta: float) -> void:
 	look_direction = get_mouse_vector().normalized();
 	self.rotation = look_direction.angle();
 	
-	#if not is_dashing and Input.is_action_just_pressed("nom_dash") and dash_cooldown_timer.is_stopped():
-		#is_dashing = true
-	#
-	#if is_dashing:
-		#handle_dash(delta)
-	#
-	#if not is_dashing:
-		#velocity = get_movement_vector(delta) * speed
+	handle_shooting()
 
-func get_movement_vector() -> Vector2:
-	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
+func handle_movement(delta: float) -> void:
+	var input_dir: Vector2 = Vector2(
+		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+		Input.get_action_strength("move_down")  - Input.get_action_strength("move_up")
+	).normalized()
 
-## Returns vector from this node to the mouse.
-func get_mouse_vector() -> Vector2:
-	return get_global_mouse_position() - self.global_position
+	var target_vel: Vector2 = input_dir * speed
 
-## Returns the input vector rotated in relation to the look direction.
-func get_look_relative_vector() -> Vector2:
-	var input_vector = get_movement_vector()
+	if input_dir != Vector2.ZERO:
+		velocity = velocity.move_toward(target_vel, accel * delta)
+	else:
+		if velocity.length() > 0.0:
+			var drop: float = friction * delta
+			velocity = velocity.move_toward(Vector2.ZERO, drop)
+		else:
+			velocity = Vector2.ZERO
 
-	# We can actually just rotate the vector 
-	var look_relative = input_vector.rotated(look_direction.angle())
-	return look_relative
+	move_and_slide()
+
+func handle_shooting() -> void:
+	if cooldown_timer.is_stopped():
+		shoot(get_global_mouse_position())
+		cooldown_timer.start()
+
+func shoot(to_world: Vector2) -> void:
+	if bullets_per_shot <= 0:
+		return
+
+	var spread_angle: float = spread_angle_multiplier * (bullets_per_shot - 1)
+
+	var base_dir: Vector2 = (to_world - global_position).normalized()
+	var base_angle: float = base_dir.angle()
+
+	var step_angle: float = 0.0
+	if bullets_per_shot > 1:
+		step_angle = deg_to_rad(spread_angle) / (bullets_per_shot - 1)
+
+	var start_angle: float = base_angle - deg_to_rad(spread_angle) / 2
+
+	for i: int in range(bullets_per_shot):
+		var bullet: Bullet = bullet_scene.instantiate()
+		bullet.data = bullet_data
+		bullet.global_position = global_position
+		bullet.shooter = self
+
+		var angle: float = start_angle + step_angle * i
+		bullet.rotation = angle
+
+		get_tree().current_scene.add_child(bullet)
+
+func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2):
+	print('Player was hit')

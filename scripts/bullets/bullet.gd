@@ -4,14 +4,18 @@ class_name Bullet
 @export var data: BulletData
 @onready var sprite: Sprite2D = $Sprite
 
+var shooter: Node = null
 var direction: Vector2 = Vector2.RIGHT
 var time_alive: float = 0.0
 var remaining_pierce: int = 0
 var forward: Vector2
 
 func _ready() -> void:
-	reparent(get_node("/root/CybrnightMain"))
+	if !data: return
 	
+	reparent(get_node("/root/Main"))
+	
+	forward = Vector2.RIGHT.rotated(rotation)
 	remaining_pierce = data.pierce_count
 	forward = Vector2.RIGHT.rotated(rotation)
 	
@@ -24,21 +28,22 @@ func _ready() -> void:
 		add_child(trail)
 
 func _physics_process(delta: float) -> void:
+	# forward vector from rotation (to the right = 0 radians in Godot)
 	position += forward * data.speed * delta
+
 	time_alive += delta
-	
 	if time_alive >= data.lifetime:
 		queue_free()
 
 func _on_body_entered(body: Node) -> void:
-	if "apply_damage" not in body: 
+	if "apply_damage" not in body or body == shooter: 
 		return
 	else: 
 		body.apply_damage(data.damage, data.knockback, global_position, direction)
 	
 	if data.hit_vfx:
 		var hit_vfx: GPUParticles2D = data.hit_vfx.instantiate()
-		hit_vfx.position = global_position
+		hit_vfx.global_position = position
 		hit_vfx.emitting = true
 		hit_vfx.connect("finished", Callable(hit_vfx, "queue_free"))
 		get_parent().add_child(hit_vfx)
