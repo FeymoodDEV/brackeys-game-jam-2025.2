@@ -276,14 +276,18 @@ func wake_from_pool(bullet:String, queued_instance:Dictionary, shared_area:Strin
 		return inactive_pool[bullet].pop_at(0)
 
 func back_to_grave_deferred(bID):
-	bID.get_parent().remove_child(bID)
+	var par = bID.get_parent();
+	if par and bID:
+		par.remove_child(bID)
+	else:
+		print(par)
 
 func back_to_grave(bullet:String, bID):
 	inactive_pool[bullet].append([bID, poolBullets[bID]["shared_area"].name])
 	poolBullets[bID]["state"] = BState.QueuedFree
 
 	if bID is Node2D: 
-		call_deferred("back_to_grave_deferred", bID);
+		back_to_grave_deferred.call_deferred(bID);
 
 func create_shape(shared_rid:RID, ColID:Array, init:bool=false, count:int=0) -> RID:
 	var new_shape:RID
@@ -390,8 +394,15 @@ func spawn(spawner, id:String, shared_area:String="0"):
 		bullet_props = arrayProps[pattern.bullet]
 		if bullet_props.get("has_random",false): bullet_props = create_random_props(bullet_props)
 
+		if pattern.node_target:
+			pattern.pattern_angle = pos.angle_to_point(pattern.node_target.global_position)
+		
 		is_object = bullet_props.has("instance_id")
 		is_bullet_node = (is_object and bullet_props.has("speed"))
+		
+		if pattern.node_target:
+			pattern.pattern_angle = pos.angle_to_point(pattern.node_target.global_position)
+		
 		for i in pattern.nbr:
 			queued_instance = {}
 			queued_instance["shared_area"] = shared_area_node

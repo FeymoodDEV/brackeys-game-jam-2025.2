@@ -12,5 +12,6 @@ scale_min = 0.1
 scale_max = 0.1
 
 [node name="GPUParticles2D" type="GPUParticles2D"]
+z_index = -1
 texture = ExtResource("1_08l2u")
 process_material = SubResource("ParticleProcessMaterial_lj7gv")

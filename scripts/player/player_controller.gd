@@ -5,71 +5,42 @@ class_name PlayerController
 @export var speed: float = 220.0
 @export var accel: float = 1500.0
 @export var friction: float = 2000.0
+var look_direction : Vector2
 #endregion
 
-#region shooting_variables
-@export var bullet_scene: PackedScene = preload("res://scenes/bullets/bullet.tscn")
-@export var bullet_data: BulletData = preload("res://resources/bullets/first_bullet.tres")
-@onready var cooldown_timer: Timer = $Timer
-@export var bullets_per_shot: int = 1
-const spread_angle_multiplier: int = 10
+#region Dash variables
+@onready var dash_cooldown_timer: Timer = $DashCooldownTimer
+@export var dash_cooldown : float = 3.0
+@export var dash_power : float = 100.0
+@export var dash_duration : float = 0.5
+@export var dash_friction : float = 10.0
 #endregion
 
 func _physics_process(delta: float) -> void:
-	look_at(get_global_mouse_position())
-	handle_movement(delta)
+	# Get look direction and rotate node accordingly
+	look_direction = get_mouse_vector().normalized();
+	self.rotation = look_direction.angle();
 	
-	handle_shooting()
+	#if not is_dashing and Input.is_action_just_pressed("nom_dash") and dash_cooldown_timer.is_stopped():
+		#is_dashing = true
+	#
+	#if is_dashing:
+		#handle_dash(delta)
+	#
+	#if not is_dashing:
+		#velocity = get_movement_vector(delta) * speed
 
-func handle_movement(delta: float) -> void:
-	var input_dir: Vector2 = Vector2(
-		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-		Input.get_action_strength("move_down")  - Input.get_action_strength("move_up")
-	).normalized()
+func get_movement_vector() -> Vector2:
+	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
-	var target_vel: Vector2 = input_dir * speed
+## Returns vector from this node to the mouse.
+func get_mouse_vector() -> Vector2:
+	return get_global_mouse_position() - self.global_position
 
-	if input_dir != Vector2.ZERO:
-		velocity = velocity.move_toward(target_vel, accel * delta)
-	else:
-		if velocity.length() > 0.0:
-			var drop: float = friction * delta
-			velocity = velocity.move_toward(Vector2.ZERO, drop)
-		else:
-			velocity = Vector2.ZERO
+## Returns the input vector rotated in relation to the look direction.
+func get_look_relative_vector() -> Vector2:
+	var input_vector = get_movement_vector()
 
-	move_and_slide()
-
-func handle_shooting() -> void:
-	if cooldown_timer.is_stopped():
-		shoot(get_global_mouse_position())
-		cooldown_timer.start()
-
-func shoot(to_world: Vector2) -> void:
-	if bullets_per_shot <= 0:
-		return
-	
-	## 1 bullet = no angle
-	## 3 bullet = 20 degree angle
-	## 5 bullet = 40 degree angle
-	var spread_angle: float = spread_angle_multiplier * (bullets_per_shot - 1)
-	
-	var base_dir: Vector2 = (to_world - global_position).normalized()
-	var base_angle: float = base_dir.angle()  # in radians
-	
-	# calculate angle between bullets
-	var step_angle: float = 0.0
-	if bullets_per_shot > 1:
-		step_angle = deg_to_rad(spread_angle) / (bullets_per_shot - 1)
-	
-	var start_angle: float = base_angle - deg_to_rad(spread_angle) / 2
-	
-	for i: int in range(bullets_per_shot):
-		var bullet: Area2D = bullet_scene.instantiate()
-		bullet.data = bullet_data
-		bullet.global_position = global_position
-
-		var angle: float = start_angle + step_angle * i
-		bullet.direction = Vector2(cos(angle), sin(angle))
-
-		get_tree().current_scene.add_child(bullet)
+	# We can actually just rotate the vector 
+	var look_relative = input_vector.rotated(look_direction.angle())
+	return look_relative

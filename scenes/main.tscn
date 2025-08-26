@@ -1,8 +1,135 @@
-[gd_scene load_steps=4 format=3 uid="uid://u6edsroarm37"]
+[gd_scene load_steps=24 format=3 uid="uid://u6edsroarm37"]
 
 [ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://scenes/blocks/block_1.tscn" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://cm0hu41doig3u" path="res://scripts/enemies/enemy.gd" id="4_trceg"]
+[ext_resource type="Script" uid="uid://c8ydhn2yvq3dc" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="5_tefeu"]
+[ext_resource type="Script" uid="uid://c8a1x50bjmkue" path="res://addons/BulletUpHell/SpawnPatterns/PatternLine.gd" id="6_o6xl0"]
+[ext_resource type="Script" uid="uid://csxp6a77ij7sk" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="6_ya4ey"]
+[ext_resource type="Script" uid="uid://bjmse0liopcrp" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="7_85g3d"]
+[ext_resource type="Script" uid="uid://pbsf5pk4vmxi" path="res://addons/BulletUpHell/Bullet/ObjectProps.gd" id="8_ya4ey"]
+[ext_resource type="Script" uid="uid://qc1ehcnju62l" path="res://addons/BulletUpHell/Nodes/BuHInstanceLister.gd" id="10_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://c01vku4yv2exl" path="res://scenes/bullets/bullet.tscn" id="11_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="11_trceg"]
+[ext_resource type="Script" uid="uid://gbdy54rnh22y" path="res://scripts/look_at_player.gd" id="12_a8y0u"]
+[ext_resource type="Script" uid="uid://rn8jlsrjpr3d" path="res://addons/BulletUpHell/SpawnPatterns/PatternCustomShape.gd" id="14_jkv2x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkv2x"]
+size = Vector2(129, 128)
+
+[sub_resource type="Curve2D" id="Curve2D_eb6dy"]
+
+[sub_resource type="PackedDataContainer" id="PackedDataContainer_eb6dy"]
+script = ExtResource("8_ya4ey")
+instance_id = "first_bullet"
+fixed_rotation = false
+angle = 0.0
+groups = PackedStringArray()
+overwrite_groups = false
+trigger_container = ""
+trigger_wait_for_shot = true
+metadata/_custom_type_script = "uid://pbsf5pk4vmxi"
+
+[sub_resource type="Curve2D" id="Curve2D_ya4ey"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 701, 125, 0, 0, 0, 0, 753, 91, 0, 0, 0, 0, 799, 123, 0, 0, 0, 0, 787, 73, 0, 0, 0, 0, 832, 48, 0, 0, 0, 0, 777, 39, 0, 0, 0, 0, 758, -13, 0, 0, 0, 0, 731, 36, 0, 0, 0, 0, 686, 41, 0, 0, 0, 0, 723, 71)
+}
+point_count = 10
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_eb6dy"]
+resource_name = "PatternCircle"
+source_geometry_group_name = &"navigation_polygon_source_group"
+script = ExtResource("6_ya4ey")
+radius = 0
+angle_total = 6.28319
+angle_decal = 0.0
+symmetric = false
+center = 0
+symmetry_type = 0
+bullet = "1"
+nbr = 5
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 5.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+
+[sub_resource type="Curve2D" id="Curve2D_trceg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 701, 125, 0, 0, 0, 0, 753, 91, 0, 0, 0, 0, 799, 123, 0, 0, 0, 0, 787, 73, 0, 0, 0, 0, 832, 48, 0, 0, 0, 0, 777, 39, 0, 0, 0, 0, 758, -13, 0, 0, 0, 0, 731, 36, 0, 0, 0, 0, 686, 41, 0, 0, 0, 0, 723, 71)
+}
+point_count = 10
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_a8y0u"]
+resource_name = "PatternLine"
+script = ExtResource("6_o6xl0")
+offset = Vector2(40, 20)
+center = 3
+symmetric = true
+bullet = "1"
+nbr = 5
+iterations = 1
+pattern_angle = 0.785398
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("../../../Player")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+
+[sub_resource type="Curve2D" id="Curve2D_jbj1t"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 763, 215, 0, 0, 0, 0, 739, 255, 0, 0, 0, 0, 684, 262, 0, 0, 0, 0, 719, 284, 0, 0, 0, 0, 713, 334, 0, 0, 0, 0, 760, 295, 0, 0, 0, 0, 799, 334, 0, 0, 0, 0, 791, 280, 0, 0, 0, 0, 829, 264, 0, 0, 0, 0, 780, 253, 0, 0, 0, 0, 768, 220)
+}
+point_count = 11
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_muem4"]
+resource_name = "PatternCustomShape"
+source_geometry_group_name = &"navigation_polygon_source_group"
+script = ExtResource("14_jkv2x")
+closed_shape = true
+center_pos = Vector2(760, 280)
+symmetric = false
+center = 0
+symmetry_type = 1
+bullet = "1"
+nbr = 5
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("../../../Player")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
 
 [node name="Main" type="Node2D"]
 
@@ -14,11 +141,72 @@ offset_right = 1593.0
 offset_bottom = 1087.0
 texture = ExtResource("1_0wfyh")
 stretch_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
+z_index = 1
+collision_layer = 1
+dash_power = 100.0
+dash_friction = 10.0
 
 [node name="Block" parent="." instance=ExtResource("3_sugp2")]
 position = Vector2(345, 56)
 
 [node name="Block2" parent="." instance=ExtResource("3_sugp2")]
 position = Vector2(659, 56)
+
+[node name="enemy" type="CharacterBody2D" parent="."]
+modulate = Color(0.877346, 3.87453e-06, 1.2514e-06, 1)
+position = Vector2(46, 360)
+script = ExtResource("4_trceg")
+
+[node name="Sprite2D" type="Sprite2D" parent="enemy"]
+texture = ExtResource("11_trceg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_jkv2x")
+
+[node name="Gun" type="Node2D" parent="enemy"]
+script = ExtResource("12_a8y0u")
+
+[node name="Timer" type="Timer" parent="enemy"]
+one_shot = true
+
+[node name="BulletManager" type="Node2D" parent="."]
+
+[node name="BulletProps" type="Node2D" parent="BulletManager"]
+
+[node name="BulletPattern" type="Path2D" parent="BulletManager/BulletProps"]
+curve = SubResource("Curve2D_eb6dy")
+script = ExtResource("7_85g3d")
+id = "1"
+props = SubResource("PackedDataContainer_eb6dy")
+metadata/_custom_type_script = "uid://bjmse0liopcrp"
+
+[node name="InstanceLister" type="Node" parent="BulletManager"]
+script = ExtResource("10_ya4ey")
+metadata/_custom_type_script = "uid://qc1ehcnju62l"
+
+[node name="first_bullet" parent="BulletManager/InstanceLister" instance=ExtResource("11_eb6dy")]
+data = null
+
+[node name="BulletPatterns" type="Node2D" parent="BulletManager"]
+
+[node name="SpawnPattern2" type="Path2D" parent="BulletManager/BulletPatterns"]
+curve = SubResource("Curve2D_ya4ey")
+script = ExtResource("5_tefeu")
+id = "circle"
+pattern = SubResource("NavigationPolygon_eb6dy")
+
+[node name="SpawnPattern3" type="Path2D" parent="BulletManager/BulletPatterns"]
+curve = SubResource("Curve2D_trceg")
+script = ExtResource("5_tefeu")
+id = "v-shape"
+pattern = SubResource("NavigationPolygon_a8y0u")
+
+[node name="SpawnPattern5" type="Path2D" parent="BulletManager/BulletPatterns"]
+curve = SubResource("Curve2D_jbj1t")
+script = ExtResource("5_tefeu")
+id = "shape"
+pattern = SubResource("NavigationPolygon_muem4")

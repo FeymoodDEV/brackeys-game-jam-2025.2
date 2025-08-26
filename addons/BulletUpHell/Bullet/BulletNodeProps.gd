@@ -12,4 +12,3 @@ func set_homing_type(value):
 	homing_type = value
 	_get_property_list()
 	notify_property_list_changed()
-
