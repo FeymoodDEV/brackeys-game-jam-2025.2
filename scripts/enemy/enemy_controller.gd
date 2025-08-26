@@ -16,6 +16,8 @@ var move_timer: float = 0.0
 
 var shoot_counter = 0;
 
+
+
 func _ready() -> void:
 	spawn_position = global_position
 	player = get_tree().get_first_node_in_group("player")
@@ -25,6 +27,13 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	handle_movement(delta)
+
+# This exists to ensure nodes attached to this one can avoid being freed alongside
+# this node (ex: target reticles). Sorry.
+signal freeing
+func safe_queue_free() -> void:
+	freeing.emit()
+	queue_free.call_deferred()
 
 func handle_movement(delta: float) -> void:
 	if path_is_blocked(current_direction):
@@ -79,4 +88,4 @@ func pick_new_direction() -> void:
 	current_direction = (spawn_position - global_position).normalized()
 
 func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2) -> void:
-	queue_free.call_deferred()
+	safe_queue_free()

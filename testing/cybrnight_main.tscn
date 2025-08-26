@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://opbu2cdtgoya"]
+[gd_scene load_steps=7 format=3 uid="uid://ccrxh34dcnijy"]
 
 [ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_sijxs"]
-[ext_resource type="Script" path="res://testing/cybrnight_main.gd" id="1_w3c6p"]
-[ext_resource type="PackedScene" uid="uid://do3kmq6olly6f" path="res://scenes/player/player.tscn" id="2_ko3n4"]
+[ext_resource type="Script" uid="uid://bc7o63ppdn8uw" path="res://testing/cybrnight_main.gd" id="1_w3c6p"]
+[ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="2_ko3n4"]
 [ext_resource type="PackedScene" uid="uid://chjrmgc7vavve" path="res://testing/manager/cybr_bullet_manager.tscn" id="2_npses"]
 [ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://scenes/blocks/block_1.tscn" id="4_w3c6p"]
 [ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://scenes/enemies/enemy.tscn" id="11_lqjba"]
@@ -46,91 +46,55 @@ position = Vector2(163, 352)
 position = Vector2(441, 317)
 
 [node name="Enemy" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(222, 227)
-collision_layer = 2
-collision_mask = 8
+position = Vector2(222, 229)
 
 [node name="Enemy2" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
-collision_layer = 2
-collision_mask = 8
 
 [node name="Enemy3" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
-collision_layer = 2
-collision_mask = 8
 
 [node name="Enemy4" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
-collision_layer = 2
-collision_mask = 8
 
 [node name="Enemy5" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
-collision_layer = 2
-collision_mask = 8
 
 [node name="Enemy6" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
-collision_layer = 2
-collision_mask = 8
 
 [node name="Enemy7" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
-collision_layer = 2
-collision_mask = 8
 
 [node name="Enemy8" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
-collision_layer = 2
-collision_mask = 8
 
 [node name="Enemy9" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
-collision_layer = 2
-collision_mask = 8
 
 [node name="Enemy10" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
-collision_layer = 2
-collision_mask = 8
 
 [node name="Enemy11" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
-collision_layer = 2
-collision_mask = 8
 
 [node name="Enemy12" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
-collision_layer = 2
-collision_mask = 8
 
 [node name="Enemy13" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
-collision_layer = 2
-collision_mask = 8
 
 [node name="Enemy14" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
-collision_layer = 2
-collision_mask = 8
 
 [node name="Enemy15" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
-collision_layer = 2
-collision_mask = 8
 
 [node name="Enemy16" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
-collision_layer = 2
-collision_mask = 8
 
 [node name="Enemy17" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
-collision_layer = 2
-collision_mask = 8
 
 [node name="Enemy18" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
-collision_layer = 2
-collision_mask = 8

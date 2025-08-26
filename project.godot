@@ -27,7 +27,7 @@ gdscript/warnings/return_value_discarded=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg", "res://addons/xsm/plugin.cfg")
+enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg", "res://addons/editor/inspector_tabs/plugin.cfg", "res://addons/editor/script-ide/plugin.cfg", "res://addons/editor/vectorpad/plugin.cfg", "res://addons/xsm/plugin.cfg")
 
 [input]
 
