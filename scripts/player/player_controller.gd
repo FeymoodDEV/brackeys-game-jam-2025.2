@@ -16,19 +16,14 @@ var look_direction : Vector2
 @export var dash_friction : float = 10.0
 #endregion
 
+@onready var crosshair: Node2D = $Crosshair
+
+
 func _physics_process(delta: float) -> void:
-	# Get look direction and rotate node accordingly
-	look_direction = get_mouse_vector().normalized();
-	self.rotation = look_direction.angle();
-	
-	#if not is_dashing and Input.is_action_just_pressed("nom_dash") and dash_cooldown_timer.is_stopped():
-		#is_dashing = true
-	#
-	#if is_dashing:
-		#handle_dash(delta)
-	#
-	#if not is_dashing:
-		#velocity = get_movement_vector(delta) * speed
+	## Get look direction and rotate node accordingly
+	#look_direction = get_mouse_vector().normalized();
+	#self.rotation = look_direction.angle();
+	pass
 
 func get_movement_vector() -> Vector2:
 	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -36,6 +31,15 @@ func get_movement_vector() -> Vector2:
 ## Returns vector from this node to the mouse.
 func get_mouse_vector() -> Vector2:
 	return get_global_mouse_position() - self.global_position
+
+## Returns vector from this node to the hard lock target, or `Vector2.ZERO` if 
+## there is none.
+func get_hard_lock_vector() -> Vector2:
+	if crosshair.hard_lock_target != null:
+		return crosshair.hard_lock_target.global_position - self.global_position
+	else:
+		printerr("ERROR: Tried to get_hard_lock_vector without hard lock engaged")
+		return Vector2.INF
 
 ## Returns the input vector rotated in relation to the look direction.
 func get_look_relative_vector() -> Vector2:

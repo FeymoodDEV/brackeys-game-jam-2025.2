@@ -45,6 +45,7 @@ _data = {
 }
 
 [node name="Block" type="StaticBody2D"]
+collision_layer = 4
 script = ExtResource("1_cgrg5")
 data = ExtResource("2_4kun4")
 
