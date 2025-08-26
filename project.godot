@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Brackeys Game Jam 2025.2"
-run/main_scene="uid://opbu2cdtgoya"
+run/main_scene="uid://ccrxh34dcnijy"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
@@ -27,7 +27,7 @@ gdscript/warnings/return_value_discarded=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg", "res://addons/xsm/plugin.cfg")
+enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg", "res://addons/editor/inspector_tabs/plugin.cfg", "res://addons/editor/script-ide/plugin.cfg", "res://addons/editor/vectorpad/plugin.cfg", "res://addons/xsm/plugin.cfg")
 
 [input]
 

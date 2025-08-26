@@ -9,9 +9,9 @@
 [ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://scenes/player/normal.gd" id="8_qek5x"]
 [ext_resource type="Script" uid="uid://des4f477v63vn" path="res://scenes/player/circling.gd" id="9_5gtgg"]
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://scenes/player/nom_dash.gd" id="10_h17s1"]
-[ext_resource type="Script" path="res://scenes/player/crosshair.gd" id="11_fm80t"]
+[ext_resource type="Script" uid="uid://bh8rpek0w1o47" path="res://scenes/player/crosshair.gd" id="11_fm80t"]
 [ext_resource type="Texture2D" uid="uid://bptr4hwxaoyjv" path="res://assets/player/crosshair.svg" id="12_gx1jg"]
-[ext_resource type="Script" path="res://scenes/player/lock_reticle.gd" id="13_ugbui"]
+[ext_resource type="Script" uid="uid://cfmoqb7g6yigs" path="res://scenes/player/lock_reticle.gd" id="13_ugbui"]
 [ext_resource type="Texture2D" uid="uid://cal60wifol3qs" path="res://assets/player/soft-lock.svg" id="14_fcs02"]
 [ext_resource type="Texture2D" uid="uid://dr2oj506weijh" path="res://assets/player/hard-lock.svg" id="15_fcs02"]
 
@@ -124,4 +124,4 @@ texture = ExtResource("15_fcs02")
 [connection signal="hard_lock_changed" from="Crosshair" to="Root/Movement" method="_on_crosshair_hard_lock_changed"]
 [connection signal="body_entered" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_entered"]
 [connection signal="body_exited" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_exited"]
-[connection signal="screen_exited" from="Crosshair/HardLockReticle/VisibleOnScreenNotifier2D" to="Crosshair" method="_on_hard_lock_reticle_screen_exited"]
+[connection signal="screen_exited" from="Crosshair/HardLockReticle/VisibleOnScreenNotifier2D" to="Crosshair" method="_on_hard_lock_gone"]

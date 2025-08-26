@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://opbu2cdtgoya"]
+[gd_scene load_steps=7 format=3 uid="uid://ccrxh34dcnijy"]
 
 [ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_sijxs"]
 [ext_resource type="Script" uid="uid://bc7o63ppdn8uw" path="res://testing/cybrnight_main.gd" id="1_w3c6p"]
