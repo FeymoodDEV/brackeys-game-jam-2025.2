@@ -66,7 +66,7 @@ func _on_spawned():
 	if trails.size() < 10:
 		trail = data.trail_vfx.instantiate();
 		add_child(trail);
-	else:
+	elif trail:
 		trail.queue_free.call_deferred();
 
 func _on_deleted():

@@ -12,6 +12,7 @@ extends Node2D
 @export var enemies: Array[PackedScene]
 
 var grid: Array = []
+var rng = RandomNumberGenerator.new()
 
 func _ready():
 	# Initialize grid with false
@@ -61,10 +62,9 @@ func spawn_block(scene: PackedScene, x: int, y: int):
 
 func spawn_enemies():
 	for y in range(map_height):
-		var rng = randi() % 10
 		for x in range(map_width):
 			if grid[y][x] == false:
-				if rng != 1: break
+				if rng.randi_range(1, 5) != 1: continue
 				grid[y][x] = true
 				var enemy = enemies[randi() % enemies.size()].instantiate()
 				enemy.position = Vector2(x * cell_size, y * cell_size)

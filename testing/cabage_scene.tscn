@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsi7y5pro2w6d"]
+[gd_scene load_steps=10 format=3 uid="uid://bsi7y5pro2w6d"]
 
 [ext_resource type="PackedScene" uid="uid://chjrmgc7vavve" path="res://testing/manager/cybr_bullet_manager.tscn" id="1_c03qe"]
+[ext_resource type="Script" uid="uid://bc7o63ppdn8uw" path="res://testing/cybrnight_main.gd" id="1_cgsnw"]
 [ext_resource type="Script" uid="uid://dh1h11m36jqp0" path="res://scripts/managers/level_manager.gd" id="1_efqug"]
 [ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_l6rfs"]
 [ext_resource type="PackedScene" uid="uid://do3kmq6olly6f" path="res://scenes/player/player.tscn" id="2_c4vfy"]
@@ -10,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://y2xgcb36jh3" path="res://scenes/blocks/block_3.tscn" id="6_c03qe"]
 
 [node name="CabageScene" type="Node2D"]
+script = ExtResource("1_cgsnw")
 
 [node name="LevelManager" type="Node2D" parent="."]
 script = ExtResource("1_efqug")
@@ -18,9 +20,6 @@ border_scene = ExtResource("6_c03qe")
 enemies = Array[PackedScene]([ExtResource("4_c4vfy")])
 
 [node name="BulletManager" parent="." instance=ExtResource("1_c03qe")]
-
-[node name="Player" parent="." instance=ExtResource("2_c4vfy")]
-position = Vector2(640, 431)
 
 [node name="BG" type="TextureRect" parent="."]
 z_index = -1
@@ -32,3 +31,12 @@ texture = ExtResource("1_l6rfs")
 stretch_mode = 1
 
 [node name="Temp" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FPS" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Player" parent="." instance=ExtResource("2_c4vfy")]
+position = Vector2(1298, 871)
