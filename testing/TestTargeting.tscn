@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca5b14chxprjh"]
+
+[ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="1_dutbn"]
+
+[node name="TestTargeting" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_dutbn")]

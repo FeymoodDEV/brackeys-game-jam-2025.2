@@ -16,6 +16,9 @@ var look_direction : Vector2
 @export var dash_friction : float = 10.0
 #endregion
 
+@onready var crosshair: Node2D = $Crosshair
+
+
 func _physics_process(delta: float) -> void:
 	# Get look direction and rotate node accordingly
 	look_direction = get_mouse_vector().normalized();

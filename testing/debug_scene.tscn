@@ -1,13 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://cyfo7f8h5faf3"]
+[gd_scene load_steps=15 format=3 uid="uid://bnwws4p2hubu1"]
 
-[ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://bu6qniyx8b4sm" path="res://scenes/block.tscn" id="3_sugp2"]
-[ext_resource type="Script" uid="uid://bjmse0liopcrp" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="5_o6xl0"]
-[ext_resource type="Script" uid="uid://bapo6jcdsje8y" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="6_tipki"]
-[ext_resource type="Script" uid="uid://c36h0owyoculh" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="7_85g3d"]
-[ext_resource type="Script" uid="uid://c8ydhn2yvq3dc" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="7_tipki"]
-[ext_resource type="Script" uid="uid://b6cup3hdpqd6v" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="8_85g3d"]
+[ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_b15j2"]
+[ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="2_6g617"]
+[ext_resource type="PackedScene" uid="uid://bu6qniyx8b4sm" path="res://scenes/block.tscn" id="3_6g4hr"]
+[ext_resource type="Script" uid="uid://c8ydhn2yvq3dc" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="4_ntn60"]
+[ext_resource type="Script" uid="uid://b6cup3hdpqd6v" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="5_mavmf"]
+[ext_resource type="Script" uid="uid://bjmse0liopcrp" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="6_nd8f8"]
+[ext_resource type="Script" uid="uid://bapo6jcdsje8y" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="7_828lp"]
+[ext_resource type="Script" uid="uid://c36h0owyoculh" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="8_abus7"]
 
 [sub_resource type="Curve2D" id="Curve2D_tipki"]
 _data = {
@@ -17,7 +17,7 @@ point_count = 10
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tipki"]
 resource_name = "PatternOne"
-script = ExtResource("8_85g3d")
+script = ExtResource("5_mavmf")
 bullet = "1"
 nbr = 1
 iterations = 1
@@ -45,8 +45,8 @@ metadata/_custom_type_script = "uid://b6cup3hdpqd6v"
 [sub_resource type="Curve" id="Curve_2xsyn"]
 
 [sub_resource type="PackedDataContainer" id="PackedDataContainer_choun"]
-script = ExtResource("7_85g3d")
-anim_more = Array[ExtResource("6_tipki")]([])
+script = ExtResource("8_abus7")
+anim_more = Array[ExtResource("7_828lp")]([])
 damage = 1.0
 speed = 500.0
 scale = 1.0
@@ -124,25 +124,28 @@ offset_left = -1671.0
 offset_top = -1015.0
 offset_right = 1593.0
 offset_bottom = 1087.0
-texture = ExtResource("1_0wfyh")
+texture = ExtResource("1_b15j2")
 stretch_mode = 1
 
-[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+[node name="Player" parent="." instance=ExtResource("2_6g617")]
 
-[node name="Block" parent="." instance=ExtResource("3_sugp2")]
+[node name="Block" parent="." instance=ExtResource("3_6g4hr")]
 position = Vector2(345, 56)
 
-[node name="Block2" parent="." instance=ExtResource("3_sugp2")]
+[node name="Block2" parent="." instance=ExtResource("3_6g4hr")]
 position = Vector2(659, 56)
+
+[node name="Block3" parent="." instance=ExtResource("3_6g4hr")]
+position = Vector2(266, 143)
 
 [node name="SpawnPattern2" type="Path2D" parent="."]
 curve = SubResource("Curve2D_tipki")
-script = ExtResource("7_tipki")
+script = ExtResource("4_ntn60")
 id = "one"
 pattern = SubResource("NavigationPolygon_tipki")
 
 [node name="BulletPattern" type="Path2D" parent="."]
 curve = SubResource("Curve2D_85g3d")
-script = ExtResource("5_o6xl0")
+script = ExtResource("6_nd8f8")
 id = "1"
 props = SubResource("PackedDataContainer_choun")

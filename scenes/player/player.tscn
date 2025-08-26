@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=18 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://scripts/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dmyvil000yl58" path="res://assets/player/Ginger_Biscuit_Man.png" id="2_qhqgy"]
@@ -10,9 +10,17 @@
 [ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://scenes/player/normal.gd" id="8_qek5x"]
 [ext_resource type="Script" uid="uid://des4f477v63vn" path="res://scenes/player/circling.gd" id="9_5gtgg"]
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://scenes/player/nom_dash.gd" id="10_h17s1"]
+[ext_resource type="Script" uid="uid://bh8rpek0w1o47" path="res://scenes/player/crosshair.gd" id="11_fm80t"]
+[ext_resource type="Texture2D" uid="uid://bptr4hwxaoyjv" path="res://assets/player/crosshair.svg" id="12_gx1jg"]
+[ext_resource type="Script" uid="uid://cfmoqb7g6yigs" path="res://scenes/player/lock_reticle.gd" id="13_ugbui"]
+[ext_resource type="Texture2D" uid="uid://cal60wifol3qs" path="res://assets/player/soft-lock.svg" id="14_fcs02"]
+[ext_resource type="Texture2D" uid="uid://dr2oj506weijh" path="res://assets/player/hard-lock.svg" id="15_fcs02"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
 radius = 14.0357
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fm80t"]
+radius = 36.0555
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_g2els")
@@ -82,18 +90,70 @@ metadata/_custom_type_script = "uid://b2l0jlbk7oecc"
 
 [node name="Movement" type="Node" parent="Root"]
 script = ExtResource("7_h17s1")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Normal" type="Node" parent="Root/Movement"]
 script = ExtResource("8_qek5x")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("../Circling")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Circling" type="Node" parent="Root/Movement"]
 script = ExtResource("9_5gtgg")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("../NomDash")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="NomDash" type="Node" parent="Root/Movement"]
 script = ExtResource("10_h17s1")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="Crosshair" type="Node2D" parent="."]
+script = ExtResource("11_fm80t")
+
+[node name="Sprite2D" type="Sprite2D" parent="Crosshair"]
+texture = ExtResource("12_gx1jg")
+
+[node name="LockOnTargetArea" type="Area2D" parent="Crosshair"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crosshair/LockOnTargetArea"]
+shape = SubResource("CircleShape2D_fm80t")
+debug_color = Color(0.888025, 0.258221, 0.521158, 0.42)
+
+[node name="SoftLockReticle" type="Node2D" parent="Crosshair"]
+script = ExtResource("13_ugbui")
+ROTATION_SPEED = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Crosshair/SoftLockReticle"]
+texture = ExtResource("14_fcs02")
+
+[node name="HardLockReticle" type="Node2D" parent="Crosshair"]
+visible = false
+script = ExtResource("13_ugbui")
+ROTATION_SPEED = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Crosshair/HardLockReticle"]
+texture = ExtResource("15_fcs02")
+
+[connection signal="body_entered" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_entered"]
+[connection signal="body_exited" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_exited"]

@@ -2,6 +2,7 @@
 extends State
 
 
+
 func _input(event: InputEvent) -> void:
 	# Debug : change between states on a keypress
 	if event.is_action_pressed("dbg_normal"):
