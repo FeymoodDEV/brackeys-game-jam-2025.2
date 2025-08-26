@@ -15,7 +15,7 @@ signal hard_lock_changed
 var targetables : Array[Node2D] = []
 ## Current soft lock target
 var soft_lock_target : Node2D = null
-# Current hard lock target
+## Current hard lock target
 var hard_lock_target : Node2D = null
 
 
@@ -24,10 +24,21 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	global_position = get_global_mouse_position()
+	if hard_lock_target and is_instance_valid(hard_lock_target):
+		hard_lock_reticle.global_position = hard_lock_target.global_position
+	if soft_lock_target and is_instance_valid(soft_lock_target):
+		soft_lock_reticle.global_position = soft_lock_target.global_position
 
 # Because things only move on physics ticks, we don't need to get closest every 
 # process.
 func _physics_process(delta: float) -> void:
+	# Check if either target has been freed
+	if not is_instance_valid(soft_lock_target):
+		targetables.remove_at(targetables.find(soft_lock_target))
+		remove_soft_lock()
+	if not is_instance_valid(hard_lock_target):
+		remove_hard_lock()
+	
 	# - Handle hard lock -
 	# We handle this BEFORE soft lock this tick, so that the player can lock
 	# onto the visible soft lock from last tick. 
@@ -54,14 +65,13 @@ func _physics_process(delta: float) -> void:
 			remove_soft_lock()
 	elif closest != soft_lock_target: # if closest has changed
 		# send reticle over there
-		soft_lock_reticle.reparent(soft_lock_target)
+		#soft_lock_reticle.reparent(soft_lock_target)
 		soft_lock_target = closest 
 		soft_lock_reticle.visible = true
 		soft_lock_reticle.position = Vector2.ZERO
 		
 		if soft_lock_target.has_signal("freeing"):
 			soft_lock_target.connect("freeing", remove_soft_lock)
-
 
 # This area should only be detecting collisions from layer 5, so there should
 # be no need for a check. If this doesn't work out later, use a group instead
@@ -84,9 +94,9 @@ func hard_lock() -> void:
 	remove_soft_lock()
 	
 	# send hard lock over
-	hard_lock_reticle.reparent(hard_lock_target)
+	#hard_lock_reticle.reparent(hard_lock_target)
 	hard_lock_reticle.visible = true
-	hard_lock_reticle.position = Vector2.ZERO
+	#hard_lock_reticle.position = Vector2.ZERO
 	
 	if hard_lock_target.has_signal("freeing"):
 		hard_lock_target.connect("freeing", _on_hard_lock_gone)
@@ -104,13 +114,13 @@ func refresh_targetables() -> void:
 ## Connected to VisibleOnScreenNotifier2D.screen_exited()
 func remove_hard_lock() -> void:
 	hard_lock_target = null
-	hard_lock_reticle.reparent(self)
+	#hard_lock_reticle.reparent(self)
 	hard_lock_reticle.visible = false
 	refresh_targetables()
 
 func remove_soft_lock() -> void:
 	soft_lock_target = null
-	soft_lock_reticle.reparent(self)
+	#soft_lock_reticle.reparent(self)
 	soft_lock_reticle.visible = false
 
 func get_closest_targetable() -> Node2D:
