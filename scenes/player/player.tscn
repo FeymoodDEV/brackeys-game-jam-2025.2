@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://do3kmq6olly6f"]
+[gd_scene load_steps=17 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://scripts/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dmyvil000yl58" path="res://assets/player/Ginger_Biscuit_Man.png" id="2_qhqgy"]
@@ -9,9 +9,17 @@
 [ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://scenes/player/normal.gd" id="8_qek5x"]
 [ext_resource type="Script" uid="uid://des4f477v63vn" path="res://scenes/player/circling.gd" id="9_5gtgg"]
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://scenes/player/nom_dash.gd" id="10_h17s1"]
+[ext_resource type="Script" path="res://scenes/player/crosshair.gd" id="11_fm80t"]
+[ext_resource type="Texture2D" uid="uid://bptr4hwxaoyjv" path="res://assets/player/crosshair.svg" id="12_gx1jg"]
+[ext_resource type="Script" path="res://scenes/player/lock_reticle.gd" id="13_ugbui"]
+[ext_resource type="Texture2D" uid="uid://cal60wifol3qs" path="res://assets/player/soft-lock.svg" id="14_fcs02"]
+[ext_resource type="Texture2D" uid="uid://dr2oj506weijh" path="res://assets/player/hard-lock.svg" id="15_fcs02"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
 radius = 14.0357
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fm80t"]
+radius = 36.0555
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 20
@@ -81,4 +89,39 @@ timed = false
 next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="Crosshair" type="Node2D" parent="."]
+script = ExtResource("11_fm80t")
+
+[node name="Sprite2D" type="Sprite2D" parent="Crosshair"]
+texture = ExtResource("12_gx1jg")
+
+[node name="LockOnTargetArea" type="Area2D" parent="Crosshair"]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crosshair/LockOnTargetArea"]
+shape = SubResource("CircleShape2D_fm80t")
+debug_color = Color(0.888025, 0.258221, 0.521158, 0.42)
+
+[node name="SoftLockReticle" type="Node2D" parent="Crosshair"]
+visible = false
+modulate = Color(1, 1, 1, 0.498039)
+script = ExtResource("13_ugbui")
+ROTATION_SPEED = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Crosshair/SoftLockReticle"]
+texture = ExtResource("14_fcs02")
+
+[node name="HardLockReticle" type="Node2D" parent="Crosshair"]
+script = ExtResource("13_ugbui")
+ROTATION_SPEED = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Crosshair/HardLockReticle"]
+texture = ExtResource("15_fcs02")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Crosshair/HardLockReticle"]
+
+[connection signal="hard_lock_changed" from="Crosshair" to="Root/Movement" method="_on_crosshair_hard_lock_changed"]
+[connection signal="body_entered" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_entered"]
+[connection signal="body_exited" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_exited"]
+[connection signal="screen_exited" from="Crosshair/HardLockReticle/VisibleOnScreenNotifier2D" to="Crosshair" method="_on_hard_lock_reticle_screen_exited"]

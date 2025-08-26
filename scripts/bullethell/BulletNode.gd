@@ -7,7 +7,11 @@ class_name BulletNode
 var direction: Vector2 = Vector2.RIGHT
 var time_alive: float = 0.0
 var remaining_pierce: int = 0
-var trail: Node;
+
+var trail;
+var hit_vfx;
+
+var trails = [];
 
 func _ready() -> void:
 	body_shape_entered.connect(_on_body_shape_entered);
@@ -17,9 +21,7 @@ func _ready() -> void:
 	if data.texture:
 		sprite.texture = data.texture
 		sprite.scale = Vector2.ONE * data.scale
-		
-	if data.trail_vfx:
-		trail = $trail;
+
 
 		
 	if ID == "": push_warning("ID missing in node "+String(get_path()))
@@ -59,10 +61,21 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	pass
-	
+
+func _on_spawned():		
+	if trails.size() < 10:
+		trail = data.trail_vfx.instantiate();
+		add_child(trail);
+	else:
+		trail.queue_free.call_deferred();
+
+func _on_deleted():
+	if trail:
+		trails.append(trail);
+		remove_child(trail);
 
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	if not body.has_method("apply_damage"): 
+	if not body.has_method("apply_damage"):
 		Spawning.delete_bullet(self);
 		return
 	else: 
