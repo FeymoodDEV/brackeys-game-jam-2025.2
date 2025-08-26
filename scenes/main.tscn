@@ -1,7 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://u6edsroarm37"]
+[gd_scene load_steps=24 format=3 uid="uid://n2pv4bmogdum"]
 
 [ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://scenes/blocks/block_1.tscn" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://cm0hu41doig3u" path="res://scripts/enemies/enemy.gd" id="4_trceg"]
 [ext_resource type="Script" uid="uid://c8ydhn2yvq3dc" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="5_tefeu"]
@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://qc1ehcnju62l" path="res://addons/BulletUpHell/Nodes/BuHInstanceLister.gd" id="10_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://c01vku4yv2exl" path="res://scenes/bullets/bullet.tscn" id="11_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="11_trceg"]
-[ext_resource type="Script" uid="uid://gbdy54rnh22y" path="res://scripts/look_at_player.gd" id="12_a8y0u"]
+[ext_resource type="Script" path="res://scripts/look_at_player.gd" id="12_a8y0u"]
 [ext_resource type="Script" uid="uid://rn8jlsrjpr3d" path="res://addons/BulletUpHell/SpawnPatterns/PatternCustomShape.gd" id="14_jkv2x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkv2x"]
@@ -131,7 +131,7 @@ wait_tween_momentum = 0
 wait_tween_length = 0.0
 wait_tween_time = 0.0
 
-[node name="Main" type="Node2D"]
+[node name="Main2" type="Node2D"]
 
 [node name="BG" type="TextureRect" parent="."]
 z_index = -1
