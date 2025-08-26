@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dd46qml54v0f"]
+[gd_scene load_steps=2 format=3 uid="uid://ca5b14chxprjh"]
 
-[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_dutbn"]
+[ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="1_dutbn"]
 
 [node name="TestTargeting" type="Node2D"]
 
