@@ -54,9 +54,16 @@ func shoot() -> void:
 	
 	var spawn_pos = $SpawnPoint.global_position;
 	var spawn_pos2 = $SpawnPoint2.global_position;
+	var spawn_pos3 = $SpawnPoint3.global_position;
+	var spawn_pos4 = $SpawnPoint4.global_position;
+	var spawn_pos5 = $SpawnPoint5.global_position;
 	var rot = global_rotation
 	var node = get_parent().get_parent();
 
 	Spawning.spawn({"position": spawn_pos, "rotation": rot, "source_node": node}, "one")
 	Spawning.spawn({"position": spawn_pos2, "rotation": rot, "source_node": node}, "one")
+	Spawning.spawn({"position": spawn_pos3, "rotation": rot, "source_node": node}, "one")
+	Spawning.spawn({"position": spawn_pos4, "rotation": rot, "source_node": node}, "one")
+	Spawning.spawn({"position": spawn_pos5, "rotation": rot, "source_node": node}, "one")
+	
 	

@@ -295,6 +295,8 @@ curve = SubResource("Curve2D_u3j77")
 script = ExtResource("2_ah2t8")
 id = "line"
 pattern = SubResource("NavigationPolygon_txvqr")
+preview_spawn = true
+preview_shoot = true
 
 [node name="SpawnPattern4" type="Path2D" parent="Patterns"]
 curve = SubResource("Curve2D_u3j77")

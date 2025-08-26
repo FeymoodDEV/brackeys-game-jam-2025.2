@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ccrxh34dcnijy"]
+[gd_scene load_steps=29 format=3 uid="uid://ccrxh34dcnijy"]
 
 [ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_sijxs"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="2_ko3n4"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b44c5ncrptvhv" path="res://scenes/bullets/player_bullet.tscn" id="10_fcsxm"]
 [ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://scenes/enemies/enemy.tscn" id="11_lqjba"]
 [ext_resource type="Script" uid="uid://csxp6a77ij7sk" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="11_rwh7c"]
+[ext_resource type="Script" uid="uid://c8a1x50bjmkue" path="res://addons/BulletUpHell/SpawnPatterns/PatternLine.gd" id="12_7hhsh"]
 
 [sub_resource type="Curve2D" id="Curve2D_w3c6p"]
 
@@ -192,7 +193,7 @@ pattern_angle_mouse = false
 forced_angle = 0.0
 forced_target = NodePath("")
 forced_lookat_mouse = false
-forced_pattern_lookat = true
+forced_pattern_lookat = false
 cooldown_stasis = false
 cooldown_spawn = 5.0
 cooldown_shoot = 0.0
@@ -218,6 +219,38 @@ angle_decal = 0.0
 symmetric = false
 center = 0
 symmetry_type = 0
+bullet = "PBullet"
+nbr = 5
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 5.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+
+[sub_resource type="Curve2D" id="Curve2D_rwh7c"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 701, 125, 0, 0, 0, 0, 753, 91, 0, 0, 0, 0, 799, 123, 0, 0, 0, 0, 787, 73, 0, 0, 0, 0, 832, 48, 0, 0, 0, 0, 777, 39, 0, 0, 0, 0, 758, -13, 0, 0, 0, 0, 731, 36, 0, 0, 0, 0, 686, 41, 0, 0, 0, 0, 723, 71)
+}
+point_count = 10
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7hhsh"]
+resource_name = "PatternLine"
+source_geometry_group_name = &"navigation_polygon_source_group"
+script = ExtResource("12_7hhsh")
+offset = Vector2(0, 20)
+center = 1
+symmetric = true
 bullet = "PBullet"
 nbr = 5
 iterations = 1
@@ -305,6 +338,14 @@ curve = SubResource("Curve2D_td6b6")
 script = ExtResource("4_lqjba")
 id = "circle"
 pattern = SubResource("NavigationPolygon_dbqtp")
+
+[node name="SpawnPattern3" type="Path2D" parent="Patterns"]
+curve = SubResource("Curve2D_rwh7c")
+script = ExtResource("4_lqjba")
+id = "line"
+pattern = SubResource("NavigationPolygon_7hhsh")
+preview_spawn = true
+preview_shoot = true
 
 [node name="Enemy" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(222, 227)
