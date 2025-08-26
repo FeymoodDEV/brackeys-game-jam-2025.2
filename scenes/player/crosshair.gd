@@ -45,6 +45,9 @@ func _physics_process(delta: float) -> void:
 		soft_lock_reticle.reparent(soft_lock_target)
 		soft_lock_reticle.visible = true
 		soft_lock_reticle.position = Vector2.ZERO
+	
+	print(targetables)
+	print(get_closest_targetable())
 
 # This area should only be detecting collisions from layer 5, so there should
 # be no need for a check. If this doesn't work out later, use a group instead
@@ -75,6 +78,12 @@ func hard_lock() -> void:
 	hard_lock_reticle.reparent(hard_lock_target)
 	hard_lock_reticle.visible = true
 	hard_lock_reticle.position = Vector2.ZERO
+	
+	# refresh targetables list
+	# bit of a bandaid fix: if we don't do this, the last hard lock target will not be added to the 
+	# targetable list until it leaves and reenters the zone
+	targetables = $LockOnTargetArea.get_overlapping_bodies()
+	targetables.remove_at(targetables.find(hard_lock_target))
 
 ## Remove the hard lock and recall the reticle.
 ## Connected to VisibleOnScreenNotifier2D.screen_exited()
