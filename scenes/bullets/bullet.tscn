@@ -1,20 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://lvqk3b38lm1n"]
+[gd_scene load_steps=8 format=3 uid="uid://c01vku4yv2exl"]
 
 [ext_resource type="Script" uid="uid://4h0yuoj0gvq6" path="res://scripts/bullets/bullet.gd" id="1_5f1na"]
+[ext_resource type="Script" uid="uid://blyfl04bkccem" path="res://scripts/bullethell/BulletNodeData.gd" id="2_0s0cy"]
 [ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="2_lj7gv"]
-[ext_resource type="Script" uid="uid://blyfl04bkccem" path="res://scripts/bullets/bullet_data.gd" id="2_tocqt"]
+[ext_resource type="PackedScene" uid="uid://cbqgxhuvoxtgg" path="res://scenes/bullets/first_bullet/first_hit_vfx.tscn" id="3_0s0cy"]
+[ext_resource type="PackedScene" uid="uid://dv7y8svel5iok" path="res://scenes/bullets/first_bullet/first_trail.tscn" id="4_kd18i"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tocqt"]
-radius = 3.0
+[sub_resource type="Resource" id="Resource_kd18i"]
+script = ExtResource("2_0s0cy")
+speed = 400.0
+damage = 10.0
+lifetime = 5.0
+pierce_count = 0
+knockback = 0.0
+scale = 1.0
+metadata/_custom_type_script = "uid://blyfl04bkccem"
 
-[node name="Bullet" type="Area2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_lj7gv"]
+
+[node name="Bullet" type="Node2D"]
 script = ExtResource("1_5f1na")
-data = ExtResource("2_tocqt")
+data = SubResource("Resource_kd18i")
+
+[node name="hit_vfx" parent="." instance=ExtResource("3_0s0cy")]
+
+[node name="trail" parent="." instance=ExtResource("4_kd18i")]
 
 [node name="Sprite" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_lj7gv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_tocqt")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+shape = SubResource("CircleShape2D_lj7gv")

@@ -1,4 +1,5 @@
 extends Area2D
+class_name BuHBulletNode
 
 #const FLIP:Array = [-1,1]
 
@@ -28,10 +29,10 @@ func _draw():
 		else: draw_texture(texture, entry["position"], entry["modulate"])
 #		draw_texture_rect(texture, Rect2(entry["position"], texture.get_size()), false, entry["modulate"])
 
-func other_area_shape_entered(area_rid:RID, area:Area2D, area_shape_index:int, local_shape_index:int):
+func other_area_shape_entered(area_rid:RID, area:Node2D, area_shape_index:int, local_shape_index:int):
 	area_shape_entered.emit(area_rid, area, area_shape_index, local_shape_index)
 	
-func other_body_shape_entered(body_rid:RID, body:Area2D, body_shape_index:int, local_shape_index:int):
+func other_body_shape_entered(body_rid:RID, body:Node2D, body_shape_index:int, local_shape_index:int):
 	body_shape_entered.emit(body_rid, body, body_shape_index, local_shape_index)
 
 func _ready():

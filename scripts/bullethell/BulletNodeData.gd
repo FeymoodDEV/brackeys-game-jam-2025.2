@@ -1,5 +1,6 @@
+@tool
 extends Resource
-class_name BulletData
+class_name BulletNodeData
 
 @export_group("Gameplay")
 @export var speed: float = 600.0
