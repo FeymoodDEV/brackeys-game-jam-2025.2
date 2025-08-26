@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccrxh34dcnijy"]
+[gd_scene load_steps=7 format=3 uid="uid://opbu2cdtgoya"]
 
 [ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_sijxs"]
 [ext_resource type="Script" path="res://testing/cybrnight_main.gd" id="1_w3c6p"]
@@ -29,6 +29,7 @@ stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_ko3n4")]
+collision_mask = 22
 
 [node name="Static" type="Node2D" parent="."]
 

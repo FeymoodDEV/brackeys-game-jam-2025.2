@@ -1,4 +1,4 @@
-[gd_resource type="PackedDataContainer" script_class="BulletNodeData" load_steps=5 format=3 uid="uid://c4ckdurkd417w"]
+[gd_resource type="PackedDataContainer" script_class="BulletNodeData" load_steps=5 format=3 uid="uid://m6t0yljksjr3"]
 
 [ext_resource type="PackedScene" uid="uid://cbqgxhuvoxtgg" path="res://scenes/bullets/first_bullet/first_hit_vfx.tscn" id="1_1h80s"]
 [ext_resource type="Script" uid="uid://blyfl04bkccem" path="res://scripts/bullethell/BulletNodeData.gd" id="1_ipq2n"]
