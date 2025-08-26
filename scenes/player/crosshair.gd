@@ -34,7 +34,8 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	# Check if either target has been freed
 	if not is_instance_valid(soft_lock_target):
-		targetables.remove_at(targetables.find(soft_lock_target))
+		print(targetables)
+		#targetables.remove_at(targetables.find(soft_lock_target))
 		remove_soft_lock()
 	if not is_instance_valid(hard_lock_target):
 		remove_hard_lock()
@@ -71,7 +72,7 @@ func _physics_process(delta: float) -> void:
 		soft_lock_reticle.position = Vector2.ZERO
 		
 		if soft_lock_target.has_signal("freeing"):
-			soft_lock_target.connect("freeing", remove_soft_lock)
+			soft_lock_target.freeing.connect(remove_soft_lock)
 
 # This area should only be detecting collisions from layer 5, so there should
 # be no need for a check. If this doesn't work out later, use a group instead
@@ -81,7 +82,8 @@ func _on_lock_on_target_area_body_entered(body: Node2D) -> void:
 
 
 func _on_lock_on_target_area_body_exited(body: Node2D) -> void:
-	targetables.remove_at(targetables.find(body))
+	if body in targetables:
+		targetables.remove_at(targetables.find(body))
 
 
 # TODO
@@ -108,7 +110,8 @@ func hard_lock() -> void:
 
 func refresh_targetables() -> void:
 	targetables = $LockOnTargetArea.get_overlapping_bodies()
-	targetables.remove_at(targetables.find(hard_lock_target))
+	if hard_lock_target:
+		targetables.remove_at(targetables.find(hard_lock_target))
 
 ## Remove the hard lock and recall the reticle.
 ## Connected to VisibleOnScreenNotifier2D.screen_exited()
@@ -119,6 +122,9 @@ func remove_hard_lock() -> void:
 	refresh_targetables()
 
 func remove_soft_lock() -> void:
+	if soft_lock_target and soft_lock_target.has_signal("freeing"):
+		soft_lock_target.disconnect("freeing", remove_soft_lock)
+	
 	soft_lock_target = null
 	#soft_lock_reticle.reparent(self)
 	soft_lock_reticle.visible = false
