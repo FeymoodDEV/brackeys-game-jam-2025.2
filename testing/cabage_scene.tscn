@@ -15,6 +15,7 @@
 script = ExtResource("1_efqug")
 block_scenes = Array[PackedScene]([ExtResource("3_1kt5j"), ExtResource("5_yyklv"), ExtResource("6_c03qe")])
 border_scene = ExtResource("6_c03qe")
+enemies = Array[PackedScene]([ExtResource("4_c4vfy")])
 
 [node name="BulletManager" parent="." instance=ExtResource("1_c03qe")]
 
@@ -23,161 +24,11 @@ position = Vector2(640, 431)
 
 [node name="BG" type="TextureRect" parent="."]
 z_index = -1
-offset_left = -1671.0
-offset_top = -1015.0
-offset_right = 1593.0
-offset_bottom = 1087.0
+offset_left = -117.0
+offset_top = -87.0
+offset_right = 3147.0
+offset_bottom = 2015.0
 texture = ExtResource("1_l6rfs")
 stretch_mode = 1
 
 [node name="Temp" type="Node2D" parent="."]
-
-[node name="Enemy" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(222, 227)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy2" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(275, 226)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy3" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(327, 225)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy4" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(384, 223)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy5" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(452, 222)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy6" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(511, 225)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy7" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(220, 267)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy8" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(273, 266)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy9" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(325, 265)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy10" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(382, 263)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy11" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(450, 262)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy12" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(509, 265)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy13" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(218, 309)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy14" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(271, 308)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy15" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(323, 307)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy16" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(380, 305)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy17" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(448, 304)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy18" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(507, 307)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy19" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(222, 353)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy20" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(275, 352)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy21" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(327, 351)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy22" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(384, 349)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy23" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(452, 348)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy24" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(511, 351)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy25" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(221, 391)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy26" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(274, 390)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy27" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(326, 389)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy28" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(383, 387)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy29" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(451, 386)
-collision_layer = 2
-collision_mask = 4
-
-[node name="Enemy30" parent="Temp" instance=ExtResource("4_c4vfy")]
-position = Vector2(510, 389)
-collision_layer = 2
-collision_mask = 4

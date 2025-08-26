@@ -9,8 +9,21 @@ extends Node2D
 @export var cluster_chance: float = 0.01
 @export var cluster_size: int = 4
 
+@export var enemies: Array[PackedScene]
+
+var grid: Array = []
+
 func _ready():
+	# Initialize grid with false
+	grid.resize(map_height)
+	for y in range(map_height):
+		grid[y] = []
+		grid[y].resize(map_width)
+		for x in range(map_width):
+			grid[y][x] = false
+			
 	generate_level()
+	spawn_enemies()
 
 func generate_level():
 	for y in range(map_height):
@@ -20,10 +33,8 @@ func generate_level():
 			if is_border:
 				spawn_block(border_scene, x, y)
 			else:
-				# Random chance to start a cluster
-				if randf() < cluster_chance:
+				if randf() < cluster_chance and not grid[y][x]:
 					spawn_cluster(x, y)
-
 
 func spawn_cluster(start_x: int, start_y: int):
 	# Place a block at the center
@@ -38,8 +49,23 @@ func spawn_cluster(start_x: int, start_y: int):
 
 		spawn_block(block_scenes[randi() % block_scenes.size()], nx, ny)
 
-
 func spawn_block(scene: PackedScene, x: int, y: int):
+	if grid[y][x]:  # already occupied
+		return
+
 	var block = scene.instantiate()
 	block.position = Vector2(x * cell_size, y * cell_size)
-	add_child(block)
+	get_parent().add_child.call_deferred(block)
+
+	grid[y][x] = true  # mark as occupied
+
+func spawn_enemies():
+	for y in range(map_height):
+		var rng = randi() % 10
+		for x in range(map_width):
+			if grid[y][x] == false:
+				if rng != 1: break
+				grid[y][x] = true
+				var enemy = enemies[randi() % enemies.size()].instantiate()
+				enemy.position = Vector2(x * cell_size, y * cell_size)
+				get_parent().add_child.call_deferred(enemy)
