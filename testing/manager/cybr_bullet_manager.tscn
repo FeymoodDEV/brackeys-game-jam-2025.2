@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dwml1suxu8e0m" path="res://scripts/bullethell/BulletPropsData.gd" id="3_fg4cs"]
 [ext_resource type="Script" uid="uid://qc1ehcnju62l" path="res://addons/BulletUpHell/Nodes/BuHInstanceLister.gd" id="4_qrdfs"]
 [ext_resource type="PackedScene" uid="uid://b44c5ncrptvhv" path="res://scenes/bullets/player_bullet.tscn" id="5_ypq5x"]
-[ext_resource type="PackedDataContainer" uid="uid://c4ckdurkd417w" path="res://resources/bullets/p_bullet.tres" id="6_i0jjw"]
+[ext_resource type="PackedDataContainer" uid="uid://m6t0yljksjr3" path="res://resources/bullets/p_bullet.tres" id="6_i0jjw"]
 [ext_resource type="Script" uid="uid://c8ydhn2yvq3dc" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="7_x3hlf"]
 [ext_resource type="Script" uid="uid://b6cup3hdpqd6v" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="8_o2lmx"]
 [ext_resource type="Script" uid="uid://c8a1x50bjmkue" path="res://addons/BulletUpHell/SpawnPatterns/PatternLine.gd" id="9_pqqf2"]
@@ -192,7 +192,7 @@ forced_target = NodePath("")
 forced_lookat_mouse = false
 forced_pattern_lookat = false
 cooldown_stasis = false
-cooldown_spawn = 5.0
+cooldown_spawn = 1.0
 cooldown_shoot = 0.0
 cooldown_next_spawn = 0.0
 cooldown_next_shoot = 0.0
