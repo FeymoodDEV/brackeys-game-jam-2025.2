@@ -1,9 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://n2pv4bmogdum"]
+[gd_scene load_steps=20 format=3 uid="uid://u6edsroarm37"]
 
 [ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_0wfyh"]
-[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://scenes/blocks/block_1.tscn" id="3_sugp2"]
-[ext_resource type="Script" uid="uid://cm0hu41doig3u" path="res://scripts/enemies/enemy.gd" id="4_trceg"]
 [ext_resource type="Script" uid="uid://c8ydhn2yvq3dc" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="5_tefeu"]
 [ext_resource type="Script" uid="uid://c8a1x50bjmkue" path="res://addons/BulletUpHell/SpawnPatterns/PatternLine.gd" id="6_o6xl0"]
 [ext_resource type="Script" uid="uid://csxp6a77ij7sk" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="6_ya4ey"]
@@ -11,12 +10,7 @@
 [ext_resource type="Script" uid="uid://pbsf5pk4vmxi" path="res://addons/BulletUpHell/Bullet/ObjectProps.gd" id="8_ya4ey"]
 [ext_resource type="Script" uid="uid://qc1ehcnju62l" path="res://addons/BulletUpHell/Nodes/BuHInstanceLister.gd" id="10_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://c01vku4yv2exl" path="res://scenes/bullets/bullet.tscn" id="11_eb6dy"]
-[ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="11_trceg"]
-[ext_resource type="Script" path="res://scripts/look_at_player.gd" id="12_a8y0u"]
 [ext_resource type="Script" uid="uid://rn8jlsrjpr3d" path="res://addons/BulletUpHell/SpawnPatterns/PatternCustomShape.gd" id="14_jkv2x"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkv2x"]
-size = Vector2(129, 128)
 
 [sub_resource type="Curve2D" id="Curve2D_eb6dy"]
 
@@ -145,7 +139,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
 z_index = 1
-collision_layer = 1
 dash_power = 100.0
 dash_friction = 10.0
 
@@ -154,24 +147,6 @@ position = Vector2(345, 56)
 
 [node name="Block2" parent="." instance=ExtResource("3_sugp2")]
 position = Vector2(659, 56)
-
-[node name="enemy" type="CharacterBody2D" parent="."]
-modulate = Color(0.877346, 3.87453e-06, 1.2514e-06, 1)
-position = Vector2(46, 360)
-script = ExtResource("4_trceg")
-
-[node name="Sprite2D" type="Sprite2D" parent="enemy"]
-texture = ExtResource("11_trceg")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_jkv2x")
-
-[node name="Gun" type="Node2D" parent="enemy"]
-script = ExtResource("12_a8y0u")
-
-[node name="Timer" type="Timer" parent="enemy"]
-one_shot = true
 
 [node name="BulletManager" type="Node2D" parent="."]
 

@@ -4,6 +4,9 @@ class_name EnemyController
 const PLAYER_COLLISION_LAYER = 2
 const WALL_COLLISION_LAYER = 0
 
+@export var enemy_data: EnemyData;
+
+@export_group("Movement")
 @export var wander_radius: float = 350.0  # max distance from spawn
 @export var speed: float = 180.0
 @export var ray_length: float = 30.0
@@ -19,6 +22,8 @@ var shoot_counter = 0;
 
 
 func _ready() -> void:
+	#assert(enemy_data, "EnemyData null!");
+	
 	spawn_position = global_position
 	player = get_tree().get_first_node_in_group("player")
 	
