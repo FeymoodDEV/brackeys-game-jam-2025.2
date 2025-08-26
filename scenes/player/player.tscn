@@ -141,6 +141,7 @@ shape = SubResource("CircleShape2D_fm80t")
 debug_color = Color(0.888025, 0.258221, 0.521158, 0.42)
 
 [node name="SoftLockReticle" type="Node2D" parent="Crosshair"]
+modulate = Color(1, 1, 1, 0.498039)
 script = ExtResource("13_ugbui")
 ROTATION_SPEED = 1.0
 
@@ -148,12 +149,14 @@ ROTATION_SPEED = 1.0
 texture = ExtResource("14_fcs02")
 
 [node name="HardLockReticle" type="Node2D" parent="Crosshair"]
-visible = false
 script = ExtResource("13_ugbui")
 ROTATION_SPEED = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Crosshair/HardLockReticle"]
 texture = ExtResource("15_fcs02")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Crosshair/HardLockReticle"]
+
 [connection signal="body_entered" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_entered"]
 [connection signal="body_exited" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_exited"]
+[connection signal="screen_exited" from="Crosshair/HardLockReticle/VisibleOnScreenNotifier2D" to="Crosshair" method="remove_hard_lock"]

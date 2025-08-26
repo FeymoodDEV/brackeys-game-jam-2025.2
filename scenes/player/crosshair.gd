@@ -26,13 +26,19 @@ func _process(delta: float) -> void:
 # process.
 func _physics_process(delta: float) -> void:
 	# Handle soft lock
+	if Input.is_action_just_pressed("lock_on") and hard_lock_target:
+		remove_hard_lock()
+	
+	if Input.is_action_just_pressed("lock_on") and soft_lock_target:
+		hard_lock()
+	
 	var closest := get_closest_targetable()
 	if closest == null: # if no targetables
 		if soft_lock_target: # and we had a soft lock before
 			# recall soft lock reticle
+			soft_lock_target = null
 			soft_lock_reticle.reparent(self)
 			soft_lock_reticle.visible = false
-			soft_lock_target = null
 	elif closest != soft_lock_target: # if closest has changed
 		# send reticle over there
 		soft_lock_target = closest 
@@ -55,11 +61,27 @@ func _on_lock_on_target_area_body_exited(body: Node2D) -> void:
 
 # TODO
 func hard_lock() -> void:
-	if soft_lock_target == null:
-		pass
-
+	# change soft lock to hard lock
 	hard_lock_target = soft_lock_target
 	targetables.remove_at(targetables.find(soft_lock_target))
+	
+	# recall soft lock reticle
+	# TODO: deduplicate
+	soft_lock_target = null
+	soft_lock_reticle.reparent(self)
+	soft_lock_reticle.visible = false
+	
+	# send hard lock over
+	hard_lock_reticle.reparent(hard_lock_target)
+	hard_lock_reticle.visible = true
+	hard_lock_reticle.position = Vector2.ZERO
+
+## Remove the hard lock and recall the reticle.
+## Connected to VisibleOnScreenNotifier2D.screen_exited()
+func remove_hard_lock() -> void:
+	hard_lock_target = null
+	hard_lock_reticle.reparent(self)
+	hard_lock_reticle.visible = false
 
 
 func get_closest_targetable() -> Node2D:
