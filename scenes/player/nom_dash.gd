@@ -26,7 +26,10 @@ func _on_update(_delta) -> void:
 	# count down timer
 	remaining_time -= _delta
 	if remaining_time <= 0:
-		change_state("Normal")
+		if target.hard_lock_target != null:
+			change_state("Circling")
+		else:
+			change_state("Normal")
 
 func _on_exit(args) -> void:
 	# just in case...

@@ -3,6 +3,12 @@ extends State
 
 # despite the unclear name, this does update on physics_process, not process
 func _on_update(_delta) -> void:
+	# Get look direction and rotate node accordingly
+	var look_vector = target.get_hard_lock_vector();
+	target.look_direction = look_vector if look_vector != Vector2.INF else target.get_mouse_vector();
+	target.rotation = target.look_direction.angle();
+	
+	# Handle movement
 	var direction: Vector2 = target.get_look_relative_vector().rotated((PI/2))
 	target.velocity = direction * target.speed
 	target.move_and_slide()

@@ -7,6 +7,9 @@ extends Node2D
 @onready var soft_lock_reticle: Node2D = $SoftLockReticle
 @onready var hard_lock_reticle: Node2D = $HardLockReticle
 
+signal hard_lock_changed
+signal hard_lock_removed
+
 
 ## All nodes currently in the selectable area.
 var targetables : Array[Node2D] = []
@@ -79,6 +82,8 @@ func hard_lock() -> void:
 	# targetable list until it leaves and reenters the zone
 	targetables = $LockOnTargetArea.get_overlapping_bodies()
 	targetables.remove_at(targetables.find(hard_lock_target))
+	
+	hard_lock_changed.emit()
 
 ## Remove the hard lock and recall the reticle.
 ## Connected to VisibleOnScreenNotifier2D.screen_exited()
@@ -86,6 +91,8 @@ func remove_hard_lock() -> void:
 	hard_lock_target = null
 	hard_lock_reticle.reparent(self)
 	hard_lock_reticle.visible = false
+	
+	hard_lock_removed.emit()
 
 
 func get_closest_targetable() -> Node2D:

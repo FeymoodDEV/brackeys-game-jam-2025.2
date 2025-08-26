@@ -3,6 +3,11 @@ extends State
 
 # despite the unclear name, this does update on physics_process, not process
 func _on_update(_delta) -> void:
+	# Get look direction and rotate node accordingly
+	target.look_direction = target.get_mouse_vector().normalized();
+	target.rotation = target.look_direction.angle();
+	
+	# Handle movement
 	var direction = target.get_movement_vector()
 	target.velocity = direction * target.speed
 	target.move_and_slide()
