@@ -45,21 +45,16 @@ func _physics_process(delta: float) -> void:
 		soft_lock_reticle.reparent(soft_lock_target)
 		soft_lock_reticle.visible = true
 		soft_lock_reticle.position = Vector2.ZERO
-	
-	print(targetables)
-	print(get_closest_targetable())
 
 # This area should only be detecting collisions from layer 5, so there should
 # be no need for a check. If this doesn't work out later, use a group instead
 func _on_lock_on_target_area_body_entered(body: Node2D) -> void:
 	if body != hard_lock_target:
 		targetables.append(body)
-	#print(targetables)
 
 
 func _on_lock_on_target_area_body_exited(body: Node2D) -> void:
 	targetables.remove_at(targetables.find(body))
-	#print(targetables)
 
 
 # TODO
@@ -94,12 +89,10 @@ func remove_hard_lock() -> void:
 
 
 func get_closest_targetable() -> Node2D:
-	#print(targetables)
 	if targetables.size() <= 0: 
 		return null
 		
 	var distances := targetables.map(func(x): return abs(get_global_mouse_position() - x.global_position))
-	#print(distances)
 	var idx = distances.find(distances.min())
 	return targetables[idx]
 	
