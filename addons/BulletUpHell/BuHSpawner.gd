@@ -276,8 +276,11 @@ func wake_from_pool(bullet:String, queued_instance:Dictionary, shared_area:Strin
 		return inactive_pool[bullet].pop_at(0)
 
 func back_to_grave_deferred(bID):
-	if bID:
-		bID.get_parent().remove_child(bID)
+	var par = bID.get_parent();
+	if par and bID:
+		par.remove_child(bID)
+	else:
+		print(par)
 
 func back_to_grave(bullet:String, bID):
 	inactive_pool[bullet].append([bID, poolBullets[bID]["shared_area"].name])

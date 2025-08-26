@@ -2,7 +2,6 @@ extends Node2D
 
 @export var enabled : bool = true
 @export var bullet_scene: PackedScene = preload("res://scenes/bullets/bullet.tscn")
-@export var bullet_data: BulletData = preload("res://resources/bullets/first_bullet.tres")
 #@export var bullets_per_shot: int = 1
 ## Shot cooldown in seconds
 @export var shot_cooldown : float = 0.1 
@@ -12,7 +11,6 @@ extends Node2D
 const spread_angle_multiplier: int = 10
 
 func _ready() -> void:
-	Spawning.create_pool.call_deferred("PBullet", "0", 5, true);
 	shot_cooldown_timer.wait_time = shot_cooldown
 	shot_cooldown_timer.stop()
 
@@ -59,6 +57,6 @@ func shoot() -> void:
 	var node = get_parent().get_parent();
 
 
-	Spawning.spawn({"position": spawn_pos, "rotation": rot, "source_node": node}, "one")
+	Spawning.spawn({"position": spawn_pos, "rotation": rot, "source_node": node}, "one", "1")
 	
 	

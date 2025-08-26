@@ -14,7 +14,7 @@
 radius = 14.0357
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 4
+collision_layer = 2
 script = ExtResource("1_g2els")
 dash_power = 1000.0
 dash_friction = 0.9
@@ -60,7 +60,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Circling")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Circling" type="Node" parent="Root/Movement"]
@@ -69,7 +69,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../NomDash")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="NomDash" type="Node" parent="Root/Movement"]

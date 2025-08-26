@@ -20,7 +20,7 @@ func _ready() -> void:
 	spawn_position = global_position
 	player = get_tree().get_first_node_in_group("player")
 	
-	Spawning.create_pool.call_deferred("EBullet", "0", 10, true);
+	Spawning.create_pool("EBullet", "0", 10, true);
 	pick_new_direction()
 
 func _physics_process(delta: float) -> void:
@@ -43,7 +43,7 @@ func handle_movement(delta: float) -> void:
 			var spawn_pos = global_position;
 			var rot = global_rotation
 
-			Spawning.spawn({"position": spawn_pos, "rotation": rot, "source_node": node}, "line")
+			Spawning.spawn({"position": spawn_pos, "rotation": rot, "source_node": node}, "line", "0")
 			#Spawning.spawn(self, "line")
 			shoot_counter = 0;
 	move_and_slide()
@@ -79,4 +79,4 @@ func pick_new_direction() -> void:
 	current_direction = (spawn_position - global_position).normalized()
 
 func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2) -> void:
-	queue_free()
+	queue_free.call_deferred()

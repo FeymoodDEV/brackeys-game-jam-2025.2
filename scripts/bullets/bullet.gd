@@ -1,7 +1,7 @@
 extends Node2D
 class_name Bullet
 
-@export var data: BulletData
+@export var data: BulletNodeData
 @onready var sprite: Sprite2D = $Sprite
 
 var direction: Vector2 = Vector2.RIGHT
@@ -10,14 +10,11 @@ var remaining_pierce: int = 0
 var trail: Node;
 
 func _ready() -> void:
-	remaining_pierce = data.pierce_count
-	
-	if data.texture:
-		sprite.texture = data.texture
-		sprite.scale = Vector2.ONE * data.scale
+	pass
 
 func _physics_process(delta: float) -> void:
 	pass
+	
 	
 func _on_body_entered(body: Node) -> void:
 	if "apply_damage" not in body: 
