@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://c6dd72g31782" path="res://scripts/player/player_camera.gd" id="3_gmlin"]
 [ext_resource type="PackedScene" uid="uid://cdmeut6gpnrdx" path="res://scenes/player/player_gun.tscn" id="4_5gtgg"]
 [ext_resource type="Script" uid="uid://b2l0jlbk7oecc" path="res://addons/xsm/state_regions.gd" id="6_0owmy"]
-[ext_resource type="Script" uid="uid://yw44daxcsxw0" path="res://scenes/player/movement.gd" id="7_h17s1"]
-[ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://scenes/player/normal.gd" id="8_qek5x"]
-[ext_resource type="Script" uid="uid://des4f477v63vn" path="res://scenes/player/circling.gd" id="9_5gtgg"]
-[ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://scenes/player/nom_dash.gd" id="10_h17s1"]
+[ext_resource type="Script" path="res://scenes/player/movement.gd" id="7_h17s1"]
+[ext_resource type="Script" path="res://scenes/player/normal.gd" id="8_qek5x"]
+[ext_resource type="Script" path="res://scenes/player/circling.gd" id="9_5gtgg"]
+[ext_resource type="Script" path="res://scenes/player/nom_dash.gd" id="10_h17s1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
 radius = 14.0357
@@ -60,7 +60,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Circling")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Circling" type="Node" parent="Root/Movement"]
@@ -69,7 +69,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../NomDash")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="NomDash" type="Node" parent="Root/Movement"]

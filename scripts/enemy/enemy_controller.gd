@@ -12,6 +12,7 @@ var spawn_position: Vector2
 var current_direction: Vector2 = Vector2.ZERO
 var player: PlayerController = null
 var move_timer: float = 0.0
+@onready var node = get_parent();
 
 var shoot_counter = 0;
 
@@ -19,6 +20,7 @@ func _ready() -> void:
 	spawn_position = global_position
 	player = get_tree().get_first_node_in_group("player")
 	
+	Spawning.create_pool.call_deferred("EBullet", "0", 10, true);
 	pick_new_direction()
 
 func _physics_process(delta: float) -> void:
@@ -36,14 +38,14 @@ func handle_movement(delta: float) -> void:
 	velocity = current_direction * speed
 	
 	shoot_counter += delta;
-	if shoot_counter > 1:
-		var spawn_pos = global_position;
-		var rot = global_rotation
-		var node = get_parent();
+	if player and player.global_position.distance_to(global_position) < 250:
+		if shoot_counter > 1.5:
+			var spawn_pos = global_position;
+			var rot = global_rotation
 
-		#Spawning.spawn({"position": spawn_pos, "rotation": rot, "source_node": node}, "line")
-		Spawning.spawn(self, "line")
-		shoot_counter = 0;
+			Spawning.spawn({"position": spawn_pos, "rotation": rot, "source_node": node}, "line")
+			#Spawning.spawn(self, "line")
+			shoot_counter = 0;
 	move_and_slide()
 
 func path_is_blocked(dir: Vector2) -> bool:

@@ -1,41 +1,27 @@
-extends Area2D
-class_name BuHBulletNode
+extends BuHBulletNode
+class_name BulletNode
 
-#const FLIP:Array = [-1,1]
+@export var data: BulletData
+@onready var sprite: Sprite2D = $Sprite2D
 
-@export var ID:String
-@export var ignore_children:Array[String] = []
+var direction: Vector2 = Vector2.RIGHT
+var time_alive: float = 0.0
+var remaining_pierce: int = 0
+var trail: Node;
 
-var textures:Array[Dictionary]
-#var collisions:Array[Dictionary]
-var b:Dictionary
-
-var base_scale
-
-
-
-func _draw():
-	var texture:Texture2D
-	for entry in textures:
-		if not entry["enabled"]: continue
-#		if not single_texture:
-		draw_set_transform_matrix(Transform2D(entry["rotation"]+self.global_rotation, entry["scale"]+self.scale, \
-												entry["skew"]+self.skew, self.global_position))
-		
-#		texture = entry["texture"].get_frame_texture(b["texture"], b["anim_frame"])
-		texture = Spawning.get_texture_frame(b, self, entry["texture"])
-		if b["props"].has("spec_modulate"):
-			Spawning.modulate_bullet(b, texture)
-		else: draw_texture(texture, entry["position"], entry["modulate"])
-#		draw_texture_rect(texture, Rect2(entry["position"], texture.get_size()), false, entry["modulate"])
-
-func other_area_shape_entered(area_rid:RID, area:Node2D, area_shape_index:int, local_shape_index:int):
-	area_shape_entered.emit(area_rid, area, area_shape_index, local_shape_index)
+func _ready() -> void:
+	body_shape_entered.connect(_on_body_shape_entered);
 	
-func other_body_shape_entered(body_rid:RID, body:Node2D, body_shape_index:int, local_shape_index:int):
-	body_shape_entered.emit(body_rid, body, body_shape_index, local_shape_index)
+	remaining_pierce = data.pierce_count
+	
+	if data.texture:
+		sprite.texture = data.texture
+		sprite.scale = Vector2.ONE * data.scale
+		
+	if data.trail_vfx:
+		trail = $trail;
 
-func _ready():
+		
 	if ID == "": push_warning("ID missing in node "+String(get_path()))
 #	assert(ID != "", "ID missing in node "+String(get_path()))
 	name = ID
@@ -88,3 +74,28 @@ func _ready():
 #			entry["skew"] = child.skew
 #			entry["polygon"] = child.polygon
 #			collisions.append(entry)
+
+func _physics_process(delta: float) -> void:
+	pass
+	
+
+func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	if "apply_damage" not in body: 
+		return
+	else: 
+		body.apply_damage(data.damage, data.knockback, global_position, direction)
+	
+	if data.hit_vfx:
+		var hit_vfx: GPUParticles2D = data.hit_vfx.instantiate()
+		hit_vfx.global_position = global_position
+		hit_vfx.emitting = true
+		get_parent().add_child(hit_vfx)
+
+	if data.hit_sfx:
+		var audio: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+		audio.stream = data.hit_sfx
+		audio.global_position = global_position
+		get_parent().add_child(audio)
+		audio.play()
+
+	Spawning.delete_bullet(self);
