@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_l6rfs"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="2_c4vfy"]
 [ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://scenes/blocks/block_1.tscn" id="3_1kt5j"]
-[ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://scenes/enemies/enemy.tscn" id="4_c4vfy"]
+[ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://scenes/enemies/basic_enemy.tscn" id="4_c4vfy"]
 [ext_resource type="PackedScene" uid="uid://cux5gt5ppivxe" path="res://scenes/blocks/block_2.tscn" id="5_yyklv"]
 [ext_resource type="PackedScene" uid="uid://y2xgcb36jh3" path="res://scenes/blocks/block_3.tscn" id="6_c03qe"]
 
