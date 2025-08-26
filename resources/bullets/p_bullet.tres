@@ -1,0 +1,19 @@
+[gd_resource type="PackedDataContainer" script_class="BulletNodeData" load_steps=5 format=3 uid="uid://c4ckdurkd417w"]
+
+[ext_resource type="PackedScene" uid="uid://cbqgxhuvoxtgg" path="res://scenes/bullets/first_bullet/first_hit_vfx.tscn" id="1_1h80s"]
+[ext_resource type="Script" uid="uid://blyfl04bkccem" path="res://scripts/bullethell/BulletNodeData.gd" id="1_ipq2n"]
+[ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="2_3te34"]
+[ext_resource type="PackedScene" uid="uid://dv7y8svel5iok" path="res://scenes/bullets/first_bullet/first_trail.tscn" id="4_fgpol"]
+
+[resource]
+script = ExtResource("1_ipq2n")
+speed = 600.0
+damage = 10.0
+lifetime = 1.5
+pierce_count = 0
+knockback = 0.0
+texture = ExtResource("2_3te34")
+scale = 0.2
+hit_vfx = ExtResource("1_1h80s")
+trail_vfx = ExtResource("4_fgpol")
+metadata/_custom_type_script = "uid://blyfl04bkccem"

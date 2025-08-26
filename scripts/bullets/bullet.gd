@@ -1,31 +1,21 @@
-extends Area2D
+extends Node2D
 class_name Bullet
 
-@export var data: BulletData
+@export var data: BulletNodeData
 @onready var sprite: Sprite2D = $Sprite
 
 var direction: Vector2 = Vector2.RIGHT
 var time_alive: float = 0.0
 var remaining_pierce: int = 0
+var trail: Node;
 
 func _ready() -> void:
-	remaining_pierce = data.pierce_count
-	
-	if data.texture:
-		sprite.texture = data.texture
-		scale = Vector2.ONE * data.scale
-
-	if data.trail_vfx:
-		var trail: Node = data.trail_vfx.instantiate()
-		add_child(trail)
+	pass
 
 func _physics_process(delta: float) -> void:
-	position += direction * data.speed * delta
-	time_alive += delta
+	pass
 	
-	if time_alive >= data.lifetime:
-		queue_free()
-
+	
 func _on_body_entered(body: Node) -> void:
 	if "apply_damage" not in body: 
 		return
@@ -45,8 +35,3 @@ func _on_body_entered(body: Node) -> void:
 		audio.global_position = global_position
 		get_parent().add_child(audio)
 		audio.play()
-
-	if remaining_pierce > 0:
-		remaining_pierce -= 1
-	else:
-		queue_free()

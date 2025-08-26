@@ -1,18 +1,17 @@
-[gd_scene load_steps=18 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=17 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://scripts/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dmyvil000yl58" path="res://assets/player/Ginger_Biscuit_Man.png" id="2_qhqgy"]
 [ext_resource type="Script" uid="uid://c6dd72g31782" path="res://scripts/player/player_camera.gd" id="3_gmlin"]
-[ext_resource type="Script" uid="uid://okf4mtltak8l" path="res://addons/BulletUpHell/Nodes/BuHSpawnPoint.gd" id="4_lvxji"]
-[ext_resource type="Script" uid="uid://dr4tgyjj2y33d" path="res://scenes/player/gun.gd" id="4_p47bc"]
+[ext_resource type="PackedScene" uid="uid://cdmeut6gpnrdx" path="res://scenes/player/player_gun.tscn" id="4_5gtgg"]
 [ext_resource type="Script" uid="uid://b2l0jlbk7oecc" path="res://addons/xsm/state_regions.gd" id="6_0owmy"]
 [ext_resource type="Script" uid="uid://yw44daxcsxw0" path="res://scenes/player/movement.gd" id="7_h17s1"]
 [ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://scenes/player/normal.gd" id="8_qek5x"]
 [ext_resource type="Script" uid="uid://des4f477v63vn" path="res://scenes/player/circling.gd" id="9_5gtgg"]
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://scenes/player/nom_dash.gd" id="10_h17s1"]
-[ext_resource type="Script" uid="uid://bh8rpek0w1o47" path="res://scenes/player/crosshair.gd" id="11_fm80t"]
+[ext_resource type="Script" path="res://scenes/player/crosshair.gd" id="11_fm80t"]
 [ext_resource type="Texture2D" uid="uid://bptr4hwxaoyjv" path="res://assets/player/crosshair.svg" id="12_gx1jg"]
-[ext_resource type="Script" uid="uid://cfmoqb7g6yigs" path="res://scenes/player/lock_reticle.gd" id="13_ugbui"]
+[ext_resource type="Script" path="res://scenes/player/lock_reticle.gd" id="13_ugbui"]
 [ext_resource type="Texture2D" uid="uid://cal60wifol3qs" path="res://assets/player/soft-lock.svg" id="14_fcs02"]
 [ext_resource type="Texture2D" uid="uid://dr2oj506weijh" path="res://assets/player/hard-lock.svg" id="15_fcs02"]
 
@@ -22,7 +21,8 @@ radius = 14.0357
 [sub_resource type="CircleShape2D" id="CircleShape2D_fm80t"]
 radius = 36.0555
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 20
 script = ExtResource("1_g2els")
 dash_power = 1000.0
 dash_friction = 0.9
@@ -38,42 +38,7 @@ texture = ExtResource("2_qhqgy")
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("3_gmlin")
 
-[node name="Gun" type="Node2D" parent="."]
-script = ExtResource("4_p47bc")
-
-[node name="ShotTimer" type="Timer" parent="Gun"]
-wait_time = 0.5
-one_shot = true
-
-[node name="SpawnPoint" type="Node2D" parent="Gun"]
-position = Vector2(2, -22)
-script = ExtResource("4_lvxji")
-active = false
-auto_pattern_id = "one"
-shared_area_name = "0"
-rotating_speed = 0.0
-pool_amount = 50
-auto_start_on_cam = true
-auto_start_after_time = 0.0
-auto_start_at_distance = 5.0
-auto_distance_from = NodePath("")
-trigger_container = NodePath("")
-metadata/_custom_type_script = "uid://okf4mtltak8l"
-
-[node name="SpawnPoint2" type="Node2D" parent="Gun"]
-position = Vector2(2, 22)
-script = ExtResource("4_lvxji")
-active = false
-auto_pattern_id = "one"
-shared_area_name = "0"
-rotating_speed = 0.0
-pool_amount = 50
-auto_start_on_cam = true
-auto_start_after_time = 0.0
-auto_start_at_distance = 5.0
-auto_distance_from = NodePath("")
-trigger_container = NodePath("")
-metadata/_custom_type_script = "uid://okf4mtltak8l"
+[node name="Gun" parent="." instance=ExtResource("4_5gtgg")]
 
 [node name="DashCooldownTimer" type="Timer" parent="."]
 one_shot = true
@@ -132,7 +97,7 @@ texture = ExtResource("12_gx1jg")
 
 [node name="LockOnTargetArea" type="Area2D" parent="Crosshair"]
 collision_layer = 0
-collision_mask = 16
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Crosshair/LockOnTargetArea"]
 shape = SubResource("CircleShape2D_fm80t")

@@ -1,8 +1,25 @@
 extends Node
 class_name Block
 
-#func _ready() -> void:
-	#self.add_to_group("targetable")
+@export var data: BlockData
+
+var health: int
+var isDestructable: bool = true
+@onready var sprite: Sprite2D = $Sprite
+@onready var anim: AnimationPlayer = $AnimationPlayer
+
+func _ready():
+	health = data.health
+	isDestructable = data.isDestructable
+	sprite.texture = data.texture
 
 func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2):
-	print('Block was hit')
+	#print('Block was hit')
+	pass
+	anim.play("hit")
+	
+	if !isDestructable: return
+	
+	health -= 1
+	if health <= 0:
+		queue_free()

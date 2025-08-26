@@ -2,7 +2,6 @@ extends Node2D
 
 @export var enabled : bool = true
 @export var bullet_scene: PackedScene = preload("res://scenes/bullets/bullet.tscn")
-@export var bullet_data: BulletData = preload("res://resources/bullets/first_bullet.tres")
 #@export var bullets_per_shot: int = 1
 ## Shot cooldown in seconds
 @export var shot_cooldown : float = 0.1 
@@ -51,7 +50,13 @@ func shoot() -> void:
 		#var angle: float = start_angle + step_angle * i
 		#bullet.direction = Vector2(cos(angle), sin(angle))
 	#endregion
+	
+	var spawn_pos = $SpawnPoint.global_position;
+	
+	var rot = global_rotation
+	var node = get_parent().get_parent();
 
-	Spawning.spawn($SpawnPoint, "one")
-	Spawning.spawn($SpawnPoint2, "one")
+
+	Spawning.spawn({"position": spawn_pos, "rotation": rot, "source_node": node}, "one", "0")
+	
 	
