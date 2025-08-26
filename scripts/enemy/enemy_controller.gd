@@ -41,7 +41,8 @@ func handle_movement(delta: float) -> void:
 		var rot = global_rotation
 		var node = get_parent();
 
-		Spawning.spawn({"position": spawn_pos, "rotation": rot, "source_node": node}, "circle")
+		#Spawning.spawn({"position": spawn_pos, "rotation": rot, "source_node": node}, "line")
+		Spawning.spawn(self, "line")
 		shoot_counter = 0;
 	move_and_slide()
 

@@ -390,6 +390,9 @@ func spawn(spawner, id:String, shared_area:String="0"):
 		bullet_props = arrayProps[pattern.bullet]
 		if bullet_props.get("has_random",false): bullet_props = create_random_props(bullet_props)
 
+		if pattern.node_target:
+			pattern.pattern_angle = pos.angle_to_point(pattern.node_target.global_position)
+		
 		is_object = bullet_props.has("instance_id")
 		is_bullet_node = (is_object and bullet_props.has("speed"))
 		for i in pattern.nbr:

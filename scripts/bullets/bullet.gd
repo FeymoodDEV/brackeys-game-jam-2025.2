@@ -7,9 +7,13 @@ class_name Bullet
 var direction: Vector2 = Vector2.RIGHT
 var time_alive: float = 0.0
 var remaining_pierce: int = 0
+var forward: Vector2
 
 func _ready() -> void:
+	reparent(get_node("/root/CybrnightMain"))
+	
 	remaining_pierce = data.pierce_count
+	forward = Vector2.RIGHT.rotated(rotation)
 	
 	if data.texture:
 		sprite.texture = data.texture
@@ -20,7 +24,7 @@ func _ready() -> void:
 		add_child(trail)
 
 func _physics_process(delta: float) -> void:
-	position += direction * data.speed * delta
+	position += forward * data.speed * delta
 	time_alive += delta
 	
 	if time_alive >= data.lifetime:
@@ -34,7 +38,7 @@ func _on_body_entered(body: Node) -> void:
 	
 	if data.hit_vfx:
 		var hit_vfx: GPUParticles2D = data.hit_vfx.instantiate()
-		hit_vfx.global_position = global_position
+		hit_vfx.position = global_position
 		hit_vfx.emitting = true
 		hit_vfx.connect("finished", Callable(hit_vfx, "queue_free"))
 		get_parent().add_child(hit_vfx)
