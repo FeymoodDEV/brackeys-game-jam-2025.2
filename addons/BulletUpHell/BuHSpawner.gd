@@ -426,6 +426,8 @@ func spawn(spawner, id:String, shared_area:String="0"):
 				queued_instance["momentum_data"] = [pattern.wait_tween_momentum-1, tw_endpos, pattern.wait_tween_time]
 
 			bID = wake_from_pool(pattern.bullet, queued_instance, shared_area, is_object)
+			if bID and bID.has_method("_on_spawned"):
+				bID._on_spawned();
 			bullets.append(bID)
 			poolBullets[bID] = queued_instance
 
@@ -967,6 +969,9 @@ func clear_bullets_within_dist(target_pos, radius:float=STANDARD_BULLET_RADIUS):
 			delete_bullet(b)
 
 func delete_bullet(b):
+	if b and b.has_method("_on_deleted"):
+		b._on_deleted();
+	
 	if not poolBullets.has(b): return
 	var B = poolBullets[b]
 	if arrayAnim[B["props"]["anim_delete"]][ANIM.SFX]: arrayAnim[B["props"]["anim_delete"]][ANIM.SFX].play()
