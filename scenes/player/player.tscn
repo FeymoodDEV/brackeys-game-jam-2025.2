@@ -124,8 +124,6 @@ timed = false
 next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-
 [node name="Crosshair" type="Node2D" parent="."]
 script = ExtResource("11_fm80t")
 
