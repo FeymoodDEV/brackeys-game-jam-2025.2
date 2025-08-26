@@ -26,7 +26,7 @@ func _on_update(_delta) -> void:
 	# count down timer
 	remaining_time -= _delta
 	if remaining_time <= 0:
-		if target.hard_lock_target != null:
+		if target.crosshair.hard_lock_target != null:
 			change_state("Circling")
 		else:
 			change_state("Normal")
