@@ -8,7 +8,7 @@ extends Node2D
 @onready var hard_lock_reticle: Node2D = $HardLockReticle
 
 signal hard_lock_changed
-signal hard_lock_removed
+#signal hard_lock_removed
 
 
 ## All nodes currently in the selectable area.
@@ -28,13 +28,25 @@ func _process(delta: float) -> void:
 # Because things only move on physics ticks, we don't need to get closest every 
 # process.
 func _physics_process(delta: float) -> void:
-	# Handle soft lock
+	# - Handle hard lock -
+	# We handle this BEFORE soft lock this tick, so that the player can lock
+	# onto the visible soft lock from last tick. 
+	
+	# This is to avoid signaling the hard lock change twice
+	var pending_signal : bool = false
+	
 	if Input.is_action_just_pressed("lock_on") and hard_lock_target:
 		remove_hard_lock()
+		pending_signal = true
+		
 	
 	if Input.is_action_just_pressed("lock_on") and soft_lock_target:
 		hard_lock()
+		pending_signal = true
 	
+	if pending_signal: hard_lock_changed.emit()
+	
+	# - Handle soft lock -
 	var closest := get_closest_targetable()
 	if closest == null: # if no targetables
 		if soft_lock_target: # and we had a soft lock before
@@ -48,6 +60,8 @@ func _physics_process(delta: float) -> void:
 		soft_lock_reticle.reparent(soft_lock_target)
 		soft_lock_reticle.visible = true
 		soft_lock_reticle.position = Vector2.ZERO
+	
+	
 
 # This area should only be detecting collisions from layer 5, so there should
 # be no need for a check. If this doesn't work out later, use a group instead
@@ -80,10 +94,11 @@ func hard_lock() -> void:
 	# refresh targetables list
 	# bit of a bandaid fix: if we don't do this, the last hard lock target will not be added to the 
 	# targetable list until it leaves and reenters the zone
+	refresh_targetables()
+
+func refresh_targetables() -> void:
 	targetables = $LockOnTargetArea.get_overlapping_bodies()
 	targetables.remove_at(targetables.find(hard_lock_target))
-	
-	hard_lock_changed.emit()
 
 ## Remove the hard lock and recall the reticle.
 ## Connected to VisibleOnScreenNotifier2D.screen_exited()
@@ -91,8 +106,7 @@ func remove_hard_lock() -> void:
 	hard_lock_target = null
 	hard_lock_reticle.reparent(self)
 	hard_lock_reticle.visible = false
-	
-	hard_lock_removed.emit()
+	refresh_targetables()
 
 
 func get_closest_targetable() -> Node2D:
@@ -106,3 +120,8 @@ func get_closest_targetable() -> Node2D:
 	#var distances := targetables
 	#distances.sort_custom(func(x): abs(self.global_position - x.global_position))
 	#return distances[-1]
+
+
+func _on_hard_lock_reticle_screen_exited() -> void:
+	remove_hard_lock()
+	hard_lock_changed.emit()

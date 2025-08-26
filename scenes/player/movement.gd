@@ -1,8 +1,6 @@
 @tool
 extends State
 
-
-
 func _input(event: InputEvent) -> void:
 	# Debug : change between states on a keypress
 	if event.is_action_pressed("dbg_normal"):
@@ -12,12 +10,9 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_crosshair_hard_lock_changed() -> void:
-	print("SIGNAL EMITTED")
-	if not is_active("Circling"):
-		change_state("Circling")
-
-
-func _on_crosshair_hard_lock_removed() -> void:
-	print("SIGNAL EMITTEDsdqzdsq")
-	change_state("Normal")
-	
+	print("SIGNAL: hard_lock_changed")
+	if target.crosshair.hard_lock_target != null:
+		if not is_active("Circling"):
+			change_state("Circling")
+	else: 
+		change_state("Normal")
