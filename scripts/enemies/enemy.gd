@@ -8,12 +8,7 @@ class_name Enemy
 
 @export var pattern: PatternLine = PatternLine.new()
 
-func _ready():
-	pattern.offset = Vector2(40,40)
-	pattern.bullet = "1"
-	pattern.nbr = 5
-	
-	Spawning.new_pattern("one",pattern)
+var p = 0
 
 func _physics_process(delta: float) -> void:
 	if cooldown_timer.is_stopped():
@@ -21,8 +16,14 @@ func _physics_process(delta: float) -> void:
 		cooldown_timer.start()
 
 func shoot():
-	Spawning.spawn({
-		"position":gun.global_position,
-		"rotation":gun.rotation,
-		"source_node": get_node("/root/Main")
-		}, "circle")
+	var pattern_array = [
+		"shape",
+		"v-shape",
+		"circle",
+	]
+	p += 1
+	if p > 2 :
+		p = 0
+	Spawning.spawn(
+		self
+		, pattern_array[p])

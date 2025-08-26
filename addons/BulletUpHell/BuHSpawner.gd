@@ -389,6 +389,10 @@ func spawn(spawner, id:String, shared_area:String="0"):
 
 		is_object = bullet_props.has("instance_id")
 		is_bullet_node = (is_object and bullet_props.has("speed"))
+		
+		if pattern.node_target:
+			pattern.pattern_angle = pos.angle_to_point(pattern.node_target.global_position)
+		
 		for i in pattern.nbr:
 			queued_instance = {}
 			queued_instance["shared_area"] = shared_area_node

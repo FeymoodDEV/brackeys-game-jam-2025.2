@@ -8,10 +8,14 @@ var shooter: Node = null
 var direction: Vector2 = Vector2.RIGHT
 var time_alive: float = 0.0
 var remaining_pierce: int = 0
+var forward: Vector2
 
 func _ready() -> void:
 	if !data: return
 	
+	reparent(get_node("/root/Main"))
+	
+	forward = Vector2.RIGHT.rotated(rotation)
 	remaining_pierce = data.pierce_count
 	
 	if data.texture:
@@ -24,7 +28,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	# forward vector from rotation (to the right = 0 radians in Godot)
-	var forward: Vector2 = Vector2.RIGHT.rotated(rotation)
 	position += forward * data.speed * delta
 
 	time_alive += delta

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://u6edsroarm37"]
+[gd_scene load_steps=24 format=3 uid="uid://u6edsroarm37"]
 
 [ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="1_o5qli"]
@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://lvqk3b38lm1n" path="res://scenes/bullets/bullet.tscn" id="11_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="11_trceg"]
 [ext_resource type="Script" uid="uid://gbdy54rnh22y" path="res://scripts/look_at_player.gd" id="12_a8y0u"]
-[ext_resource type="Script" uid="uid://okf4mtltak8l" path="res://addons/BulletUpHell/Nodes/BuHSpawnPoint.gd" id="14_a8y0u"]
+[ext_resource type="Script" uid="uid://rn8jlsrjpr3d" path="res://addons/BulletUpHell/SpawnPatterns/PatternCustomShape.gd" id="14_jkv2x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkv2x"]
 size = Vector2(129, 128)
@@ -75,21 +75,55 @@ point_count = 10
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_a8y0u"]
 resource_name = "PatternLine"
 script = ExtResource("6_o6xl0")
-offset = Vector2(20, 10)
+offset = Vector2(40, 20)
 center = 3
 symmetric = true
 bullet = "1"
 nbr = 5
-iterations = -1
-pattern_angle = -0.8006
+iterations = 1
+pattern_angle = 0.785398
 pattern_angle_target = NodePath("")
 pattern_angle_mouse = false
 forced_angle = 0.0
-forced_target = NodePath("")
+forced_target = NodePath("../../../Player")
 forced_lookat_mouse = false
 forced_pattern_lookat = true
 cooldown_stasis = false
-cooldown_spawn = 5.0
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+
+[sub_resource type="Curve2D" id="Curve2D_jbj1t"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 763, 215, 0, 0, 0, 0, 739, 255, 0, 0, 0, 0, 684, 262, 0, 0, 0, 0, 719, 284, 0, 0, 0, 0, 713, 334, 0, 0, 0, 0, 760, 295, 0, 0, 0, 0, 799, 334, 0, 0, 0, 0, 791, 280, 0, 0, 0, 0, 829, 264, 0, 0, 0, 0, 780, 253, 0, 0, 0, 0, 768, 220)
+}
+point_count = 11
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_muem4"]
+resource_name = "PatternCustomShape"
+source_geometry_group_name = &"navigation_polygon_source_group"
+script = ExtResource("14_jkv2x")
+closed_shape = true
+center_pos = Vector2(760, 280)
+symmetric = false
+center = 0
+symmetry_type = 1
+bullet = "1"
+nbr = 5
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("../../../Player")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
 cooldown_shoot = 0.0
 cooldown_next_spawn = 0.0
 cooldown_next_shoot = 0.0
@@ -167,17 +201,8 @@ script = ExtResource("5_tefeu")
 id = "v-shape"
 pattern = SubResource("NavigationPolygon_a8y0u")
 
-[node name="SpawnPoint" type="Node2D" parent="BulletManager"]
-position = Vector2(140, 204)
-script = ExtResource("14_a8y0u")
-active = true
-auto_pattern_id = "v-shape"
-shared_area_name = "0"
-rotating_speed = 0.0
-pool_amount = 50
-auto_start_on_cam = true
-auto_start_after_time = 0.0
-auto_start_at_distance = 5.0
-auto_distance_from = NodePath("")
-trigger_container = NodePath("")
-metadata/_custom_type_script = "uid://okf4mtltak8l"
+[node name="SpawnPattern5" type="Path2D" parent="BulletManager/BulletPatterns"]
+curve = SubResource("Curve2D_jbj1t")
+script = ExtResource("5_tefeu")
+id = "shape"
+pattern = SubResource("NavigationPolygon_muem4")
