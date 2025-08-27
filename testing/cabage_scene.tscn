@@ -43,6 +43,10 @@ stretch_mode = 1
 
 [node name="BulletManager" parent="." instance=ExtResource("1_c03qe")]
 
+[node name="SpawnPattern2" parent="BulletManager/Patterns" index="2" groups=["pattern"]]
+
+[node name="SpawnPattern3" parent="BulletManager/Patterns" index="3" groups=["pattern"]]
+
 [node name="Temp" type="Node2D" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

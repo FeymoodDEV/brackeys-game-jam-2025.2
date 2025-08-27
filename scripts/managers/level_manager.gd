@@ -1,4 +1,7 @@
 extends Node2D
+class_name LevelManager
+
+var player: PlayerController
 
 ## map width and height references cell count
 @export var map_width: int = 40
@@ -21,6 +24,7 @@ var grid: Array = []
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
+	player = get_parent().get_node("Player")
 	$BG.texture = background_tiles[randi() % background_tiles.size()]
 	
 	# Initialize grid with false in order to track empty cells
@@ -34,6 +38,7 @@ func _ready() -> void:
 	generate_level()
 	spawn_enemies()
 	spawn_player()
+	assign_target_for_bullet_patterns()
 
 func generate_level() -> void:
 	for y: int in range(map_height):
@@ -80,18 +85,19 @@ func spawn_enemies() -> void:
 				enemy.position = Vector2(x * cell_size, y * cell_size)
 				get_parent().add_child.call_deferred(enemy)
 
+## finds one open cell where to place enemy
 func spawn_player() -> void:
-	var mid_x = map_width / 2
-	var mid_y = map_height / 2
+	var mid_x: int = int(map_width / 2)
+	var mid_y: int = int(map_height / 2)
 
 	var candidates: Array = []
 
 	# Check a "middle box" (about 1/3 of the map size in the center)
-	var range_x = map_width / 3
-	var range_y = map_height / 3
+	var range_x: int = int(map_width / 3)
+	var range_y: int = int(map_height / 3)
 
-	for y in range(mid_y - range_y, mid_y + range_y):
-		for x in range(mid_x - range_x, mid_x + range_x):
+	for y: int in range(mid_y - range_y, mid_y + range_y):
+		for x: int in range(mid_x - range_x, mid_x + range_x):
 			if x > 0 and x < map_width-1 and y > 0 and y < map_height-1:
 				if not grid[y][x]:
 					candidates.append(Vector2i(x, y))
@@ -100,11 +106,14 @@ func spawn_player() -> void:
 		print("⚠ No free middle cell found for player!")
 		return
 
-	var chosen = candidates[randi() % candidates.size()]
+	var chosen: Vector2i = candidates[randi() % candidates.size()]
 
-	var player: PlayerController = get_parent().get_node("Player")
 	player.global_position = Vector2(chosen.x * cell_size, chosen.y * cell_size)
 	grid[chosen.y][chosen.x] = true
 
-	var p: Pattern = get_parent().get_node("BulletManager/Patterns/SpawnPattern3").pattern
-	p.forced_target = player.get_path()
+## We need to do this otherwise the patterns won't rotate correctly
+func assign_target_for_bullet_patterns() -> void:
+	var player_path: String = player.get_path()
+	var patterns: Array = get_tree().get_nodes_in_group("pattern")
+	for patternNode: Node2D in patterns:
+		patternNode.pattern.forced_target = player_path

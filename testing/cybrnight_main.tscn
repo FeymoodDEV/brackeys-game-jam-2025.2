@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ccrxh34dcnijy"]
 
 [ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_sijxs"]
-[ext_resource type="Script" path="res://testing/cybrnight_main.gd" id="1_w3c6p"]
+[ext_resource type="Script" uid="uid://bc7o63ppdn8uw" path="res://testing/cybrnight_main.gd" id="1_w3c6p"]
 [ext_resource type="PackedScene" uid="uid://do3kmq6olly6f" path="res://scenes/player/player.tscn" id="2_ko3n4"]
 [ext_resource type="PackedScene" uid="uid://chjrmgc7vavve" path="res://testing/manager/cybr_bullet_manager.tscn" id="2_npses"]
 [ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://scenes/blocks/block_1.tscn" id="4_w3c6p"]
@@ -260,211 +260,211 @@ position = Vector2(444, 454)
 [node name="Enemy72" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 
-[node name="Enemy19" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy73" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(222, 227)
 collision_mask = 8
 
-[node name="Enemy20" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy74" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy21" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy75" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy22" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy76" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy23" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy77" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy24" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy78" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy25" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy79" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy26" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy80" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy27" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy81" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy28" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy82" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy29" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy83" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy30" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy84" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy31" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy85" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy32" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy86" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy33" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy87" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy34" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy88" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy35" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy89" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy36" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy90" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy37" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy91" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy38" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy92" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy39" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy93" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy40" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy94" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy41" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy95" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy42" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy96" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy43" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy97" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy44" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy98" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy45" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy99" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy46" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy100" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy47" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy101" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy48" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy102" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy49" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy103" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy50" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy104" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy51" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy105" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy52" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy106" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy53" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy107" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy54" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy108" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy55" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy109" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy56" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy110" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy57" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy111" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy58" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy112" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy59" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy113" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy60" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy114" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy61" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy115" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy62" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy116" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy63" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy117" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy64" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy118" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy65" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy119" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy66" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy120" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy67" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy121" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy68" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy122" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy69" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy123" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
-[node name="Enemy70" parent="." instance=ExtResource("11_lqjba")]
+[node name="Enemy124" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(444, 454)
 collision_mask = 8
 
