@@ -70,8 +70,8 @@ func _physics_process(delta: float) -> void:
 		soft_lock_reticle.visible = true
 		soft_lock_reticle.position = Vector2.ZERO
 		
-		if soft_lock_target.has_signal("freeing"):
-			soft_lock_target.freeing.connect(remove_soft_lock)
+		#if soft_lock_target.has_signal("freeing"):
+			#soft_lock_target.freeing.connect(remove_soft_lock)
 
 # This area should only be detecting collisions from layer 5, so there should
 # be no need for a check. If this doesn't work out later, use a group instead
@@ -99,8 +99,8 @@ func hard_lock() -> void:
 	hard_lock_reticle.visible = true
 	#hard_lock_reticle.position = Vector2.ZERO
 	
-	if hard_lock_target.has_signal("freeing"):
-		hard_lock_target.connect("freeing", _on_hard_lock_gone)
+	#if hard_lock_target.has_signal("freeing"):
+		#hard_lock_target.connect("freeing", _on_hard_lock_gone)
 	
 	# refresh targetables list
 	# bit of a bandaid fix: if we don't do this, the last hard lock target will not be added to the 
@@ -125,8 +125,8 @@ func remove_soft_lock() -> void:
 	# remove_soft_lock when it already is.
 	# It doesn't and I don't get why not. 
 	# Still, the error doesn't seem to break anything.
-	if soft_lock_target != null:
-		soft_lock_target.disconnect("freeing", remove_soft_lock)
+	#if soft_lock_target != null:
+		#soft_lock_target.disconnect("freeing", remove_soft_lock)
 	
 	soft_lock_target = null
 	#soft_lock_reticle.reparent(self)

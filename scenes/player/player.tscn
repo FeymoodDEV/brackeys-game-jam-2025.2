@@ -71,7 +71,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Upgrade")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Normal" type="Node" parent="Root/Movement"]
@@ -80,7 +80,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Circling")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Circling" type="Node" parent="Root/Movement"]
@@ -89,7 +89,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../NomDash")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="NomDash" type="Node" parent="Root/Movement"]
@@ -116,7 +116,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Level2")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level2" type="Node" parent="Root/Upgrade"]
@@ -125,7 +125,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Level3")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level3" type="Node" parent="Root/Upgrade"]
