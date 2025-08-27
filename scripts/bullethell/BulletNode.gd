@@ -66,9 +66,6 @@ func _ready() -> void:
 #			entry["polygon"] = child.polygon
 #			collisions.append(entry)
 
-func _physics_process(delta: float) -> void:
-	pass
-
 func _on_spawned():		
 	if is_instance_valid(trail):
 		trail.show();

@@ -40,7 +40,7 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	pattern = enemy_data.pattern;
 	
-	Spawning.create_pool("EBullet", "1", 5, true);
+	Spawning.create_pool("EBullet", "1", 10, true);
 	pick_new_direction()
 
 func _physics_process(delta: float) -> void:
