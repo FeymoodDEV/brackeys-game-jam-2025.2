@@ -8,7 +8,7 @@ var direction: Vector2 = Vector2.RIGHT
 var time_alive: float = 0.0
 var remaining_pierce: int = 0
 
-var trail;
+@onready var trail: GPUParticles2D = $GPUParticles2D;
 var hit_vfx;
 
 var trails = [];
@@ -18,9 +18,16 @@ func _ready() -> void:
 	
 	remaining_pierce = data.pierce_count
 	
+	for i in range(0, 10):
+		var t = data.trail_vfx.instantiate();
+		trails.append(t);
+	
 	if data.texture:
 		sprite.texture = data.texture
 		sprite.scale = Vector2.ONE * data.scale
+		
+	if data.trail_vfx:
+		pass
 
 
 		
@@ -60,15 +67,11 @@ func _ready() -> void:
 #			collisions.append(entry)
 
 func _on_spawned():		
-	if trails.size() < 10:
-		trail = data.trail_vfx.instantiate();
-		add_child(trail);
-	elif trail:
-		trail.queue_free.call_deferred();
+	if is_instance_valid(trail):
+		trail.show();
 
 func _on_deleted():
-	if trail:
-		trails.append(trail);
+	if is_instance_valid(trail):
 		remove_child(trail);
 
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):

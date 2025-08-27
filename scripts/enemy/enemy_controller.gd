@@ -4,6 +4,9 @@ class_name EnemyController
 const PLAYER_COLLISION_LAYER = 2
 const WALL_COLLISION_LAYER = 0
 
+@export var enemy_data: EnemyData;
+
+@export_group("Movement")
 @export var wander_radius: float = 350.0  # max distance from spawn
 @export var speed: float = 180.0
 @export var ray_length: float = 30.0
@@ -16,15 +19,39 @@ var move_timer: float = 0.0
 
 var shoot_counter = 0;
 
+#region EnemyData-Variables
+@onready var icon: Sprite2D = $Icon;
+@onready var anim_player: AnimationPlayer = $AnimationPlayer;
+var pattern: String = "line";
+#endregion
+
+
+
 func _ready() -> void:
+	assert(enemy_data, "EnemyData resource is null!");
+	
+	if not enemy_data.texture:
+		push_warning("Texture value in EnemyData is null")
+	
+	icon.texture = enemy_data.texture;
+	icon.self_modulate = enemy_data.modulate_color;
+	
 	spawn_position = global_position
 	player = get_tree().get_first_node_in_group("player")
+	pattern = enemy_data.pattern;
 	
 	Spawning.create_pool("EBullet", "1", 10, true);
 	pick_new_direction()
 
 func _physics_process(delta: float) -> void:
 	handle_movement(delta)
+
+# This exists to ensure nodes attached to this one can avoid being freed alongside
+# this node (ex: target reticles). Sorry.
+signal freeing
+func safe_queue_free() -> void:
+	freeing.emit()
+	queue_free.call_deferred()
 
 func handle_movement(delta: float) -> void:
 	if path_is_blocked(current_direction):
@@ -43,7 +70,7 @@ func handle_movement(delta: float) -> void:
 			var spawn_pos = global_position;
 			var rot = global_rotation
 
-			Spawning.spawn({"position": spawn_pos, "rotation": rot, "source_node": node}, "line", "1")
+			Spawning.spawn({"position": spawn_pos, "rotation": rot, "source_node": node}, pattern, "1")
 			#Spawning.spawn(self, "line")
 			shoot_counter = 0;
 	move_and_slide()
@@ -79,4 +106,4 @@ func pick_new_direction() -> void:
 	current_direction = (spawn_position - global_position).normalized()
 
 func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2) -> void:
-	queue_free.call_deferred()
+	safe_queue_free()

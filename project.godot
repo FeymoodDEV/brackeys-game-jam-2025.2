@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Brackeys Game Jam 2025.2"
-run/main_scene="uid://opbu2cdtgoya"
+run/main_scene="uid://bsi7y5pro2w6d"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
@@ -24,6 +24,10 @@ Spawning="*res://addons/BulletUpHell/Spawning.tscn"
 gdscript/warnings/untyped_declaration=1
 gdscript/warnings/inferred_declaration=1
 gdscript/warnings/return_value_discarded=1
+
+[display]
+
+mouse_cursor/custom_image="uid://cjp7e03yx3yqx"
 
 [editor_plugins]
 

@@ -13,6 +13,13 @@ func _ready():
 	isDestructable = data.isDestructable
 	sprite.texture = data.texture
 
+# This exists to ensure nodes attached to this one can avoid being freed alongside
+# this node (ex: target reticles). Sorry.
+signal freeing
+func safe_queue_free() -> void:
+	freeing.emit()
+	queue_free.call_deferred()
+
 func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2):
 	#print('Block was hit')
 	pass
@@ -22,4 +29,4 @@ func apply_damage(damage: int, knockback: float, global_position: Vector2, direc
 	
 	health -= 1
 	if health <= 0:
-		queue_free()
+		safe_queue_free()
