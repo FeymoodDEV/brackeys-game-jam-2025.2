@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=16 format=3 uid="uid://do3kmq6olly6f"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://scripts/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dmyvil000yl58" path="res://assets/player/Ginger_Biscuit_Man.png" id="2_qhqgy"]
-[ext_resource type="Script" uid="uid://c6dd72g31782" path="res://scripts/player/player_camera.gd" id="3_gmlin"]
 [ext_resource type="PackedScene" uid="uid://cdmeut6gpnrdx" path="res://scenes/player/player_gun.tscn" id="4_5gtgg"]
 [ext_resource type="Script" uid="uid://b2l0jlbk7oecc" path="res://addons/xsm/state_regions.gd" id="6_0owmy"]
 [ext_resource type="Script" path="res://scenes/player/movement.gd" id="7_h17s1"]
@@ -36,7 +35,6 @@ rotation = 1.5708
 texture = ExtResource("2_qhqgy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("3_gmlin")
 
 [node name="Gun" parent="." instance=ExtResource("4_5gtgg")]
 
