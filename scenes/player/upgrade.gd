@@ -1,6 +1,7 @@
 @tool
 extends State
 
+## Holds ordered list of upgrade states 
 var levels := [
 	"Level1",
 	"Level2",

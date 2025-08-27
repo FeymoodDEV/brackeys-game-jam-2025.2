@@ -13,7 +13,7 @@ damage = 10.0
 lifetime = 5.0
 pierce_count = 0
 knockback = 0.0
-absorb_value = null
+absorb_value = 1
 scale = 1.0
 metadata/_custom_type_script = "uid://blyfl04bkccem"
 

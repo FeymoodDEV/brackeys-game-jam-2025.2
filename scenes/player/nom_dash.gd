@@ -50,5 +50,5 @@ func _on_exit(args) -> void:
 
 func _absorb_bullet(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	#print(area is BulletNode) # true
-	target.absorb_amount += area.data.absorb_value
+	target.absorb_pts += area.data.absorb_value
 	Spawning.delete_bullet(area);
