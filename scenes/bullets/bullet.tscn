@@ -26,6 +26,7 @@ data = SubResource("Resource_kd18i")
 [node name="hit_vfx" parent="." instance=ExtResource("3_0s0cy")]
 
 [node name="trail" parent="." instance=ExtResource("4_kd18i")]
+texture = ExtResource("2_lj7gv")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 visible = false
