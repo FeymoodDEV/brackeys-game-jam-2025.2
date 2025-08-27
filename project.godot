@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Brackeys Game Jam 2025.2"
-run/main_scene="uid://x7bb1o44vkkk"
+run/main_scene="uid://ccrxh34dcnijy"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
@@ -94,6 +94,9 @@ level_down={
 2d_physics/layer_4="PlayerBullets"
 2d_physics/layer_5="EnemyBullets"
 2d_physics/layer_6="Targetable"
+"script:null)]}[rendering]textures/canvas_textures/default_texture_filter"=0
+renderer/rendering_method="mobile"
+viewport/hdr_2d=true
 
 [rendering]
 

@@ -20,7 +20,6 @@ func _ready() -> void:
 	
 	for i in range(0, 10):
 		var t = data.trail_vfx.instantiate();
-		trails.append(t);
 	
 	if data.texture:
 		sprite.texture = data.texture
@@ -66,16 +65,13 @@ func _ready() -> void:
 #			entry["polygon"] = child.polygon
 #			collisions.append(entry)
 
-func _physics_process(delta: float) -> void:
-	pass
-
 func _on_spawned():		
 	if is_instance_valid(trail):
 		trail.show();
 
 func _on_deleted():
-	if is_instance_valid(trail):
-		remove_child(trail);
+		if is_instance_valid(trail):
+			trail.queue_free.call_deferred();
 
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if not body.has_method("apply_damage"):
