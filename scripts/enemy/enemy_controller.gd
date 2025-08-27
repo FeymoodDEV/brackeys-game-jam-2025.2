@@ -20,7 +20,7 @@ func _ready() -> void:
 	spawn_position = global_position
 	player = get_tree().get_first_node_in_group("player")
 	
-	Spawning.create_pool("EBullet", "1", 5, true);
+	Spawning.create_pool("EBullet", "1", 10, true);
 	pick_new_direction()
 
 func _physics_process(delta: float) -> void:
