@@ -13,6 +13,7 @@ damage = 10.0
 lifetime = 5.0
 pierce_count = 0
 knockback = 0.0
+absorb_value = 1
 scale = 1.0
 metadata/_custom_type_script = "uid://blyfl04bkccem"
 
@@ -25,6 +26,7 @@ data = SubResource("Resource_kd18i")
 [node name="hit_vfx" parent="." instance=ExtResource("3_0s0cy")]
 
 [node name="trail" parent="." instance=ExtResource("4_kd18i")]
+texture = ExtResource("2_lj7gv")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 visible = false

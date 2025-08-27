@@ -7,6 +7,7 @@ class_name BulletNodeData
 @export var lifetime: float = 1.5
 @export var pierce_count: int = 0
 @export var knockback: float = 0.0
+@export var absorb_value: int = 1
 
 @export_group("Visuals")
 @export var texture: Texture2D
