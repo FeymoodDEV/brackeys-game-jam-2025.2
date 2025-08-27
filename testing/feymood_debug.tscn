@@ -1,0 +1,126 @@
+[gd_scene load_steps=7 format=3 uid="uid://5qtadocusjbg"]
+
+[ext_resource type="Script" uid="uid://bcb4kx6a57bdv" path="res://testing/feymood_debug.gd" id="1_xt87i"]
+[ext_resource type="PackedScene" uid="uid://chjrmgc7vavve" path="res://testing/manager/cybr_bullet_manager.tscn" id="2_ccqko"]
+[ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="3_b3x7b"]
+[ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="4_j2eem"]
+[ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://scenes/blocks/block_1.tscn" id="5_eta7a"]
+[ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://scenes/enemies/enemy.tscn" id="6_5ka6n"]
+
+[node name="FeymoodMain" type="Node2D"]
+script = ExtResource("1_xt87i")
+
+[node name="BulletManager" parent="." instance=ExtResource("2_ccqko")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FPS" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="AbsorbAmount" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+
+[node name="BG" type="TextureRect" parent="."]
+z_index = -1
+offset_left = -1671.0
+offset_top = -1015.0
+offset_right = 1593.0
+offset_bottom = 1087.0
+texture = ExtResource("3_b3x7b")
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" parent="." instance=ExtResource("4_j2eem")]
+collision_mask = 22
+
+[node name="Static" type="Node2D" parent="."]
+
+[node name="Block" parent="Static" instance=ExtResource("5_eta7a")]
+position = Vector2(102, 99)
+
+[node name="Block2" parent="Static" instance=ExtResource("5_eta7a")]
+position = Vector2(443, 156)
+
+[node name="Block3" parent="Static" instance=ExtResource("5_eta7a")]
+position = Vector2(163, 352)
+
+[node name="Block4" parent="Static" instance=ExtResource("5_eta7a")]
+position = Vector2(441, 317)
+
+[node name="Enemy" parent="." instance=ExtResource("6_5ka6n")]
+position = Vector2(222, 227)
+collision_mask = 8
+
+[node name="Enemy2" parent="." instance=ExtResource("6_5ka6n")]
+position = Vector2(444, 454)
+collision_mask = 8
+
+[node name="Enemy3" parent="." instance=ExtResource("6_5ka6n")]
+position = Vector2(444, 454)
+collision_mask = 8
+
+[node name="Enemy4" parent="." instance=ExtResource("6_5ka6n")]
+position = Vector2(444, 454)
+collision_mask = 8
+
+[node name="Enemy5" parent="." instance=ExtResource("6_5ka6n")]
+position = Vector2(444, 454)
+collision_mask = 8
+
+[node name="Enemy6" parent="." instance=ExtResource("6_5ka6n")]
+position = Vector2(444, 454)
+collision_mask = 8
+
+[node name="Enemy7" parent="." instance=ExtResource("6_5ka6n")]
+position = Vector2(444, 454)
+collision_mask = 8
+
+[node name="Enemy8" parent="." instance=ExtResource("6_5ka6n")]
+position = Vector2(444, 454)
+collision_mask = 8
+
+[node name="Enemy9" parent="." instance=ExtResource("6_5ka6n")]
+position = Vector2(444, 454)
+collision_mask = 8
+
+[node name="Enemy10" parent="." instance=ExtResource("6_5ka6n")]
+position = Vector2(444, 454)
+collision_mask = 8
+
+[node name="Enemy11" parent="." instance=ExtResource("6_5ka6n")]
+position = Vector2(444, 454)
+collision_mask = 8
+
+[node name="Enemy12" parent="." instance=ExtResource("6_5ka6n")]
+position = Vector2(444, 454)
+collision_mask = 8
+
+[node name="Enemy13" parent="." instance=ExtResource("6_5ka6n")]
+position = Vector2(444, 454)
+collision_mask = 8
+
+[node name="Enemy14" parent="." instance=ExtResource("6_5ka6n")]
+position = Vector2(444, 454)
+collision_mask = 8
+
+[node name="Enemy15" parent="." instance=ExtResource("6_5ka6n")]
+position = Vector2(444, 454)
+collision_mask = 8
+
+[node name="Enemy16" parent="." instance=ExtResource("6_5ka6n")]
+position = Vector2(444, 454)
+collision_mask = 8
+
+[node name="Enemy17" parent="." instance=ExtResource("6_5ka6n")]
+position = Vector2(444, 454)
+collision_mask = 8
+
+[node name="Enemy18" parent="." instance=ExtResource("6_5ka6n")]
+position = Vector2(444, 454)
+collision_mask = 8

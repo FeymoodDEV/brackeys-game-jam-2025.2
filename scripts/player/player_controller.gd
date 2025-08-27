@@ -10,14 +10,35 @@ var look_direction : Vector2
 
 #region Dash variables
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
+@onready var nom_dash_aoe: Area2D = $NomDashAoE
+
 @export var dash_cooldown : float = 3.0
 @export var dash_power : float = 100.0
 @export var dash_duration : float = 0.5
 @export var dash_friction : float = 10.0
 #endregion
 
+#region Targeting variables
 @onready var crosshair: Node2D = $Crosshair
+#endregion
 
+#region Upgrade variables
+signal upgrade_level_changed
+
+var current_level : int = 0
+## Progress towards upgrading. Increases when absorbing bullets with nom dash.
+var absorb_amount : int = 0 :
+	set(val):
+		absorb_amount = val
+		var thresholds = upgrade_thresholds
+		thresholds.reverse()
+		var upgrade_level = thresholds.find_custom(func(x): return absorb_amount > x)
+		if upgrade_level != current_level:
+			current_level = upgrade_level
+			upgrade_level_changed.emit()
+		
+@export var upgrade_thresholds : Array[int] = [10,20,30]
+#endregion
 
 func _physics_process(delta: float) -> void:
 	## Get look direction and rotate node accordingly
