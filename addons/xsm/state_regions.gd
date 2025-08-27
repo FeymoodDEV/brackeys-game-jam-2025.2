@@ -36,14 +36,16 @@ func _init_status_active() -> void:
 
 func change_children_status_to_exiting() -> void:
 	for c in get_children():
-		c.status = EXITING
-		c.change_children_status_to_exiting()
+		if c is State:
+			c.status = EXITING
+			c.change_children_status_to_exiting()
 
 
 func change_children_status_to_entering(new_state_path: NodePath) -> void:
 	for c in get_children():
-		c.status = ENTERING
-		c.change_children_status_to_entering(new_state_path)
+		if c is State:
+			c.status = ENTERING
+			c.change_children_status_to_entering(new_state_path)
 
 
 func enter_children(args_on_enter = null, args_after_enter = null) -> void:
@@ -51,13 +53,14 @@ func enter_children(args_on_enter = null, args_after_enter = null) -> void:
 		return
 	# if hasregions, enter all children and that's all
 	for c in get_children():
-		c.enter(args_on_enter)
-		c.enter_children(args_on_enter, args_after_enter)
-		c._after_enter(args_after_enter)
+		if c is State:
+			c.enter(args_on_enter)
+			c.enter_children(args_on_enter, args_after_enter)
+			c._after_enter(args_after_enter)
 
 
 # returns all children if active
 func get_active_substate():
 	if status == ACTIVE:
-		return get_children()
+		return get_children().filter(func(x): return x is State)
 	return null
