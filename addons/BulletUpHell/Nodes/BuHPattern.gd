@@ -10,9 +10,9 @@ var preview_bullet:BulletProps
 
 
 func _ready():
-	EventManager.player_spawned.connect(assign_target_for_pattern)
+	#EventManager.player_spawned.connect(assign_target_for_pattern)
 	if not Engine.is_editor_hint() and pattern:
-		print(pattern.forced_target)
+		#print(pattern.forced_target)
 		if pattern.forced_target: pattern.node_target = get_node(pattern.forced_target)
 		if pattern.resource_name in ["PatternCustomShape","PatternCustomPoints"]:
 			pattern.shape = curve

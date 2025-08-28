@@ -1,6 +1,6 @@
 [gd_scene load_steps=29 format=3 uid="uid://bsi7y5pro2w6d"]
 
-[ext_resource type="PackedScene" uid="uid://chjrmgc7vavve" path="res://testing/manager/cybr_bullet_manager.tscn" id="1_c03qe"]
+[ext_resource type="PackedScene" uid="uid://bh4n0qihnupx7" path="res://prefabs/managers/bullet_manager.tscn" id="1_c03qe"]
 [ext_resource type="Script" uid="uid://bc7o63ppdn8uw" path="res://testing/cybrnight_main.gd" id="1_cgsnw"]
 [ext_resource type="PackedScene" uid="uid://cxxnbcxiuusqt" path="res://scenes/level_manager.tscn" id="2_k7pv6"]
 [ext_resource type="Script" uid="uid://crdkg38w76q45" path="res://scripts/boss/boss_controller.gd" id="5_yyklv"]
@@ -162,6 +162,7 @@ script = ExtResource("1_cgsnw")
 [node name="FPS" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
 script = ExtResource("21_ktx0r")
@@ -177,6 +178,7 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 30
 text = "05:00"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="PlayerUI"]
 wait_time = 300.0
@@ -211,6 +213,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_ktx0r")
 theme_override_styles/fill = SubResource("StyleBoxFlat_md1lu")
 value = 50.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="ProgressBar" parent="PlayerUI"]
 offset_left = 382.0
@@ -221,6 +224,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_rcn4l")
 theme_override_styles/fill = SubResource("StyleBoxFlat_te3gx")
 value = 50.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="Boss" type="CharacterBody2D" parent="."]
 position = Vector2(1814, 1495)

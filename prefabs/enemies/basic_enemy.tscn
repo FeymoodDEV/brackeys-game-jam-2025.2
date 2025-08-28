@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpx8ondyguda5"]
+
+[ext_resource type="Script" uid="uid://d38sn8fofnvl0" path="res://src/enemy/enemy_controller.gd" id="1_8e3ao"]
+[ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="2_38ino"]
+[ext_resource type="Resource" uid="uid://bqxvy5sr6pupv" path="res://resources/enemy_data/line_enemy.tres" id="2_fcftc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
+size = Vector2(32, 33)
+
+[node name="BasicEnemy2" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 34
+collision_mask = 12
+script = ExtResource("1_8e3ao")
+enemy_data = ExtResource("2_fcftc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_tbgi4")
+
+[node name="Icon" type="Sprite2D" parent="."]
+self_modulate = Color(0.513753, 1.11904e-06, 1.92523e-07, 1)
+scale = Vector2(0.255, 0.255)
+texture = ExtResource("2_38ino")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

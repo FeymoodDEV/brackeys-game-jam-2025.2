@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0gogtjnxel4t"]
+
+[ext_resource type="Script" uid="uid://cbwh431lovf3s" path="res://src/manager/game_config.gd" id="1_3fy6e"]
+
+[node name="GameConfig" type="Node2D"]
+script = ExtResource("1_3fy6e")
+SHOW_TRAILS = true

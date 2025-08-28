@@ -137,6 +137,7 @@ func reset(minimal:bool=false):
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint(): return
+	queue_redraw();
 
 
 func _physics_process(delta: float) -> void:
@@ -275,19 +276,12 @@ func wake_from_pool(bullet:String, queued_instance:Dictionary, shared_area:Strin
 	else:
 		return inactive_pool[bullet].pop_at(0)
 
-func back_to_grave_deferred(bID):
-	var par = bID.get_parent();
-	if par and bID:
-		par.remove_child(bID)
-	else:
-		print(par)
-
 func back_to_grave(bullet:String, bID):
 	inactive_pool[bullet].append([bID, poolBullets[bID]["shared_area"].name])
 	poolBullets[bID]["state"] = BState.QueuedFree
 
 	if bID is Node2D: 
-		back_to_grave_deferred.call_deferred(bID);
+		CUSTOM.back_to_grave_deferred.call_deferred(bID);
 
 func create_shape(shared_rid:RID, ColID:Array, init:bool=false, count:int=0) -> RID:
 	var new_shape:RID
@@ -371,7 +365,10 @@ func set_spawn_data(queued_instance:Dictionary, bullet_props:Dictionary, pattern
 ### TRIGGER SPAWN ###
 
 func spawn(spawner, id:String, shared_area:String="0"):
-	assert(arrayPatterns.has(id))
+	if not arrayPatterns.has(id):
+		push_warning(id + "does not exist in BuHSpawner!")
+		return;
+	
 	var local_reset_counter:int = global_reset_counter
 	var bullets:Array
 	var pattern:Pattern = arrayPatterns[id]
@@ -403,6 +400,9 @@ func spawn(spawner, id:String, shared_area:String="0"):
 		if pattern.node_target:
 			pattern.pattern_angle = pos.angle_to_point(pattern.node_target.global_position)
 		
+		if pattern.forced_lookat_mouse:
+			pattern.pattern_angle = pos.angle_to_point(get_global_mouse_position());
+		
 		for i in pattern.nbr:
 			queued_instance = {}
 			queued_instance["shared_area"] = shared_area_node
@@ -426,7 +426,7 @@ func spawn(spawner, id:String, shared_area:String="0"):
 				queued_instance["momentum_data"] = [pattern.wait_tween_momentum-1, tw_endpos, pattern.wait_tween_time]
 
 			bID = wake_from_pool(pattern.bullet, queued_instance, shared_area, is_object)
-			if bID and bID.has_method("_on_spawned"):
+			if bID is Node2D and bID.has_method("_on_spawned"):
 				bID._on_spawned();
 			bullets.append(bID)
 			poolBullets[bID] = queued_instance
@@ -570,14 +570,19 @@ func _spawn_object(b:Node2D, B:Dictionary):
 	if b is CollisionObject2D:
 		b.collision_layer = B["shared_area"].collision_layer
 		b.collision_mask = B["shared_area"].collision_mask
-	if B["source_node"] is Dictionary:
-		B["source_node"]["source_node"].call_deferred("add_child", b)
+	if B["source_node"] is Dictionary: # Added the checks against get_children()
+		# No longer errors out when the queue starts to fill up
+		if not b in B["source_node"]["source_node"].get_children():
+			B["source_node"]["source_node"].call_deferred("add_child", b)
 		b.global_position = B["source_node"]["position"]-B["source_node"]["source_node"].position
 		b.rotation += B["source_node"]["rotation"]
 	else:
+		# Added the checks against get_children()
+		# No longer errors out when the queue starts to fill up
 		b.global_position = B["spawn_pos"]
 		b.rotation += B["rotation"]
-		B["source_node"].call_deferred("add_child", b)
+		if not b in B["source_node"].get_children():
+			B["source_node"].call_deferred("add_child", b)
 
 func use_momentum(pos:Vector2, B:Dictionary):
 	B["position"] = pos
@@ -756,6 +761,9 @@ func bullet_movement():
 			continue
 		if B.has("rot_index"): B["rot_index"] += props["spec_rotating_speed"]
 
+
+		#CUSTOM.delete_bullet_outside(B);
+
 		#scale curve
 		move_scale(B, props)
 
@@ -902,14 +910,17 @@ func _draw():
 			b["props"]["spec_modulate"].get_color(0).a == 0):
 				continue
 
-		texture = get_texture_frame(b, B)
+		
+		if b["props"].has("texture"):
+			texture = b["props"]["texture"];
+		else:
+			texture = get_texture_frame(b, B)
 		draw_set_transform_matrix(Transform2D(b["rotation"]+b.get("rot_index",0),
 									b.get("scale", Vector2(b["props"]["scale"]*b["anim"][ANIM.SCALE],b["props"]["scale"]*b["anim"][ANIM.SCALE])), \
 									b["anim"][ANIM.SKEW], b["position"]))
 
-		if b["props"].has("spec_modulate"):
-			modulate_bullet(b, texture)
-		else: draw_texture(texture,-texture.get_size()/2)
+		if texture:
+			draw_texture(texture,-texture.get_size()/2)
 
 # type = "idle","spawn","waiting","delete"
 func change_animation(b:Dictionary, type:String, B):
@@ -969,7 +980,7 @@ func clear_bullets_within_dist(target_pos, radius:float=STANDARD_BULLET_RADIUS):
 			delete_bullet(b)
 
 func delete_bullet(b):
-	if b and b.has_method("_on_deleted"):
+	if b is Node2D and b.has_method("_on_deleted"):
 		b._on_deleted();
 	
 	if not poolBullets.has(b): return
@@ -1182,9 +1193,11 @@ func bullet_collide_body(body_rid:RID,body:Node,body_shape_index:int,local_shape
 		B["trig_container"].checkTriggers(B, rid)
 
 	if body.is_in_group("Player"):
-		delete_bullet(rid)
+		#Spawning.delete_bullet(rid);
+		pass
 	elif B["props"]["death_from_collision"]:
 		delete_bullet(rid)
+		pass
 
 func bounce(B:Dictionary, shared_area:Area2D):
 	if not B.has("colID"): return #TODO support custom bullet nodes

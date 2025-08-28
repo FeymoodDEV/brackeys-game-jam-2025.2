@@ -15,6 +15,9 @@ func _ready():
 	if Engine.is_editor_hint():
 		if not props: props = BulletProps.new()
 		return
+		
+	if props is BulletPropsExtend:
+		props.hit_vfx = props.packed_hit_vfx.instantiate();
 	
 	if not props is ObjectProps:
 		if props.homing_type == props.TARGET_TYPE.ListPositions:
@@ -36,6 +39,7 @@ func _ready():
 	var dict:Dictionary = {}; var P:String; var value; var has_random:bool=false;
 	var anim_state_name:String
 	var allow_random:bool = (props is ObjectProps or randf_range(0,1) <= props.get("r_randomisation_chances"));
+	
 	for p in props.get_property_list():
 		P = p["name"]
 		value = props.get(P)

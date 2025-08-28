@@ -8,6 +8,8 @@ extends Node2D
 @export var debug_mode: bool;
 @export var packed_test_scene: PackedScene;
 
+@export var packed_particles: Array[PackedScene]
+
 
 var bullet_manager: Node2D #TODO Create class type for this
 var menu_scene: Node2D;
@@ -36,4 +38,10 @@ func _ready():
 			
 	if is_instance_valid(menu_scene):
 		add_child(menu_scene);
+		
+	for packed in packed_particles:
+		var p_node = packed.instantiate();
+		p_node.emitting = true;
+		p_node.finished.connect.bind(p_node.queue_free.call_deferred);
+		add_child.call_deferred(p_node);
 	
