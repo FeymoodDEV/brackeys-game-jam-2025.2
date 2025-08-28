@@ -1,0 +1,71 @@
+[gd_scene load_steps=13 format=3 uid="uid://bq8imdqkwil54"]
+
+[ext_resource type="Script" uid="uid://crdkg38w76q45" path="res://src/boss/boss_controller.gd" id="1_4wwgs"]
+[ext_resource type="Resource" uid="uid://s637nu1auosb" path="res://resources/boss_data/chocolate_king.tres" id="2_hts6l"]
+[ext_resource type="Texture2D" uid="uid://cuungxd61dxw0" path="res://assets/sprites/bullet/chocolate_bullet.png" id="3_iivlh"]
+[ext_resource type="Script" uid="uid://v6qncoss0ivu" path="res://addons/xsm/state_loop.gd" id="4_vrabn"]
+[ext_resource type="Script" uid="uid://b22hvoowka3oo" path="res://src/boss/states/pattern_in_six_dir_state.gd" id="5_mopdb"]
+[ext_resource type="Script" uid="uid://wru30b4sid8w" path="res://src/boss/states/minion_spawn_state.gd" id="6_rgtop"]
+[ext_resource type="Resource" uid="uid://ca4ewugaitcqx" path="res://resources/enemy_data/chocolate_enemy.tres" id="7_lafiw"]
+[ext_resource type="Script" uid="uid://ctur53xodcjsv" path="res://src/boss/states/patterns_repeat_state.gd" id="8_ik35n"]
+[ext_resource type="Script" uid="uid://bwjfyj5t13444" path="res://src/boss/boss_pattern_data.gd" id="9_hutyx"]
+[ext_resource type="Resource" uid="uid://c7f7gum5i0x" path="res://resources/boss_patterns/chocolate_circle_pattern.tres" id="10_0k4gy"]
+[ext_resource type="Resource" uid="uid://dxsad11r8sdxi" path="res://resources/boss_patterns/chocolate_v_shape_pattern.tres" id="11_sufpb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysfue"]
+size = Vector2(128, 128)
+
+[node name="ChocolateKing" type="CharacterBody2D"]
+collision_layer = 34
+collision_mask = 0
+script = ExtResource("1_4wwgs")
+data = ExtResource("2_hts6l")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-5.72205e-06, -5.72205e-06)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("3_iivlh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ysfue")
+
+[node name="stage_1" type="Node" parent="."]
+script = ExtResource("4_vrabn")
+loop_mode = 1
+exit_state = NodePath("")
+history_size = 0
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://v6qncoss0ivu"
+
+[node name="State" type="Node" parent="stage_1"]
+script = ExtResource("5_mopdb")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="State2" type="Node" parent="stage_1"]
+script = ExtResource("6_rgtop")
+minion_data = ExtResource("7_lafiw")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("../State")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="State3" type="Node" parent="stage_1"]
+script = ExtResource("8_ik35n")
+patterns = Array[ExtResource("9_hutyx")]([ExtResource("10_0k4gy"), ExtResource("11_sufpb")])
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("../State")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"

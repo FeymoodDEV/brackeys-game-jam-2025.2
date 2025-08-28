@@ -17,7 +17,8 @@ var player: PlayerController
 @export var border_scene: PackedScene
 
 @export var block_scenes: Array[PackedScene]
-@export var enemy_scenes: Array[PackedScene]
+@onready var enemy_scene: PackedScene = preload("res://prefabs/enemies/basic_enemy.tscn")
+@export var enemy_datas: Array[EnemyData]
 @export var background_tiles: Array[Texture]
 
 var grid: Array = []
@@ -84,8 +85,9 @@ func spawn_enemies() -> void:
 			if grid[y][x] == false:
 				if rng.randi_range(1, 15) != 1: continue
 				grid[y][x] = true
-				var enemy: EnemyController = enemy_scenes[randi() % enemy_scenes.size()].instantiate()
+				var enemy: EnemyController = enemy_scene.instantiate()
 				enemy.position = Vector2(x * cell_size, y * cell_size);
+				enemy.enemy_data = enemy_datas[randi() % enemy_datas.size()]
 				enemy.player = player;
 				get_parent().add_child.call_deferred(enemy)
 

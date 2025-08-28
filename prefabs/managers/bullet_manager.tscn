@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bh4n0qihnupx7"]
+[gd_scene load_steps=28 format=3 uid="uid://bh4n0qihnupx7"]
 
 [ext_resource type="Script" uid="uid://cgd1wjud4ds5l" path="res://src/manager/bullet_manager.gd" id="1_s87c5"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://prefabs/player/player.tscn" id="2_5m336"]
@@ -166,6 +166,96 @@ wait_tween_length = 0.0
 wait_tween_time = 0.0
 metadata/_custom_type_script = "uid://csxp6a77ij7sk"
 
+[sub_resource type="Curve2D" id="Curve2D_em72g"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_6vri1"]
+resource_name = "PatternCircle"
+script = ExtResource("13_h02f0")
+radius = 0
+angle_total = 6.28319
+angle_decal = 0.174533
+symmetric = false
+center = 0
+symmetry_type = 0
+bullet = "ChocBullet"
+nbr = 90
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.06
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+metadata/_custom_type_script = "uid://csxp6a77ij7sk"
+
+[sub_resource type="Curve2D" id="Curve2D_5b5br"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_d0tu5"]
+resource_name = "PatternCircle"
+script = ExtResource("13_h02f0")
+radius = 60
+angle_total = 6.28319
+angle_decal = 0.349066
+symmetric = false
+center = 3
+symmetry_type = 0
+bullet = "ChocBullet"
+nbr = 30
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.5
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+metadata/_custom_type_script = "uid://csxp6a77ij7sk"
+
+[sub_resource type="Curve2D" id="Curve2D_5660t"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_eacl2"]
+resource_name = "PatternLine"
+script = ExtResource("12_fnh7x")
+offset = Vector2(30, 20)
+center = 3
+symmetric = true
+bullet = "ChocBullet"
+nbr = 5
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("../BulletManager/Player")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+metadata/_custom_type_script = "uid://c8a1x50bjmkue"
+
 [node name="BulletManager" type="Node2D"]
 script = ExtResource("1_s87c5")
 
@@ -241,6 +331,30 @@ curve = SubResource("Curve2D_td6b6")
 script = ExtResource("10_bvdue")
 id = "enemy_circle_sugar"
 pattern = SubResource("NavigationPolygon_5m336")
+
+[node name="ChocolateKing" type="Node2D" parent="Patterns"]
+
+[node name="chocolate_spin_pattern" type="Path2D" parent="Patterns/ChocolateKing"]
+curve = SubResource("Curve2D_em72g")
+script = ExtResource("10_bvdue")
+id = "chocolate_spin_pattern"
+pattern = SubResource("NavigationPolygon_6vri1")
+metadata/_custom_type_script = "uid://c8ydhn2yvq3dc"
+
+[node name="chocolate_circle_pattern" type="Path2D" parent="Patterns/ChocolateKing"]
+position = Vector2(1814, 1495)
+curve = SubResource("Curve2D_5b5br")
+script = ExtResource("10_bvdue")
+id = "chocolate_circle_pattern"
+pattern = SubResource("NavigationPolygon_d0tu5")
+metadata/_custom_type_script = "uid://c8ydhn2yvq3dc"
+
+[node name="chocolate_v_shape_pattern" type="Path2D" parent="Patterns/ChocolateKing"]
+curve = SubResource("Curve2D_5660t")
+script = ExtResource("10_bvdue")
+id = "chocolate_v_shape_pattern"
+pattern = SubResource("NavigationPolygon_eacl2")
+metadata/_custom_type_script = "uid://c8ydhn2yvq3dc"
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 script = ExtResource("15_er4hb")
