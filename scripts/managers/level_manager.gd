@@ -24,7 +24,6 @@ var grid: Array = []
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready():
-	EventManager.game_scene_loaded.emit();
 	EventManager.player_spawned.connect(_level_ready);
 
 func _level_ready(player_path: NodePath) -> void:
@@ -40,7 +39,7 @@ func _level_ready(player_path: NodePath) -> void:
 			grid[y][x] = false
 			
 	generate_level()
-	#spawn_enemies()
+	spawn_enemies()
 	spawn_player()
 	assign_target_for_bullet_patterns()
 
@@ -87,6 +86,7 @@ func spawn_enemies() -> void:
 				grid[y][x] = true
 				var enemy: EnemyController = enemy_scenes[randi() % enemy_scenes.size()].instantiate()
 				enemy.position = Vector2(x * cell_size, y * cell_size)
+				enemy.player = player;
 				get_parent().add_child.call_deferred(enemy)
 
 ## finds one open cell where to place enemy
