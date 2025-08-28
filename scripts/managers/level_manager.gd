@@ -40,7 +40,7 @@ func _level_ready(player_path: NodePath) -> void:
 			grid[y][x] = false
 			
 	generate_level()
-	spawn_enemies()
+	#spawn_enemies()
 	spawn_player()
 	assign_target_for_bullet_patterns()
 
