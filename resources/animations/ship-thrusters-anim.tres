@@ -1,0 +1,50 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://bmhq5ceo5wdkr"]
+
+[ext_resource type="Texture2D" uid="uid://b0o4knckol1u4" path="res://assets/sprites/player/ship-thrusters-end1.png" id="1_8xlas"]
+[ext_resource type="Texture2D" uid="uid://clrtjocb2hy4r" path="res://assets/sprites/player/ship-thrusters-end2.png" id="2_b1yva"]
+[ext_resource type="Texture2D" uid="uid://dmjdl2nmu6jdp" path="res://assets/sprites/player/ship-thrusters1.png" id="3_7ibvp"]
+[ext_resource type="Texture2D" uid="uid://dna52vdfhi5mv" path="res://assets/sprites/player/ship-thrusters2.png" id="4_3cryj"]
+[ext_resource type="Texture2D" uid="uid://c766bbjepb4xf" path="res://assets/sprites/player/ship-thrusters3.png" id="5_g520v"]
+[ext_resource type="Texture2D" uid="uid://dmtt5rbxp2se4" path="res://assets/sprites/player/ship-thrusters4.png" id="6_aapa3"]
+[ext_resource type="Texture2D" uid="uid://cdjy2ldg0b825" path="res://assets/sprites/player/ship-thrusters5.png" id="7_hheo5"]
+[ext_resource type="Texture2D" uid="uid://c0o3lbursecra" path="res://assets/sprites/player/ship-thrusters6.png" id="8_a558m"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8xlas")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_b1yva")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"end",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7ibvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3cryj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g520v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_aapa3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_hheo5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_a558m")
+}],
+"loop": true,
+"name": &"move",
+"speed": 15.0
+}]

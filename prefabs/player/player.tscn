@@ -1,16 +1,18 @@
-[gd_scene load_steps=26 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=29 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://src/player/player_controller.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://ogb51tdot7ho" path="res://assets/sprites/player/ship1.png" id="2_fcs02"]
 [ext_resource type="Texture2D" uid="uid://devb6j2col43u" path="res://assets/sprites/player/ship3.png" id="2_uf5tr"]
 [ext_resource type="Shape2D" uid="uid://cnjor30f1xoa1" path="res://prefabs/player/level_1_hitbox.tres" id="3_kvlxm"]
 [ext_resource type="Shape2D" uid="uid://cdxuhi06dx5ji" path="res://prefabs/player/level_2_hitbox.tres" id="3_lgqa7"]
 [ext_resource type="PackedScene" uid="uid://cdmeut6gpnrdx" path="res://prefabs/player/player_gun.tscn" id="3_myrg7"]
 [ext_resource type="Shape2D" uid="uid://2i71f8o8iqxk" path="res://prefabs/player/level_3_nombox.tres" id="3_uf5tr"]
+[ext_resource type="Script" uid="uid://bch8fmopdft1u" path="res://src/player/thrusters.gd" id="4_ag4y2"]
 [ext_resource type="Shape2D" uid="uid://cu1nofnlrgf2a" path="res://prefabs/player/level_3_hitbox.tres" id="4_lgqa7"]
+[ext_resource type="SpriteFrames" uid="uid://bmhq5ceo5wdkr" path="res://resources/animations/ship-thrusters-anim.tres" id="4_vtpqo"]
 [ext_resource type="Shape2D" uid="uid://bivjpsiot2lxr" path="res://prefabs/player/level_2_nombox.tres" id="5_8ydkj"]
 [ext_resource type="Shape2D" uid="uid://cmn0egykq5740" path="res://prefabs/player/level_1_nombox.tres" id="5_kvlxm"]
 [ext_resource type="Script" uid="uid://b2l0jlbk7oecc" path="res://addons/xsm/state_regions.gd" id="6_0owmy"]
+[ext_resource type="Texture2D" uid="uid://b18crkv7x2kpf" path="res://assets/sprites/player/thruster-particle.png" id="6_dmwb1"]
 [ext_resource type="Script" uid="uid://yw44daxcsxw0" path="res://src/player/states/movement_state.gd" id="7_h17s1"]
 [ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://src/player/states/normal_state.gd" id="8_qek5x"]
 [ext_resource type="Script" uid="uid://des4f477v63vn" path="res://src/player/states/circling_state.gd" id="9_5gtgg"]
@@ -25,6 +27,15 @@
 [ext_resource type="Texture2D" uid="uid://cal60wifol3qs" path="res://assets/sprites/player/soft-lock.svg" id="14_fcs02"]
 [ext_resource type="Texture2D" uid="uid://dr2oj506weijh" path="res://assets/sprites/player/hard-lock.svg" id="15_fcs02"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ris0"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1.5, 1.5, 1.5)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.23517e-06
+radial_accel_max = 13.99
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_fm80t"]
 radius = 36.0555
 
@@ -34,11 +45,8 @@ script = ExtResource("1_g2els")
 dash_power = 1000.0
 dash_friction = 0.9
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 1.5708
-texture = ExtResource("2_fcs02")
-
 [node name="NomDashAoE" type="Area2D" parent="."]
+visible = false
 collision_mask = 16
 monitoring = false
 
@@ -48,6 +56,81 @@ debug_color = Color(0, 0.64383, 0.292706, 0.42)
 
 [node name="HitboxShape" type="CollisionShape2D" parent="."]
 shape = ExtResource("3_kvlxm")
+
+[node name="Thrusters" type="Node2D" parent="."]
+
+[node name="Level1Thrusters" type="Node2D" parent="Thrusters" node_paths=PackedStringArray("upgrade_state")]
+visible = false
+script = ExtResource("4_ag4y2")
+upgrade_state = NodePath("../../Root/Upgrade/Level1")
+
+[node name="ThrusterLSprite" type="AnimatedSprite2D" parent="Thrusters/Level1Thrusters" groups=["thrusters"]]
+position = Vector2(-14, -5)
+rotation = 1.5708
+sprite_frames = ExtResource("4_vtpqo")
+animation = &"end"
+offset = Vector2(0, -7)
+
+[node name="ThrusterRSprite" type="AnimatedSprite2D" parent="Thrusters/Level1Thrusters" groups=["thrusters"]]
+position = Vector2(-14, 5)
+rotation = 1.5708
+sprite_frames = ExtResource("4_vtpqo")
+animation = &"move"
+offset = Vector2(0, -7)
+
+[node name="Level2Thrusters" type="Node2D" parent="Thrusters" node_paths=PackedStringArray("upgrade_state")]
+visible = false
+script = ExtResource("4_ag4y2")
+upgrade_state = NodePath("../../Root/Upgrade/Level2")
+
+[node name="ThrusterLSprite" type="AnimatedSprite2D" parent="Thrusters/Level2Thrusters" groups=["thrusters"]]
+position = Vector2(-20, -7)
+rotation = 1.5708
+sprite_frames = ExtResource("4_vtpqo")
+animation = &"move"
+offset = Vector2(0, -7)
+
+[node name="ThrusterRSprite" type="AnimatedSprite2D" parent="Thrusters/Level2Thrusters" groups=["thrusters"]]
+position = Vector2(-20, 7)
+rotation = 1.5708
+sprite_frames = ExtResource("4_vtpqo")
+animation = &"move"
+offset = Vector2(0, -7)
+
+[node name="Level3Thrusters" type="Node2D" parent="Thrusters" node_paths=PackedStringArray("upgrade_state")]
+visible = false
+script = ExtResource("4_ag4y2")
+upgrade_state = NodePath("../../Root/Upgrade/Level3")
+
+[node name="ThrusterLSprite" type="AnimatedSprite2D" parent="Thrusters/Level3Thrusters" groups=["thrusters"]]
+position = Vector2(-30, -7)
+rotation = 1.5708
+sprite_frames = ExtResource("4_vtpqo")
+animation = &"move"
+offset = Vector2(0, -7)
+
+[node name="ThrusterRSprite" type="AnimatedSprite2D" parent="Thrusters/Level3Thrusters" groups=["thrusters"]]
+position = Vector2(-30, 7)
+rotation = 1.5708
+sprite_frames = ExtResource("4_vtpqo")
+animation = &"move"
+offset = Vector2(0, -7)
+
+[node name="ThrusterMSprite" type="AnimatedSprite2D" parent="Thrusters/Level3Thrusters" groups=["thrusters"]]
+position = Vector2(-30, 0)
+rotation = 1.5708
+scale = Vector2(1.5, 2)
+sprite_frames = ExtResource("4_vtpqo")
+animation = &"move"
+offset = Vector2(0, -7)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Thrusters"]
+texture = ExtResource("6_dmwb1")
+process_material = SubResource("ParticleProcessMaterial_8ris0")
+
+[node name="ShipSprite" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_uf5tr")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -126,6 +209,11 @@ metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 [node name="Level1" type="Node" parent="Root/Upgrade"]
 script = ExtResource("10_kvlxm")
 speed = 300.0
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level2" type="Node" parent="Root/Upgrade"]
@@ -134,6 +222,11 @@ pattern = "player_level_2"
 texture = ExtResource("13_uf5tr")
 hitbox_shape = ExtResource("3_lgqa7")
 nombox_shape = ExtResource("5_8ydkj")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level3" type="Node" parent="Root/Upgrade"]
@@ -143,12 +236,17 @@ texture = ExtResource("2_uf5tr")
 hitbox_shape = ExtResource("4_lgqa7")
 nombox_shape = ExtResource("3_uf5tr")
 speed = 150.0
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Crosshair" type="Node2D" parent="."]
 script = ExtResource("11_fm80t")
 
-[node name="Sprite2D" type="Sprite2D" parent="Crosshair"]
+[node name="CrosshairSprite" type="Sprite2D" parent="Crosshair"]
 texture = ExtResource("12_gx1jg")
 
 [node name="LockOnTargetArea" type="Area2D" parent="Crosshair"]
@@ -169,6 +267,7 @@ ROTATION_SPEED = 1.0
 texture = ExtResource("14_fcs02")
 
 [node name="HardLockReticle" type="Node2D" parent="Crosshair"]
+visible = false
 script = ExtResource("13_ugbui")
 ROTATION_SPEED = 1.0
 

@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://ctcm0nmbs655s"]
+
+[ext_resource type="Texture2D" uid="uid://c2nu1rdmsvt8w" path="res://assets/sprites/vfx/blue-spack1.png" id="1_7du50"]
+[ext_resource type="Texture2D" uid="uid://bk3inacii6tmj" path="res://assets/sprites/vfx/blue-spack2.png" id="2_h7nnk"]
+[ext_resource type="Texture2D" uid="uid://c0irj0mvso524" path="res://assets/sprites/vfx/blue-spack3.png" id="3_eubhx"]
+[ext_resource type="Texture2D" uid="uid://djh0wju142s0b" path="res://assets/sprites/vfx/blue-spack4.png" id="4_e32w6"]
+[ext_resource type="Texture2D" uid="uid://btijtyei88ffh" path="res://assets/sprites/vfx/blue-spack5.png" id="5_ix56q"]
+[ext_resource type="Script" uid="uid://dfdpuc3vcdd0v" path="res://src/vfx/vfx_sprite.gd" id="6_kcr2t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rjvny"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7du50")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h7nnk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_eubhx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_e32w6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ix56q")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="VFXSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_rjvny")
+frame = 4
+frame_progress = 1.0
+script = ExtResource("6_kcr2t")
+metadata/_custom_type_script = "uid://dfdpuc3vcdd0v"
