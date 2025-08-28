@@ -14,13 +14,18 @@ func back_to_grave_deferred(bID):
 	var par = bID.get_parent();
 	if par and bID:
 		par.remove_child(bID)
-	else:
-		print(par)
+
 		
 func delete_bullet_outside(bullet):
+<<<<<<< Updated upstream
 	if bullet["position"].x < -100 or bullet["position"].x > 100:
 		Spawning.delete_bullet(bullet);
 	if bullet["position"].u < -100 or bullet["position"].u > 100:
+=======
+	if bullet["position"].x < -250 or bullet["position"].x > 250:
+		Spawning.delete_bullet(bullet);
+	if bullet["position"].y < -0 or bullet["position"].y > 10:
+>>>>>>> Stashed changes
 		Spawning.delete_bullet(bullet);
 
 func _on_hit_particle_finished(particle):
@@ -42,7 +47,6 @@ func bullet_collide_body(body_rid:RID,body:Node,body_shape_index:int,local_shape
 			body.apply_damage(damage, knockback, B["position"], -body.velocity);
 		else:
 			body.apply_damage(damage, knockback, B["position"], Vector2.ZERO);
-		print(B);
 		B["props"]["remaining_pierce"] -= 1;
 		if B["props"]["remaining_pierce"] <= 0:
 			var hit_vfx;

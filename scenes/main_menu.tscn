@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://3yj03daybfvf"]
 
-[ext_resource type="Script" uid="uid://8qe1bhp35ve4" path="res://src/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://8qe1bhp35ve4" path="res://src/menu/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="PackedScene" uid="uid://ccrxh34dcnijy" path="res://testing/cybrnight_main.tscn" id="2_ekxnf"]
 
 [node name="MainMenu" type="Node2D" node_paths=PackedStringArray("play_btn")]

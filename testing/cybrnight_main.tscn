@@ -1,26 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://ccrxh34dcnijy"]
+[gd_scene load_steps=7 format=3 uid="uid://ccrxh34dcnijy"]
 
 [ext_resource type="Script" uid="uid://bc7o63ppdn8uw" path="res://testing/cybrnight_main.gd" id="1_w3c6p"]
-[ext_resource type="PackedScene" uid="uid://bh4n0qihnupx7" path="res://scenes/bullet_manager.tscn" id="2_npses"]
-[ext_resource type="PackedScene" uid="uid://cxxnbcxiuusqt" path="res://scenes/level_manager.tscn" id="3_mvsys"]
-[ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://scenes/enemies/basic_enemy.tscn" id="3_npses"]
-[ext_resource type="PackedScene" uid="uid://bhr507fppywxh" path="res://scenes/enemies/circle_enemy.tscn" id="4_kjgpp"]
-[ext_resource type="Script" uid="uid://dsiawai5lafl8" path="res://src/managers/ui_manager.gd" id="5_npses"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sx3m1"]
-bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.815686)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mvsys"]
-bg_color = Color(0.630101, 0.0510413, 4.81308e-08, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npses"]
-bg_color = Color(0.370014, 0.689214, 0.322664, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjgpp"]
-bg_color = Color(0.114897, 0.114897, 0.114897, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sijxs"]
-bg_color = Color(1, 0.866667, 0, 1)
+[ext_resource type="PackedScene" uid="uid://bh4n0qihnupx7" path="res://prefabs/managers/bullet_manager.tscn" id="2_npses"]
+[ext_resource type="PackedScene" uid="uid://cxxnbcxiuusqt" path="res://prefabs/managers/level_manager.tscn" id="3_mvsys"]
+[ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://prefabs/enemies/basic_enemy.tscn" id="3_npses"]
+[ext_resource type="PackedScene" uid="uid://bhr507fppywxh" path="res://prefabs/enemies/circle_enemy.tscn" id="4_kjgpp"]
+[ext_resource type="PackedScene" uid="uid://j4ljg2vl3nfv" path="res://prefabs/ui/player_ui.tscn" id="6_npses"]
 
 [node name="CybrnightMain" type="Node2D"]
 script = ExtResource("1_w3c6p")
@@ -39,64 +24,4 @@ offset_right = 40.0
 offset_bottom = 23.0
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayerUI" type="CanvasLayer" parent="."]
-script = ExtResource("5_npses")
-
-[node name="Countdown" type="Label" parent="PlayerUI"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 30
-text = "05:00"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Timer" type="Timer" parent="PlayerUI"]
-wait_time = 300.0
-
-[node name="BossHealthBar" type="ProgressBar" parent="PlayerUI"]
-visible = false
-offset_left = 382.0
-offset_top = 46.0
-offset_right = 771.0
-offset_bottom = 82.0
-theme_override_styles/background = SubResource("StyleBoxFlat_sx3m1")
-theme_override_styles/fill = SubResource("StyleBoxFlat_mvsys")
-value = 50.0
-show_percentage = false
-
-[node name="BossName" type="Label" parent="PlayerUI"]
-visible = false
-offset_left = 382.0
-offset_top = 46.0
-offset_right = 771.0
-offset_bottom = 81.0
-text = "BIG BAD GUY"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HealthBar" type="ProgressBar" parent="PlayerUI"]
-offset_left = 382.0
-offset_top = 566.0
-offset_right = 771.0
-offset_bottom = 602.0
-theme_override_styles/background = SubResource("StyleBoxFlat_sx3m1")
-theme_override_styles/fill = SubResource("StyleBoxFlat_npses")
-value = 50.0
-show_percentage = false
-metadata/_edit_use_anchors_ = true
-
-[node name="ProgressBar" type="ProgressBar" parent="PlayerUI"]
-offset_left = 382.0
-offset_top = 602.0
-offset_right = 771.0
-offset_bottom = 612.0
-theme_override_styles/background = SubResource("StyleBoxFlat_kjgpp")
-theme_override_styles/fill = SubResource("StyleBoxFlat_sijxs")
-value = 50.0
-show_percentage = false
-metadata/_edit_use_anchors_ = true
+[node name="PlayerUI" parent="." instance=ExtResource("6_npses")]
