@@ -1,0 +1,73 @@
+[gd_scene load_steps=17 format=3 uid="uid://52etq7okqcxy"]
+
+[ext_resource type="Texture2D" uid="uid://d3s6pde8l0sdy" path="res://assets/sprites/vfx/combined-spack1.png" id="1_edplm"]
+[ext_resource type="Script" uid="uid://dfdpuc3vcdd0v" path="res://src/vfx/vfx_sprite.gd" id="1_x14uu"]
+[ext_resource type="Texture2D" uid="uid://c0a3v42eqdbnv" path="res://assets/sprites/vfx/combined-spack2.png" id="2_n0b5d"]
+[ext_resource type="Texture2D" uid="uid://bydwnerf7oskm" path="res://assets/sprites/vfx/combined-spack3.png" id="3_h3fyi"]
+[ext_resource type="Texture2D" uid="uid://bow5eh4m5ekmw" path="res://assets/sprites/vfx/combined-spack4.png" id="4_hjjs5"]
+[ext_resource type="Texture2D" uid="uid://de1brj6h4xmb4" path="res://assets/sprites/vfx/combined-spack5.png" id="5_2vkqn"]
+[ext_resource type="Texture2D" uid="uid://cb3vjmdxgkox1" path="res://assets/sprites/vfx/combined-spack6.png" id="6_v3dgy"]
+[ext_resource type="Texture2D" uid="uid://os2hg6rp7sgr" path="res://assets/sprites/vfx/combined-spack7.png" id="7_i3h3w"]
+[ext_resource type="Texture2D" uid="uid://bcd1mhqqvb4qn" path="res://assets/sprites/vfx/combined-spack8.png" id="8_mu6pk"]
+[ext_resource type="Texture2D" uid="uid://crxaou515ijmh" path="res://assets/sprites/vfx/combined-spack9.png" id="9_u2dat"]
+[ext_resource type="Texture2D" uid="uid://b2iocnccpltu0" path="res://assets/sprites/vfx/combined-spack10.png" id="10_l6a5k"]
+[ext_resource type="Texture2D" uid="uid://vdxovfa0ala0" path="res://assets/sprites/vfx/combined-spack11.png" id="11_u7t5y"]
+[ext_resource type="Texture2D" uid="uid://c2xidj70or0ys" path="res://assets/sprites/vfx/combined-spack12.png" id="12_ghhwq"]
+[ext_resource type="Texture2D" uid="uid://d2xa2ovklio33" path="res://assets/sprites/vfx/combined-spack13.png" id="13_joxfy"]
+[ext_resource type="Texture2D" uid="uid://yup72oh34o18" path="res://assets/sprites/vfx/combined-spack14.png" id="14_652sj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7w7pc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_edplm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n0b5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_h3fyi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hjjs5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2vkqn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_v3dgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_i3h3w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_mu6pk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_u2dat")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_l6a5k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_u7t5y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ghhwq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_joxfy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_652sj")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="RgbSpackVfx" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_7w7pc")
+frame = 13
+frame_progress = 1.0
+script = ExtResource("1_x14uu")
