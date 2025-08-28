@@ -17,7 +17,10 @@ var look_direction : Vector2
 #endregion
 
 @onready var crosshair: Node2D = $Crosshair
+@export var health: float = 10
 
+func _enter_tree():
+	EventManager.player_spawned.emit(get_path())
 
 func _physics_process(delta: float) -> void:
 	## Get look direction and rotate node accordingly
@@ -48,3 +51,10 @@ func get_look_relative_vector() -> Vector2:
 	# We can actually just rotate the vector 
 	var look_relative = input_vector.rotated(look_direction.angle())
 	return look_relative
+
+func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2):
+	health -= damage
+	EventManager.emit_signal("health_changed", health)
+	
+	if health <= 0:
+		print("DIE")
