@@ -23,7 +23,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"end",
-"speed": 20.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -46,5 +46,5 @@ animations = [{
 }],
 "loop": true,
 "name": &"move",
-"speed": 20.0
+"speed": 15.0
 }]
