@@ -24,7 +24,12 @@ var remaining_pierce: int = 0
 
 @onready var trail: GPUParticles2D = $GPUParticles2D;
 
-var trails = [];
+#region Graphics onready vars
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var trail: GPUParticles2D = $GPUParticles2D;
+#endregion
+
+var trail_particles: GPUParticles2D;
 
 func _draw():
 	draw_texture(bullet_texture, bullet_texture.get_size()/2);
@@ -34,6 +39,9 @@ func _process(delta):
 	queue_redraw();
 
 func _ready() -> void:
+	assert(data);
+	
+	# Connect signals
 	body_shape_entered.connect(_on_body_shape_entered);
 	
 	remaining_pierce = pierce_count
@@ -42,8 +50,10 @@ func _ready() -> void:
 		sprite.texture = bullet_texture;
 		sprite.scale = Vector2.ONE * sprite_scale;
 		
-	if trail_vfx:
-		pass
+	if GameConfig.SHOW_TRAILS:
+		trail_particles.emitting = true;
+		add_child(trail_particles)
+		trail_particles = null;
 
 
 		

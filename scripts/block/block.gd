@@ -9,6 +9,8 @@ var isDestructable: bool = true
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
 func _ready():
+	assert(data, "BlockData value is null!")
+	
 	health = data.health
 	isDestructable = data.isDestructable
 	sprite.texture = data.texture
