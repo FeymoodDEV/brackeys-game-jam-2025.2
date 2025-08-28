@@ -1,8 +1,11 @@
 @tool
 extends State
 
+## Time remaining before the end of the dash and return to normal movement.
 var remaining_time : float
+## Current velocity of the dash, reduced every tick.
 var dash_velocity : float
+## Direction unit vector of the dash.
 var dash_vector : Vector2
 var is_dashing = false;
 
