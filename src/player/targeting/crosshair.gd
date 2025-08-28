@@ -7,6 +7,9 @@ extends Node2D
 @onready var soft_lock_reticle: Node2D = $SoftLockReticle
 @onready var hard_lock_reticle: Node2D = $HardLockReticle
 
+const aim_crosshair_texture: Texture2D = preload("res://assets/sprites/player/crosshair.svg")
+const lock_crosshair_texture: Texture2D = preload("res://assets/sprites/player/lock-crosshair.svg")
+
 signal hard_lock_changed
 #signal hard_lock_removed
 
@@ -106,6 +109,8 @@ func hard_lock() -> void:
 	# bit of a bandaid fix: if we don't do this, the last hard lock target will not be added to the 
 	# targetable list until it leaves and reenters the zone
 	refresh_targetables()
+	$CrosshairSprite.texture = lock_crosshair_texture
+	
 
 func refresh_targetables() -> void:
 	targetables = $LockOnTargetArea.get_overlapping_bodies()
@@ -119,6 +124,7 @@ func remove_hard_lock() -> void:
 	#hard_lock_reticle.reparent(self)
 	hard_lock_reticle.visible = false
 	refresh_targetables()
+	$CrosshairSprite.texture = aim_crosshair_texture
 
 func remove_soft_lock() -> void:
 	# This is supposed to fix the error occuring when connecting the signal to

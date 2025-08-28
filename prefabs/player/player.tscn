@@ -75,7 +75,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Upgrade")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Normal" type="Node" parent="Root/Movement"]
@@ -84,7 +84,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Circling")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Circling" type="Node" parent="Root/Movement"]
@@ -126,6 +126,11 @@ metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 [node name="Level1" type="Node" parent="Root/Upgrade"]
 script = ExtResource("10_kvlxm")
 speed = 300.0
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level2" type="Node" parent="Root/Upgrade"]
@@ -134,6 +139,11 @@ pattern = "player_level_2"
 texture = ExtResource("13_uf5tr")
 hitbox_shape = ExtResource("3_lgqa7")
 nombox_shape = ExtResource("5_8ydkj")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level3" type="Node" parent="Root/Upgrade"]
@@ -143,12 +153,17 @@ texture = ExtResource("2_uf5tr")
 hitbox_shape = ExtResource("4_lgqa7")
 nombox_shape = ExtResource("3_uf5tr")
 speed = 150.0
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Crosshair" type="Node2D" parent="."]
 script = ExtResource("11_fm80t")
 
-[node name="Sprite2D" type="Sprite2D" parent="Crosshair"]
+[node name="CrosshairSprite" type="Sprite2D" parent="Crosshair"]
 texture = ExtResource("12_gx1jg")
 
 [node name="LockOnTargetArea" type="Area2D" parent="Crosshair"]
