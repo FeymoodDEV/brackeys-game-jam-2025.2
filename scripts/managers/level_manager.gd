@@ -82,7 +82,7 @@ func spawn_enemies() -> void:
 	for y: int in range(map_height):
 		for x: int in range(map_width):
 			if grid[y][x] == false:
-				if rng.randi_range(1, 10) != 1: continue
+				if rng.randi_range(1, 10) % 5 != 0: continue
 				grid[y][x] = true
 				var enemy: EnemyController = enemy_scenes[randi() % enemy_scenes.size()].instantiate()
 				enemy.position = Vector2(x * cell_size, y * cell_size);

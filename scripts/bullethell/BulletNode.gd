@@ -94,7 +94,7 @@ func _on_deleted():
 
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if not body.has_method("apply_damage"):
-		Spawning.delete_bullet(self);
+		#Spawning.delete_bullet(self);
 		return
 	else: 
 		body.apply_damage(damage, knockback, global_position, direction)
@@ -114,6 +114,3 @@ func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index)
 		audio.play()
 	
 	remaining_pierce -= 1;
-	
-	
-	Spawning.delete_bullet(self);

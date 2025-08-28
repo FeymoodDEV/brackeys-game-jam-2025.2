@@ -36,6 +36,7 @@ func _ready():
 	var dict:Dictionary = {}; var P:String; var value; var has_random:bool=false;
 	var anim_state_name:String
 	var allow_random:bool = (props is ObjectProps or randf_range(0,1) <= props.get("r_randomisation_chances"));
+	
 	for p in props.get_property_list():
 		P = p["name"]
 		value = props.get(P)
