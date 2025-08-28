@@ -22,11 +22,10 @@ func safe_queue_free() -> void:
 	freeing.emit()
 	queue_free.call_deferred()
 
-func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2):
-	pass
-	anim.play("hit")
-	
+func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2):	
 	if !isDestructable: return
+	anim.play("hit")
+
 	
 	health -= 1
 	if health <= 0:

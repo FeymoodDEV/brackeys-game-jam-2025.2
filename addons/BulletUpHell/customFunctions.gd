@@ -18,9 +18,9 @@ func back_to_grave_deferred(bID):
 		print(par)
 		
 func delete_bullet_outside(bullet):
-	if bullet["position"].x < -100 or bullet["position"].x > 100:
+	if bullet["position"].x < -250 or bullet["position"].x > 2000:
 		Spawning.delete_bullet(bullet);
-	if bullet["position"].u < -100 or bullet["position"].u > 100:
+	if bullet["position"].y < -250 or bullet["position"].y > 2000:
 		Spawning.delete_bullet(bullet);
 
 func _on_hit_particle_finished(particle):
