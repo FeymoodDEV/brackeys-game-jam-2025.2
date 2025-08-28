@@ -8,6 +8,8 @@ class_name customFunctions
 ## because your code would be overwritten at each plugin update
 ###
 
+var particles: Array[GPUParticles2D];
+
 func back_to_grave_deferred(bID):
 	var par = bID.get_parent();
 	if par and bID:
@@ -20,6 +22,10 @@ func delete_bullet_outside(bullet):
 		Spawning.delete_bullet(bullet);
 	if bullet["position"].u < -100 or bullet["position"].u > 100:
 		Spawning.delete_bullet(bullet);
+
+func _on_hit_particle_finished(particle):
+	particle.hide();
+	particles.append(particle)
 
 func bullet_collide_body(body_rid:RID,body:Node,body_shape_index:int,local_shape_index:int,shared_area:Area2D, B:Dictionary, b:RID) -> void:
 	## you can use B["props"]["damage"] to get the bullet's damage
@@ -37,12 +43,17 @@ func bullet_collide_body(body_rid:RID,body:Node,body_shape_index:int,local_shape
 		print(B);
 		B["props"]["remaining_pierce"] -= 1;
 		if B["props"]["remaining_pierce"] <= 0:
-			var hit_vfx = B["props"]["hit_vfx"].instantiate();
-			if hit_vfx:
+			var hit_vfx;
+			if particles.size() < 500:
+				hit_vfx = B["props"]["hit_vfx"].duplicate();
+				hit_vfx.finished.connect(_on_hit_particle_finished.bind(hit_vfx))
 				body.get_parent().add_child(hit_vfx);
+			else:
+				hit_vfx = particles.pop_front();
+				hit_vfx.show();
+			if hit_vfx:
 				hit_vfx.global_position = (B["position"] as Vector2);
 				hit_vfx.emitting = true
-				hit_vfx.finished.connect.bind(hit_vfx.queue_free);
 
 
 	pass

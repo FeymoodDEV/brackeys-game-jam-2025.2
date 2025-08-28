@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bh4n0qihnupx7"]
+[gd_scene load_steps=34 format=3 uid="uid://bh4n0qihnupx7"]
 
 [ext_resource type="Script" uid="uid://cgd1wjud4ds5l" path="res://scripts/managers/bullet_manager.gd" id="1_s87c5"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="2_5m336"]
@@ -28,7 +28,7 @@ pierce_count = 0
 knockback = 0.0
 absorb_points = null
 sprite_scale = 0.25
-hit_vfx = ExtResource("3_5m336")
+packed_hit_vfx = ExtResource("3_5m336")
 anim_more = Array[ExtResource("4_um252")]([])
 damage = 1.0
 speed = 200.0
@@ -111,7 +111,7 @@ pierce_count = 0
 knockback = 0.0
 absorb_points = null
 sprite_scale = 0.25
-hit_vfx = ExtResource("3_5m336")
+packed_hit_vfx = ExtResource("3_5m336")
 anim_more = Array[ExtResource("4_um252")]([])
 damage = 1.0
 speed = 100.0
@@ -194,7 +194,7 @@ pierce_count = 0
 knockback = 0.0
 absorb_points = null
 sprite_scale = 0.25
-hit_vfx = ExtResource("3_5m336")
+packed_hit_vfx = ExtResource("3_5m336")
 anim_more = Array[ExtResource("4_um252")]([])
 damage = 1.0
 speed = 1000.0
@@ -225,90 +225,6 @@ homing_time_start = 0.0
 homing_duration = 999.0
 scale_multi_iterations = 0
 scale_multiplier = SubResource("Curve_bvdue")
-scale_multi_scale = 1.0
-r_randomisation_chances = 1.0
-r_speed_choice = PackedFloat32Array()
-r_speed_variation = Vector3(0, 0, 0)
-r_scale_choice = PackedFloat32Array()
-r_scale_variation = Vector3(0, 0, 0)
-r_angle_choice = PackedFloat32Array()
-r_angle_variation = Vector3(0, 0, 0)
-r_group_choice = []
-r_bounce_choice = PackedInt32Array()
-r_bounce_variation = Vector3(0, 0, 0)
-r_no_coll_chances = 0.0
-r_modulate_variation = Vector3(0, 0, 0)
-r_trail_length_variation = Vector3(0, 0, 0)
-r_trail_color_variation = Vector3(0, 0, 0)
-r_rotating_variation = Vector3(0, 0, 0)
-r_death_after_choice = PackedFloat32Array()
-r_death_after_variation = Vector3(0, 0, 0)
-r_death_outside_chances = 0.0
-r_dir_equation_choice = PackedStringArray()
-r_curve_choice = []
-r_speed_multi_curve_choice = []
-r_speed_multi_iter_variation = Vector3(0, 0, 0)
-r_speed_multi_scale_variation = Vector3(0, 0, 0)
-r_trigger_choice = PackedStringArray()
-r_wait_for_shot_chances = 0.0
-r_homing_target_choice = []
-r_special_target_choice = PackedStringArray()
-r_group_target_choice = PackedStringArray()
-r_pos_target_choice = PackedVector2Array()
-r_steer_choice = PackedFloat32Array()
-r_steer_variation = Vector3(0, 0, 0)
-r_homing_delay_choice = PackedFloat32Array()
-r_homing_delay_variation = Vector3(0, 0, 0)
-r_homing_dur_choice = PackedFloat32Array()
-r_homing_dur_variation = Vector3(0, 0, 0)
-r_scale_multi_curve_choice = []
-r_scale_multi_iter_variation = Vector3(0, 0, 0)
-r_scale_multi_scale_variation = Vector3(0, 0, 0)
-metadata/_custom_type_script = "uid://dvueqbi8eexbm"
-
-[sub_resource type="Curve2D" id="Curve2D_1h4s3"]
-
-[sub_resource type="Curve" id="Curve_s87c5"]
-
-[sub_resource type="Curve" id="Curve_5m336"]
-
-[sub_resource type="PackedDataContainer" id="PackedDataContainer_er4hb"]
-script = ExtResource("7_05w0v")
-texture = ExtResource("12_um252")
-pierce_count = 0
-knockback = 0.0
-absorb_points = null
-sprite_scale = 0.25
-anim_more = Array[ExtResource("4_um252")]([])
-damage = 1.0
-speed = 100.0
-scale = 1.0
-angle = 0.0
-groups = PackedStringArray()
-spec_bounces = 0
-spec_no_collision = false
-spec_modulate_loop = 0.0
-spec_trail_length = 0.0
-spec_trail_width = 0.0
-spec_trail_modulate = Color(1, 1, 1, 1)
-spec_rotating_speed = 0.0
-death_after_time = 30.0
-death_outside_box = Rect2(0, 0, 0, 0)
-death_from_collision = true
-a_direction_equation = ""
-a_curve_movement = 0
-a_speed_multiplier = SubResource("Curve_s87c5")
-a_speed_multi_iterations = 0
-a_speed_multi_scale = 0.0
-trigger_container = ""
-trigger_wait_for_shot = true
-homing_type = 0
-homing_target = NodePath("")
-homing_steer = 0.0
-homing_time_start = 0.0
-homing_duration = 999.0
-scale_multi_iterations = 0
-scale_multiplier = SubResource("Curve_5m336")
 scale_multi_scale = 1.0
 r_randomisation_chances = 1.0
 r_speed_choice = PackedFloat32Array()
@@ -530,10 +446,6 @@ script = ExtResource("1_s87c5")
 [node name="Player" parent="." instance=ExtResource("2_5m336")]
 position = Vector2(2031, 1523)
 
-[node name="HitVFX" type="Node2D" parent="."]
-
-[node name="hit_vfx" parent="HitVFX" instance=ExtResource("3_5m336")]
-
 [node name="BulletProps" type="Node2D" parent="."]
 
 [node name="ChocolateBullet" type="Path2D" parent="BulletProps"]
@@ -553,12 +465,6 @@ curve = SubResource("Curve2D_aga20")
 script = ExtResource("3_er4hb")
 id = "PBullet"
 props = SubResource("PackedDataContainer_lswlb")
-
-[node name="BulletPattern" type="Path2D" parent="BulletProps"]
-curve = SubResource("Curve2D_1h4s3")
-script = ExtResource("3_er4hb")
-id = "1"
-props = SubResource("PackedDataContainer_er4hb")
 
 [node name="Patterns" type="Node2D" parent="."]
 

@@ -15,6 +15,9 @@ func _ready():
 	if Engine.is_editor_hint():
 		if not props: props = BulletProps.new()
 		return
+		
+	if props is BulletPropsExtend:
+		props.hit_vfx = props.packed_hit_vfx.instantiate();
 	
 	if not props is ObjectProps:
 		if props.homing_type == props.TARGET_TYPE.ListPositions:
