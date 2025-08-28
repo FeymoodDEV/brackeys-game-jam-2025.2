@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://cd612bpfue60e" path="res://scripts/player/level_1_gun.gd" id="10_fcs02"]
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://scenes/player/nom_dash.gd" id="10_h17s1"]
 [ext_resource type="Script" uid="uid://crak72h5onoyp" path="res://scenes/player/upgrade_level.gd" id="10_kvlxm"]
-[ext_resource type="Script" path="res://scenes/player/upgrade.gd" id="10_myrg7"]
+[ext_resource type="Script" uid="uid://bwsv0v5wgoh2s" path="res://scenes/player/upgrade.gd" id="10_myrg7"]
 [ext_resource type="Script" uid="uid://bh8rpek0w1o47" path="res://scenes/player/crosshair.gd" id="11_fm80t"]
 [ext_resource type="Texture2D" uid="uid://bptr4hwxaoyjv" path="res://assets/player/crosshair.svg" id="12_gx1jg"]
 [ext_resource type="Script" uid="uid://cfmoqb7g6yigs" path="res://scenes/player/lock_reticle.gd" id="13_ugbui"]
@@ -54,6 +54,7 @@ shape = SubResource("CircleShape2D_ugbui")
 debug_color = Color(0, 0.64383, 0.292706, 0.42)
 
 [node name="Root" type="Node" parent="."]
+process_mode = 1
 script = ExtResource("6_0owmy")
 history_size = 0
 disabled = false
@@ -64,6 +65,7 @@ next_state = NodePath("")
 metadata/_custom_type_script = "uid://b2l0jlbk7oecc"
 
 [node name="Movement" type="Node" parent="Root"]
+process_mode = 1
 script = ExtResource("7_h17s1")
 disabled = false
 debug_mode = false

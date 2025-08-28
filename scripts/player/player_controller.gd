@@ -46,6 +46,20 @@ var absorb_pts : int = 0 :
 @export var max_level : int = 2
 #endregion
 
+var health: float
+@export var max_health: float = 100
+
+func _enter_tree():
+	pass
+	
+func _ready():
+	health = max_health
+	EventManager.player_setup.emit({
+		"progress_max_value": 100, 
+		"health_max_value": max_health,
+	})
+	EventManager.player_spawned.emit(get_path())
+	
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("level_down"):
 		level_down()
@@ -74,6 +88,13 @@ func get_look_relative_vector() -> Vector2:
 	var look_relative = input_vector.rotated(look_direction.angle())
 	return look_relative
 
+func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2):
+	health -= damage
+	EventManager.emit_signal("health_changed", health)
+	
+	if health <= 0:
+		print("DIE")
+		
 func level_down() -> void:
 	if current_level > 0:
 		current_level -= 1

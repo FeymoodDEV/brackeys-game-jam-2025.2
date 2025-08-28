@@ -1,483 +1,102 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccrxh34dcnijy"]
+[gd_scene load_steps=12 format=3 uid="uid://ccrxh34dcnijy"]
 
-[ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_sijxs"]
 [ext_resource type="Script" uid="uid://bc7o63ppdn8uw" path="res://testing/cybrnight_main.gd" id="1_w3c6p"]
-[ext_resource type="Script" uid="uid://dh1h11m36jqp0" path="res://scripts/managers/level_manager.gd" id="2_kjgpp"]
-[ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="2_ko3n4"]
-[ext_resource type="PackedScene" uid="uid://chjrmgc7vavve" path="res://testing/manager/cybr_bullet_manager.tscn" id="2_npses"]
-[ext_resource type="PackedScene" uid="uid://y2xgcb36jh3" path="res://scenes/blocks/block_3.tscn" id="4_sijxs"]
-[ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://scenes/blocks/block_1.tscn" id="4_w3c6p"]
-[ext_resource type="PackedScene" uid="uid://cux5gt5ppivxe" path="res://scenes/blocks/block_2.tscn" id="6_ko3n4"]
-[ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://scenes/enemies/basic_enemy.tscn" id="11_lqjba"]
+[ext_resource type="PackedScene" path="res://scenes/level_manager.tscn" id="3_mvsys"]
+[ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://scenes/enemies/basic_enemy.tscn" id="3_npses"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/circle_enemy.tscn" id="4_kjgpp"]
+[ext_resource type="PackedScene" path="res://scenes/bullet_manager.tscn" id="5_kjgpp"]
+[ext_resource type="Script" uid="uid://dsiawai5lafl8" path="res://scripts/managers/ui_manager.gd" id="5_npses"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sx3m1"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.815686)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mvsys"]
+bg_color = Color(0.630101, 0.0510413, 4.81308e-08, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npses"]
+bg_color = Color(0.370014, 0.689214, 0.322664, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjgpp"]
+bg_color = Color(0.114897, 0.114897, 0.114897, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sijxs"]
+bg_color = Color(1, 0.866667, 0, 1)
 
 [node name="CybrnightMain" type="Node2D"]
 script = ExtResource("1_w3c6p")
 
-[node name="LevelManager" type="Node2D" parent="."]
-script = ExtResource("2_kjgpp")
-player_scene = ExtResource("2_ko3n4")
-border_scene = ExtResource("4_sijxs")
-block_scenes = Array[PackedScene]([ExtResource("4_w3c6p"), ExtResource("6_ko3n4"), ExtResource("4_sijxs")])
-enemy_scenes = Array[PackedScene]([ExtResource("11_lqjba")])
-background_tiles = Array[Texture]([ExtResource("1_sijxs")])
-metadata/_custom_type_script = "uid://dh1h11m36jqp0"
+[node name="LevelManager" parent="." instance=ExtResource("3_mvsys")]
+enemy_scenes = Array[PackedScene]([ExtResource("3_npses"), ExtResource("4_kjgpp")])
 
-[node name="BG" type="TextureRect" parent="LevelManager"]
-z_index = -1
-offset_left = -1671.0
-offset_top = -1015.0
-offset_right = 1593.0
-offset_bottom = 1087.0
-texture = ExtResource("1_sijxs")
-stretch_mode = 1
-metadata/_edit_use_anchors_ = true
+[node name="BulletManager" parent="." instance=ExtResource("5_kjgpp")]
 
-[node name="BulletManager" parent="." instance=ExtResource("2_npses")]
+[node name="Temp" type="Node2D" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="FPS" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 23.0
-
-[node name="Static" type="Node2D" parent="."]
-
-[node name="Block" parent="Static" instance=ExtResource("4_w3c6p")]
-position = Vector2(102, 99)
-
-[node name="Block2" parent="Static" instance=ExtResource("4_w3c6p")]
-position = Vector2(443, 156)
-
-[node name="Block3" parent="Static" instance=ExtResource("4_w3c6p")]
-position = Vector2(163, 352)
-
-[node name="Block4" parent="Static" instance=ExtResource("4_w3c6p")]
-position = Vector2(441, 317)
-
-[node name="Player" parent="." instance=ExtResource("2_ko3n4")]
-
-[node name="Enemy" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(222, 227)
-
-[node name="Enemy2" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy3" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy4" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy5" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy6" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy7" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy8" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy9" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy10" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy11" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy12" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy13" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy14" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy15" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy16" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy17" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy18" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy19" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(222, 227)
-
-[node name="Enemy20" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy21" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy22" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy23" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy24" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy25" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy26" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy27" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy28" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy29" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy30" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy31" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy32" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy33" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy34" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy35" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy36" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy37" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(222, 227)
-
-[node name="Enemy38" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy39" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy40" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy41" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy42" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy43" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy44" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy45" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy46" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy47" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy48" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy49" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy50" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy51" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy52" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy53" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy54" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy55" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(222, 227)
-
-[node name="Enemy56" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy57" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy58" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy59" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy60" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy61" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy62" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy63" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy64" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy65" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy66" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy67" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy68" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy69" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy70" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy71" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy72" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-
-[node name="Enemy73" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(222, 227)
-collision_mask = 8
-
-[node name="Enemy74" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy75" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy76" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy77" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy78" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy79" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy80" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy81" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy82" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy83" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy84" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy85" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy86" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy87" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy88" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy89" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy90" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy91" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy92" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy93" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy94" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy95" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy96" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy97" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy98" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy99" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy100" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy101" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy102" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy103" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy104" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy105" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy106" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy107" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy108" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy109" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy110" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy111" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy112" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy113" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy114" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy115" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy116" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy117" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy118" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy119" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy120" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy121" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy122" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy123" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[node name="Enemy124" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(444, 454)
-collision_mask = 8
-
-[editable path="BulletManager"]
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerUI" type="CanvasLayer" parent="."]
+script = ExtResource("5_npses")
+
+[node name="Countdown" type="Label" parent="PlayerUI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "05:00"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="PlayerUI"]
+wait_time = 300.0
+
+[node name="BossHealthBar" type="ProgressBar" parent="PlayerUI"]
+visible = false
+offset_left = 382.0
+offset_top = 46.0
+offset_right = 771.0
+offset_bottom = 82.0
+theme_override_styles/background = SubResource("StyleBoxFlat_sx3m1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mvsys")
+value = 50.0
+show_percentage = false
+
+[node name="BossName" type="Label" parent="PlayerUI"]
+visible = false
+offset_left = 382.0
+offset_top = 46.0
+offset_right = 771.0
+offset_bottom = 81.0
+text = "BIG BAD GUY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="PlayerUI"]
+offset_left = 382.0
+offset_top = 566.0
+offset_right = 771.0
+offset_bottom = 602.0
+theme_override_styles/background = SubResource("StyleBoxFlat_sx3m1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_npses")
+value = 50.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="PlayerUI"]
+offset_left = 382.0
+offset_top = 602.0
+offset_right = 771.0
+offset_bottom = 612.0
+theme_override_styles/background = SubResource("StyleBoxFlat_kjgpp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sijxs")
+value = 50.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true

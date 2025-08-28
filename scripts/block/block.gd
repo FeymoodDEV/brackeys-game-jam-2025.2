@@ -9,6 +9,8 @@ var isDestructable: bool = true
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
 func _ready():
+	assert(data, "BlockData value is null!")
+	
 	health = data.health
 	isDestructable = data.isDestructable
 	sprite.texture = data.texture
@@ -21,7 +23,6 @@ func safe_queue_free() -> void:
 	queue_free.call_deferred()
 
 func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2):
-	#print('Block was hit')
 	pass
 	anim.play("hit")
 	

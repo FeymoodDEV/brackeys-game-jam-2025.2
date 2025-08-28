@@ -8,13 +8,6 @@
 
 [sub_resource type="Resource" id="Resource_kd18i"]
 script = ExtResource("2_0s0cy")
-speed = 400.0
-damage = 10.0
-lifetime = 5.0
-pierce_count = 0
-knockback = 0.0
-absorb_value = 1
-scale = 1.0
 metadata/_custom_type_script = "uid://blyfl04bkccem"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lj7gv"]
@@ -26,10 +19,6 @@ data = SubResource("Resource_kd18i")
 [node name="hit_vfx" parent="." instance=ExtResource("3_0s0cy")]
 
 [node name="trail" parent="." instance=ExtResource("4_kd18i")]
-texture = ExtResource("2_lj7gv")
-
-[node name="Sprite" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_lj7gv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
