@@ -56,7 +56,7 @@ var absorb_pts : int = 0 :
 ## Max upgrade level. Starts at zero!!!
 @export var max_level : int = 2
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var sprite_2d: Sprite2D = $ShipSprite
 @onready var nombox_shape: CollisionShape2D = $NomDashAoE/NomboxShape
 @onready var hitbox_shape: CollisionShape2D = $HitboxShape
 @onready var gun: Node2D = $Gun
