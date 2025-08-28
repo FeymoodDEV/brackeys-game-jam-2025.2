@@ -24,8 +24,10 @@ func delete_bullet_outside(bullet):
 		Spawning.delete_bullet(bullet);
 
 func _on_hit_particle_finished(particle):
-	particle.hide();
-	particles.append(particle)
+	if particle in get_children():
+		particle.emitting = false;
+		remove_child(particle);
+		particles.append(particle)
 
 func bullet_collide_body(body_rid:RID,body:Node,body_shape_index:int,local_shape_index:int,shared_area:Area2D, B:Dictionary, b:RID) -> void:
 	## you can use B["props"]["damage"] to get the bullet's damage
@@ -50,10 +52,12 @@ func bullet_collide_body(body_rid:RID,body:Node,body_shape_index:int,local_shape
 				body.get_parent().add_child(hit_vfx);
 			else:
 				hit_vfx = particles.pop_front();
-				hit_vfx.show();
+			
 			if hit_vfx:
+				hit_vfx.show();
 				hit_vfx.global_position = (B["position"] as Vector2);
 				hit_vfx.emitting = true
+			Spawning.delete_bullet(b);
 
 
 	pass
