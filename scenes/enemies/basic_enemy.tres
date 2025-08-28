@@ -5,8 +5,11 @@
 
 [resource]
 script = ExtResource("1_6l6fd")
+pattern = "enemy_line"
 speed = 600.0
-pattern = "line"
+health = 100.0
+damage = 10.0
+xp_worth = 10.0
 texture = ExtResource("2_jqeog")
 modulate_color = Color(1, 0.0690199, 0.169378, 1)
 scale = 1.0

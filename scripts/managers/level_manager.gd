@@ -39,7 +39,7 @@ func _level_ready(player_path: NodePath) -> void:
 			grid[y][x] = false
 			
 	generate_level()
-	#spawn_enemies()
+	spawn_enemies()
 	spawn_player()
 	assign_target_for_bullet_patterns()
 
@@ -85,7 +85,8 @@ func spawn_enemies() -> void:
 				if rng.randi_range(1, 10) != 1: continue
 				grid[y][x] = true
 				var enemy: EnemyController = enemy_scenes[randi() % enemy_scenes.size()].instantiate()
-				enemy.position = Vector2(x * cell_size, y * cell_size)
+				enemy.position = Vector2(x * cell_size, y * cell_size);
+				enemy.player = player;
 				get_parent().add_child.call_deferred(enemy)
 
 ## finds one open cell where to place enemy
