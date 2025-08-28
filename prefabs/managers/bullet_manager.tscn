@@ -32,7 +32,7 @@ nbr = 3
 iterations = 1
 pattern_angle = 0.0
 pattern_angle_target = NodePath("")
-pattern_angle_mouse = true
+pattern_angle_mouse = false
 forced_angle = 0.0
 forced_target = NodePath("")
 forced_lookat_mouse = true
@@ -262,6 +262,27 @@ script = ExtResource("1_s87c5")
 [node name="Player" parent="." instance=ExtResource("2_5m336")]
 position = Vector2(2031, 1523)
 
+[node name="Level1" parent="Player/Root/Upgrade" index="1"]
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+
+[node name="Level2" parent="Player/Root/Upgrade" index="2"]
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+
+[node name="Level3" parent="Player/Root/Upgrade" index="3"]
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+
 [node name="BulletProps" type="Node2D" parent="."]
 
 [node name="ChocolateBullet" type="Path2D" parent="BulletProps"]
@@ -369,3 +390,5 @@ auto_start_at_distance = 5.0
 auto_distance_from = NodePath("")
 trigger_container = NodePath("")
 metadata/_custom_type_script = "uid://okf4mtltak8l"
+
+[editable path="Player"]

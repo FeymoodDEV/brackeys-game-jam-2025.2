@@ -75,7 +75,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Upgrade")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Normal" type="Node" parent="Root/Movement"]
@@ -84,7 +84,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Circling")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Circling" type="Node" parent="Root/Movement"]
