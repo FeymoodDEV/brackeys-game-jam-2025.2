@@ -44,6 +44,11 @@ var absorb_pts : int = 0 :
 @export var upgrade_threshold : int = 10
 ## Max upgrade level. Starts at zero!!!
 @export var max_level : int = 2
+
+@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var nombox_shape: CollisionShape2D = $NomDashAoE/NomboxShape
+@onready var hitbox_shape: CollisionShape2D = $HitboxShape
+@onready var gun: Node2D = $Gun
 #endregion
 
 var health: float
@@ -59,6 +64,7 @@ func _ready():
 		"health_max_value": max_health,
 	})
 	EventManager.player_spawned.emit(get_path())
+	$Root/Upgrade.change_state("Level1")
 	
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("level_down"):

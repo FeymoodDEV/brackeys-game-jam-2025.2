@@ -8,6 +8,8 @@ extends Node2D
 
 @onready var shot_cooldown_timer: Timer = $ShotTimer
 
+var pattern : String = "player_level_one"
+
 const spread_angle_multiplier: int = 10
 
 func _ready() -> void:
@@ -15,7 +17,7 @@ func _ready() -> void:
 	shot_cooldown_timer.stop()
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed("shoot"):
+	if enabled and Input.is_action_pressed("shoot"):
 		if shot_cooldown_timer.is_stopped():
 			shoot()
 			shot_cooldown_timer.start(shot_cooldown)
@@ -54,10 +56,9 @@ func shoot() -> void:
 	var spawn_pos = $SpawnPoint.global_position;
 	
 	var rot = global_rotation
-	var node = get_parent().get_parent();
+	var node = get_parent().get_parent()
 
-	Spawning.spawn({"position": spawn_pos + (global_transform.y*20), "rotation": 0, "source_node": node}, "player_one", "0")
-	Spawning.spawn({"position": spawn_pos + (global_transform.y*-20), "rotation": 0, "source_node": node}, "player_one", "0")
-	
+
+	Spawning.spawn(self, pattern, "0")
 	
 	
