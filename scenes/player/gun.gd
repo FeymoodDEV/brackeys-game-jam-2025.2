@@ -8,6 +8,8 @@ extends Node2D
 
 @onready var shot_cooldown_timer: Timer = $ShotTimer
 
+var pattern : String = "player_level_one"
+
 const spread_angle_multiplier: int = 10
 
 func _ready() -> void:
@@ -54,9 +56,9 @@ func shoot() -> void:
 	var spawn_pos = $SpawnPoint.global_position;
 	
 	var rot = global_rotation
-	var node = get_parent().target.get_parent()
+	var node = get_parent().get_parent()
 
 
-	Spawning.spawn(self, "player_line", "0")
+	Spawning.spawn(self, pattern, "0")
 	
 	

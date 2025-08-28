@@ -15,5 +15,4 @@ func _physics_process(delta: float) -> void:
 			shot_cooldown_timer.start(shot_cooldown)
 
 func shoot() -> void:
-	# TODO:
-	pass
+	Spawning.spawn(self, "player_level_1", "0")
