@@ -12,6 +12,6 @@ func deferred_ready():
 	Spawning.spawn({"position": Vector2.INF, "rotation": 0, "source_node": self}, "enemy_circle", "1")
 	Spawning.spawn({"position": Vector2.INF, "rotation": 0, "source_node": self}, "player_one", "0")
 	Spawning.spawn({"position": Vector2.INF, "rotation": 0, "source_node": self}, "enemy_line", "1")
-
+	
 	player_node.reparent(get_parent())
 	
