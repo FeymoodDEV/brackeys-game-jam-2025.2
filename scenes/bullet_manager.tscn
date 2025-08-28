@@ -1,18 +1,18 @@
 [gd_scene load_steps=28 format=3 uid="uid://chjrmgc7vavve"]
 
-[ext_resource type="Script" uid="uid://cgd1wjud4ds5l" path="res://scripts/managers/bullet_manager.gd" id="1_or46o"]
-[ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="1_sr4k1"]
-[ext_resource type="Script" uid="uid://bjmse0liopcrp" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="1_ykoj7"]
-[ext_resource type="Script" uid="uid://bapo6jcdsje8y" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="2_ne5h4"]
-[ext_resource type="Script" uid="uid://dwml1suxu8e0m" path="res://scripts/bullethell/BulletPropsData.gd" id="3_fg4cs"]
-[ext_resource type="Script" uid="uid://qc1ehcnju62l" path="res://addons/BulletUpHell/Nodes/BuHInstanceLister.gd" id="4_qrdfs"]
-[ext_resource type="PackedScene" uid="uid://b44c5ncrptvhv" path="res://scenes/bullets/player_bullet.tscn" id="5_ypq5x"]
-[ext_resource type="PackedDataContainer" uid="uid://m6t0yljksjr3" path="res://resources/bullets/p_bullet.tres" id="6_i0jjw"]
-[ext_resource type="Script" uid="uid://c8ydhn2yvq3dc" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="7_x3hlf"]
-[ext_resource type="PackedDataContainer" uid="uid://byu8ge0spye2k" path="res://resources/bullets/chocolate_bullet.tres" id="8_5h2se"]
-[ext_resource type="Script" uid="uid://b6cup3hdpqd6v" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="8_o2lmx"]
-[ext_resource type="Script" uid="uid://c8a1x50bjmkue" path="res://addons/BulletUpHell/SpawnPatterns/PatternLine.gd" id="9_pqqf2"]
-[ext_resource type="Script" uid="uid://csxp6a77ij7sk" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="10_hhpfr"]
+[ext_resource type="Script" uid="uid://cgd1wjud4ds5l" path="res://scripts/managers/bullet_manager.gd" id="1_s87c5"]
+[ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="2_5m336"]
+[ext_resource type="Script" uid="uid://bjmse0liopcrp" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="3_er4hb"]
+[ext_resource type="Script" uid="uid://bapo6jcdsje8y" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="4_um252"]
+[ext_resource type="Script" uid="uid://dwml1suxu8e0m" path="res://scripts/bullethell/BulletPropsData.gd" id="5_05w0v"]
+[ext_resource type="Script" uid="uid://qc1ehcnju62l" path="res://addons/BulletUpHell/Nodes/BuHInstanceLister.gd" id="6_1h4s3"]
+[ext_resource type="PackedScene" uid="uid://b44c5ncrptvhv" path="res://scenes/bullets/player_bullet.tscn" id="7_5c6b0"]
+[ext_resource type="PackedDataContainer" uid="uid://byu8ge0spye2k" path="res://resources/bullets/chocolate_bullet.tres" id="8_vrhaq"]
+[ext_resource type="PackedDataContainer" uid="uid://m6t0yljksjr3" path="res://resources/bullets/p_bullet.tres" id="9_dub4d"]
+[ext_resource type="Script" uid="uid://c8ydhn2yvq3dc" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="10_bvdue"]
+[ext_resource type="Script" uid="uid://b6cup3hdpqd6v" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="11_lswlb"]
+[ext_resource type="Script" uid="uid://c8a1x50bjmkue" path="res://addons/BulletUpHell/SpawnPatterns/PatternLine.gd" id="12_fnh7x"]
+[ext_resource type="Script" uid="uid://csxp6a77ij7sk" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="13_h02f0"]
 
 [sub_resource type="Curve2D" id="Curve2D_aga20"]
 
@@ -21,10 +21,10 @@
 [sub_resource type="Curve" id="Curve_aga20"]
 
 [sub_resource type="PackedDataContainer" id="PackedDataContainer_cmdtn"]
-script = ExtResource("3_fg4cs")
+script = ExtResource("5_05w0v")
 instance_id = "EBullet"
 overwrite_groups = false
-anim_more = Array[ExtResource("2_ne5h4")]([])
+anim_more = Array[ExtResource("4_um252")]([])
 damage = 1.0
 speed = 100.0
 scale = 1.0
@@ -100,10 +100,10 @@ metadata/_custom_type_script = "uid://dwml1suxu8e0m"
 [sub_resource type="Curve" id="Curve_rwh7c"]
 
 [sub_resource type="PackedDataContainer" id="PackedDataContainer_7hhsh"]
-script = ExtResource("3_fg4cs")
+script = ExtResource("5_05w0v")
 instance_id = "PBullet"
 overwrite_groups = false
-anim_more = Array[ExtResource("2_ne5h4")]([])
+anim_more = Array[ExtResource("4_um252")]([])
 damage = 1.0
 speed = 500.0
 scale = 1.0
@@ -183,7 +183,7 @@ point_count = 10
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0ek73"]
 resource_name = "PatternOne"
 source_geometry_group_name = &"navigation_polygon_source_group"
-script = ExtResource("8_o2lmx")
+script = ExtResource("11_lswlb")
 bullet = "PBullet"
 nbr = 1
 iterations = 1
@@ -205,7 +205,7 @@ wait_tween_time = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5h2se"]
 resource_name = "PatternOne"
-script = ExtResource("8_o2lmx")
+script = ExtResource("11_lswlb")
 bullet = "EBullet"
 nbr = 1
 iterations = 1
@@ -234,7 +234,7 @@ point_count = 10
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_iuweo"]
 resource_name = "PatternLine"
-script = ExtResource("9_pqqf2")
+script = ExtResource("12_fnh7x")
 offset = Vector2(20, -20)
 center = 5
 symmetric = true
@@ -266,7 +266,7 @@ point_count = 10
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_or46o"]
 resource_name = "PatternCircle"
-script = ExtResource("10_hhpfr")
+script = ExtResource("13_h02f0")
 radius = 25
 angle_total = 6.28319
 angle_decal = 0.0
@@ -294,55 +294,55 @@ wait_tween_time = 0.0
 metadata/_custom_type_script = "uid://csxp6a77ij7sk"
 
 [node name="BulletManager" type="Node2D"]
-script = ExtResource("1_or46o")
+script = ExtResource("1_s87c5")
 
-[node name="Player" parent="." instance=ExtResource("1_sr4k1")]
+[node name="Player" parent="." instance=ExtResource("2_5m336")]
 position = Vector2(2031, 1523)
 
 [node name="BulletProps" type="Node2D" parent="."]
 
 [node name="EnemyBullet" type="Path2D" parent="BulletProps"]
 curve = SubResource("Curve2D_aga20")
-script = ExtResource("1_ykoj7")
+script = ExtResource("3_er4hb")
 id = "EBullet"
 props = SubResource("PackedDataContainer_cmdtn")
 
 [node name="PlayerBullet" type="Path2D" parent="BulletProps"]
 curve = SubResource("Curve2D_aga20")
-script = ExtResource("1_ykoj7")
+script = ExtResource("3_er4hb")
 id = "PBullet"
 props = SubResource("PackedDataContainer_7hhsh")
 
 [node name="BulletNodes" type="Node2D" parent="."]
 
 [node name="InstanceLister" type="Node" parent="BulletNodes"]
-script = ExtResource("4_qrdfs")
+script = ExtResource("6_1h4s3")
 metadata/_custom_type_script = "uid://qc1ehcnju62l"
 
-[node name="EnemyBulletInstance" parent="BulletNodes/InstanceLister" instance=ExtResource("5_ypq5x")]
-data = ExtResource("8_5h2se")
+[node name="EnemyBulletInstance" parent="BulletNodes/InstanceLister" instance=ExtResource("7_5c6b0")]
+data = ExtResource("8_vrhaq")
 ID = "EBullet"
 
-[node name="PlayerBulletInstance" parent="BulletNodes/InstanceLister" instance=ExtResource("5_ypq5x")]
-data = ExtResource("6_i0jjw")
+[node name="PlayerBulletInstance" parent="BulletNodes/InstanceLister" instance=ExtResource("7_5c6b0")]
+data = ExtResource("9_dub4d")
 
 [node name="Patterns" type="Node2D" parent="."]
 
 [node name="PlayerOne" type="Path2D" parent="Patterns"]
 curve = SubResource("Curve2D_ttg52")
-script = ExtResource("7_x3hlf")
+script = ExtResource("10_bvdue")
 id = "player_one"
 pattern = SubResource("NavigationPolygon_0ek73")
 
 [node name="EnemyOne" type="Path2D" parent="Patterns"]
 curve = SubResource("Curve2D_ttg52")
-script = ExtResource("7_x3hlf")
+script = ExtResource("10_bvdue")
 id = "enemy_one"
 pattern = SubResource("NavigationPolygon_5h2se")
 
 [node name="EnemyLine" type="Path2D" parent="Patterns"]
 curve = SubResource("Curve2D_rwh7c")
-script = ExtResource("7_x3hlf")
+script = ExtResource("10_bvdue")
 id = "enemy_line"
 pattern = SubResource("NavigationPolygon_iuweo")
 preview_spawn = true
@@ -350,6 +350,6 @@ preview_shoot = true
 
 [node name="EnemyCircle" type="Path2D" parent="Patterns"]
 curve = SubResource("Curve2D_td6b6")
-script = ExtResource("7_x3hlf")
+script = ExtResource("10_bvdue")
 id = "enemy_circle"
 pattern = SubResource("NavigationPolygon_or46o")

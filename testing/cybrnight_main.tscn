@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://ccrxh34dcnijy"]
 
 [ext_resource type="Script" uid="uid://bc7o63ppdn8uw" path="res://testing/cybrnight_main.gd" id="1_w3c6p"]
-[ext_resource type="PackedScene" uid="uid://chjrmgc7vavve" path="res://testing/manager/cybr_bullet_manager.tscn" id="2_npses"]
-[ext_resource type="PackedScene" uid="uid://cxxnbcxiuusqt" path="res://scenes/level_manager.tscn" id="3_mvsys"]
+[ext_resource type="PackedScene" uid="uid://chjrmgc7vavve" path="res://scenes/bullet_manager.tscn" id="2_npses"]
+[ext_resource type="PackedScene" path="res://scenes/level_manager.tscn" id="3_mvsys"]
 [ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://scenes/enemies/basic_enemy.tscn" id="3_npses"]
 [ext_resource type="PackedScene" uid="uid://bfpcw4io8dcam" path="res://scenes/enemies/circle_enemy.tscn" id="4_kjgpp"]
 [ext_resource type="Script" uid="uid://dsiawai5lafl8" path="res://scripts/managers/ui_manager.gd" id="5_npses"]
