@@ -32,7 +32,7 @@ nbr = 3
 iterations = 1
 pattern_angle = 0.0
 pattern_angle_target = NodePath("")
-pattern_angle_mouse = true
+pattern_angle_mouse = false
 forced_angle = 0.0
 forced_target = NodePath("")
 forced_lookat_mouse = true
@@ -172,6 +172,12 @@ script = ExtResource("1_s87c5")
 [node name="Player" parent="." instance=ExtResource("2_5m336")]
 position = Vector2(2031, 1523)
 
+[node name="Movement" parent="Player/Root" index="0"]
+next_state = NodePath("../Upgrade")
+
+[node name="Normal" parent="Player/Root/Movement" index="0"]
+next_state = NodePath("../Circling")
+
 [node name="BulletProps" type="Node2D" parent="."]
 
 [node name="ChocolateBullet" type="Path2D" parent="BulletProps"]
@@ -255,3 +261,5 @@ auto_start_at_distance = 5.0
 auto_distance_from = NodePath("")
 trigger_container = NodePath("")
 metadata/_custom_type_script = "uid://okf4mtltak8l"
+
+[editable path="Player"]
