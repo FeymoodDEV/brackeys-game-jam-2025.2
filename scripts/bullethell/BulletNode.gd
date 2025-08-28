@@ -1,32 +1,43 @@
 extends BuHBulletNode
 class_name BulletNode
 
+#region BulletNodeData
 @export var data: BulletNodeData
-@onready var sprite: Sprite2D = $Sprite2D
+#endregion
 
+#region Graphics onready vars
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var trail: GPUParticles2D = $GPUParticles2D;
+#endregion
+
+#region BulletNodeData vars
 var direction: Vector2 = Vector2.RIGHT
 var time_alive: float = 0.0
 var remaining_pierce: int = 0
-
-@onready var trail: GPUParticles2D = $GPUParticles2D;
 var hit_vfx;
+#endregion
 
-var trails = [];
+var trail_particles: GPUParticles2D;
 
 func _ready() -> void:
+	assert(data);
+	
+	# Connect signals
 	body_shape_entered.connect(_on_body_shape_entered);
 	
+	# Load data from BulletNodeData into local vars
 	remaining_pierce = data.pierce_count
 	
-	for i in range(0, 10):
-		var t = data.trail_vfx.instantiate();
+	trail_particles = data.trail_vfx.instantiate();
 	
 	if data.texture:
 		sprite.texture = data.texture
 		sprite.scale = Vector2.ONE * data.scale
 		
-	if data.trail_vfx:
-		pass
+	if GameConfig.SHOW_TRAILS:
+		trail_particles.emitting = true;
+		add_child(trail_particles)
+		trail_particles = null;
 
 
 		

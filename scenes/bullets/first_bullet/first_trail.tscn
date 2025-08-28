@@ -22,6 +22,6 @@ hue_variation_min = -2.23517e-08
 hue_variation_max = -2.23517e-08
 
 [node name="GPUParticles2D" type="GPUParticles2D"]
-z_index = -1
+z_index = 1
 texture = ExtResource("1_08l2u")
 process_material = SubResource("ParticleProcessMaterial_lj7gv")
