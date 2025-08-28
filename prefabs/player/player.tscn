@@ -11,27 +11,17 @@
 [ext_resource type="Shape2D" uid="uid://bivjpsiot2lxr" path="res://prefabs/player/level_2_nombox.tres" id="5_8ydkj"]
 [ext_resource type="Shape2D" uid="uid://cmn0egykq5740" path="res://prefabs/player/level_1_nombox.tres" id="5_kvlxm"]
 [ext_resource type="Script" uid="uid://b2l0jlbk7oecc" path="res://addons/xsm/state_regions.gd" id="6_0owmy"]
-<<<<<<< Updated upstream:scenes/player/player.tscn
-[ext_resource type="Script" uid="uid://yw44daxcsxw0" path="res://scenes/player/movement.gd" id="7_h17s1"]
-[ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://scenes/player/normal.gd" id="8_qek5x"]
-[ext_resource type="Script" uid="uid://des4f477v63vn" path="res://scenes/player/circling.gd" id="9_5gtgg"]
-[ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://scenes/player/nom_dash.gd" id="10_h17s1"]
-[ext_resource type="Script" uid="uid://crak72h5onoyp" path="res://scenes/player/upgrade_level.gd" id="10_kvlxm"]
-[ext_resource type="Script" uid="uid://bwsv0v5wgoh2s" path="res://scenes/player/upgrade.gd" id="10_myrg7"]
-[ext_resource type="Script" uid="uid://bh8rpek0w1o47" path="res://scenes/player/crosshair.gd" id="11_fm80t"]
-=======
-[ext_resource type="Script" uid="uid://yw44daxcsxw0" path="res://src/player/movement.gd" id="7_h17s1"]
-[ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://src/player/normal.gd" id="8_qek5x"]
-[ext_resource type="Script" uid="uid://des4f477v63vn" path="res://src/player/circling.gd" id="9_5gtgg"]
-[ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://src/player/nom_dash.gd" id="10_h17s1"]
-[ext_resource type="Script" uid="uid://crak72h5onoyp" path="res://src/player/upgrade_level.gd" id="10_kvlxm"]
-[ext_resource type="Script" uid="uid://bwsv0v5wgoh2s" path="res://src/player/upgrade.gd" id="10_myrg7"]
-[ext_resource type="Script" uid="uid://bh8rpek0w1o47" path="res://src/player/crosshair.gd" id="11_fm80t"]
->>>>>>> Stashed changes:prefabs/player/player.tscn
+[ext_resource type="Script" uid="uid://yw44daxcsxw0" path="res://src/player/states/movement_state.gd" id="7_h17s1"]
+[ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://src/player/states/normal_state.gd" id="8_qek5x"]
+[ext_resource type="Script" uid="uid://des4f477v63vn" path="res://src/player/states/circling_state.gd" id="9_5gtgg"]
+[ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://src/player/states/nom_dash_state.gd" id="10_h17s1"]
+[ext_resource type="Script" uid="uid://crak72h5onoyp" path="res://src/player/gun/upgrade_level.gd" id="10_kvlxm"]
+[ext_resource type="Script" uid="uid://bwsv0v5wgoh2s" path="res://src/player/gun/upgrade.gd" id="10_myrg7"]
+[ext_resource type="Script" uid="uid://bh8rpek0w1o47" path="res://src/player/gun/crosshair.gd" id="11_fm80t"]
 [ext_resource type="Script" uid="uid://5yo5iu6shjs3" path="res://addons/xsm/state.gd" id="12_cnsyf"]
 [ext_resource type="Texture2D" uid="uid://bptr4hwxaoyjv" path="res://assets/player_sprites/crosshair.svg" id="12_gx1jg"]
 [ext_resource type="Texture2D" uid="uid://cb0h3dqmm5j15" path="res://assets/player_sprites/ship2.png" id="13_uf5tr"]
-[ext_resource type="Script" uid="uid://cfmoqb7g6yigs" path="res://src/player/lock_reticle.gd" id="13_ugbui"]
+[ext_resource type="Script" uid="uid://cfmoqb7g6yigs" path="res://src/player/gun/lock_reticle.gd" id="13_ugbui"]
 [ext_resource type="Texture2D" uid="uid://cal60wifol3qs" path="res://assets/player_sprites/soft-lock.svg" id="14_fcs02"]
 [ext_resource type="Texture2D" uid="uid://dr2oj506weijh" path="res://assets/player_sprites/hard-lock.svg" id="15_fcs02"]
 
@@ -85,7 +75,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Upgrade")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Normal" type="Node" parent="Root/Movement"]
@@ -94,7 +84,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Circling")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Circling" type="Node" parent="Root/Movement"]

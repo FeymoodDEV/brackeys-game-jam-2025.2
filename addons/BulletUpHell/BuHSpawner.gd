@@ -761,11 +761,9 @@ func bullet_movement():
 			continue
 		if B.has("rot_index"): B["rot_index"] += props["spec_rotating_speed"]
 
-<<<<<<< Updated upstream
-=======
+
 		#CUSTOM.delete_bullet_outside(B);
 
->>>>>>> Stashed changes
 		#scale curve
 		move_scale(B, props)
 

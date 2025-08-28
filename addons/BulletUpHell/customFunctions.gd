@@ -17,15 +17,9 @@ func back_to_grave_deferred(bID):
 
 		
 func delete_bullet_outside(bullet):
-<<<<<<< Updated upstream
-	if bullet["position"].x < -100 or bullet["position"].x > 100:
-		Spawning.delete_bullet(bullet);
-	if bullet["position"].u < -100 or bullet["position"].u > 100:
-=======
 	if bullet["position"].x < -250 or bullet["position"].x > 250:
 		Spawning.delete_bullet(bullet);
 	if bullet["position"].y < -0 or bullet["position"].y > 10:
->>>>>>> Stashed changes
 		Spawning.delete_bullet(bullet);
 
 func _on_hit_particle_finished(particle):
