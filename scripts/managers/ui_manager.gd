@@ -6,7 +6,7 @@ class_name PlayerUI
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var boss_health_bar: ProgressBar = $BossHealthBar
 @onready var progress_bar: ProgressBar = $ProgressBar
-@onready var boss_name: Label = $Label
+@onready var boss_name: Label = $BossName
 
 func _ready() -> void:
 	EventManager.health_changed.connect(_on_health_changed)

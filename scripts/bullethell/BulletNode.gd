@@ -2,6 +2,7 @@ extends BuHBulletNode
 class_name BulletNode
 
 @export var data: BulletNodeData
+
 @onready var sprite: Sprite2D = $Sprite2D
 
 var direction: Vector2 = Vector2.RIGHT
