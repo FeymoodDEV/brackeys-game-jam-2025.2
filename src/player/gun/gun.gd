@@ -30,6 +30,6 @@ func shoot() -> void:
 	#var rot = global_rotation
 	#var node = get_parent().get_parent()
 
-	Spawning.spawn({"position": spawn_pos, "rotation": get_parent().get_hard_lock_vector().angle(), "source_node": node}, pattern, "0")
+	Spawning.spawn(self, pattern, "0")
 	
 	
