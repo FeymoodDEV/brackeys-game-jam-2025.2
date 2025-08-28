@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_a8j4b")
-pattern = "enemy_circle"
+pattern = "enemy_circle_sugar"
 speed = 150.0
 health = 1.0
 damage = 10.0
