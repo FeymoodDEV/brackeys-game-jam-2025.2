@@ -1,9 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://bsi7y5pro2w6d"]
+[gd_scene load_steps=22 format=3 uid="uid://bsi7y5pro2w6d"]
 
 [ext_resource type="PackedScene" uid="uid://chjrmgc7vavve" path="res://testing/manager/cybr_bullet_manager.tscn" id="1_c03qe"]
 [ext_resource type="Script" uid="uid://bc7o63ppdn8uw" path="res://testing/cybrnight_main.gd" id="1_cgsnw"]
 [ext_resource type="Script" uid="uid://dh1h11m36jqp0" path="res://scripts/managers/level_manager.gd" id="1_efqug"]
-[ext_resource type="PackedScene" uid="uid://do3kmq6olly6f" path="res://scenes/player/player.tscn" id="2_c4vfy"]
+[ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="2_c4vfy"]
 [ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://scenes/blocks/block_1.tscn" id="3_1kt5j"]
 [ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://scenes/enemies/basic_enemy.tscn" id="4_c4vfy"]
 [ext_resource type="PackedScene" uid="uid://cux5gt5ppivxe" path="res://scenes/blocks/block_2.tscn" id="5_yyklv"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://baa7ewnrju7ds" path="res://assets/tiles/tile10.png" id="16_v2t45"]
 [ext_resource type="Texture2D" uid="uid://bmew6t1pkr6n1" path="res://assets/tiles/tile11.png" id="17_7ntev"]
 [ext_resource type="Texture2D" uid="uid://7bg2n6nm23ly" path="res://assets/tiles/tile12.png" id="18_x1jg1"]
+[ext_resource type="Script" uid="uid://dsiawai5lafl8" path="res://scripts/managers/ui_manager.gd" id="21_ktx0r"]
 
 [node name="CabageScene" type="Node2D"]
 script = ExtResource("1_cgsnw")
@@ -54,6 +55,31 @@ stretch_mode = 1
 [node name="FPS" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="PlayerUI" type="CanvasLayer" parent="."]
+script = ExtResource("21_ktx0r")
+
+[node name="Countdown" type="Label" parent="PlayerUI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "05:00"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="PlayerUI"]
+offset_top = 521.0
+offset_right = 40.0
+offset_bottom = 544.0
+scale = Vector2(5.36, 5.36)
+text = "100"
+
+[node name="Timer" type="Timer" parent="PlayerUI"]
+wait_time = 300.0
 
 [node name="Player" parent="." instance=ExtResource("2_c4vfy")]
 

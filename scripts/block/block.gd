@@ -21,7 +21,6 @@ func safe_queue_free() -> void:
 	queue_free.call_deferred()
 
 func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2):
-	#print('Block was hit')
 	pass
 	anim.play("hit")
 	

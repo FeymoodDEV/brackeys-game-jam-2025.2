@@ -20,6 +20,10 @@ var look_direction : Vector2
 
 #region Targeting variables
 @onready var crosshair: Node2D = $Crosshair
+@export var health: float = 10
+
+func _enter_tree():
+	EventManager.player_spawned.emit(get_path())
 #endregion
 
 #region Upgrade variables
@@ -74,6 +78,13 @@ func get_look_relative_vector() -> Vector2:
 	var look_relative = input_vector.rotated(look_direction.angle())
 	return look_relative
 
+func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2):
+	health -= damage
+	EventManager.emit_signal("health_changed", health)
+	
+	if health <= 0:
+		print("DIE")
+		
 func level_down() -> void:
 	if current_level > 0:
 		current_level -= 1
