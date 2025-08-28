@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bsi7y5pro2w6d"]
+[gd_scene load_steps=27 format=3 uid="uid://bsi7y5pro2w6d"]
 
 [ext_resource type="PackedScene" uid="uid://chjrmgc7vavve" path="res://testing/manager/cybr_bullet_manager.tscn" id="1_c03qe"]
 [ext_resource type="Script" uid="uid://bc7o63ppdn8uw" path="res://testing/cybrnight_main.gd" id="1_cgsnw"]
@@ -21,6 +21,21 @@
 [ext_resource type="Texture2D" uid="uid://bmew6t1pkr6n1" path="res://assets/tiles/tile11.png" id="17_7ntev"]
 [ext_resource type="Texture2D" uid="uid://7bg2n6nm23ly" path="res://assets/tiles/tile12.png" id="18_x1jg1"]
 [ext_resource type="Script" uid="uid://dsiawai5lafl8" path="res://scripts/managers/ui_manager.gd" id="21_ktx0r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktx0r"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.815686)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77vjt"]
+bg_color = Color(0.630101, 0.0510413, 4.81308e-08, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md1lu"]
+bg_color = Color(0.370014, 0.689214, 0.322664, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcn4l"]
+bg_color = Color(0.114897, 0.114897, 0.114897, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_te3gx"]
+bg_color = Color(1, 0.866667, 0, 1)
 
 [node name="CabageScene" type="Node2D"]
 script = ExtResource("1_cgsnw")
@@ -71,15 +86,49 @@ theme_override_font_sizes/font_size = 30
 text = "05:00"
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="PlayerUI"]
-offset_top = 521.0
-offset_right = 40.0
-offset_bottom = 544.0
-scale = Vector2(5.36, 5.36)
-text = "100"
-
 [node name="Timer" type="Timer" parent="PlayerUI"]
 wait_time = 300.0
+
+[node name="BossHealthBar" type="ProgressBar" parent="PlayerUI"]
+visible = false
+offset_left = 382.0
+offset_top = 46.0
+offset_right = 771.0
+offset_bottom = 82.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ktx0r")
+theme_override_styles/fill = SubResource("StyleBoxFlat_77vjt")
+value = 50.0
+show_percentage = false
+
+[node name="BossName" type="Label" parent="PlayerUI"]
+visible = false
+offset_left = 382.0
+offset_top = 46.0
+offset_right = 771.0
+offset_bottom = 81.0
+text = "BIG BAD GUY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="PlayerUI"]
+offset_left = 382.0
+offset_top = 566.0
+offset_right = 771.0
+offset_bottom = 602.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ktx0r")
+theme_override_styles/fill = SubResource("StyleBoxFlat_md1lu")
+value = 50.0
+show_percentage = false
+
+[node name="ProgressBar" type="ProgressBar" parent="PlayerUI"]
+offset_left = 382.0
+offset_top = 602.0
+offset_right = 771.0
+offset_bottom = 612.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rcn4l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_te3gx")
+value = 50.0
+show_percentage = false
 
 [node name="Player" parent="." instance=ExtResource("2_c4vfy")]
 
