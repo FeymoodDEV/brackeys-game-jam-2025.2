@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=3 uid="uid://2gsa8xymn0k3"]
 
-[ext_resource type="Script" uid="uid://xydw8pnry765" path="res://scripts/player/player_controller.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://xydw8pnry765" path="res://src/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://ogb51tdot7ho" path="res://assets/player/ship1.png" id="2_fcs02"]
 [ext_resource type="Texture2D" uid="uid://devb6j2col43u" path="res://assets/player/ship3.png" id="2_uf5tr"]
 [ext_resource type="Shape2D" uid="uid://cnjor30f1xoa1" path="res://scenes/player/level_1_hitbox.tres" id="3_kvlxm"]
