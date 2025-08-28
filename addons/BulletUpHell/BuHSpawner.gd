@@ -276,19 +276,12 @@ func wake_from_pool(bullet:String, queued_instance:Dictionary, shared_area:Strin
 	else:
 		return inactive_pool[bullet].pop_at(0)
 
-func back_to_grave_deferred(bID):
-	var par = bID.get_parent();
-	if par and bID:
-		par.remove_child(bID)
-	else:
-		print(par)
-
 func back_to_grave(bullet:String, bID):
 	inactive_pool[bullet].append([bID, poolBullets[bID]["shared_area"].name])
 	poolBullets[bID]["state"] = BState.QueuedFree
 
 	if bID is Node2D: 
-		back_to_grave_deferred.call_deferred(bID);
+		CUSTOM.back_to_grave_deferred.call_deferred(bID);
 
 func create_shape(shared_rid:RID, ColID:Array, init:bool=false, count:int=0) -> RID:
 	var new_shape:RID

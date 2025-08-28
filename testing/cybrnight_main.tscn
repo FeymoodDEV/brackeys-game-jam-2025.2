@@ -100,5 +100,3 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_sijxs")
 value = 50.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
-
-[editable path="BulletManager"]

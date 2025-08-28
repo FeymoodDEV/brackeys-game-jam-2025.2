@@ -1,11 +1,10 @@
-[gd_scene load_steps=39 format=3 uid="uid://bh4n0qihnupx7"]
+[gd_scene load_steps=38 format=3 uid="uid://bh4n0qihnupx7"]
 
 [ext_resource type="Script" uid="uid://cgd1wjud4ds5l" path="res://scripts/managers/bullet_manager.gd" id="1_s87c5"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="2_5m336"]
 [ext_resource type="PackedScene" uid="uid://cbqgxhuvoxtgg" path="res://scenes/bullets/first_bullet/first_hit_vfx.tscn" id="3_5m336"]
 [ext_resource type="Script" uid="uid://bjmse0liopcrp" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="3_er4hb"]
 [ext_resource type="Script" uid="uid://bapo6jcdsje8y" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="4_um252"]
-[ext_resource type="Script" uid="uid://qc1ehcnju62l" path="res://addons/BulletUpHell/Nodes/BuHInstanceLister.gd" id="6_1h4s3"]
 [ext_resource type="Script" uid="uid://dvueqbi8eexbm" path="res://scripts/bullethell/BulletPropsExtend.gd" id="7_05w0v"]
 [ext_resource type="Texture2D" uid="uid://cuungxd61dxw0" path="res://assets/chocolate_bullet.png" id="9_s87c5"]
 [ext_resource type="Script" uid="uid://c8ydhn2yvq3dc" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="10_bvdue"]
@@ -44,7 +43,7 @@ spec_trail_width = 0.0
 spec_trail_modulate = Color(1, 1, 1, 1)
 spec_rotating_speed = 0.0
 death_after_time = 15.0
-death_outside_box = Rect2(0, 0, 0, 0)
+death_outside_box = Rect2(0, 0, 3000, 3000)
 death_from_collision = false
 a_direction_equation = ""
 a_curve_movement = 0
@@ -127,7 +126,7 @@ spec_trail_width = 0.0
 spec_trail_modulate = Color(1, 1, 1, 1)
 spec_rotating_speed = 0.0
 death_after_time = 15.0
-death_outside_box = Rect2(0, 0, 0, 0)
+death_outside_box = Rect2(0, 0, 3000, 3000)
 death_from_collision = false
 a_direction_equation = ""
 a_curve_movement = 0
@@ -210,7 +209,7 @@ spec_trail_width = 0.0
 spec_trail_modulate = Color(1, 1, 1, 1)
 spec_rotating_speed = 0.0
 death_after_time = 15.0
-death_outside_box = Rect2(0, 0, 0, 0)
+death_outside_box = Rect2(0, 0, 3000, 3000)
 death_from_collision = false
 a_direction_equation = ""
 a_curve_movement = 0
@@ -560,12 +559,6 @@ curve = SubResource("Curve2D_1h4s3")
 script = ExtResource("3_er4hb")
 id = "1"
 props = SubResource("PackedDataContainer_er4hb")
-
-[node name="BulletNodes" type="Node2D" parent="."]
-
-[node name="InstanceLister" type="Node" parent="BulletNodes"]
-script = ExtResource("6_1h4s3")
-metadata/_custom_type_script = "uid://qc1ehcnju62l"
 
 [node name="Patterns" type="Node2D" parent="."]
 
