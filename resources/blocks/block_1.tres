@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BlockData" load_steps=3 format=3 uid="uid://p5al2eweid5f"]
 
-[ext_resource type="Script" uid="uid://8nf8txfcbwru" path="res://scripts/block/block_data.gd" id="1_cny58"]
+[ext_resource type="Script" uid="uid://8nf8txfcbwru" path="res://src/block/block_data.gd" id="1_cny58"]
 [ext_resource type="Texture2D" uid="uid://btd3tdiyde0qj" path="res://assets/blocks/block_1.png" id="2_volbo"]
 
 [resource]
