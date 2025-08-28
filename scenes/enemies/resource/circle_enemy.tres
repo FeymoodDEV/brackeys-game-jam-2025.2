@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://enusg5jloedi"]
 
-[ext_resource type="Script" uid="uid://2pwnys3t54yw" path="res://scripts/enemy/EnemyData.gd" id="1_a8j4b"]
+[ext_resource type="Script" uid="uid://2pwnys3t54yw" path="res://src/enemy/EnemyData.gd" id="1_a8j4b"]
 [ext_resource type="PackedScene" uid="uid://cbqgxhuvoxtgg" path="res://scenes/bullets/first_bullet/first_hit_vfx.tscn" id="1_nli7s"]
 
 [resource]

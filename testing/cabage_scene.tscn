@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://bsi7y5pro2w6d"]
 
-[ext_resource type="PackedScene" uid="uid://chjrmgc7vavve" path="res://scenes/bullet_manager.tscn" id="1_c03qe"]
+[ext_resource type="PackedScene" uid="uid://bh4n0qihnupx7" path="res://scenes/bullet_manager.tscn" id="1_c03qe"]
 [ext_resource type="Script" uid="uid://bc7o63ppdn8uw" path="res://testing/cybrnight_main.gd" id="1_cgsnw"]
 [ext_resource type="PackedScene" uid="uid://cxxnbcxiuusqt" path="res://scenes/level_manager.tscn" id="2_k7pv6"]
-[ext_resource type="Script" uid="uid://dsiawai5lafl8" path="res://scripts/managers/ui_manager.gd" id="21_ktx0r"]
+[ext_resource type="Script" uid="uid://dsiawai5lafl8" path="res://src/managers/ui_manager.gd" id="21_ktx0r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktx0r"]
 bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.815686)
