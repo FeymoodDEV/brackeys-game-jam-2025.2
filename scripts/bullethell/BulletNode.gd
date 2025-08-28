@@ -84,6 +84,7 @@ func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index)
 		var hit_vfx: GPUParticles2D = data.hit_vfx.instantiate()
 		hit_vfx.global_position = global_position
 		hit_vfx.emitting = true
+		hit_vfx.finished.connect.bind(hit_vfx.queue_free.call_deferred);
 		get_parent().add_child(hit_vfx)
 
 	if data.hit_sfx:

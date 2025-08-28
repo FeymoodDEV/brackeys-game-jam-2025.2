@@ -19,12 +19,17 @@ config/icon="res://icon.svg"
 
 Spawning="*res://addons/BulletUpHell/Spawning.tscn"
 EventManager="*res://scripts/managers/event_manager.gd"
+GameConfig="*res://src/autoload/game_config.gd"
 
 [debug]
 
 gdscript/warnings/untyped_declaration=1
 gdscript/warnings/inferred_declaration=1
 gdscript/warnings/return_value_discarded=1
+
+[display]
+
+mouse_cursor/custom_image="uid://cjp7e03yx3yqx"
 
 [editor_plugins]
 
