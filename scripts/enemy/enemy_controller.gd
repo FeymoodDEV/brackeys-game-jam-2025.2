@@ -74,7 +74,7 @@ func handle_movement(delta: float) -> void:
 		if shoot_counter > 1.5:
 			var spawn_pos = global_position;
 			var rot = global_rotation
-			Spawning.spawn({"position": spawn_pos, "rotation": rot, "source_node": node}, pattern, "1")
+			Spawning.spawn(self, pattern, "1")
 			#Spawning.spawn(self, "line")
 			shoot_counter = 0;
 	move_and_slide()

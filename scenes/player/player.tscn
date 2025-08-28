@@ -47,7 +47,6 @@ texture = ExtResource("2_qhqgy")
 one_shot = true
 
 [node name="NomDashAoE" type="Area2D" parent="."]
-collision_layer = 0
 collision_mask = 16
 monitoring = false
 
@@ -172,7 +171,6 @@ texture = ExtResource("15_fcs02")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Crosshair/HardLockReticle"]
 
 [connection signal="upgrade_level_changed" from="." to="Root/Upgrade" method="_on_player_upgrade_level_changed"]
-[connection signal="area_shape_entered" from="NomDashAoE" to="Root/Movement/NomDash" method="_absorb_bullet"]
 [connection signal="hard_lock_changed" from="Crosshair" to="Root/Movement" method="_on_crosshair_hard_lock_changed"]
 [connection signal="body_entered" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_entered"]
 [connection signal="body_exited" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_exited"]

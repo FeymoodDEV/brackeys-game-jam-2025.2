@@ -4,8 +4,13 @@ extends State
 var remaining_time : float
 var dash_velocity : float
 var dash_vector : Vector2
+var is_dashing = false;
+
+func _ready():
+	Spawning.bullet_collided_area.connect(_absorb_bullet);
 
 func _on_enter(args) -> void:
+	is_dashing = true;
 	# start cooldown
 	target.dash_cooldown_timer.start(target.dash_cooldown)
 	# enable absorb zone
@@ -46,9 +51,12 @@ func _on_exit(args) -> void:
 	# just in case...
 	dash_velocity = 0
 	dash_vector = Vector2.ZERO
+	is_dashing = false;
 	
 
-func _absorb_bullet(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	#print(area is BulletNode) # true
-	target.absorb_pts += area.data.absorb_value
-	Spawning.delete_bullet(area);
+func _absorb_bullet(area:Area2D,area_shape_index:int, bullet:Dictionary,local_shape_index:int,shared_area:Area2D) -> void:
+	var rid = Spawning.shape_rids.get(shared_area.name, {}).get(local_shape_index)
+	
+	if is_dashing and area.name == "NomDashAoE":
+		target.absorb_pts += bullet["props"]["absorb_points"];
+		Spawning.delete_bullet(rid);
