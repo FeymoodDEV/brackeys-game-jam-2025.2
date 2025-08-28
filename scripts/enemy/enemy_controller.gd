@@ -6,15 +6,11 @@ const WALL_COLLISION_LAYER = 0
 
 @export var enemy_data: EnemyData;
 
-@export_group("Movement")
-@export var wander_radius: float = 350.0  # max distance from spawn
-@export var speed: float = 180.0
-@export var ray_length: float = 30.0
-
 var spawn_position: Vector2
 var current_direction: Vector2 = Vector2.ZERO
 var player: PlayerController = null
 var move_timer: float = 0.0
+var health: float = 100.0;
 @onready var node = get_parent();
 
 var shoot_counter = 0;
@@ -22,18 +18,25 @@ var shoot_counter = 0;
 #region EnemyData-Variables
 @onready var icon: Sprite2D = $Icon;
 @onready var anim_player: AnimationPlayer = $AnimationPlayer;
+var wander_radius: float = 350.0  # max distance from spawn
+var speed: float = 180.0
+var ray_length: float = 30.0
 var pattern: String = "line";
+
 #endregion
 
 func _ready() -> void:
 	assert(enemy_data, "EnemyData resource is null!");
 	EventManager.player_spawned.connect(_on_player_spawned)
 	
-	if not enemy_data.texture:
-		push_warning("Texture value in EnemyData is null")
-	
-	icon.texture = enemy_data.texture;
+	# Load enemy data into local variables
+	if enemy_data.sprite:
+		icon.texture = enemy_data.sprite;
+		icon.scale *= enemy_data.scale;
 	icon.self_modulate = enemy_data.modulate_color;
+	
+	speed = enemy_data.speed;
+	health = enemy_data.health;
 	
 	spawn_position = global_position
 	
@@ -103,7 +106,9 @@ func pick_new_direction() -> void:
 	current_direction = (spawn_position - global_position).normalized()
 
 func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2) -> void:
-	safe_queue_free()
+	health -= damage;
+	if health <= 0:
+		safe_queue_free();
 
 func _on_player_spawned(path: NodePath):
 	print(path)

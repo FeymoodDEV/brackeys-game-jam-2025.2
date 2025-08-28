@@ -1,0 +1,20 @@
+[gd_resource type="PackedDataContainer" script_class="BulletNodeData" load_steps=5 format=3 uid="uid://byu8ge0spye2k"]
+
+[ext_resource type="PackedScene" uid="uid://cbqgxhuvoxtgg" path="res://scenes/bullets/first_bullet/first_hit_vfx.tscn" id="1_irycg"]
+[ext_resource type="Script" uid="uid://blyfl04bkccem" path="res://scripts/bullethell/BulletNodeData.gd" id="2_sob0i"]
+[ext_resource type="Texture2D" uid="uid://cuungxd61dxw0" path="res://assets/chocolate_bullet.png" id="3_irycg"]
+[ext_resource type="PackedScene" uid="uid://dv7y8svel5iok" path="res://scenes/bullets/first_bullet/first_trail.tscn" id="4_5eo2l"]
+
+[resource]
+script = ExtResource("2_sob0i")
+speed = 600.0
+damage = 10.0
+lifetime = 1.5
+pierce_count = 0
+knockback = 0.0
+absorb_value = 1
+texture = ExtResource("3_irycg")
+scale = 0.25
+hit_vfx = ExtResource("1_irycg")
+trail_vfx = ExtResource("4_5eo2l")
+metadata/_custom_type_script = "uid://blyfl04bkccem"

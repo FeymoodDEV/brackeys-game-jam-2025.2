@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://chjrmgc7vavve"]
+[gd_scene load_steps=28 format=3 uid="uid://chjrmgc7vavve"]
 
 [ext_resource type="Script" uid="uid://cgd1wjud4ds5l" path="res://scripts/managers/bullet_manager.gd" id="1_or46o"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="1_sr4k1"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b44c5ncrptvhv" path="res://scenes/bullets/player_bullet.tscn" id="5_ypq5x"]
 [ext_resource type="PackedDataContainer" uid="uid://m6t0yljksjr3" path="res://resources/bullets/p_bullet.tres" id="6_i0jjw"]
 [ext_resource type="Script" uid="uid://c8ydhn2yvq3dc" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="7_x3hlf"]
+[ext_resource type="PackedDataContainer" uid="uid://byu8ge0spye2k" path="res://resources/bullets/chocolate_bullet.tres" id="8_5h2se"]
 [ext_resource type="Script" uid="uid://b6cup3hdpqd6v" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="8_o2lmx"]
 [ext_resource type="Script" uid="uid://c8a1x50bjmkue" path="res://addons/BulletUpHell/SpawnPatterns/PatternLine.gd" id="9_pqqf2"]
 [ext_resource type="Script" uid="uid://csxp6a77ij7sk" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="10_hhpfr"]
@@ -319,7 +320,7 @@ script = ExtResource("4_qrdfs")
 metadata/_custom_type_script = "uid://qc1ehcnju62l"
 
 [node name="EnemyBulletInstance" parent="BulletNodes/InstanceLister" instance=ExtResource("5_ypq5x")]
-data = ExtResource("6_i0jjw")
+data = ExtResource("8_5h2se")
 ID = "EBullet"
 
 [node name="PlayerBulletInstance" parent="BulletNodes/InstanceLister" instance=ExtResource("5_ypq5x")]
