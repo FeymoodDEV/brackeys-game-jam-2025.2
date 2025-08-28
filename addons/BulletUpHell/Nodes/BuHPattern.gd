@@ -170,5 +170,4 @@ func curve_to_polygon():
 
 ## We need to do this otherwise the patterns won't rotate correctly
 func assign_target_for_pattern(path: NodePath) -> void:
-	print('asdpogjasdkg:: ',path)
 	pattern.forced_target = path

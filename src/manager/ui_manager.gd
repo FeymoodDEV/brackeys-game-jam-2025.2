@@ -39,8 +39,10 @@ func _on_health_changed(health: float) -> void:
 func _on_boss_health_changed(health: float) -> void:
 	boss_health_bar.value = health
 	
-func _on_boss_spawned(bossData) -> void:
-	print(bossData)
+func _on_boss_spawned(bossData: BossData) -> void:
+	boss_health_bar.max_value = bossData.health
+	boss_health_bar.value = bossData.health
+	boss_name.text = bossData.name
 	
 func _on_progress_changed(new_value: float) -> void:
 	progress_bar.value = new_value

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BossPatternData" load_steps=2 format=3 uid="uid://c7f7gum5i0x"]
+
+[ext_resource type="Script" uid="uid://bwjfyj5t13444" path="res://src/boss/boss_pattern_data.gd" id="1_nvj2j"]
+
+[resource]
+script = ExtResource("1_nvj2j")
+name = "chocolate_circle_pattern"
+start_after = 1.0
+repeat_after = 1.5
+metadata/_custom_type_script = "uid://bwjfyj5t13444"
