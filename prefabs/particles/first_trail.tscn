@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dv7y8svel5iok"]
 
-[ext_resource type="Texture2D" uid="uid://ohq8bpsstmsm" path="res://assets/bullet_sprites/bullet_trail.png" id="1_0vm50"]
+[ext_resource type="Texture2D" uid="uid://ohq8bpsstmsm" path="res://assets/sprites/bullet/bullet_trail.png" id="1_0vm50"]
 
 [sub_resource type="Curve" id="Curve_08l2u"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
