@@ -9,10 +9,10 @@
 [ext_resource type="Script" uid="uid://des4f477v63vn" path="res://scenes/player/circling.gd" id="9_5gtgg"]
 [ext_resource type="Script" uid="uid://5yo5iu6shjs3" path="res://addons/xsm/state.gd" id="10_fcs02"]
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://scenes/player/nom_dash.gd" id="10_h17s1"]
-[ext_resource type="Script" path="res://scenes/player/upgrade.gd" id="10_myrg7"]
+[ext_resource type="Script" uid="uid://bwsv0v5wgoh2s" path="res://scenes/player/upgrade.gd" id="10_myrg7"]
 [ext_resource type="Script" uid="uid://bh8rpek0w1o47" path="res://scenes/player/crosshair.gd" id="11_fm80t"]
 [ext_resource type="Texture2D" uid="uid://bptr4hwxaoyjv" path="res://assets/player/crosshair.svg" id="12_gx1jg"]
-[ext_resource type="Script" uid="uid://cfmoqb7g6yigs" path="res://scenes/player/lock_reticle.gd" id="13_ugbui"]
+[ext_resource type="Script" path="res://scenes/player/lock_reticle.gd" id="13_ugbui"]
 [ext_resource type="Texture2D" uid="uid://cal60wifol3qs" path="res://assets/player/soft-lock.svg" id="14_fcs02"]
 [ext_resource type="Texture2D" uid="uid://dr2oj506weijh" path="res://assets/player/hard-lock.svg" id="15_fcs02"]
 
@@ -71,7 +71,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Upgrade")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Normal" type="Node" parent="Root/Movement"]
@@ -80,7 +80,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Circling")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Circling" type="Node" parent="Root/Movement"]
@@ -89,7 +89,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../NomDash")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="NomDash" type="Node" parent="Root/Movement"]
@@ -116,7 +116,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Level2")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level2" type="Node" parent="Root/Upgrade"]
@@ -125,7 +125,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Level3")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level3" type="Node" parent="Root/Upgrade"]

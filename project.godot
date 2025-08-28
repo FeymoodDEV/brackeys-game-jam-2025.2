@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Brackeys Game Jam 2025.2"
-run/main_scene="uid://ccrxh34dcnijy"
+run/main_scene="uid://cscfgbkbj3nb"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Spawning="*res://addons/BulletUpHell/Spawning.tscn"
+EventManager="*res://scripts/managers/event_manager.gd"
 
 [debug]
 

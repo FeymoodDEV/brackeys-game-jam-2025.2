@@ -25,10 +25,9 @@ var shoot_counter = 0;
 var pattern: String = "line";
 #endregion
 
-
-
 func _ready() -> void:
 	assert(enemy_data, "EnemyData resource is null!");
+	EventManager.player_spawned.connect(_on_player_spawned)
 	
 	if not enemy_data.texture:
 		push_warning("Texture value in EnemyData is null")
@@ -37,7 +36,7 @@ func _ready() -> void:
 	icon.self_modulate = enemy_data.modulate_color;
 	
 	spawn_position = global_position
-	player = get_tree().get_first_node_in_group("player")
+	
 	pattern = enemy_data.pattern;
 	
 	Spawning.create_pool("EBullet", "1", 10, true);
@@ -69,7 +68,6 @@ func handle_movement(delta: float) -> void:
 		if shoot_counter > 1.5:
 			var spawn_pos = global_position;
 			var rot = global_rotation
-
 			Spawning.spawn({"position": spawn_pos, "rotation": rot, "source_node": node}, pattern, "1")
 			#Spawning.spawn(self, "line")
 			shoot_counter = 0;
@@ -107,3 +105,7 @@ func pick_new_direction() -> void:
 
 func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2) -> void:
 	safe_queue_free()
+
+func _on_player_spawned(path: NodePath):
+	print(path)
+	player = get_node(path)

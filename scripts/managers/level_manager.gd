@@ -23,8 +23,11 @@ var player: PlayerController
 var grid: Array = []
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
-func _ready() -> void:
-	player = get_parent().get_node("Player")
+func _ready():
+	EventManager.player_spawned.connect(_level_ready);
+
+func _level_ready(player_path: NodePath) -> void:
+	player = get_node(player_path)
 	$BG.texture = background_tiles[randi() % background_tiles.size()]
 	
 	# Initialize grid with false in order to track empty cells
@@ -113,7 +116,4 @@ func spawn_player() -> void:
 
 ## We need to do this otherwise the patterns won't rotate correctly
 func assign_target_for_bullet_patterns() -> void:
-	var player_path: String = player.get_path()
-	var patterns: Array = get_tree().get_nodes_in_group("pattern")
-	for patternNode: Node2D in patterns:
-		patternNode.pattern.forced_target = player_path
+	pass

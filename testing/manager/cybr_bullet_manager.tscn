@@ -1,5 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://chjrmgc7vavve"]
+[gd_scene load_steps=26 format=3 uid="uid://chjrmgc7vavve"]
 
+[ext_resource type="Script" uid="uid://cgd1wjud4ds5l" path="res://scripts/managers/bullet_manager.gd" id="1_or46o"]
+[ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="1_sr4k1"]
 [ext_resource type="Script" uid="uid://bjmse0liopcrp" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="1_ykoj7"]
 [ext_resource type="Script" uid="uid://bapo6jcdsje8y" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="2_ne5h4"]
 [ext_resource type="Script" uid="uid://dwml1suxu8e0m" path="res://scripts/bullethell/BulletPropsData.gd" id="3_fg4cs"]
@@ -220,7 +222,7 @@ pattern_angle = 0.0174533
 pattern_angle_target = NodePath("")
 pattern_angle_mouse = false
 forced_angle = 0.0
-forced_target = NodePath("")
+forced_target = NodePath("../../Player")
 forced_lookat_mouse = false
 forced_pattern_lookat = true
 cooldown_stasis = false
@@ -255,7 +257,7 @@ pattern_angle = 0.0
 pattern_angle_target = NodePath("")
 pattern_angle_mouse = false
 forced_angle = 0.0
-forced_target = NodePath("")
+forced_target = NodePath("../../Player")
 forced_lookat_mouse = false
 forced_pattern_lookat = true
 cooldown_stasis = false
@@ -268,6 +270,10 @@ wait_tween_length = 0.0
 wait_tween_time = 0.0
 
 [node name="BulletManager" type="Node2D"]
+script = ExtResource("1_or46o")
+
+[node name="Player" parent="." instance=ExtResource("1_sr4k1")]
+position = Vector2(2031, 1523)
 
 [node name="BulletProps" type="Node2D" parent="."]
 

@@ -12,6 +12,7 @@ damage = 10.0
 lifetime = 1.5
 pierce_count = 0
 knockback = 0.0
+absorb_value = 1
 texture = ExtResource("3_1h80s")
 scale = 1.0
 hit_vfx = ExtResource("1_1h80s")
