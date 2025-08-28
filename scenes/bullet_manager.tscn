@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://chjrmgc7vavve"]
+[gd_scene load_steps=35 format=3 uid="uid://bh4n0qihnupx7"]
 
 [ext_resource type="Script" uid="uid://cgd1wjud4ds5l" path="res://scripts/managers/bullet_manager.gd" id="1_s87c5"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="2_5m336"]
@@ -8,8 +8,10 @@
 [ext_resource type="Script" uid="uid://qc1ehcnju62l" path="res://addons/BulletUpHell/Nodes/BuHInstanceLister.gd" id="6_1h4s3"]
 [ext_resource type="Script" uid="uid://dgryahi3uqase" path="res://addons/BulletUpHell/Bullet/BulletNodeProps.gd" id="6_5m336"]
 [ext_resource type="PackedScene" uid="uid://b44c5ncrptvhv" path="res://scenes/bullets/player_bullet.tscn" id="7_5c6b0"]
+[ext_resource type="Texture2D" uid="uid://cuungxd61dxw0" path="res://assets/chocolate_bullet.png" id="9_s87c5"]
 [ext_resource type="PackedScene" uid="uid://cbqgxhuvoxtgg" path="res://scenes/bullets/first_bullet/first_hit_vfx.tscn" id="10_5m336"]
 [ext_resource type="Script" uid="uid://c8ydhn2yvq3dc" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="10_bvdue"]
+[ext_resource type="Texture2D" uid="uid://c2haqjj6x27gw" path="res://assets/sugar_bullet.png" id="11_er4hb"]
 [ext_resource type="Script" uid="uid://b6cup3hdpqd6v" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="11_lswlb"]
 [ext_resource type="Script" uid="uid://c8a1x50bjmkue" path="res://addons/BulletUpHell/SpawnPatterns/PatternLine.gd" id="12_fnh7x"]
 [ext_resource type="Texture2D" uid="uid://cb7mkdjkuy26s" path="res://assets/bullet.png" id="12_um252"]
@@ -117,7 +119,7 @@ spec_trail_length = 0.0
 spec_trail_width = 0.0
 spec_trail_modulate = Color(1, 1, 1, 1)
 spec_rotating_speed = 0.0
-death_after_time = 1.0
+death_after_time = 5.0
 death_outside_box = Rect2(0, 0, 0, 0)
 death_from_collision = true
 a_direction_equation = ""
@@ -353,7 +355,7 @@ metadata/_custom_type_script = "uid://csxp6a77ij7sk"
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5m336"]
 resource_name = "PatternCircle"
 script = ExtResource("13_h02f0")
-radius = 20
+radius = 0
 angle_total = 6.28319
 angle_decal = 0.0
 symmetric = false
@@ -372,8 +374,8 @@ forced_pattern_lookat = true
 cooldown_stasis = false
 cooldown_spawn = 1.0
 cooldown_shoot = 0.0
-cooldown_next_spawn = 0.0
-cooldown_next_shoot = 0.0
+cooldown_next_spawn = 0.1
+cooldown_next_shoot = 0.02
 wait_tween_momentum = 0
 wait_tween_length = 0.0
 wait_tween_time = 0.0
@@ -435,14 +437,12 @@ script = ExtResource("6_1h4s3")
 metadata/_custom_type_script = "uid://qc1ehcnju62l"
 
 [node name="ChocolateBullet" parent="BulletNodes/InstanceLister" instance=ExtResource("7_5c6b0")]
-bullet_texture = ExtResource("12_um252")
-sprite_scale = 1.0
+bullet_texture = ExtResource("9_s87c5")
 hit_vfx = ExtResource("10_5m336")
 ID = "ChocBullet"
 
 [node name="Sugar" parent="BulletNodes/InstanceLister" instance=ExtResource("7_5c6b0")]
-bullet_texture = ExtResource("12_um252")
-sprite_scale = 1.0
+bullet_texture = ExtResource("11_er4hb")
 hit_vfx = ExtResource("10_5m336")
 ID = "SugarBullet"
 

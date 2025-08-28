@@ -16,8 +16,6 @@ class_name BulletNode
 @export var hit_sfx: AudioStream
 @export var trail_vfx: PackedScene
 
-
-@onready var sprite: Sprite2D = $Sprite2D
 var direction: Vector2 = Vector2.RIGHT
 var time_alive: float = 0.0
 var remaining_pierce: int = 0
@@ -25,8 +23,18 @@ var remaining_pierce: int = 0
 
 var trail_particles: GPUParticles2D;
 
+var enabled = false;
+
 func _draw():
-	draw_texture(bullet_texture, bullet_texture.get_size()/2);
+	if not enabled:
+		return;
+	
+	# Define the position and size of the texture
+	var size = bullet_texture.get_size() * sprite_scale;
+	
+	# Draw the texture with scaling
+	draw_texture_rect(bullet_texture, Rect2(size/2, size), false)
+	
 	pass
 	
 func _process(delta):
@@ -37,10 +45,6 @@ func _ready() -> void:
 	body_shape_entered.connect(_on_body_shape_entered);
 	
 	remaining_pierce = pierce_count
-	
-	if bullet_texture:
-		sprite.texture = bullet_texture;
-		sprite.scale = Vector2.ONE * sprite_scale;
 		
 		
 	if ID == "": push_warning("ID missing in node "+String(get_path()))
@@ -79,12 +83,14 @@ func _ready() -> void:
 #			collisions.append(entry)
 
 func _on_spawned():		
+	enabled = true;
 	if is_instance_valid(trail):
 		trail.show();
 
 func _on_deleted():
-		if is_instance_valid(trail):
-			trail.queue_free.call_deferred();
+	enabled = false;
+	if is_instance_valid(trail):
+		trail.queue_free.call_deferred();
 
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if not body.has_method("apply_damage"):

@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b44c5ncrptvhv"]
+[gd_scene load_steps=3 format=3 uid="uid://b44c5ncrptvhv"]
 
 [ext_resource type="Script" uid="uid://6mlaoqtqii7k" path="res://scripts/bullethell/BulletNode.gd" id="1_ttfd6"]
-[ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="2_48eg6"]
 [ext_resource type="PackedScene" uid="uid://dv7y8svel5iok" path="res://scenes/bullets/first_bullet/first_trail.tscn" id="3_ttfd6"]
 
 [node name="PlayerBullet" type="Area2D"]
@@ -10,11 +9,6 @@ collision_mask = 0
 script = ExtResource("1_ttfd6")
 ID = "PBullet"
 metadata/_custom_type_script = "uid://6mlaoqtqii7k"
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_48eg6")
 
 [node name="BulletData" type="Node2D" parent="."]
 
