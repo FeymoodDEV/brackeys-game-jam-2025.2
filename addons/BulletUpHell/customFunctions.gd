@@ -8,9 +8,43 @@ class_name customFunctions
 ## because your code would be overwritten at each plugin update
 ###
 
+func back_to_grave_deferred(bID):
+	var par = bID.get_parent();
+	if par and bID:
+		par.remove_child(bID)
+	else:
+		print(par)
+		
+func delete_bullet_outside(bullet):
+	if bullet["position"].x < -100 or bullet["position"].x > 100:
+		Spawning.delete_bullet(bullet);
+	if bullet["position"].u < -100 or bullet["position"].u > 100:
+		Spawning.delete_bullet(bullet);
+
 func bullet_collide_body(body_rid:RID,body:Node,body_shape_index:int,local_shape_index:int,shared_area:Area2D, B:Dictionary, b:RID) -> void:
 	## you can use B["props"]["damage"] to get the bullet's damage
 	## you can use B["props"]["<your custom data name>"] to get the bullet's custom data
+	
+	var damage = B["props"]["damage"];
+	var knockback = B["props"]["knockback"];
+	
+	# If we hit any of the damageables!
+	if body is Block or body is EnemyController or PlayerController:
+		if body is not Block:
+			body.apply_damage(damage, knockback, B["position"], -body.velocity);
+		else:
+			body.apply_damage(damage, knockback, B["position"], Vector2.ZERO);
+		print(B);
+		B["props"]["remaining_pierce"] -= 1;
+		if B["props"]["remaining_pierce"] <= 0:
+			var hit_vfx = B["props"]["hit_vfx"].instantiate();
+			if hit_vfx:
+				body.get_parent().add_child(hit_vfx);
+				hit_vfx.global_position = (B["position"] as Vector2);
+				hit_vfx.emitting = true
+				hit_vfx.finished.connect.bind(hit_vfx.queue_free);
+
+
 	pass
 
 
@@ -19,12 +53,12 @@ func bullet_collide_area(area_rid:RID,area:Area2D,area_shape_index:int,local_sha
 	## you can use B["props"]["<your custom data name>"] to get the bullet's custom data
 	
 	############## uncomment if you want to use the standard behavior below ##############
-	#var rid = Spawning.shape_rids.get(shared_area.name, {}).get(local_shape_index)
-	#if not Spawning.poolBullets.has(rid): return
-	#var B = Spawning.poolBullets[rid]
+	var rid = Spawning.shape_rids.get(shared_area.name, {}).get(local_shape_index)
+	if not Spawning.poolBullets.has(rid): return
+	var B = Spawning.poolBullets[rid]
 	
 	############## emit signal
-#	Spawning.bullet_collided_area.emit(area,area_shape_index,B,local_shape_index,shared_area)
+	Spawning.bullet_collided_area.emit(area,area_shape_index,B,local_shape_index,shared_area)
 	
 	############## uncomment to manage trigger collisions with area collisions
 #	if B["trig_types"].has("TrigCol"):
