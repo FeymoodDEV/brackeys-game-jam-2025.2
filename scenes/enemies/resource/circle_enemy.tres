@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://enusg5jloedi"]
+
+[ext_resource type="Script" uid="uid://2pwnys3t54yw" path="res://scripts/enemy/EnemyData.gd" id="1_a8j4b"]
+[ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="2_3adq2"]
+
+[resource]
+script = ExtResource("1_a8j4b")
+pattern = "enemy_circle"
+speed = 600.0
+health = 100.0
+damage = 10.0
+xp_worth = 10.0
+texture = ExtResource("2_3adq2")
+modulate_color = Color(1, 0.0690199, 0.169378, 1)
+scale = 1.0
+metadata/_custom_type_script = "uid://2pwnys3t54yw"
