@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfpcw4io8dcam"]
+[gd_scene load_steps=5 format=3 uid="uid://bhr507fppywxh"]
 
 [ext_resource type="Script" uid="uid://d38sn8fofnvl0" path="res://scripts/enemy/enemy_controller.gd" id="1_hiio1"]
 [ext_resource type="Resource" uid="uid://enusg5jloedi" path="res://scenes/enemies/resource/circle_enemy.tres" id="2_hiio1"]

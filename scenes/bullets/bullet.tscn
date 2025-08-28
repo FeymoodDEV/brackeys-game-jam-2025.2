@@ -21,9 +21,5 @@ data = SubResource("Resource_kd18i")
 [node name="trail" parent="." instance=ExtResource("4_kd18i")]
 texture = ExtResource("2_lj7gv")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_lj7gv")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_lj7gv")
