@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 
 Spawning="*res://addons/BulletUpHell/Spawning.tscn"
 EventManager="*res://scripts/managers/event_manager.gd"
-GameConfig="*res://src/autoload/game_config.gd"
 
 [debug]
 
