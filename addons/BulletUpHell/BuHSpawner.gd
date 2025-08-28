@@ -69,8 +69,12 @@ var global_reset_counter:int = 0
 
 
 
+var player_node: PlayerController;
 
 #§§§§§§§§§§§§§ GLOBAL §§§§§§§§§§§§§
+
+func _on_player_spawned(path):
+	player_node = get_node(path)
 
 func _ready():
 	if Engine.is_editor_hint(): return
@@ -78,6 +82,8 @@ func _ready():
 	#spawn_thread = Thread.new()
 	#move_thread = Thread.new()
 	#draw_thread = Thread.new()
+	
+	EventManager.player_spawned.connect(_on_player_spawned)
 
 	randomize()
 
@@ -330,8 +336,8 @@ func set_angle(pattern:Pattern, pos:Vector2, queued_instance:Dictionary):
 		if pattern.forced_pattern_lookat: queued_instance["rotation"] = pos.angle_to_point(pattern.node_target.global_position)
 		else: queued_instance["rotation"] = (pos+queued_instance["spawn_pos"]).angle_to_point(pattern.node_target.global_position)
 	elif pattern.forced_lookat_mouse:
-		if pattern.forced_pattern_lookat: queued_instance["rotation"] = pos.angle_to_point(get_global_mouse_position())
-		else: queued_instance["rotation"] = (pos+queued_instance["spawn_pos"]).angle_to_point(get_global_mouse_position())
+		if pattern.forced_pattern_lookat: queued_instance["rotation"] = player_node.look_direction.angle();
+		else: queued_instance["rotation"] = (pos+queued_instance["spawn_pos"]).angle_to_point(player_node.look_direction);
 	elif pattern.forced_angle != 0.0:
 		queued_instance["rotation"] = pattern.forced_angle
 
