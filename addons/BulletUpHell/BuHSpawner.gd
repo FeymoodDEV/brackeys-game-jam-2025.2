@@ -570,14 +570,19 @@ func _spawn_object(b:Node2D, B:Dictionary):
 	if b is CollisionObject2D:
 		b.collision_layer = B["shared_area"].collision_layer
 		b.collision_mask = B["shared_area"].collision_mask
-	if B["source_node"] is Dictionary:
-		B["source_node"]["source_node"].call_deferred("add_child", b)
+	if B["source_node"] is Dictionary: # Added the checks against get_children()
+		# No longer errors out when the queue starts to fill up
+		if not b in B["source_node"]["source_node"].get_children():
+			B["source_node"]["source_node"].call_deferred("add_child", b)
 		b.global_position = B["source_node"]["position"]-B["source_node"]["source_node"].position
 		b.rotation += B["source_node"]["rotation"]
 	else:
+		# Added the checks against get_children()
+		# No longer errors out when the queue starts to fill up
 		b.global_position = B["spawn_pos"]
 		b.rotation += B["rotation"]
-		B["source_node"].call_deferred("add_child", b)
+		if not b in B["source_node"].get_children():
+			B["source_node"].call_deferred("add_child", b)
 
 func use_momentum(pos:Vector2, B:Dictionary):
 	B["position"] = pos

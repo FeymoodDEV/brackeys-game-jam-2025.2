@@ -1,46 +1,29 @@
-[gd_scene load_steps=22 format=3 uid="uid://bsi7y5pro2w6d"]
+[gd_scene load_steps=10 format=3 uid="uid://bsi7y5pro2w6d"]
 
 [ext_resource type="PackedScene" uid="uid://chjrmgc7vavve" path="res://testing/manager/cybr_bullet_manager.tscn" id="1_c03qe"]
 [ext_resource type="Script" uid="uid://bc7o63ppdn8uw" path="res://testing/cybrnight_main.gd" id="1_cgsnw"]
-[ext_resource type="Script" uid="uid://dh1h11m36jqp0" path="res://scripts/managers/level_manager.gd" id="1_efqug"]
-[ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="2_c4vfy"]
-[ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://scenes/blocks/block_1.tscn" id="3_1kt5j"]
-[ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://scenes/enemies/basic_enemy.tscn" id="4_c4vfy"]
-[ext_resource type="PackedScene" uid="uid://cux5gt5ppivxe" path="res://scenes/blocks/block_2.tscn" id="5_yyklv"]
-[ext_resource type="PackedScene" uid="uid://y2xgcb36jh3" path="res://scenes/blocks/block_3.tscn" id="6_c03qe"]
-[ext_resource type="Texture2D" uid="uid://dfeeu7xpu3qc3" path="res://assets/tiles/tile1.png" id="7_cgsnw"]
-[ext_resource type="Texture2D" uid="uid://soy0ejrja2pr" path="res://assets/tiles/tile2.png" id="8_hdvia"]
-[ext_resource type="Texture2D" uid="uid://b58gbdvdur8" path="res://assets/tiles/tile3.png" id="9_ktx0r"]
-[ext_resource type="Texture2D" uid="uid://dx578871kyda3" path="res://assets/tiles/tile4.png" id="10_77vjt"]
-[ext_resource type="Texture2D" uid="uid://dsiu66k67apec" path="res://assets/tiles/tile5.png" id="11_md1lu"]
-[ext_resource type="Texture2D" uid="uid://ttmeaan4q6cb" path="res://assets/tiles/tile6.png" id="12_rcn4l"]
-[ext_resource type="Texture2D" uid="uid://b0riwn21p8ulc" path="res://assets/tiles/tile7.png" id="13_te3gx"]
-[ext_resource type="Texture2D" uid="uid://bvg7d5ts87b3n" path="res://assets/tiles/tile8.png" id="14_dgyjc"]
-[ext_resource type="Texture2D" uid="uid://h83hqaeiljnx" path="res://assets/tiles/tile9.png" id="15_caxln"]
-[ext_resource type="Texture2D" uid="uid://baa7ewnrju7ds" path="res://assets/tiles/tile10.png" id="16_v2t45"]
-[ext_resource type="Texture2D" uid="uid://bmew6t1pkr6n1" path="res://assets/tiles/tile11.png" id="17_7ntev"]
-[ext_resource type="Texture2D" uid="uid://7bg2n6nm23ly" path="res://assets/tiles/tile12.png" id="18_x1jg1"]
+[ext_resource type="PackedScene" uid="uid://cxxnbcxiuusqt" path="res://scenes/level_manager.tscn" id="2_k7pv6"]
 [ext_resource type="Script" uid="uid://dsiawai5lafl8" path="res://scripts/managers/ui_manager.gd" id="21_ktx0r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktx0r"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.815686)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77vjt"]
+bg_color = Color(0.630101, 0.0510413, 4.81308e-08, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md1lu"]
+bg_color = Color(0.370014, 0.689214, 0.322664, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcn4l"]
+bg_color = Color(0.114897, 0.114897, 0.114897, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_te3gx"]
+bg_color = Color(1, 0.866667, 0, 1)
 
 [node name="CabageScene" type="Node2D"]
 script = ExtResource("1_cgsnw")
 
-[node name="LevelManager" type="Node2D" parent="."]
-script = ExtResource("1_efqug")
-player_scene = ExtResource("2_c4vfy")
-border_scene = ExtResource("6_c03qe")
-block_scenes = Array[PackedScene]([ExtResource("3_1kt5j"), ExtResource("5_yyklv"), ExtResource("6_c03qe")])
-enemy_scenes = Array[PackedScene]([ExtResource("4_c4vfy")])
-background_tiles = Array[Texture]([ExtResource("7_cgsnw"), ExtResource("8_hdvia"), ExtResource("9_ktx0r"), ExtResource("10_77vjt"), ExtResource("11_md1lu"), ExtResource("12_rcn4l"), ExtResource("13_te3gx"), ExtResource("14_dgyjc"), ExtResource("15_caxln"), ExtResource("16_v2t45"), ExtResource("17_7ntev"), ExtResource("18_x1jg1")])
-
-[node name="BG" type="TextureRect" parent="LevelManager"]
-z_index = -1
-offset_left = -3032.0
-offset_top = -2232.0
-offset_right = 14493.0
-offset_bottom = 10167.0
-texture = ExtResource("8_hdvia")
-stretch_mode = 1
+[node name="LevelManager" parent="." instance=ExtResource("2_k7pv6")]
 
 [node name="BulletManager" parent="." instance=ExtResource("1_c03qe")]
 
@@ -55,6 +38,7 @@ stretch_mode = 1
 [node name="FPS" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
 script = ExtResource("21_ktx0r")
@@ -70,17 +54,52 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 30
 text = "05:00"
 horizontal_alignment = 1
-
-[node name="Label" type="Label" parent="PlayerUI"]
-offset_top = 521.0
-offset_right = 40.0
-offset_bottom = 544.0
-scale = Vector2(5.36, 5.36)
-text = "100"
+metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="PlayerUI"]
 wait_time = 300.0
 
-[node name="Player" parent="." instance=ExtResource("2_c4vfy")]
+[node name="BossHealthBar" type="ProgressBar" parent="PlayerUI"]
+visible = false
+offset_left = 382.0
+offset_top = 46.0
+offset_right = 771.0
+offset_bottom = 82.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ktx0r")
+theme_override_styles/fill = SubResource("StyleBoxFlat_77vjt")
+value = 50.0
+show_percentage = false
+
+[node name="BossName" type="Label" parent="PlayerUI"]
+visible = false
+offset_left = 382.0
+offset_top = 46.0
+offset_right = 771.0
+offset_bottom = 81.0
+text = "BIG BAD GUY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="PlayerUI"]
+offset_left = 382.0
+offset_top = 566.0
+offset_right = 771.0
+offset_bottom = 602.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ktx0r")
+theme_override_styles/fill = SubResource("StyleBoxFlat_md1lu")
+value = 50.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="PlayerUI"]
+offset_left = 382.0
+offset_top = 602.0
+offset_right = 771.0
+offset_bottom = 612.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rcn4l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_te3gx")
+value = 50.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [editable path="BulletManager"]

@@ -9,7 +9,7 @@ class_name EnemyData
 @export var xp_worth: float = 10.0;
 
 @export_group("Visuals")
-@export var texture: Texture2D
+@export var sprite: Texture2D
 @export var color_palette: ColorPalette;
 @export var modulate_color: Color;
 @export var scale: float = 1.0

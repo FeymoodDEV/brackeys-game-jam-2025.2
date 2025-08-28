@@ -20,10 +20,6 @@ var look_direction : Vector2
 
 #region Targeting variables
 @onready var crosshair: Node2D = $Crosshair
-@export var health: float = 10
-
-func _enter_tree():
-	EventManager.player_spawned.emit(get_path())
 #endregion
 
 #region Upgrade variables
@@ -50,6 +46,20 @@ var absorb_pts : int = 0 :
 @export var max_level : int = 2
 #endregion
 
+var health: float
+@export var max_health: float = 100
+
+func _enter_tree():
+	pass
+	
+func _ready():
+	health = max_health
+	EventManager.player_setup.emit({
+		"progress_max_value": 100, 
+		"health_max_value": max_health,
+	})
+	EventManager.player_spawned.emit(get_path())
+	
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("level_down"):
 		level_down()
