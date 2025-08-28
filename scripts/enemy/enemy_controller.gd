@@ -11,6 +11,8 @@ var current_direction: Vector2 = Vector2.ZERO
 var player: PlayerController = null
 var move_timer: float = 0.0
 var health: float = 100.0;
+var damage: float = 10.0;
+var xp_worth: int = 10.0;
 @onready var node = get_parent();
 
 var shoot_counter = 0;
@@ -37,6 +39,8 @@ func _ready() -> void:
 	
 	speed = enemy_data.speed;
 	health = enemy_data.health;
+	damage = enemy_data.damage;
+	xp_worth = enemy_data.xp_worth;
 	
 	spawn_position = global_position
 	
