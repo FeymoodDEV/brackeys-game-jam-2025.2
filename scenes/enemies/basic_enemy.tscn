@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://dpx8ondyguda5"]
 
-[ext_resource type="Script" uid="uid://d38sn8fofnvl0" path="res://scripts/enemy/enemy_controller.gd" id="1_8e3ao"]
+[ext_resource type="Script" uid="uid://d38sn8fofnvl0" path="res://src/enemy/enemy_controller.gd" id="1_8e3ao"]
 [ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="2_38ino"]
 [ext_resource type="Resource" uid="uid://bqxvy5sr6pupv" path="res://scenes/enemies/resource/line_enemy.tres" id="2_fcftc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
 size = Vector2(32, 33)
 
-[node name="BasicEnemy" type="CharacterBody2D" groups=["enemy"]]
+[node name="BasicEnemy2" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 34
 collision_mask = 12
 script = ExtResource("1_8e3ao")

@@ -1,8 +1,8 @@
 [gd_resource type="PackedDataContainer" script_class="BulletNodeData" load_steps=5 format=3 uid="uid://byu8ge0spye2k"]
 
 [ext_resource type="PackedScene" uid="uid://cbqgxhuvoxtgg" path="res://scenes/bullets/first_bullet/first_hit_vfx.tscn" id="1_irycg"]
-[ext_resource type="Script" uid="uid://blyfl04bkccem" path="res://scripts/bullethell/BulletNodeData.gd" id="2_sob0i"]
-[ext_resource type="Texture2D" uid="uid://cuungxd61dxw0" path="res://assets/chocolate_bullet.png" id="3_irycg"]
+[ext_resource type="Script" uid="uid://blyfl04bkccem" path="res://src/bullethell/BulletNodeData.gd" id="2_sob0i"]
+[ext_resource type="Texture2D" uid="uid://cuungxd61dxw0" path="res://assets/bullet_textures/chocolate_bullet.png" id="3_irycg"]
 [ext_resource type="PackedScene" uid="uid://dv7y8svel5iok" path="res://scenes/bullets/first_bullet/first_trail.tscn" id="4_5eo2l"]
 
 [resource]
