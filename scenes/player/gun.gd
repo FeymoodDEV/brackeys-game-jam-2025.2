@@ -15,7 +15,7 @@ func _ready() -> void:
 	shot_cooldown_timer.stop()
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed("shoot"):
+	if enabled and Input.is_action_pressed("shoot"):
 		if shot_cooldown_timer.is_stopped():
 			shoot()
 			shot_cooldown_timer.start(shot_cooldown)
@@ -54,7 +54,7 @@ func shoot() -> void:
 	var spawn_pos = $SpawnPoint.global_position;
 	
 	var rot = global_rotation
-	var node = get_parent().get_parent();
+	var node = get_parent().target.get_parent()
 
 
 	Spawning.spawn({"position": spawn_pos, "rotation": rot, "source_node": node}, "one", "0")
