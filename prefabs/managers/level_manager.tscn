@@ -1,0 +1,37 @@
+[gd_scene load_steps=19 format=3 uid="uid://cxxnbcxiuusqt"]
+
+[ext_resource type="Script" uid="uid://dh1h11m36jqp0" path="res://src/manager/level_manager.gd" id="1_l1ep3"]
+[ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://prefabs/player/player.tscn" id="2_blm44"]
+[ext_resource type="PackedScene" uid="uid://y2xgcb36jh3" path="res://prefabs/blocks/block_3.tscn" id="3_x285y"]
+[ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://prefabs/blocks/block_1.tscn" id="4_yv6w6"]
+[ext_resource type="PackedScene" uid="uid://cux5gt5ppivxe" path="res://prefabs/blocks/block_2.tscn" id="5_6rjg5"]
+[ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://prefabs/enemies/basic_enemy.tscn" id="6_8mqla"]
+[ext_resource type="Texture2D" uid="uid://dfeeu7xpu3qc3" path="res://assets/tile_sprites/tile1.png" id="7_6p75p"]
+[ext_resource type="Texture2D" uid="uid://soy0ejrja2pr" path="res://assets/tile_sprites/tile2.png" id="8_5dqnh"]
+[ext_resource type="Texture2D" uid="uid://b58gbdvdur8" path="res://assets/tile_sprites/tile3.png" id="9_h2xtc"]
+[ext_resource type="Texture2D" uid="uid://dx578871kyda3" path="res://assets/tile_sprites/tile4.png" id="10_1y127"]
+[ext_resource type="Texture2D" uid="uid://dsiu66k67apec" path="res://assets/tile_sprites/tile5.png" id="11_7701w"]
+[ext_resource type="Texture2D" uid="uid://ttmeaan4q6cb" path="res://assets/tile_sprites/tile6.png" id="12_nudd8"]
+[ext_resource type="Texture2D" uid="uid://b0riwn21p8ulc" path="res://assets/tile_sprites/tile7.png" id="13_rdov2"]
+[ext_resource type="Texture2D" uid="uid://bvg7d5ts87b3n" path="res://assets/tile_sprites/tile8.png" id="14_hexca"]
+[ext_resource type="Texture2D" uid="uid://h83hqaeiljnx" path="res://assets/tile_sprites/tile9.png" id="15_ullk0"]
+[ext_resource type="Texture2D" uid="uid://baa7ewnrju7ds" path="res://assets/tile_sprites/tile10.png" id="16_cmf65"]
+[ext_resource type="Texture2D" uid="uid://bmew6t1pkr6n1" path="res://assets/tile_sprites/tile11.png" id="17_3xq6s"]
+[ext_resource type="Texture2D" uid="uid://7bg2n6nm23ly" path="res://assets/tile_sprites/tile12.png" id="18_a67kl"]
+
+[node name="LevelManager" type="Node2D"]
+script = ExtResource("1_l1ep3")
+player_scene = ExtResource("2_blm44")
+border_scene = ExtResource("3_x285y")
+block_scenes = Array[PackedScene]([ExtResource("4_yv6w6"), ExtResource("5_6rjg5"), ExtResource("3_x285y")])
+enemy_scenes = Array[PackedScene]([ExtResource("6_8mqla")])
+background_tiles = Array[Texture]([ExtResource("7_6p75p"), ExtResource("8_5dqnh"), ExtResource("9_h2xtc"), ExtResource("10_1y127"), ExtResource("11_7701w"), ExtResource("12_nudd8"), ExtResource("13_rdov2"), ExtResource("14_hexca"), ExtResource("15_ullk0"), ExtResource("16_cmf65"), ExtResource("17_3xq6s"), ExtResource("18_a67kl")])
+
+[node name="BG" type="TextureRect" parent="."]
+z_index = -1
+offset_left = -3032.0
+offset_top = -2232.0
+offset_right = 14493.0
+offset_bottom = 10167.0
+texture = ExtResource("8_5dqnh")
+stretch_mode = 1

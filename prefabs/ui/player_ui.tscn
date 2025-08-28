@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://j4ljg2vl3nfv"]
+
+[ext_resource type="Script" uid="uid://dsiawai5lafl8" path="res://src/manager/ui_manager.gd" id="1_jkj6h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sx3m1"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.815686)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mvsys"]
+bg_color = Color(0.630101, 0.0510413, 4.81308e-08, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npses"]
+bg_color = Color(0.370014, 0.689214, 0.322664, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjgpp"]
+bg_color = Color(0.114897, 0.114897, 0.114897, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sijxs"]
+bg_color = Color(1, 0.866667, 0, 1)
+
+[node name="PlayerUI" type="CanvasLayer"]
+script = ExtResource("1_jkj6h")
+
+[node name="Countdown" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "05:00"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 300.0
+
+[node name="BossHealthBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = 382.0
+offset_top = 46.0
+offset_right = 771.0
+offset_bottom = 82.0
+theme_override_styles/background = SubResource("StyleBoxFlat_sx3m1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mvsys")
+value = 50.0
+show_percentage = false
+
+[node name="BossName" type="Label" parent="."]
+visible = false
+offset_left = 382.0
+offset_top = 46.0
+offset_right = 771.0
+offset_bottom = 81.0
+text = "BIG BAD GUY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -194.0
+offset_top = -59.0
+offset_right = 195.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_sx3m1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_npses")
+value = 100.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -194.0
+offset_top = -33.0
+offset_right = 195.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_kjgpp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sijxs")
+show_percentage = false
+metadata/_edit_use_anchors_ = true
