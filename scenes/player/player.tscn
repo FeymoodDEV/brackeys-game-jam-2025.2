@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=19 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://scripts/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dmyvil000yl58" path="res://assets/player/Ginger_Biscuit_Man.png" id="2_qhqgy"]
@@ -7,15 +7,20 @@
 [ext_resource type="Script" uid="uid://yw44daxcsxw0" path="res://scenes/player/movement.gd" id="7_h17s1"]
 [ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://scenes/player/normal.gd" id="8_qek5x"]
 [ext_resource type="Script" uid="uid://des4f477v63vn" path="res://scenes/player/circling.gd" id="9_5gtgg"]
+[ext_resource type="Script" uid="uid://5yo5iu6shjs3" path="res://addons/xsm/state.gd" id="10_fcs02"]
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://scenes/player/nom_dash.gd" id="10_h17s1"]
-[ext_resource type="Script" path="res://scenes/player/crosshair.gd" id="11_fm80t"]
+[ext_resource type="Script" path="res://scenes/player/upgrade.gd" id="10_myrg7"]
+[ext_resource type="Script" uid="uid://bh8rpek0w1o47" path="res://scenes/player/crosshair.gd" id="11_fm80t"]
 [ext_resource type="Texture2D" uid="uid://bptr4hwxaoyjv" path="res://assets/player/crosshair.svg" id="12_gx1jg"]
-[ext_resource type="Script" path="res://scenes/player/lock_reticle.gd" id="13_ugbui"]
+[ext_resource type="Script" uid="uid://cfmoqb7g6yigs" path="res://scenes/player/lock_reticle.gd" id="13_ugbui"]
 [ext_resource type="Texture2D" uid="uid://cal60wifol3qs" path="res://assets/player/soft-lock.svg" id="14_fcs02"]
 [ext_resource type="Texture2D" uid="uid://dr2oj506weijh" path="res://assets/player/hard-lock.svg" id="15_fcs02"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
 radius = 14.0357
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ugbui"]
+radius = 28.0179
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fm80t"]
 radius = 36.0555
@@ -41,6 +46,15 @@ texture = ExtResource("2_qhqgy")
 [node name="DashCooldownTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="NomDashAoE" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NomDashAoE"]
+shape = SubResource("CircleShape2D_ugbui")
+debug_color = Color(0, 0.64383, 0.292706, 0.42)
+
 [node name="Root" type="Node" parent="."]
 script = ExtResource("6_0owmy")
 history_size = 0
@@ -57,7 +71,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Upgrade")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Normal" type="Node" parent="Root/Movement"]
@@ -66,7 +80,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Circling")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Circling" type="Node" parent="Root/Movement"]
@@ -75,11 +89,47 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../NomDash")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="NomDash" type="Node" parent="Root/Movement"]
 script = ExtResource("10_h17s1")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="Upgrade" type="Node" parent="Root"]
+script = ExtResource("10_myrg7")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="Level1" type="Node" parent="Root/Upgrade"]
+script = ExtResource("10_fcs02")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("../Level2")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="Level2" type="Node" parent="Root/Upgrade"]
+script = ExtResource("10_fcs02")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("../Level3")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="Level3" type="Node" parent="Root/Upgrade"]
+script = ExtResource("10_fcs02")
 disabled = false
 debug_mode = false
 target_path = NodePath("")
@@ -119,6 +169,8 @@ texture = ExtResource("15_fcs02")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Crosshair/HardLockReticle"]
 
+[connection signal="upgrade_level_changed" from="." to="Root/Upgrade" method="_on_player_upgrade_level_changed"]
+[connection signal="area_shape_entered" from="NomDashAoE" to="Root/Movement/NomDash" method="_absorb_bullet"]
 [connection signal="hard_lock_changed" from="Crosshair" to="Root/Movement" method="_on_crosshair_hard_lock_changed"]
 [connection signal="body_entered" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_entered"]
 [connection signal="body_exited" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_exited"]

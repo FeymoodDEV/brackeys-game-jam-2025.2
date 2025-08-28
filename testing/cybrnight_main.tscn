@@ -1,24 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccrxh34dcnijy"]
+[gd_scene load_steps=10 format=3 uid="uid://ccrxh34dcnijy"]
 
 [ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_sijxs"]
 [ext_resource type="Script" uid="uid://bc7o63ppdn8uw" path="res://testing/cybrnight_main.gd" id="1_w3c6p"]
-[ext_resource type="PackedScene" uid="uid://do3kmq6olly6f" path="res://scenes/player/player.tscn" id="2_ko3n4"]
+[ext_resource type="Script" uid="uid://dh1h11m36jqp0" path="res://scripts/managers/level_manager.gd" id="2_kjgpp"]
+[ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="2_ko3n4"]
 [ext_resource type="PackedScene" uid="uid://chjrmgc7vavve" path="res://testing/manager/cybr_bullet_manager.tscn" id="2_npses"]
+[ext_resource type="PackedScene" uid="uid://y2xgcb36jh3" path="res://scenes/blocks/block_3.tscn" id="4_sijxs"]
 [ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://scenes/blocks/block_1.tscn" id="4_w3c6p"]
+[ext_resource type="PackedScene" uid="uid://cux5gt5ppivxe" path="res://scenes/blocks/block_2.tscn" id="6_ko3n4"]
 [ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://scenes/enemies/basic_enemy.tscn" id="11_lqjba"]
 
 [node name="CybrnightMain" type="Node2D"]
 script = ExtResource("1_w3c6p")
 
-[node name="BulletManager" parent="." instance=ExtResource("2_npses")]
+[node name="LevelManager" type="Node2D" parent="."]
+script = ExtResource("2_kjgpp")
+player_scene = ExtResource("2_ko3n4")
+border_scene = ExtResource("4_sijxs")
+block_scenes = Array[PackedScene]([ExtResource("4_w3c6p"), ExtResource("6_ko3n4"), ExtResource("4_sijxs")])
+enemy_scenes = Array[PackedScene]([ExtResource("11_lqjba")])
+background_tiles = Array[Texture]([ExtResource("1_sijxs")])
+metadata/_custom_type_script = "uid://dh1h11m36jqp0"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="FPS" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="BG" type="TextureRect" parent="."]
+[node name="BG" type="TextureRect" parent="LevelManager"]
 z_index = -1
 offset_left = -1671.0
 offset_top = -1015.0
@@ -28,7 +32,13 @@ texture = ExtResource("1_sijxs")
 stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Player" parent="." instance=ExtResource("2_ko3n4")]
+[node name="BulletManager" parent="." instance=ExtResource("2_npses")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FPS" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="Static" type="Node2D" parent="."]
 
@@ -43,6 +53,8 @@ position = Vector2(163, 352)
 
 [node name="Block4" parent="Static" instance=ExtResource("4_w3c6p")]
 position = Vector2(441, 317)
+
+[node name="Player" parent="." instance=ExtResource("2_ko3n4")]
 
 [node name="Enemy" parent="." instance=ExtResource("11_lqjba")]
 position = Vector2(222, 227)

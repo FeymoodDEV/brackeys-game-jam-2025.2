@@ -10,23 +10,49 @@ var look_direction : Vector2
 
 #region Dash variables
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
+@onready var nom_dash_aoe: Area2D = $NomDashAoE
+
 @export var dash_cooldown : float = 3.0
 @export var dash_power : float = 100.0
 @export var dash_duration : float = 0.5
 @export var dash_friction : float = 10.0
 #endregion
 
+#region Targeting variables
 @onready var crosshair: Node2D = $Crosshair
 @export var health: float = 10
 
 func _enter_tree():
 	EventManager.player_spawned.emit(get_path())
+#endregion
+
+#region Upgrade variables
+signal upgrade_level_changed
+
+var current_level : int = 0
+## Progress towards upgrading. Increases when absorbing bullets with nom dash,
+## consumed by  when leveling up
+var absorb_pts : int = 0 :
+	set(val):
+		absorb_pts = val
+		
+		var pending_signal : bool = false
+		while current_level < max_level and absorb_pts >= upgrade_threshold:
+			absorb_pts -= upgrade_threshold
+			current_level += 1
+			pending_signal = true
+		if pending_signal: upgrade_level_changed.emit()
+
+## Points required for upgrade. Mind: this is constant. To make the cost increase
+## for higher levels, we'll use multipliers.
+@export var upgrade_threshold : int = 10
+## Max upgrade level. Starts at zero!!!
+@export var max_level : int = 2
+#endregion
 
 func _physics_process(delta: float) -> void:
-	## Get look direction and rotate node accordingly
-	#look_direction = get_mouse_vector().normalized();
-	#self.rotation = look_direction.angle();
-	pass
+	if Input.is_action_just_pressed("level_down"):
+		level_down()
 
 func get_movement_vector() -> Vector2:
 	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -58,3 +84,8 @@ func apply_damage(damage: int, knockback: float, global_position: Vector2, direc
 	
 	if health <= 0:
 		print("DIE")
+		
+func level_down() -> void:
+	if current_level > 0:
+		current_level -= 1
+		upgrade_level_changed.emit()

@@ -6,7 +6,13 @@ var dash_velocity : float
 var dash_vector : Vector2
 
 func _on_enter(args) -> void:
+	# start cooldown
 	target.dash_cooldown_timer.start(target.dash_cooldown)
+	# enable absorb zone
+	target.nom_dash_aoe.monitoring = true 
+	# render player intangible
+	target.set_collision_layer_value(1, false)
+	
 	
 	dash_velocity = target.dash_power
 	dash_vector = args.normalized() # this should be a vector2 direction
@@ -32,6 +38,17 @@ func _on_update(_delta) -> void:
 			change_state("Normal")
 
 func _on_exit(args) -> void:
+	# disable absorb zone
+	target.nom_dash_aoe.monitoring = false
+	# render player tangible
+	target.set_collision_layer_value(1, true)
+	
 	# just in case...
 	dash_velocity = 0
 	dash_vector = Vector2.ZERO
+	
+
+func _absorb_bullet(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	#print(area is BulletNode) # true
+	target.absorb_pts += area.data.absorb_value
+	Spawning.delete_bullet(area);
