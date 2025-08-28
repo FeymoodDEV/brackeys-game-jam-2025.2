@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bh4n0qihnupx7"]
+[gd_scene load_steps=35 format=3 uid="uid://bh4n0qihnupx7"]
 
 [ext_resource type="Script" uid="uid://cgd1wjud4ds5l" path="res://scripts/managers/bullet_manager.gd" id="1_s87c5"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="2_5m336"]
@@ -266,15 +266,14 @@ r_scale_multi_iter_variation = Vector3(0, 0, 0)
 r_scale_multi_scale_variation = Vector3(0, 0, 0)
 metadata/_custom_type_script = "uid://dvueqbi8eexbm"
 
-[sub_resource type="Curve2D" id="Curve2D_ttg52"]
+[sub_resource type="Curve2D" id="Curve2D_er4hb"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 701, 125, 0, 0, 0, 0, 753, 91, 0, 0, 0, 0, 799, 123, 0, 0, 0, 0, 787, 73, 0, 0, 0, 0, 832, 48, 0, 0, 0, 0, 777, 39, 0, 0, 0, 0, 758, -13, 0, 0, 0, 0, 731, 36, 0, 0, 0, 0, 686, 41, 0, 0, 0, 0, 723, 71)
+"points": PackedVector2Array(0, 0, 0, 0, -40, -40, 0, 0, 10, 10, 40, -40)
 }
-point_count = 10
+point_count = 2
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_0ek73"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_um252"]
 resource_name = "PatternOne"
-source_geometry_group_name = &"navigation_polygon_source_group"
 script = ExtResource("11_lswlb")
 bullet = "PBullet"
 nbr = 1
@@ -284,8 +283,8 @@ pattern_angle_target = NodePath("")
 pattern_angle_mouse = false
 forced_angle = 0.0
 forced_target = NodePath("")
-forced_lookat_mouse = false
-forced_pattern_lookat = false
+forced_lookat_mouse = true
+forced_pattern_lookat = true
 cooldown_stasis = false
 cooldown_spawn = 1.0
 cooldown_shoot = 0.0
@@ -294,6 +293,13 @@ cooldown_next_shoot = 0.0
 wait_tween_momentum = 0
 wait_tween_length = 0.0
 wait_tween_time = 0.0
+metadata/_custom_type_script = "uid://b6cup3hdpqd6v"
+
+[sub_resource type="Curve2D" id="Curve2D_ttg52"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 701, 125, 0, 0, 0, 0, 753, 91, 0, 0, 0, 0, 799, 123, 0, 0, 0, 0, 787, 73, 0, 0, 0, 0, 832, 48, 0, 0, 0, 0, 777, 39, 0, 0, 0, 0, 758, -13, 0, 0, 0, 0, 731, 36, 0, 0, 0, 0, 686, 41, 0, 0, 0, 0, 723, 71)
+}
+point_count = 10
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_er4hb"]
 resource_name = "PatternLine"
@@ -469,10 +475,10 @@ props = SubResource("PackedDataContainer_lswlb")
 [node name="Patterns" type="Node2D" parent="."]
 
 [node name="PlayerOne" type="Path2D" parent="Patterns"]
-curve = SubResource("Curve2D_ttg52")
+curve = SubResource("Curve2D_er4hb")
 script = ExtResource("10_bvdue")
 id = "player_one"
-pattern = SubResource("NavigationPolygon_0ek73")
+pattern = SubResource("NavigationPolygon_um252")
 
 [node name="PlayerLine" type="Path2D" parent="Patterns"]
 curve = SubResource("Curve2D_ttg52")

@@ -56,7 +56,8 @@ func shoot() -> void:
 	var rot = global_rotation
 	var node = get_parent().get_parent();
 
-
-	Spawning.spawn(self, "player_line", "0")
+	Spawning.spawn({"position": spawn_pos + (global_transform.y*20), "rotation": 0, "source_node": node}, "player_one", "0")
+	Spawning.spawn({"position": spawn_pos + (global_transform.y*-20), "rotation": 0, "source_node": node}, "player_one", "0")
+	
 	
 	
