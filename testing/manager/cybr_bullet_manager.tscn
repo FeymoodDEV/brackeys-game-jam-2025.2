@@ -234,7 +234,7 @@ point_count = 10
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_iuweo"]
 resource_name = "PatternLine"
 script = ExtResource("9_pqqf2")
-offset = Vector2(20, 40)
+offset = Vector2(20, -20)
 center = 5
 symmetric = true
 bullet = "EBullet"
