@@ -13,7 +13,7 @@ config_version=5
 config/name="Brackeys Game Jam 2025.2"
 run/main_scene="uid://cscfgbkbj3nb"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://dvmelf1c58r5d"
 
 [autoload]
 
@@ -33,11 +33,10 @@ window/size/viewport_width=640
 window/size/viewport_height=360
 window/size/window_width_override=1280
 window/size/window_height_override=720
-mouse_cursor/custom_image="uid://cjp7e03yx3yqx"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg", "res://addons/xsm/plugin.cfg")
+enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg", "res://addons/editor/inspector_tabs/plugin.cfg", "res://addons/editor/script-ide/plugin.cfg", "res://addons/editor/vectorpad/plugin.cfg", "res://addons/xsm/plugin.cfg")
 
 [input]
 

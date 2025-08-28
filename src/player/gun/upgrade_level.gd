@@ -16,6 +16,7 @@ const coll_path = GameConfig.player_colliders_dir;
 @export var speed : float = 220.0
 
 func _on_enter(args) -> void:
+	# Apply new variables.
 	target.gun.pattern = pattern
 	target.sprite_2d.texture = texture
 	target.hitbox_shape.shape = hitbox_shape
