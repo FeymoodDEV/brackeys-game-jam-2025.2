@@ -7,4 +7,3 @@ func _ready():
 	
 func deferred_ready():
 	player_node.reparent(get_parent())
-	EventManager.player_spawned.emit(player_node.get_path())
