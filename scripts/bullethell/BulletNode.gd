@@ -1,23 +1,42 @@
 extends BuHBulletNode
 class_name BulletNode
 
-#region BulletNodeData
-@export var data: BulletNodeData
-#endregion
+@export_group("Gameplay")
+@export var speed: float = 600.0
+@export var damage: float = 10.0
+@export var lifetime: float = 1.5
+@export var pierce_count: int = 0
+@export var knockback: float = 0.0
+@export var absorb_value: int = 1
+
+@export_group("Visuals")
+@export var bullet_texture: Texture2D
+@export var sprite_scale: float = 0.25;
+@export var hit_vfx: PackedScene
+@export var hit_sfx: AudioStream
+@export var trail_vfx: PackedScene
+
+
+@onready var sprite: Sprite2D = $Sprite2D
+var direction: Vector2 = Vector2.RIGHT
+var time_alive: float = 0.0
+var remaining_pierce: int = 0
+
+@onready var trail: GPUParticles2D = $GPUParticles2D;
 
 #region Graphics onready vars
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var trail: GPUParticles2D = $GPUParticles2D;
 #endregion
 
-#region BulletNodeData vars
-var direction: Vector2 = Vector2.RIGHT
-var time_alive: float = 0.0
-var remaining_pierce: int = 0
-var hit_vfx;
-#endregion
-
 var trail_particles: GPUParticles2D;
+
+func _draw():
+	draw_texture(bullet_texture, bullet_texture.get_size()/2);
+	pass
+	
+func _process(delta):
+	queue_redraw();
 
 func _ready() -> void:
 	assert(data);
@@ -25,14 +44,11 @@ func _ready() -> void:
 	# Connect signals
 	body_shape_entered.connect(_on_body_shape_entered);
 	
-	# Load data from BulletNodeData into local vars
-	remaining_pierce = data.pierce_count
+	remaining_pierce = pierce_count
 	
-	trail_particles = data.trail_vfx.instantiate();
-	
-	if data.texture:
-		sprite.texture = data.texture
-		sprite.scale = Vector2.ONE * data.scale
+	if bullet_texture:
+		sprite.texture = bullet_texture;
+		sprite.scale = Vector2.ONE * sprite_scale;
 		
 	if GameConfig.SHOW_TRAILS:
 		trail_particles.emitting = true;
@@ -89,18 +105,18 @@ func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index)
 		Spawning.delete_bullet(self);
 		return
 	else: 
-		body.apply_damage(data.damage, data.knockback, global_position, direction)
+		body.apply_damage(damage, knockback, global_position, direction)
 	
-	if data.hit_vfx:
-		var hit_vfx: GPUParticles2D = data.hit_vfx.instantiate()
+	if hit_vfx:
+		var hit_vfx: GPUParticles2D = hit_vfx.instantiate()
 		hit_vfx.global_position = global_position
 		hit_vfx.emitting = true
 		hit_vfx.finished.connect.bind(hit_vfx.queue_free.call_deferred);
 		get_parent().add_child(hit_vfx)
 
-	if data.hit_sfx:
+	if hit_sfx:
 		var audio: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
-		audio.stream = data.hit_sfx
+		audio.stream = hit_sfx
 		audio.global_position = global_position
 		get_parent().add_child(audio)
 		audio.play()
