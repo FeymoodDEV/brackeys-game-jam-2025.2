@@ -1,26 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccrxh34dcnijy"]
+[gd_scene load_steps=9 format=3 uid="uid://ccrxh34dcnijy"]
 
 [ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/tile.png" id="1_sijxs"]
 [ext_resource type="Script" uid="uid://bc7o63ppdn8uw" path="res://testing/cybrnight_main.gd" id="1_w3c6p"]
 [ext_resource type="Script" uid="uid://dh1h11m36jqp0" path="res://scripts/managers/level_manager.gd" id="2_kjgpp"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="2_ko3n4"]
-[ext_resource type="PackedScene" uid="uid://chjrmgc7vavve" path="res://testing/manager/cybr_bullet_manager.tscn" id="2_npses"]
 [ext_resource type="PackedScene" uid="uid://y2xgcb36jh3" path="res://scenes/blocks/block_3.tscn" id="4_sijxs"]
 [ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://scenes/blocks/block_1.tscn" id="4_w3c6p"]
 [ext_resource type="PackedScene" uid="uid://cux5gt5ppivxe" path="res://scenes/blocks/block_2.tscn" id="6_ko3n4"]
-[ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://scenes/enemies/basic_enemy.tscn" id="11_lqjba"]
+[ext_resource type="PackedScene" uid="uid://da23540mi13y1" path="res://scenes/enemies/enemy.tscn" id="7_sijxs"]
 
 [node name="CybrnightMain" type="Node2D"]
 script = ExtResource("1_w3c6p")
-
-[node name="BulletManager" parent="." instance=ExtResource("2_npses")]
 
 [node name="LevelManager" type="Node2D" parent="."]
 script = ExtResource("2_kjgpp")
 player_scene = ExtResource("2_ko3n4")
 border_scene = ExtResource("4_sijxs")
 block_scenes = Array[PackedScene]([ExtResource("4_w3c6p"), ExtResource("6_ko3n4"), ExtResource("4_sijxs")])
-enemy_scenes = Array[PackedScene]([ExtResource("11_lqjba")])
+enemy_scenes = Array[PackedScene]([ExtResource("7_sijxs")])
 background_tiles = Array[Texture]([ExtResource("1_sijxs")])
 metadata/_custom_type_script = "uid://dh1h11m36jqp0"
 
@@ -53,213 +50,3 @@ position = Vector2(163, 352)
 
 [node name="Block4" parent="Static" instance=ExtResource("4_w3c6p")]
 position = Vector2(441, 317)
-
-[node name="Enemy" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(1923, 1043)
-
-[node name="Enemy2" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy3" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy4" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy5" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy6" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy7" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy8" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy9" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy10" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy11" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy12" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy13" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy14" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy15" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy16" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy17" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy18" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy19" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(1923, 1043)
-
-[node name="Enemy20" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy21" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy22" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy23" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy24" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy25" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy26" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy27" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy28" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy29" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy30" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy31" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy32" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy33" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy34" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy35" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy36" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy37" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(1923, 1043)
-
-[node name="Enemy38" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy39" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy40" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy41" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy42" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy43" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy44" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2430, 776)
-
-[node name="Enemy45" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2430, 776)
-
-[node name="Enemy46" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2430, 776)
-
-[node name="Enemy47" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2430, 776)
-
-[node name="Enemy48" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy49" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy50" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy51" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy52" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy53" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy54" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy55" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(1923, 1043)
-
-[node name="Enemy56" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy57" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy58" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy59" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)
-
-[node name="Enemy60" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(1177, 1160)
-
-[node name="Enemy61" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(1177, 1160)
-
-[node name="Enemy62" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(543, 1323)
-
-[node name="Enemy63" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(1511, 1433)
-
-[node name="Enemy64" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(1511, 1433)
-
-[node name="Enemy65" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(1511, 1433)
-
-[node name="Enemy66" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(1511, 1433)
-
-[node name="Enemy67" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(1511, 1433)
-
-[node name="Enemy68" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(1511, 1433)
-
-[node name="Enemy69" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(1511, 1433)
-
-[node name="Enemy70" parent="." instance=ExtResource("11_lqjba")]
-position = Vector2(2145, 1270)

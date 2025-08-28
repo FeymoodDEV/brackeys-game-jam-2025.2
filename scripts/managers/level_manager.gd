@@ -24,6 +24,7 @@ var grid: Array = []
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready():
+	EventManager.game_scene_loaded.emit();
 	EventManager.player_spawned.connect(_level_ready);
 
 func _level_ready(player_path: NodePath) -> void:
