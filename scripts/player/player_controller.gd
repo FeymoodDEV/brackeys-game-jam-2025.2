@@ -50,7 +50,7 @@ var health: float
 @export var max_health: float = 100
 
 func _enter_tree():
-	EventManager.player_spawned.emit(get_path())
+	pass
 	
 func _ready():
 	health = max_health
@@ -58,6 +58,7 @@ func _ready():
 		"progress_max_value": 100, 
 		"health_max_value": max_health,
 	})
+	EventManager.player_spawned.emit(get_path())
 	
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("level_down"):

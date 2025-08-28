@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://chjrmgc7vavve"]
+[gd_scene load_steps=27 format=3 uid="uid://chjrmgc7vavve"]
 
 [ext_resource type="Script" uid="uid://cgd1wjud4ds5l" path="res://scripts/managers/bullet_manager.gd" id="1_or46o"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://scenes/player/player.tscn" id="1_sr4k1"]
@@ -202,56 +202,11 @@ wait_tween_momentum = 0
 wait_tween_length = 0.0
 wait_tween_time = 0.0
 
-[sub_resource type="Curve2D" id="Curve2D_rwh7c"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 701, 125, 0, 0, 0, 0, 753, 91, 0, 0, 0, 0, 799, 123, 0, 0, 0, 0, 787, 73, 0, 0, 0, 0, 832, 48, 0, 0, 0, 0, 777, 39, 0, 0, 0, 0, 758, -13, 0, 0, 0, 0, 731, 36, 0, 0, 0, 0, 686, 41, 0, 0, 0, 0, 723, 71)
-}
-point_count = 10
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_7hhsh"]
-resource_name = "PatternLine"
-source_geometry_group_name = &"navigation_polygon_source_group"
-script = ExtResource("9_pqqf2")
-offset = Vector2(0, 20)
-center = 1
-symmetric = true
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_5h2se"]
+resource_name = "PatternOne"
+script = ExtResource("8_o2lmx")
 bullet = "EBullet"
-nbr = 5
-iterations = 1
-pattern_angle = 0.0174533
-pattern_angle_target = NodePath("")
-pattern_angle_mouse = false
-forced_angle = 0.0
-forced_target = NodePath("../../Player")
-forced_lookat_mouse = false
-forced_pattern_lookat = true
-cooldown_stasis = false
-cooldown_spawn = 5.0
-cooldown_shoot = 0.0
-cooldown_next_spawn = 0.0
-cooldown_next_shoot = 0.0
-wait_tween_momentum = 0
-wait_tween_length = 0.0
-wait_tween_time = 0.0
-
-[sub_resource type="Curve2D" id="Curve2D_td6b6"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 701, 125, 0, 0, 0, 0, 753, 91, 0, 0, 0, 0, 799, 123, 0, 0, 0, 0, 787, 73, 0, 0, 0, 0, 832, 48, 0, 0, 0, 0, 777, 39, 0, 0, 0, 0, 758, -13, 0, 0, 0, 0, 731, 36, 0, 0, 0, 0, 686, 41, 0, 0, 0, 0, 723, 71)
-}
-point_count = 10
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_dbqtp"]
-resource_name = "PatternCircle"
-source_geometry_group_name = &"navigation_polygon_source_group"
-script = ExtResource("10_hhpfr")
-radius = 0
-angle_total = 6.28319
-angle_decal = 0.0
-symmetric = false
-center = 0
-symmetry_type = 0
-bullet = "PBullet"
-nbr = 5
+nbr = 1
 iterations = 1
 pattern_angle = 0.0
 pattern_angle_target = NodePath("")
@@ -261,13 +216,81 @@ forced_target = NodePath("../../Player")
 forced_lookat_mouse = false
 forced_pattern_lookat = true
 cooldown_stasis = false
-cooldown_spawn = 5.0
+cooldown_spawn = 1.0
 cooldown_shoot = 0.0
 cooldown_next_spawn = 0.0
 cooldown_next_shoot = 0.0
 wait_tween_momentum = 0
 wait_tween_length = 0.0
 wait_tween_time = 0.0
+metadata/_custom_type_script = "uid://b6cup3hdpqd6v"
+
+[sub_resource type="Curve2D" id="Curve2D_rwh7c"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 701, 125, 0, 0, 0, 0, 753, 91, 0, 0, 0, 0, 799, 123, 0, 0, 0, 0, 787, 73, 0, 0, 0, 0, 832, 48, 0, 0, 0, 0, 777, 39, 0, 0, 0, 0, 758, -13, 0, 0, 0, 0, 731, 36, 0, 0, 0, 0, 686, 41, 0, 0, 0, 0, 723, 71)
+}
+point_count = 10
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_iuweo"]
+resource_name = "PatternLine"
+script = ExtResource("9_pqqf2")
+offset = Vector2(20, 40)
+center = 5
+symmetric = true
+bullet = "EBullet"
+nbr = 10
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("../../Player")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+metadata/_custom_type_script = "uid://c8a1x50bjmkue"
+
+[sub_resource type="Curve2D" id="Curve2D_td6b6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 701, 125, 0, 0, 0, 0, 753, 91, 0, 0, 0, 0, 799, 123, 0, 0, 0, 0, 787, 73, 0, 0, 0, 0, 832, 48, 0, 0, 0, 0, 777, 39, 0, 0, 0, 0, 758, -13, 0, 0, 0, 0, 731, 36, 0, 0, 0, 0, 686, 41, 0, 0, 0, 0, 723, 71)
+}
+point_count = 10
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_or46o"]
+resource_name = "PatternCircle"
+script = ExtResource("10_hhpfr")
+radius = 25
+angle_total = 6.28319
+angle_decal = 0.0
+symmetric = false
+center = 0
+symmetry_type = 0
+bullet = "EBullet"
+nbr = 20
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("../../Player")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+metadata/_custom_type_script = "uid://csxp6a77ij7sk"
 
 [node name="BulletManager" type="Node2D"]
 script = ExtResource("1_or46o")
@@ -307,27 +330,25 @@ data = ExtResource("6_i0jjw")
 [node name="PlayerOne" type="Path2D" parent="Patterns"]
 curve = SubResource("Curve2D_ttg52")
 script = ExtResource("7_x3hlf")
-id = "one"
+id = "player_one"
 pattern = SubResource("NavigationPolygon_0ek73")
 
-[node name="PlayerLine" type="Path2D" parent="Patterns"]
+[node name="EnemyOne" type="Path2D" parent="Patterns"]
+curve = SubResource("Curve2D_ttg52")
+script = ExtResource("7_x3hlf")
+id = "enemy_one"
+pattern = SubResource("NavigationPolygon_5h2se")
+
+[node name="EnemyLine" type="Path2D" parent="Patterns"]
 curve = SubResource("Curve2D_rwh7c")
 script = ExtResource("7_x3hlf")
-id = "p_line"
-pattern = SubResource("NavigationPolygon_7hhsh")
+id = "enemy_line"
+pattern = SubResource("NavigationPolygon_iuweo")
 preview_spawn = true
 preview_shoot = true
 
-[node name="SpawnPattern2" type="Path2D" parent="Patterns"]
+[node name="EnemyCircle" type="Path2D" parent="Patterns"]
 curve = SubResource("Curve2D_td6b6")
 script = ExtResource("7_x3hlf")
-id = "circle"
-pattern = SubResource("NavigationPolygon_dbqtp")
-
-[node name="SpawnPattern3" type="Path2D" parent="Patterns"]
-curve = SubResource("Curve2D_rwh7c")
-script = ExtResource("7_x3hlf")
-id = "line"
-pattern = SubResource("NavigationPolygon_7hhsh")
-preview_spawn = true
-preview_shoot = true
+id = "enemy_circle"
+pattern = SubResource("NavigationPolygon_or46o")

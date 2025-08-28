@@ -39,7 +39,6 @@ func _ready() -> void:
 	
 	pattern = enemy_data.pattern;
 	
-	Spawning.create_pool("EBullet", "1", 10, true);
 	pick_new_direction()
 
 func _physics_process(delta: float) -> void:
