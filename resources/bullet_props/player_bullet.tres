@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bapo6jcdsje8y" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="1_wuprn"]
 [ext_resource type="PackedScene" uid="uid://cbqgxhuvoxtgg" path="res://prefabs/particles/first_hit_vfx.tscn" id="2_dj5ox"]
 [ext_resource type="Script" uid="uid://dvueqbi8eexbm" path="res://src/bullethell/BulletPropsExtend.gd" id="3_o4npb"]
-[ext_resource type="Texture2D" uid="uid://cb7mkdjkuy26s" path="res://assets/bullet_sprites/bullet.png" id="4_k33s0"]
+[ext_resource type="Texture2D" uid="uid://cb7mkdjkuy26s" path="res://assets/sprites/bullet/bullet.png" id="4_k33s0"]
 
 [sub_resource type="Curve" id="Curve_dub4d"]
 
