@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://2ads1o1pbagk"]
+
+[ext_resource type="PackedScene" uid="uid://bh4n0qihnupx7" path="res://prefabs/managers/bullet_manager.tscn" id="1_nsrm0"]
+[ext_resource type="PackedScene" uid="uid://cxxnbcxiuusqt" path="res://prefabs/managers/level_manager.tscn" id="2_x42e6"]
+[ext_resource type="PackedScene" uid="uid://j4ljg2vl3nfv" path="res://prefabs/ui/player_ui.tscn" id="3_6761a"]
+[ext_resource type="PackedScene" uid="uid://bq8imdqkwil54" path="res://prefabs/bosses/chocolate_king.tscn" id="3_x42e6"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="BulletManager" parent="." instance=ExtResource("1_nsrm0")]
+
+[node name="LevelManager" parent="." instance=ExtResource("2_x42e6")]
+boss_scene = ExtResource("3_x42e6")
+
+[node name="PlayerUI" parent="." instance=ExtResource("3_6761a")]

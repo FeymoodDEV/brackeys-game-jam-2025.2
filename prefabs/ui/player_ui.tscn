@@ -34,7 +34,8 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 300.0
+wait_time = 5.0
+one_shot = true
 
 [node name="BossHealthBar" type="ProgressBar" parent="."]
 anchors_preset = 5

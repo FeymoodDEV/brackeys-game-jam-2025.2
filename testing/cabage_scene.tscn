@@ -25,3 +25,4 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(1814, 1495)
 
 [editable path="BulletManager"]
+[editable path="BulletManager/Player"]

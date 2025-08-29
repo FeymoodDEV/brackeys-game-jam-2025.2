@@ -13,7 +13,6 @@ var player: PlayerController
 @export var cluster_chance: float = 0.01
 @export var cluster_size: int = 4
 
-@export var player_scene: PackedScene
 @export var border_scene: PackedScene
 
 @export var block_scenes: Array[PackedScene]
@@ -21,28 +20,32 @@ var player: PlayerController
 @export var enemy_datas: Array[EnemyData]
 @export var background_tiles: Array[Texture]
 
+@export var boss_scene: PackedScene
+
 var grid: Array = []
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
-func _ready():
+func _enter_tree():
 	EventManager.player_spawned.connect(_level_ready);
+	EventManager.spawn_boss.connect(_on_boss_spawn)
 
 func _level_ready(player_path: NodePath) -> void:
 	player = get_node(player_path)
 	$BG.texture = background_tiles[randi() % background_tiles.size()]
 	
-	# Initialize grid with false in order to track empty cells
+	create_empty_grid()
+	generate_level()
+	spawn_enemies()
+	place_player()
+
+## Initialize grid with false in order to track empty cells
+func create_empty_grid() -> void:
 	grid.resize(map_height)
 	for y: int in range(grid.size()):
 		grid[y] = []
 		grid[y].resize(map_width)
 		for x: int in range(map_width):
 			grid[y][x] = false
-			
-	generate_level()
-	spawn_enemies()
-	spawn_player()
-	assign_target_for_bullet_patterns()
 
 func generate_level() -> void:
 	for y: int in range(map_height):
@@ -91,8 +94,8 @@ func spawn_enemies() -> void:
 				enemy.player = player;
 				get_parent().add_child.call_deferred(enemy)
 
-## finds one open cell where to place enemy
-func spawn_player() -> void:
+## finds one open cell where to place player
+func place_player() -> void:
 	var mid_x: int = int(map_width / 2)
 	var mid_y: int = int(map_height / 2)
 
@@ -117,6 +120,11 @@ func spawn_player() -> void:
 	player.global_position = Vector2(chosen.x * cell_size, chosen.y * cell_size)
 	grid[chosen.y][chosen.x] = true
 
-## We need to do this otherwise the patterns won't rotate correctly
-func assign_target_for_bullet_patterns() -> void:
-	pass
+func _on_boss_spawn() -> void:
+	assert(boss_scene, "setup Boss scene");
+	if !boss_scene: return
+	
+	var boss_instance: BossControler = boss_scene.instantiate()
+	boss_instance.position = Vector2(400,400)
+	get_parent().add_child(boss_instance)
+	

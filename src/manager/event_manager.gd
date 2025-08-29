@@ -9,7 +9,8 @@ signal game_paused;
 
 signal health_changed(new_health)
 signal boss_health_changed(new_health)
-signal boss_spawned(bossData)
+signal spawn_boss()
+signal setup_boss_ui(boss_max_health, boss_name)
 signal progress_changed(new_xp)
 
 func _ready():

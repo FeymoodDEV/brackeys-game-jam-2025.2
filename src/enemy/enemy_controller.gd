@@ -115,5 +115,4 @@ func apply_damage(damage: int, knockback: float, global_position: Vector2, direc
 		safe_queue_free();
 
 func _on_player_spawned(path: NodePath):
-	print(path)
 	player = get_node(path)
