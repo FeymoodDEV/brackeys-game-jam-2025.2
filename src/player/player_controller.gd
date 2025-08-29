@@ -123,14 +123,21 @@ func apply_damage(damage: int, knockback: float, global_position: Vector2, direc
 	EventManager.emit_signal("health_changed", health)
 	
 	if health <= 0:
-		print("DIE")
-		var vfx = death_vfx.instantiate()
-		add_child(vfx)
-		vfx.top_level = true
-		vfx.global_position = global_position
-		vfx.play(&"default")
+		die()
 	
 	# TODO: implement knockback.
+
+signal player_dead
+
+func die() -> void:
+	print("DIE")
+	var vfx = death_vfx.instantiate()
+	add_child(vfx)
+	vfx.top_level = true
+	vfx.global_position = global_position
+	vfx.play(&"default")
+	player_dead.emit(player_dead)
+	
 
 ## Reduces upgrade level by one. 
 func level_down() -> void:

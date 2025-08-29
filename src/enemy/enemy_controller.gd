@@ -112,7 +112,15 @@ func pick_new_direction() -> void:
 func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2) -> void:
 	health -= damage;
 	if health <= 0:
-		safe_queue_free();
+		die()
+
+func die() -> void:
+	var vfx = enemy_data.death_vfx.instantiate()
+	get_tree().get_root().add_child(vfx)
+	vfx.top_level = true
+	vfx.global_position = global_position
+	vfx.play(&"default")
+	safe_queue_free()
 
 func _on_player_spawned(path: NodePath):
 	print(path)
