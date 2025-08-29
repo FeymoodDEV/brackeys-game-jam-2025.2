@@ -5,10 +5,13 @@ signal player_setup(dictionary)
 
 signal menu_loaded;
 signal game_started;
+
 signal level_scene_instanced(level_scene: Node2D);
-signal level_started;
+signal level_started(map_time: float);
+signal level_ended;
 
 signal game_paused;
+signal game_ended;
 
 signal health_changed(new_health)
 signal boss_health_changed(new_health)

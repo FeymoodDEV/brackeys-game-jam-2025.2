@@ -22,7 +22,7 @@
 [ext_resource type="Resource" uid="uid://bqxvy5sr6pupv" path="res://resources/enemy_data/line_enemy.tres" id="20_aevx6"]
 [ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://prefabs/enemies/basic_enemy.tscn" id="21_yobwi"]
 [ext_resource type="PackedScene" uid="uid://v8cuu0pu7gfx" path="res://scenes/levels/level_3.tscn" id="22_h4hnp"]
-[ext_resource type="Script" path="res://src/level_data.gd" id="23_x8ew3"]
+[ext_resource type="Script" uid="uid://bsxc5d4jawjyr" path="res://src/level_data.gd" id="23_x8ew3"]
 
 [resource]
 script = ExtResource("23_x8ew3")

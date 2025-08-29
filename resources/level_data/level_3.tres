@@ -21,7 +21,7 @@
 [ext_resource type="Resource" uid="uid://enusg5jloedi" path="res://resources/enemy_data/circle_enemy.tres" id="19_16qpw"]
 [ext_resource type="Resource" uid="uid://bqxvy5sr6pupv" path="res://resources/enemy_data/line_enemy.tres" id="20_vkwch"]
 [ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://prefabs/enemies/basic_enemy.tscn" id="21_e0imc"]
-[ext_resource type="Script" path="res://src/level_data.gd" id="23_hooar"]
+[ext_resource type="Script" uid="uid://bsxc5d4jawjyr" path="res://src/level_data.gd" id="23_hooar"]
 
 [resource]
 script = ExtResource("23_hooar")
