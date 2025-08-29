@@ -1,0 +1,322 @@
+[gd_scene load_steps=38 format=3 uid="uid://2gsa8xymn0k3"]
+
+[ext_resource type="Script" uid="uid://xydw8pnry765" path="res://src/player/player_controller.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://devb6j2col43u" path="res://assets/sprites/player/ship3.png" id="2_uf5tr"]
+[ext_resource type="Shape2D" uid="uid://cnjor30f1xoa1" path="res://prefabs/player/level_1_hitbox.tres" id="3_kvlxm"]
+[ext_resource type="Shape2D" uid="uid://cdxuhi06dx5ji" path="res://prefabs/player/level_2_hitbox.tres" id="3_lgqa7"]
+[ext_resource type="PackedScene" uid="uid://cdmeut6gpnrdx" path="res://prefabs/player/player_gun.tscn" id="3_myrg7"]
+[ext_resource type="Shape2D" uid="uid://2i71f8o8iqxk" path="res://prefabs/player/level_3_nombox.tres" id="3_uf5tr"]
+[ext_resource type="Script" path="res://src/player/thrusters.gd" id="4_ag4y2"]
+[ext_resource type="Shape2D" uid="uid://cu1nofnlrgf2a" path="res://prefabs/player/level_3_hitbox.tres" id="4_lgqa7"]
+[ext_resource type="SpriteFrames" uid="uid://bmhq5ceo5wdkr" path="res://resources/animations/ship-thrusters-anim.tres" id="4_vtpqo"]
+[ext_resource type="Shape2D" uid="uid://bivjpsiot2lxr" path="res://prefabs/player/level_2_nombox.tres" id="5_8ydkj"]
+[ext_resource type="Shape2D" uid="uid://cmn0egykq5740" path="res://prefabs/player/level_1_nombox.tres" id="5_kvlxm"]
+[ext_resource type="Script" uid="uid://b2l0jlbk7oecc" path="res://addons/xsm/state_regions.gd" id="6_0owmy"]
+[ext_resource type="Texture2D" uid="uid://b18crkv7x2kpf" path="res://assets/sprites/player/thruster-particle.png" id="6_dmwb1"]
+[ext_resource type="Texture2D" uid="uid://ogb51tdot7ho" path="res://assets/sprites/player/ship1.png" id="7_8ris0"]
+[ext_resource type="Script" uid="uid://yw44daxcsxw0" path="res://src/player/states/movement_state.gd" id="7_h17s1"]
+[ext_resource type="Script" uid="uid://dlfvfwm3dmxry" path="res://src/player/trail_particles.gd" id="7_hp4ge"]
+[ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://src/player/states/normal_state.gd" id="8_qek5x"]
+[ext_resource type="Texture2D" uid="uid://dj3abyu5tht7s" path="res://assets/sprites/player/nomdash.png" id="8_xtdcv"]
+[ext_resource type="Script" uid="uid://des4f477v63vn" path="res://src/player/states/circling_state.gd" id="9_5gtgg"]
+[ext_resource type="Script" uid="uid://cbvm26wvakcp0" path="res://prefabs/player/audio.gd" id="10_4jdxe"]
+[ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://src/player/states/nom_dash_state.gd" id="10_h17s1"]
+[ext_resource type="Script" uid="uid://crak72h5onoyp" path="res://src/player/gun/upgrade_level.gd" id="10_kvlxm"]
+[ext_resource type="Script" uid="uid://bwsv0v5wgoh2s" path="res://src/player/gun/upgrade.gd" id="10_myrg7"]
+[ext_resource type="AudioStream" uid="uid://rq82uv4hvhtw" path="res://assets/sounds/player/thrusters.ogg" id="11_a0po4"]
+[ext_resource type="Script" uid="uid://bh8rpek0w1o47" path="res://src/player/targeting/crosshair.gd" id="11_fm80t"]
+[ext_resource type="Script" uid="uid://5yo5iu6shjs3" path="res://addons/xsm/state.gd" id="12_cnsyf"]
+[ext_resource type="Texture2D" uid="uid://bptr4hwxaoyjv" path="res://assets/sprites/player/crosshair.svg" id="12_gx1jg"]
+[ext_resource type="AudioStream" uid="uid://d3m0l6i7bdoon" path="res://assets/sounds/player/shoot2.ogg" id="12_lxdfn"]
+[ext_resource type="AudioStream" uid="uid://b7kinyl0gjisp" path="res://assets/sounds/player/damaged.ogg" id="13_lxdfn"]
+[ext_resource type="Texture2D" uid="uid://cb0h3dqmm5j15" path="res://assets/sprites/player/ship2.png" id="13_uf5tr"]
+[ext_resource type="Script" uid="uid://cfmoqb7g6yigs" path="res://src/player/targeting/lock_reticle.gd" id="13_ugbui"]
+[ext_resource type="Texture2D" uid="uid://cal60wifol3qs" path="res://assets/sprites/player/soft-lock.svg" id="14_fcs02"]
+[ext_resource type="AudioStream" uid="uid://c0sw3ke3l6tb5" path="res://assets/sounds/player/dead.ogg" id="14_xtdcv"]
+[ext_resource type="Texture2D" uid="uid://dr2oj506weijh" path="res://assets/sprites/player/hard-lock.svg" id="15_fcs02"]
+[ext_resource type="AudioStream" uid="uid://08c3m3kad13n" path="res://assets/sounds/player/dash.ogg" id="16_kxs7h"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ris0"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1.5, 1.5, 1.5)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.23517e-06
+radial_accel_max = 13.99
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fm80t"]
+radius = 36.0555
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 20
+script = ExtResource("1_g2els")
+dash_power = 1000.0
+dash_friction = 0.9
+
+[node name="NomDashAoE" type="Area2D" parent="."]
+collision_mask = 16
+monitoring = false
+
+[node name="NomboxShape" type="CollisionShape2D" parent="NomDashAoE"]
+shape = ExtResource("5_kvlxm")
+debug_color = Color(0, 0.64383, 0.292706, 0.42)
+
+[node name="HitboxShape" type="CollisionShape2D" parent="."]
+shape = ExtResource("3_kvlxm")
+
+[node name="Thrusters" type="Node2D" parent="."]
+
+[node name="Level1Thrusters" type="Node2D" parent="Thrusters" node_paths=PackedStringArray("upgrade_state")]
+visible = false
+script = ExtResource("4_ag4y2")
+upgrade_state = NodePath("../../Root/Upgrade/Level1")
+
+[node name="ThrusterLSprite" type="AnimatedSprite2D" parent="Thrusters/Level1Thrusters" groups=["thrusters"]]
+position = Vector2(-14, -5)
+rotation = 1.5708
+sprite_frames = ExtResource("4_vtpqo")
+animation = &"move"
+offset = Vector2(0, -7)
+
+[node name="ThrusterRSprite" type="AnimatedSprite2D" parent="Thrusters/Level1Thrusters" groups=["thrusters"]]
+position = Vector2(-14, 5)
+rotation = 1.5708
+sprite_frames = ExtResource("4_vtpqo")
+animation = &"move"
+offset = Vector2(0, -7)
+
+[node name="Level2Thrusters" type="Node2D" parent="Thrusters" node_paths=PackedStringArray("upgrade_state")]
+visible = false
+script = ExtResource("4_ag4y2")
+upgrade_state = NodePath("../../Root/Upgrade/Level2")
+
+[node name="ThrusterLSprite" type="AnimatedSprite2D" parent="Thrusters/Level2Thrusters" groups=["thrusters"]]
+position = Vector2(-20, -7)
+rotation = 1.5708
+sprite_frames = ExtResource("4_vtpqo")
+animation = &"move"
+offset = Vector2(0, -7)
+
+[node name="ThrusterRSprite" type="AnimatedSprite2D" parent="Thrusters/Level2Thrusters" groups=["thrusters"]]
+position = Vector2(-20, 7)
+rotation = 1.5708
+sprite_frames = ExtResource("4_vtpqo")
+animation = &"move"
+offset = Vector2(0, -7)
+
+[node name="Level3Thrusters" type="Node2D" parent="Thrusters" node_paths=PackedStringArray("upgrade_state")]
+visible = false
+script = ExtResource("4_ag4y2")
+upgrade_state = NodePath("../../Root/Upgrade/Level3")
+
+[node name="ThrusterLSprite" type="AnimatedSprite2D" parent="Thrusters/Level3Thrusters" groups=["thrusters"]]
+position = Vector2(-30, -7)
+rotation = 1.5708
+sprite_frames = ExtResource("4_vtpqo")
+animation = &"move"
+offset = Vector2(0, -7)
+
+[node name="ThrusterRSprite" type="AnimatedSprite2D" parent="Thrusters/Level3Thrusters" groups=["thrusters"]]
+position = Vector2(-30, 7)
+rotation = 1.5708
+sprite_frames = ExtResource("4_vtpqo")
+animation = &"move"
+offset = Vector2(0, -7)
+
+[node name="ThrusterMSprite" type="AnimatedSprite2D" parent="Thrusters/Level3Thrusters" groups=["thrusters"]]
+position = Vector2(-30, 0)
+rotation = 1.5708
+scale = Vector2(1.5, 2)
+sprite_frames = ExtResource("4_vtpqo")
+animation = &"move"
+offset = Vector2(0, -7)
+
+[node name="TrailParticles" type="GPUParticles2D" parent="."]
+texture = ExtResource("6_dmwb1")
+process_material = SubResource("ParticleProcessMaterial_8ris0")
+script = ExtResource("7_hp4ge")
+
+[node name="NomdashVFX" type="Sprite2D" parent="."]
+visible = false
+rotation = 1.57079
+texture = ExtResource("8_xtdcv")
+offset = Vector2(0, 28)
+
+[node name="ShipSprite" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("7_8ris0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Gun" parent="." instance=ExtResource("3_myrg7")]
+rotation = 1.5708
+
+[node name="Audio" type="Node2D" parent="."]
+script = ExtResource("10_4jdxe")
+
+[node name="Moving" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("11_a0po4")
+volume_db = -13.866
+pitch_scale = 1.09
+
+[node name="Shooting" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("12_lxdfn")
+
+[node name="Damaged" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("13_lxdfn")
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("14_xtdcv")
+
+[node name="Dash" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("16_kxs7h")
+
+[node name="DashCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Root" type="Node" parent="."]
+process_mode = 1
+script = ExtResource("6_0owmy")
+history_size = 0
+disabled = false
+debug_mode = true
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://b2l0jlbk7oecc"
+
+[node name="Movement" type="Node" parent="Root"]
+process_mode = 1
+script = ExtResource("7_h17s1")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="Normal" type="Node" parent="Root/Movement"]
+script = ExtResource("8_qek5x")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="Circling" type="Node" parent="Root/Movement"]
+script = ExtResource("9_5gtgg")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="NomDash" type="Node" parent="Root/Movement"]
+script = ExtResource("10_h17s1")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="Upgrade" type="Node" parent="Root"]
+script = ExtResource("10_myrg7")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="PreInit" type="Node" parent="Root/Upgrade"]
+script = ExtResource("12_cnsyf")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("../PreInit")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="Level1" type="Node" parent="Root/Upgrade"]
+script = ExtResource("10_kvlxm")
+speed = 300.0
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="Level2" type="Node" parent="Root/Upgrade"]
+script = ExtResource("10_kvlxm")
+pattern = "player_level_2"
+texture = ExtResource("13_uf5tr")
+hitbox_shape = ExtResource("3_lgqa7")
+nombox_shape = ExtResource("5_8ydkj")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="Level3" type="Node" parent="Root/Upgrade"]
+script = ExtResource("10_kvlxm")
+pattern = "player_level_3"
+texture = ExtResource("2_uf5tr")
+hitbox_shape = ExtResource("4_lgqa7")
+nombox_shape = ExtResource("3_uf5tr")
+speed = 150.0
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="Crosshair" type="Node2D" parent="."]
+script = ExtResource("11_fm80t")
+
+[node name="CrosshairSprite" type="Sprite2D" parent="Crosshair"]
+texture = ExtResource("12_gx1jg")
+
+[node name="LockOnTargetArea" type="Area2D" parent="Crosshair"]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crosshair/LockOnTargetArea"]
+shape = SubResource("CircleShape2D_fm80t")
+debug_color = Color(0.886275, 0.258824, 0.521569, 0.137255)
+
+[node name="SoftLockReticle" type="Node2D" parent="Crosshair"]
+visible = false
+modulate = Color(1, 1, 1, 0.498039)
+script = ExtResource("13_ugbui")
+ROTATION_SPEED = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Crosshair/SoftLockReticle"]
+texture = ExtResource("14_fcs02")
+
+[node name="HardLockReticle" type="Node2D" parent="Crosshair"]
+visible = false
+script = ExtResource("13_ugbui")
+ROTATION_SPEED = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Crosshair/HardLockReticle"]
+texture = ExtResource("15_fcs02")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Crosshair/HardLockReticle"]
+
+[connection signal="upgrade_level_changed" from="." to="Root/Upgrade" method="_on_player_upgrade_level_changed"]
+[connection signal="player_shot" from="Gun" to="Audio/Shooting" method="play"]
+[connection signal="state_entered" from="Root/Movement/NomDash" to="NomdashVFX" method="show" unbinds=1]
+[connection signal="state_entered" from="Root/Movement/NomDash" to="Audio/Dash" method="play" unbinds=1]
+[connection signal="state_exited" from="Root/Movement/NomDash" to="NomdashVFX" method="hide" unbinds=1]
+[connection signal="hard_lock_changed" from="Crosshair" to="Root/Movement" method="_on_crosshair_hard_lock_changed"]
+[connection signal="body_entered" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_entered"]
+[connection signal="body_exited" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_exited"]
+[connection signal="screen_exited" from="Crosshair/HardLockReticle/VisibleOnScreenNotifier2D" to="Crosshair" method="_on_hard_lock_gone"]

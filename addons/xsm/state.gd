@@ -248,19 +248,20 @@ func _init_state_roots():
 # It would be easier if the state_root name is unique
 func _init_children_state_map(dict: Dictionary):
 	for c in get_children():
-		if dict.has(c.name):
-			var curr_state: State = dict[c.name]
-			var curr_parent: State = curr_state.get_parent()
-			dict.erase(c.name)
-			dict[ str("%s/%s" % [curr_parent.name, c.name]) ] = curr_state
-			dict[ str("%s/%s" % [name, c.name]) ] = c
-			state_root.duplicate_names[c.name] = 1
-		elif state_root.duplicate_names.has(c.name):
-			dict[ str("%s/%s" % [name, c.name]) ] = c
-			state_root.duplicate_names[c.name] += 1
-		else:
-			dict[c.name] = c
-		c._init_children_state_map(dict)
+		if c is State:
+			if dict.has(c.name):
+				var curr_state: State = dict[c.name]
+				var curr_parent: State = curr_state.get_parent()
+				dict.erase(c.name)
+				dict[ str("%s/%s" % [curr_parent.name, c.name]) ] = curr_state
+				dict[ str("%s/%s" % [name, c.name]) ] = c
+				state_root.duplicate_names[c.name] = 1
+			elif state_root.duplicate_names.has(c.name):
+				dict[ str("%s/%s" % [name, c.name]) ] = c
+				state_root.duplicate_names[c.name] += 1
+			else:
+				dict[c.name] = c
+			c._init_children_state_map(dict)
 
 
 func _init_status_active() -> void:
@@ -565,8 +566,9 @@ func is_active(state_name: String) -> bool:
 # returns the first active substate or or null
 func get_active_substate():
 	for c in get_children():
-		if c.status == ACTIVE:
-			return c
+		if c is State:
+			if c.status == ACTIVE:
+				return c
 	return null
 
 
@@ -743,10 +745,11 @@ func change_children_status_to_entering(new_state_path: NodePath) -> void:
 	var current_lvl: int = get_path().get_name_count()
 	if new_state_lvl > current_lvl:
 		for c in get_children():
-			var current_name: String = new_state_path.get_name(current_lvl)
-			if c is State and c.get_name() == current_name:
-				c.status = ENTERING
-				c.change_children_status_to_entering(new_state_path)
+			if c is State:
+				var current_name: String = new_state_path.get_name(current_lvl)
+				if c.get_name() == current_name:
+					c.status = ENTERING
+					c.change_children_status_to_entering(new_state_path)
 	else:
 		if get_child_count() > 0:
 			var c: Node = get_child(0)

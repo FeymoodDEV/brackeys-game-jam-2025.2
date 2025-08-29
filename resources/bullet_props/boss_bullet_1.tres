@@ -1,0 +1,7 @@
+[gd_resource type="PackedDataContainer" script_class="BulletNodeData" load_steps=2 format=3 uid="uid://cva3dko1q8gnm"]
+
+[ext_resource type="Script" uid="uid://blyfl04bkccem" path="res://src/bullethell/BulletNodeData.gd" id="2_fdb81"]
+
+[resource]
+script = ExtResource("2_fdb81")
+metadata/_custom_type_script = "uid://blyfl04bkccem"

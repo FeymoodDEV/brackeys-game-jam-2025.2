@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://ca4ewugaitcqx"]
+
+[ext_resource type="PackedScene" uid="uid://dtjdj7nbtlxrr" path="res://prefabs/particles/explode_vfx.tscn" id="1_hkc0m"]
+[ext_resource type="Script" uid="uid://2pwnys3t54yw" path="res://src/enemy/EnemyData.gd" id="2_bnl3f"]
+[ext_resource type="Texture2D" uid="uid://cuungxd61dxw0" path="res://assets/sprites/bullet/chocolate_bullet.png" id="3_hkc0m"]
+
+[resource]
+script = ExtResource("2_bnl3f")
+pattern = "enemy_one"
+speed = 200.0
+health = 3.0
+damage = 10.0
+xp_worth = 10.0
+sprite = ExtResource("3_hkc0m")
+modulate_color = Color(1, 1, 1, 1)
+scale = 1.5
+death_vfx = ExtResource("1_hkc0m")
+metadata/_custom_type_script = "uid://2pwnys3t54yw"

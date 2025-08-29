@@ -1,0 +1,532 @@
+[gd_scene load_steps=35 format=3 uid="uid://bfvhrvcb3sb54"]
+
+[ext_resource type="Script" uid="uid://cgd1wjud4ds5l" path="res://src/manager/bullet_manager.gd" id="1_s87c5"]
+[ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://prefabs/player/player.tscn" id="2_5m336"]
+[ext_resource type="Script" uid="uid://bjmse0liopcrp" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="3_er4hb"]
+[ext_resource type="Script" uid="uid://bapo6jcdsje8y" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="4_um252"]
+[ext_resource type="Script" uid="uid://dvueqbi8eexbm" path="res://src/bullethell/BulletPropsExtend.gd" id="7_05w0v"]
+[ext_resource type="PackedScene" uid="uid://ctcm0nmbs655s" path="res://prefabs/particles/blue_spack_vfx.tscn" id="8_er4hb"]
+[ext_resource type="PackedScene" uid="uid://b2mqu7dv1l8a3" path="res://prefabs/particles/red_spack_vfx.tscn" id="9_er4hb"]
+[ext_resource type="Texture2D" uid="uid://cuungxd61dxw0" path="res://assets/sprites/bullet/chocolate_bullet.png" id="9_s87c5"]
+[ext_resource type="Script" uid="uid://c8ydhn2yvq3dc" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="10_bvdue"]
+[ext_resource type="Texture2D" uid="uid://c2haqjj6x27gw" path="res://assets/sprites/bullet/sugar_bullet.png" id="11_er4hb"]
+[ext_resource type="Script" uid="uid://b6cup3hdpqd6v" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="11_lswlb"]
+[ext_resource type="Script" uid="uid://c8a1x50bjmkue" path="res://addons/BulletUpHell/SpawnPatterns/PatternLine.gd" id="12_fnh7x"]
+[ext_resource type="Texture2D" uid="uid://cb7mkdjkuy26s" path="res://assets/sprites/bullet/bullet.png" id="12_um252"]
+[ext_resource type="Script" uid="uid://csxp6a77ij7sk" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="13_h02f0"]
+[ext_resource type="Script" uid="uid://okf4mtltak8l" path="res://addons/BulletUpHell/Nodes/BuHSpawnPoint.gd" id="15_er4hb"]
+
+[sub_resource type="Curve2D" id="Curve2D_aga20"]
+
+[sub_resource type="Curve" id="Curve_er4hb"]
+
+[sub_resource type="Curve" id="Curve_um252"]
+
+[sub_resource type="PackedDataContainer" id="PackedDataContainer_05w0v"]
+script = ExtResource("7_05w0v")
+texture = ExtResource("9_s87c5")
+pierce_count = 0
+knockback = 0.0
+absorb_points = 1
+sprite_scale = 0.25
+packed_hit_vfx = ExtResource("9_er4hb")
+anim_more = Array[ExtResource("4_um252")]([])
+damage = 1.0
+speed = 200.0
+scale = 0.25
+angle = 0.0
+groups = PackedStringArray()
+spec_bounces = 0
+spec_no_collision = false
+spec_modulate_loop = 0.0
+spec_trail_length = 0.0
+spec_trail_width = 0.0
+spec_trail_modulate = Color(1, 1, 1, 1)
+spec_rotating_speed = 0.0
+death_after_time = 15.0
+death_outside_box = Rect2(0, 0, 3000, 3000)
+death_from_collision = false
+a_direction_equation = ""
+a_curve_movement = 0
+a_speed_multiplier = SubResource("Curve_er4hb")
+a_speed_multi_iterations = 0
+a_speed_multi_scale = 0.0
+trigger_container = ""
+trigger_wait_for_shot = true
+homing_type = 0
+homing_target = NodePath("")
+homing_steer = 0.0
+homing_time_start = 0.0
+homing_duration = 999.0
+scale_multi_iterations = 0
+scale_multiplier = SubResource("Curve_um252")
+scale_multi_scale = 1.0
+r_randomisation_chances = 1.0
+r_speed_choice = PackedFloat32Array()
+r_speed_variation = Vector3(0, 0, 0)
+r_scale_choice = PackedFloat32Array()
+r_scale_variation = Vector3(0, 0, 0)
+r_angle_choice = PackedFloat32Array()
+r_angle_variation = Vector3(0, 0, 0)
+r_group_choice = []
+r_bounce_choice = PackedInt32Array()
+r_bounce_variation = Vector3(0, 0, 0)
+r_no_coll_chances = 0.0
+r_modulate_variation = Vector3(0, 0, 0)
+r_trail_length_variation = Vector3(0, 0, 0)
+r_trail_color_variation = Vector3(0, 0, 0)
+r_rotating_variation = Vector3(0, 0, 0)
+r_death_after_choice = PackedFloat32Array()
+r_death_after_variation = Vector3(0, 0, 0)
+r_death_outside_chances = 0.0
+r_dir_equation_choice = PackedStringArray()
+r_curve_choice = []
+r_speed_multi_curve_choice = []
+r_speed_multi_iter_variation = Vector3(0, 0, 0)
+r_speed_multi_scale_variation = Vector3(0, 0, 0)
+r_trigger_choice = PackedStringArray()
+r_wait_for_shot_chances = 0.0
+r_homing_target_choice = []
+r_special_target_choice = PackedStringArray()
+r_group_target_choice = PackedStringArray()
+r_pos_target_choice = PackedVector2Array()
+r_steer_choice = PackedFloat32Array()
+r_steer_variation = Vector3(0, 0, 0)
+r_homing_delay_choice = PackedFloat32Array()
+r_homing_delay_variation = Vector3(0, 0, 0)
+r_homing_dur_choice = PackedFloat32Array()
+r_homing_dur_variation = Vector3(0, 0, 0)
+r_scale_multi_curve_choice = []
+r_scale_multi_iter_variation = Vector3(0, 0, 0)
+r_scale_multi_scale_variation = Vector3(0, 0, 0)
+metadata/_custom_type_script = "uid://dvueqbi8eexbm"
+
+[sub_resource type="Curve" id="Curve_1h4s3"]
+
+[sub_resource type="Curve" id="Curve_5c6b0"]
+
+[sub_resource type="PackedDataContainer" id="PackedDataContainer_vrhaq"]
+script = ExtResource("7_05w0v")
+texture = ExtResource("11_er4hb")
+pierce_count = 0
+knockback = 0.0
+absorb_points = 1
+sprite_scale = 0.25
+packed_hit_vfx = ExtResource("8_er4hb")
+anim_more = Array[ExtResource("4_um252")]([])
+damage = 1.0
+speed = 100.0
+scale = 0.25
+angle = 0.0
+groups = PackedStringArray()
+spec_bounces = 0
+spec_no_collision = false
+spec_modulate_loop = 0.0
+spec_trail_length = 0.0
+spec_trail_width = 0.0
+spec_trail_modulate = Color(1, 1, 1, 1)
+spec_rotating_speed = 0.0
+death_after_time = 15.0
+death_outside_box = Rect2(0, 0, 3000, 3000)
+death_from_collision = false
+a_direction_equation = ""
+a_curve_movement = 0
+a_speed_multiplier = SubResource("Curve_1h4s3")
+a_speed_multi_iterations = 0
+a_speed_multi_scale = 0.0
+trigger_container = ""
+trigger_wait_for_shot = true
+homing_type = 0
+homing_target = NodePath("")
+homing_steer = 0.0
+homing_time_start = 0.0
+homing_duration = 999.0
+scale_multi_iterations = 0
+scale_multiplier = SubResource("Curve_5c6b0")
+scale_multi_scale = 1.0
+r_randomisation_chances = 1.0
+r_speed_choice = PackedFloat32Array()
+r_speed_variation = Vector3(0, 0, 0)
+r_scale_choice = PackedFloat32Array()
+r_scale_variation = Vector3(0, 0, 0)
+r_angle_choice = PackedFloat32Array()
+r_angle_variation = Vector3(0, 0, 0)
+r_group_choice = []
+r_bounce_choice = PackedInt32Array()
+r_bounce_variation = Vector3(0, 0, 0)
+r_no_coll_chances = 0.0
+r_modulate_variation = Vector3(0, 0, 0)
+r_trail_length_variation = Vector3(0, 0, 0)
+r_trail_color_variation = Vector3(0, 0, 0)
+r_rotating_variation = Vector3(0, 0, 0)
+r_death_after_choice = PackedFloat32Array()
+r_death_after_variation = Vector3(0, 0, 0)
+r_death_outside_chances = 0.0
+r_dir_equation_choice = PackedStringArray()
+r_curve_choice = []
+r_speed_multi_curve_choice = []
+r_speed_multi_iter_variation = Vector3(0, 0, 0)
+r_speed_multi_scale_variation = Vector3(0, 0, 0)
+r_trigger_choice = PackedStringArray()
+r_wait_for_shot_chances = 0.0
+r_homing_target_choice = []
+r_special_target_choice = PackedStringArray()
+r_group_target_choice = PackedStringArray()
+r_pos_target_choice = PackedVector2Array()
+r_steer_choice = PackedFloat32Array()
+r_steer_variation = Vector3(0, 0, 0)
+r_homing_delay_choice = PackedFloat32Array()
+r_homing_delay_variation = Vector3(0, 0, 0)
+r_homing_dur_choice = PackedFloat32Array()
+r_homing_dur_variation = Vector3(0, 0, 0)
+r_scale_multi_curve_choice = []
+r_scale_multi_iter_variation = Vector3(0, 0, 0)
+r_scale_multi_scale_variation = Vector3(0, 0, 0)
+metadata/_custom_type_script = "uid://dvueqbi8eexbm"
+
+[sub_resource type="Curve" id="Curve_dub4d"]
+
+[sub_resource type="Curve" id="Curve_bvdue"]
+
+[sub_resource type="PackedDataContainer" id="PackedDataContainer_lswlb"]
+script = ExtResource("7_05w0v")
+texture = ExtResource("12_um252")
+pierce_count = 0
+knockback = 0.0
+absorb_points = 1
+sprite_scale = 0.25
+packed_hit_vfx = ExtResource("9_er4hb")
+anim_more = Array[ExtResource("4_um252")]([])
+damage = 1.0
+speed = 1000.0
+scale = 1.5
+angle = 0.0
+groups = PackedStringArray()
+spec_bounces = 0
+spec_no_collision = false
+spec_modulate_loop = 0.0
+spec_trail_length = 0.0
+spec_trail_width = 0.0
+spec_trail_modulate = Color(1, 1, 1, 1)
+spec_rotating_speed = 0.0
+death_after_time = 15.0
+death_outside_box = Rect2(0, 0, 3000, 3000)
+death_from_collision = false
+a_direction_equation = ""
+a_curve_movement = 0
+a_speed_multiplier = SubResource("Curve_dub4d")
+a_speed_multi_iterations = 0
+a_speed_multi_scale = 0.0
+trigger_container = ""
+trigger_wait_for_shot = true
+homing_type = 0
+homing_target = NodePath("")
+homing_steer = 0.0
+homing_time_start = 0.0
+homing_duration = 999.0
+scale_multi_iterations = 0
+scale_multiplier = SubResource("Curve_bvdue")
+scale_multi_scale = 1.0
+r_randomisation_chances = 1.0
+r_speed_choice = PackedFloat32Array()
+r_speed_variation = Vector3(0, 0, 0)
+r_scale_choice = PackedFloat32Array()
+r_scale_variation = Vector3(0, 0, 0)
+r_angle_choice = PackedFloat32Array()
+r_angle_variation = Vector3(0, 0, 0)
+r_group_choice = []
+r_bounce_choice = PackedInt32Array()
+r_bounce_variation = Vector3(0, 0, 0)
+r_no_coll_chances = 0.0
+r_modulate_variation = Vector3(0, 0, 0)
+r_trail_length_variation = Vector3(0, 0, 0)
+r_trail_color_variation = Vector3(0, 0, 0)
+r_rotating_variation = Vector3(0, 0, 0)
+r_death_after_choice = PackedFloat32Array()
+r_death_after_variation = Vector3(0, 0, 0)
+r_death_outside_chances = 0.0
+r_dir_equation_choice = PackedStringArray()
+r_curve_choice = []
+r_speed_multi_curve_choice = []
+r_speed_multi_iter_variation = Vector3(0, 0, 0)
+r_speed_multi_scale_variation = Vector3(0, 0, 0)
+r_trigger_choice = PackedStringArray()
+r_wait_for_shot_chances = 0.0
+r_homing_target_choice = []
+r_special_target_choice = PackedStringArray()
+r_group_target_choice = PackedStringArray()
+r_pos_target_choice = PackedVector2Array()
+r_steer_choice = PackedFloat32Array()
+r_steer_variation = Vector3(0, 0, 0)
+r_homing_delay_choice = PackedFloat32Array()
+r_homing_delay_variation = Vector3(0, 0, 0)
+r_homing_dur_choice = PackedFloat32Array()
+r_homing_dur_variation = Vector3(0, 0, 0)
+r_scale_multi_curve_choice = []
+r_scale_multi_iter_variation = Vector3(0, 0, 0)
+r_scale_multi_scale_variation = Vector3(0, 0, 0)
+metadata/_custom_type_script = "uid://dvueqbi8eexbm"
+
+[sub_resource type="Curve2D" id="Curve2D_ttg52"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 701, 125, 0, 0, 0, 0, 753, 91, 0, 0, 0, 0, 799, 123, 0, 0, 0, 0, 787, 73, 0, 0, 0, 0, 832, 48, 0, 0, 0, 0, 777, 39, 0, 0, 0, 0, 758, -13, 0, 0, 0, 0, 731, 36, 0, 0, 0, 0, 686, 41, 0, 0, 0, 0, 723, 71)
+}
+point_count = 10
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0ek73"]
+resource_name = "PatternOne"
+source_geometry_group_name = &"navigation_polygon_source_group"
+script = ExtResource("11_lswlb")
+bullet = "PBullet"
+nbr = 1
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("")
+forced_lookat_mouse = true
+forced_pattern_lookat = false
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_er4hb"]
+resource_name = "PatternLine"
+script = ExtResource("12_fnh7x")
+offset = Vector2(2, 28.02)
+center = 1
+symmetric = true
+bullet = "PBullet"
+nbr = 3
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = true
+forced_angle = 0.0
+forced_target = NodePath("")
+forced_lookat_mouse = true
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+metadata/_custom_type_script = "uid://c8a1x50bjmkue"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_5h2se"]
+resource_name = "PatternOne"
+script = ExtResource("11_lswlb")
+bullet = "ChocBullet"
+nbr = 1
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("../../../Player")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+metadata/_custom_type_script = "uid://b6cup3hdpqd6v"
+
+[sub_resource type="Curve2D" id="Curve2D_rwh7c"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 701, 125, 0, 0, 0, 0, 753, 91, 0, 0, 0, 0, 799, 123, 0, 0, 0, 0, 787, 73, 0, 0, 0, 0, 832, 48, 0, 0, 0, 0, 777, 39, 0, 0, 0, 0, 758, -13, 0, 0, 0, 0, 731, 36, 0, 0, 0, 0, 686, 41, 0, 0, 0, 0, 723, 71)
+}
+point_count = 10
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_iuweo"]
+resource_name = "PatternLine"
+script = ExtResource("12_fnh7x")
+offset = Vector2(20, -20)
+center = 5
+symmetric = true
+bullet = "ChocBullet"
+nbr = 10
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("../../../Player")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+metadata/_custom_type_script = "uid://c8a1x50bjmkue"
+
+[sub_resource type="Curve2D" id="Curve2D_td6b6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 701, 125, 0, 0, 0, 0, 753, 91, 0, 0, 0, 0, 799, 123, 0, 0, 0, 0, 787, 73, 0, 0, 0, 0, 832, 48, 0, 0, 0, 0, 777, 39, 0, 0, 0, 0, 758, -13, 0, 0, 0, 0, 731, 36, 0, 0, 0, 0, 686, 41, 0, 0, 0, 0, 723, 71)
+}
+point_count = 10
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_or46o"]
+resource_name = "PatternCircle"
+script = ExtResource("13_h02f0")
+radius = 25
+angle_total = 6.28319
+angle_decal = 0.0
+symmetric = false
+center = 0
+symmetry_type = 0
+bullet = "ChocBullet"
+nbr = 20
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("../../../Player")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+metadata/_custom_type_script = "uid://csxp6a77ij7sk"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_5m336"]
+resource_name = "PatternCircle"
+script = ExtResource("13_h02f0")
+radius = 0
+angle_total = 6.28319
+angle_decal = 0.0
+symmetric = false
+center = 0
+symmetry_type = 0
+bullet = "SugarBullet"
+nbr = 10
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+metadata/_custom_type_script = "uid://csxp6a77ij7sk"
+
+[node name="BulletManager" type="Node2D"]
+script = ExtResource("1_s87c5")
+
+[node name="Player" parent="." instance=ExtResource("2_5m336")]
+position = Vector2(2031, 1523)
+
+[node name="BulletProps" type="Node2D" parent="."]
+
+[node name="ChocolateBullet" type="Path2D" parent="BulletProps"]
+curve = SubResource("Curve2D_aga20")
+script = ExtResource("3_er4hb")
+id = "ChocBullet"
+props = SubResource("PackedDataContainer_05w0v")
+
+[node name="SugarBullet" type="Path2D" parent="BulletProps"]
+curve = SubResource("Curve2D_aga20")
+script = ExtResource("3_er4hb")
+id = "SugarBullet"
+props = SubResource("PackedDataContainer_vrhaq")
+
+[node name="PlayerBullet" type="Path2D" parent="BulletProps"]
+curve = SubResource("Curve2D_aga20")
+script = ExtResource("3_er4hb")
+id = "PBullet"
+props = SubResource("PackedDataContainer_lswlb")
+
+[node name="Patterns" type="Node2D" parent="."]
+
+[node name="PlayerLevel1" type="Path2D" parent="Patterns"]
+curve = SubResource("Curve2D_ttg52")
+script = ExtResource("10_bvdue")
+id = "player_level_1"
+pattern = SubResource("NavigationPolygon_0ek73")
+
+[node name="PlayerLevel2" type="Path2D" parent="Patterns"]
+curve = SubResource("Curve2D_ttg52")
+script = ExtResource("10_bvdue")
+id = "player_level_2"
+pattern = SubResource("NavigationPolygon_er4hb")
+
+[node name="PlayerLevel3" type="Path2D" parent="Patterns"]
+curve = SubResource("Curve2D_ttg52")
+script = ExtResource("10_bvdue")
+id = "player_level_3"
+pattern = SubResource("NavigationPolygon_er4hb")
+
+[node name="Chocolate" type="Node2D" parent="Patterns"]
+
+[node name="ChocolateOne" type="Path2D" parent="Patterns/Chocolate"]
+curve = SubResource("Curve2D_ttg52")
+script = ExtResource("10_bvdue")
+id = "enemy_one"
+pattern = SubResource("NavigationPolygon_5h2se")
+
+[node name="ChocolateLine" type="Path2D" parent="Patterns/Chocolate"]
+curve = SubResource("Curve2D_rwh7c")
+script = ExtResource("10_bvdue")
+id = "enemy_line"
+pattern = SubResource("NavigationPolygon_iuweo")
+preview_spawn = true
+preview_shoot = true
+
+[node name="ChocolateCircle" type="Path2D" parent="Patterns/Chocolate"]
+curve = SubResource("Curve2D_td6b6")
+script = ExtResource("10_bvdue")
+id = "enemy_circle"
+pattern = SubResource("NavigationPolygon_or46o")
+
+[node name="Sugar" type="Node2D" parent="Patterns"]
+
+[node name="SugarCircle" type="Path2D" parent="Patterns/Sugar"]
+curve = SubResource("Curve2D_td6b6")
+script = ExtResource("10_bvdue")
+id = "enemy_circle_sugar"
+pattern = SubResource("NavigationPolygon_5m336")
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+script = ExtResource("15_er4hb")
+active = true
+auto_pattern_id = "player_level_1"
+shared_area_name = "0"
+rotating_speed = 0.0
+pool_amount = 50
+auto_start_on_cam = true
+auto_start_after_time = 0.0
+auto_start_at_distance = 5.0
+auto_distance_from = NodePath("")
+trigger_container = NodePath("")
+metadata/_custom_type_script = "uid://okf4mtltak8l"

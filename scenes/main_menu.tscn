@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://3yj03daybfvf"]
+
+[ext_resource type="Script" uid="uid://8qe1bhp35ve4" path="res://src/menu/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="PackedScene" uid="uid://2ads1o1pbagk" path="res://scenes/levels/level_1.tscn" id="2_ekxnf"]
+
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("play_btn")]
+script = ExtResource("1_l6cm7")
+packed_game_scene = ExtResource("2_ekxnf")
+play_btn = NodePath("UILayer/GridContainer/PlayBtn")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="GridContainer" type="GridContainer" parent="UILayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -54.0
+offset_right = 102.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayBtn" type="Button" parent="UILayer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Play"

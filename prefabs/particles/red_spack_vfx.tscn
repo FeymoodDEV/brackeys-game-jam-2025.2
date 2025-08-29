@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2mqu7dv1l8a3"]
+
+[ext_resource type="Texture2D" uid="uid://dm3f4hamgi0hr" path="res://assets/sprites/vfx/red-spack1.png" id="1_i0f5x"]
+[ext_resource type="Texture2D" uid="uid://y8yq7ysg3r1v" path="res://assets/sprites/vfx/red-spack2.png" id="2_u1i3p"]
+[ext_resource type="Texture2D" uid="uid://dyxd07nnvks23" path="res://assets/sprites/vfx/red-spack3.png" id="3_nmpm5"]
+[ext_resource type="Texture2D" uid="uid://ss726rwvua1h" path="res://assets/sprites/vfx/red-spack4.png" id="4_v8cdm"]
+[ext_resource type="Texture2D" uid="uid://dakiuh4np6cal" path="res://assets/sprites/vfx/red-spack5.png" id="5_vxmcl"]
+[ext_resource type="Script" uid="uid://dfdpuc3vcdd0v" path="res://src/vfx/vfx_sprite.gd" id="6_omc2b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6s87a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_i0f5x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_u1i3p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nmpm5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v8cdm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vxmcl")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="VFXSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_6s87a")
+script = ExtResource("6_omc2b")
+metadata/_custom_type_script = "uid://dfdpuc3vcdd0v"

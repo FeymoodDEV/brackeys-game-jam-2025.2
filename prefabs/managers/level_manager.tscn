@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxxnbcxiuusqt"]
+
+[ext_resource type="Script" uid="uid://dh1h11m36jqp0" path="res://src/manager/level_manager.gd" id="1_l1ep3"]
+[ext_resource type="PackedScene" uid="uid://2ads1o1pbagk" path="res://scenes/levels/level_1.tscn" id="2_wwihr"]
+[ext_resource type="PackedScene" uid="uid://b2u0qpleqhkrm" path="res://scenes/levels/level_2.tscn" id="3_emmn7"]
+[ext_resource type="PackedScene" uid="uid://v8cuu0pu7gfx" path="res://scenes/levels/level_3.tscn" id="4_a3r8x"]
+[ext_resource type="Texture2D" uid="uid://soy0ejrja2pr" path="res://assets/sprites/tile/tile2.png" id="8_5dqnh"]
+
+[node name="LevelManager" type="Node2D"]
+script = ExtResource("1_l1ep3")
+level_scenes = Array[PackedScene]([ExtResource("2_wwihr"), ExtResource("3_emmn7"), ExtResource("4_a3r8x")])
+
+[node name="BG" type="TextureRect" parent="."]
+z_index = -1
+offset_left = -3032.0
+offset_top = -2232.0
+offset_right = 14493.0
+offset_bottom = 10167.0
+texture = ExtResource("8_5dqnh")
+stretch_mode = 1
+
+[node name="LevelTimer" type="Timer" parent="."]

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="BossData" load_steps=2 format=3 uid="uid://s637nu1auosb"]
+
+[ext_resource type="Script" uid="uid://cjouakk8ujebh" path="res://src/boss/boss_data.gd" id="1_f3784"]
+
+[resource]
+script = ExtResource("1_f3784")
+metadata/_custom_type_script = "uid://cjouakk8ujebh"

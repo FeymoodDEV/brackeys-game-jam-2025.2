@@ -10,7 +10,9 @@ var preview_bullet:BulletProps
 
 
 func _ready():
+	#EventManager.player_spawned.connect(assign_target_for_pattern)
 	if not Engine.is_editor_hint() and pattern:
+		#print(pattern.forced_target)
 		if pattern.forced_target: pattern.node_target = get_node(pattern.forced_target)
 		if pattern.resource_name in ["PatternCustomShape","PatternCustomPoints"]:
 			pattern.shape = curve
@@ -165,3 +167,7 @@ func curve_to_polygon():
 		if point.y < pattern.limit_rect.position.y: pattern.limit_rect.position.y = point.y
 		if point.y > pattern.limit_rect.size.y: pattern.limit_rect.size.y = point.y
 	pattern.polygon = PackedVector2Array(poly)
+
+## We need to do this otherwise the patterns won't rotate correctly
+func assign_target_for_pattern(path: NodePath) -> void:
+	pattern.forced_target = path
