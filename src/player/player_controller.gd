@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name PlayerController
 
 #region movement_variables
+@export_category("Movement")
 ## Speed of the player in units per tick.
 @export var speed: float = 220.0
 ## Acceleration of the player in units per tick. Unused.
@@ -14,6 +15,7 @@ var look_direction : Vector2
 #endregion
 
 #region Dash variables
+@export_category("Dash")
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 @onready var nom_dash_aoe: Area2D = $NomDashAoE
 
@@ -52,6 +54,7 @@ var absorb_pts : int = 0 :
 
 ## Points required for upgrade. Mind: this is constant. To make the cost increase
 ## for higher levels, we'll use multipliers.
+@export_category("Upgrading")
 @export var upgrade_threshold : int = 10
 ## Max upgrade level. Starts at zero!!!
 @export var max_level : int = 2
@@ -63,8 +66,10 @@ var absorb_pts : int = 0 :
 #endregion
 
 #region Health
+@export_category("Health")
 var health: float
 @export var max_health: float = 100
+@export var death_vfx: PackedScene = preload("res://prefabs/particles/explode_vfx.tscn")
 #endregion
 
 func _ready():
@@ -119,6 +124,11 @@ func apply_damage(damage: int, knockback: float, global_position: Vector2, direc
 	
 	if health <= 0:
 		print("DIE")
+		var vfx = death_vfx.instantiate()
+		add_child(vfx)
+		vfx.top_level = true
+		vfx.global_position = global_position
+		vfx.play(&"default")
 	
 	# TODO: implement knockback.
 

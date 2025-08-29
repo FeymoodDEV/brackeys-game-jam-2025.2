@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=31 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://src/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://devb6j2col43u" path="res://assets/sprites/player/ship3.png" id="2_uf5tr"]
@@ -13,7 +13,9 @@
 [ext_resource type="Shape2D" uid="uid://cmn0egykq5740" path="res://prefabs/player/level_1_nombox.tres" id="5_kvlxm"]
 [ext_resource type="Script" uid="uid://b2l0jlbk7oecc" path="res://addons/xsm/state_regions.gd" id="6_0owmy"]
 [ext_resource type="Texture2D" uid="uid://b18crkv7x2kpf" path="res://assets/sprites/player/thruster-particle.png" id="6_dmwb1"]
+[ext_resource type="Texture2D" uid="uid://ogb51tdot7ho" path="res://assets/sprites/player/ship1.png" id="7_8ris0"]
 [ext_resource type="Script" uid="uid://yw44daxcsxw0" path="res://src/player/states/movement_state.gd" id="7_h17s1"]
+[ext_resource type="Script" uid="uid://dlfvfwm3dmxry" path="res://src/player/trail_particles.gd" id="7_hp4ge"]
 [ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://src/player/states/normal_state.gd" id="8_qek5x"]
 [ext_resource type="Script" uid="uid://des4f477v63vn" path="res://src/player/states/circling_state.gd" id="9_5gtgg"]
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://src/player/states/nom_dash_state.gd" id="10_h17s1"]
@@ -46,7 +48,6 @@ dash_power = 1000.0
 dash_friction = 0.9
 
 [node name="NomDashAoE" type="Area2D" parent="."]
-visible = false
 collision_mask = 16
 monitoring = false
 
@@ -68,7 +69,7 @@ upgrade_state = NodePath("../../Root/Upgrade/Level1")
 position = Vector2(-14, -5)
 rotation = 1.5708
 sprite_frames = ExtResource("4_vtpqo")
-animation = &"end"
+animation = &"move"
 offset = Vector2(0, -7)
 
 [node name="ThrusterRSprite" type="AnimatedSprite2D" parent="Thrusters/Level1Thrusters" groups=["thrusters"]]
@@ -124,13 +125,14 @@ sprite_frames = ExtResource("4_vtpqo")
 animation = &"move"
 offset = Vector2(0, -7)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Thrusters"]
+[node name="TrailParticles" type="GPUParticles2D" parent="."]
 texture = ExtResource("6_dmwb1")
 process_material = SubResource("ParticleProcessMaterial_8ris0")
+script = ExtResource("7_hp4ge")
 
 [node name="ShipSprite" type="Sprite2D" parent="."]
 rotation = 1.5708
-texture = ExtResource("2_uf5tr")
+texture = ExtResource("7_8ris0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

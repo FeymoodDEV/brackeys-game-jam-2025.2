@@ -17,9 +17,9 @@ config/icon="uid://dvmelf1c58r5d"
 
 [autoload]
 
-Spawning="*res://addons/BulletUpHell/Spawning.tscn"
 EventManager="*res://src/manager/event_manager.gd"
 GameConfig="*res://src/manager/game_config.gd"
+Spawning="*res://addons/BulletUpHell/Spawning.tscn"
 
 [debug]
 
@@ -33,10 +33,11 @@ window/size/viewport_width=640
 window/size/viewport_height=360
 window/size/window_width_override=1280
 window/size/window_height_override=720
+window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg", "res://addons/xsm/plugin.cfg")
+enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg", "res://addons/editor/inspector_tabs/plugin.cfg", "res://addons/editor/script-ide/plugin.cfg", "res://addons/editor/vectorpad/plugin.cfg", "res://addons/xsm/plugin.cfg")
 
 [input]
 
