@@ -20,6 +20,7 @@ config/icon="uid://dvmelf1c58r5d"
 EventManager="*res://src/manager/event_manager.gd"
 GameConfig="*res://src/manager/game_config.gd"
 Spawning="*res://addons/BulletUpHell/Spawning.tscn"
+BgmManager="*res://src/manager/bgm_manager.tscn"
 
 [debug]
 
