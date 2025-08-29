@@ -5,41 +5,107 @@ var player: PlayerController
 var chosen: Vector2i
 
 ## map width and height references cell count
-@export var map_width: int = 40
-@export var map_height: int = 30
+var map_time: float = 10;
+var map_width: int = 40
+var map_height: int = 30
 
-@export var cell_size: int = 64 #px
+var cell_size: int = 64 #px
 
 ## so blocks are being placed in clusters rather scattered around
-@export var cluster_chance: float = 0.01
-@export var cluster_size: int = 4
+var cluster_chance: float = 0.01
+var cluster_size: int = 4
 
-@export var border_scene: PackedScene
+var border_scene: PackedScene
 
-@export var block_scenes: Array[PackedScene]
-@export var enemy_scene: PackedScene = preload("res://prefabs/enemies/basic_enemy.tscn")
-@export var enemy_datas: Array[EnemyData]
-@export var background_tiles: Array[Texture]
+var block_scenes: Array[PackedScene]
+var enemy_scene: PackedScene = preload("res://prefabs/enemies/basic_enemy.tscn")
+var enemy_datas: Array[EnemyData]
+var background_tiles: Array[Texture]
 
-@export var boss_scene: PackedScene
-@export var next_level: PackedScene
+var boss_instance: Node2D
+var next_level: Level;
+
+var current_level: Node2D;
+var level_data: LevelData;
 
 var grid: Array = []
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
+@onready var timer: Timer = $LevelTimer;
+
+func _input(event):
+	if Input.is_action_just_pressed("ui_cancel"):
+		EventManager.level_scene_instanced.emit(next_level);
+
+func _on_level_scene_instanced(level: Level):
+	if not is_instance_valid(level):
+		push_error("Scen`e null!")
+		return;
+		
+	if not level.level_data:
+		push_error("LevelData null!")
+		return;
+	var data = level.level_data;
+	level_data = data;
+	
+	map_time = data.map_time;
+	map_height = data.map_height;
+	map_width = data.map_width;
+	timer.wait_time = data.map_time;
+	
+	cell_size = data.cell_size;
+	cluster_chance = data.cluster_chance;
+	cluster_size = data.cluster_size;
+	border_scene = data.border_scene;
+	
+	block_scenes = data.block_scenes;
+	enemy_scene = data.enemy_scene;
+	enemy_datas = data.enemy_datas;
+	background_tiles = data.background_tiles;
+	
+	boss_instance = data.boss_scene.instantiate();
+	next_level = data.next_level.instantiate() as Level;
+	
+	if is_instance_valid(level):
+		current_level = level;
+	
+		add_child(level);
+		_level_ready();
+
+	pass
+
+func _on_player_ready(player_path):
+	player = get_node(player_path);
+	assert(player);
+	pass
+
 func _enter_tree():
-	EventManager.player_spawned.connect(_level_ready);
+	EventManager.player_ready.connect(_on_player_ready)
+	EventManager.level_scene_instanced.connect(_on_level_scene_instanced);
 	EventManager.spawn_boss.connect(_on_boss_spawn)
 	EventManager.boss_killed.connect(_on_boss_killed)
-
-func _level_ready(player_path: NodePath) -> void:
-	player = get_node(player_path)
-	$BG.texture = background_tiles[randi() % background_tiles.size()]
 	
+func _ready():
+	timer.timeout.connect(EventManager.spawn_boss.emit)
+	
+
+func _level_ready() -> void:
+	$BG.texture = background_tiles[randi() % background_tiles.size()]
 	create_empty_grid()
 	generate_level()
 	spawn_enemies()
 	place_player()
+	
+	timer.wait_time = map_time
+	timer.one_shot = true;
+	
+	timer.start();
+	
+	EventManager.level_started.emit(map_time);
+
+func _on_level_timer_timeout():
+	
+	pass
 
 ## Initialize grid with false in order to track empty cells
 func create_empty_grid() -> void:
@@ -126,11 +192,10 @@ func place_player() -> void:
 	grid[chosen.y][chosen.x] = true
 
 func _on_boss_spawn() -> void:
-	assert(boss_scene, "setup Boss scene");
+	assert(boss_instance, "setup Boss scene");
 	
-	var boss_instance: BossControler = boss_scene.instantiate()
 	boss_instance.global_position = Vector2(chosen.x * cell_size, chosen.y * cell_size)
-	get_parent().add_child(boss_instance)
+	current_level.add_child(boss_instance)
 	
 	Spawning.clear_all_bullets()
 	
@@ -144,7 +209,7 @@ func _on_boss_killed() -> void:
 	# Start the slowdown effect
 	await slow_motion(0.2, 1.0, 0.5)  # target_scale, duration, hold_time
 	Spawning.clear_all_bullets()
-	get_tree().change_scene_to_file(next_level.resource_path)
+	EventManager.level_scene_instanced.emit(next_level);
 
 # Coroutine function for slow motion
 func slow_motion(target_scale: float, duration: float, hold_time: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cbvj4rmuhfog3"]
+[gd_scene load_steps=35 format=3 uid="uid://bfvhrvcb3sb54"]
 
 [ext_resource type="Script" uid="uid://cgd1wjud4ds5l" path="res://src/manager/bullet_manager.gd" id="1_s87c5"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://prefabs/player/player.tscn" id="2_5m336"]

@@ -1,16 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccrxh34dcnijy"]
+[gd_scene load_steps=5 format=3 uid="uid://s5wdbvyf7fxt"]
 
 [ext_resource type="Script" uid="uid://bc7o63ppdn8uw" path="res://testing/cybrnight_main.gd" id="1_w3c6p"]
 [ext_resource type="PackedScene" uid="uid://bh4n0qihnupx7" path="res://prefabs/managers/bullet_manager.tscn" id="2_npses"]
 [ext_resource type="PackedScene" uid="uid://cxxnbcxiuusqt" path="res://prefabs/managers/level_manager.tscn" id="3_mvsys"]
-[ext_resource type="PackedScene" uid="uid://bq8imdqkwil54" path="res://prefabs/bosses/chocolate_king.tscn" id="3_npses"]
 [ext_resource type="PackedScene" uid="uid://j4ljg2vl3nfv" path="res://prefabs/ui/player_ui.tscn" id="6_npses"]
 
 [node name="CybrnightMain" type="Node2D"]
 script = ExtResource("1_w3c6p")
 
 [node name="LevelManager" parent="." instance=ExtResource("3_mvsys")]
-boss_scene = ExtResource("3_npses")
 
 [node name="BulletManager" parent="." instance=ExtResource("2_npses")]
 

@@ -1,10 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2u0qpleqhkrm"]
 
-[ext_resource type="PackedScene" uid="uid://j4ljg2vl3nfv" path="res://prefabs/ui/player_ui.tscn" id="1_g2h2n"]
-[ext_resource type="PackedScene" uid="uid://bh4n0qihnupx7" path="res://prefabs/managers/bullet_manager.tscn" id="1_j2425"]
+[ext_resource type="Script" path="res://src/level.gd" id="1_j2425"]
+[ext_resource type="Resource" uid="uid://d4lop5a6dmpbs" path="res://resources/level_data/level_2.tres" id="2_g2h2n"]
 
 [node name="Level2" type="Node2D"]
-
-[node name="PlayerUI" parent="." instance=ExtResource("1_g2h2n")]
-
-[node name="BulletManager" parent="." instance=ExtResource("1_j2425")]
+script = ExtResource("1_j2425")
+level_data = ExtResource("2_g2h2n")

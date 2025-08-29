@@ -8,20 +8,26 @@ class_name PlayerUI
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var boss_label: Label = $BossName
 
+func _on_boss_killed():
+	boss_health_bar.hide();
+	boss_label.hide();
+	pass
+
 func _ready() -> void:
 	EventManager.health_changed.connect(_on_health_changed)
 	EventManager.boss_health_changed.connect(_on_boss_health_changed)
 	EventManager.setup_boss_ui.connect(_on_boss_spawned)
+	EventManager.boss_killed.connect(_on_boss_killed)
 	EventManager.progress_changed.connect(_on_progress_changed)
 	EventManager.player_setup.connect(_on_setup)
+	EventManager.level_started.connect(_on_level_started)
 	
-	timer.start()
-	timer.timeout.connect(_on_timer_timeout)
+func _on_level_started(map_time):
+	timer.wait_time = map_time;
+	timer.one_shot = true;
+	timer.start();
 
-func _on_timer_timeout():
-	EventManager.emit_signal("spawn_boss")
-
-func dispaly_timer() -> Array:
+func display_timer() -> Array:
 	var time_left: float = timer.time_left
 	var minute: Variant = floor(time_left / 60)
 	var second: int = int(time_left) % 60
@@ -35,7 +41,7 @@ func _on_setup(dict: Dictionary) -> void:
 	health_bar.max_value = dict.health_max_value
 	
 func _process(delta) -> void:
-	countdown_label.text = "%02d:%02d" % dispaly_timer()
+	countdown_label.text = "%02d:%02d" % display_timer();
 
 func _on_health_changed(health: float) -> void:
 	health_bar.value = health

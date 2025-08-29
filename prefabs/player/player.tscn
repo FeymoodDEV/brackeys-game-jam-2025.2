@@ -6,7 +6,7 @@
 [ext_resource type="Shape2D" uid="uid://cdxuhi06dx5ji" path="res://prefabs/player/level_2_hitbox.tres" id="3_lgqa7"]
 [ext_resource type="PackedScene" uid="uid://cdmeut6gpnrdx" path="res://prefabs/player/player_gun.tscn" id="3_myrg7"]
 [ext_resource type="Shape2D" uid="uid://2i71f8o8iqxk" path="res://prefabs/player/level_3_nombox.tres" id="3_uf5tr"]
-[ext_resource type="Script" uid="uid://bch8fmopdft1u" path="res://src/player/thrusters.gd" id="4_ag4y2"]
+[ext_resource type="Script" path="res://src/player/thrusters.gd" id="4_ag4y2"]
 [ext_resource type="Shape2D" uid="uid://cu1nofnlrgf2a" path="res://prefabs/player/level_3_hitbox.tres" id="4_lgqa7"]
 [ext_resource type="SpriteFrames" uid="uid://bmhq5ceo5wdkr" path="res://resources/animations/ship-thrusters-anim.tres" id="4_vtpqo"]
 [ext_resource type="Shape2D" uid="uid://bivjpsiot2lxr" path="res://prefabs/player/level_2_nombox.tres" id="5_8ydkj"]
@@ -151,11 +151,9 @@ script = ExtResource("10_4jdxe")
 stream = ExtResource("11_a0po4")
 volume_db = -13.866
 pitch_scale = 1.09
-bus = &"SFX"
 
 [node name="Shooting" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("12_lxdfn")
-bus = &"SFX"
 
 [node name="Damaged" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("13_lxdfn")
@@ -184,7 +182,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Upgrade")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Normal" type="Node" parent="Root/Movement"]
@@ -193,7 +191,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Circling")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Circling" type="Node" parent="Root/Movement"]
@@ -239,7 +237,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Level2")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level2" type="Node" parent="Root/Upgrade"]
@@ -252,7 +250,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Level3")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level3" type="Node" parent="Root/Upgrade"]

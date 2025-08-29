@@ -83,7 +83,7 @@ func _ready():
 	#move_thread = Thread.new()
 	#draw_thread = Thread.new()
 	
-	EventManager.player_spawned.connect(_on_player_spawned)
+	EventManager.player_ready.connect(_on_player_spawned)
 
 	randomize()
 
