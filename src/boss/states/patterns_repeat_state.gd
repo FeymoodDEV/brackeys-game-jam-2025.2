@@ -1,6 +1,7 @@
 @tool
 extends State
 
+@export var next_boss_state: State
 @export var state_duration: float = 10
 @export var patterns: Array[BossPatternData]
 
@@ -21,7 +22,7 @@ func _on_timeout(_name: String) -> void:
 	if not active: return
 	
 	if _name == "go_to_next_state":
-		change_to_next()
+		change_state(next_boss_state.name)
 		return
 		
 	for pattern in patterns:

@@ -44,7 +44,7 @@ _data = {
 &"hit": SubResource("Animation_cgrg5")
 }
 
-[node name="Block" type="StaticBody2D"]
+[node name="Block" type="StaticBody2D" groups=["block"]]
 collision_layer = 36
 script = ExtResource("1_cgrg5")
 data = ExtResource("2_4kun4")

@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 # This exists to ensure nodes attached to this one can avoid being freed alongside
 # this node (ex: target reticles). Sorry.
 signal freeing
-func safe_queue_free() -> void:
+func die() -> void:
 	freeing.emit()
 	queue_free.call_deferred()
 
@@ -112,8 +112,7 @@ func pick_new_direction() -> void:
 func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2) -> void:
 	health -= damage;
 	if health <= 0:
-		safe_queue_free();
+		die();
 
 func _on_player_spawned(path: NodePath):
-	print(path)
 	player = get_node(path)

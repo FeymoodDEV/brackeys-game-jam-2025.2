@@ -74,6 +74,7 @@ func _ready():
 		"progress_max_value": 100, 
 		"health_max_value": max_health,
 	})
+
 	EventManager.player_spawned.emit(get_path())
 	
 	# States run their on_enter behaviour before _ready, which causes a problem

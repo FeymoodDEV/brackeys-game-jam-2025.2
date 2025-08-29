@@ -34,16 +34,18 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 300.0
+wait_time = 10.0
+one_shot = true
 
 [node name="BossHealthBar" type="ProgressBar" parent="."]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -194.5
-offset_top = 36.0
+offset_top = 10.0
 offset_right = 194.5
-offset_bottom = 72.0
+offset_bottom = 46.0
 grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_sx3m1")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mvsys")
@@ -51,13 +53,14 @@ value = 50.0
 show_percentage = false
 
 [node name="BossName" type="Label" parent="."]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -194.5
-offset_top = 36.0
+offset_top = 10.0
 offset_right = 194.5
-offset_bottom = 71.0
+offset_bottom = 45.0
 grow_horizontal = 2
 text = "BIG BAD GUY"
 horizontal_alignment = 1

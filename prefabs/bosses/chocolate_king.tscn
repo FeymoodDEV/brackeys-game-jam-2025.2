@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://bq8imdqkwil54"]
+[gd_scene load_steps=12 format=3 uid="uid://bq8imdqkwil54"]
 
 [ext_resource type="Script" uid="uid://crdkg38w76q45" path="res://src/boss/boss_controller.gd" id="1_4wwgs"]
-[ext_resource type="Resource" uid="uid://s637nu1auosb" path="res://resources/boss_data/chocolate_king.tres" id="2_hts6l"]
 [ext_resource type="Texture2D" uid="uid://cuungxd61dxw0" path="res://assets/sprites/bullet/chocolate_bullet.png" id="3_iivlh"]
 [ext_resource type="Script" uid="uid://v6qncoss0ivu" path="res://addons/xsm/state_loop.gd" id="4_vrabn"]
 [ext_resource type="Script" uid="uid://b22hvoowka3oo" path="res://src/boss/states/pattern_in_six_dir_state.gd" id="5_mopdb"]
@@ -19,7 +18,8 @@ size = Vector2(128, 128)
 collision_layer = 34
 collision_mask = 0
 script = ExtResource("1_4wwgs")
-data = ExtResource("2_hts6l")
+boss_name = "Chocolate King"
+max_health = 10.0
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(-5.72205e-06, -5.72205e-06)
@@ -41,17 +41,19 @@ timed = false
 next_state = NodePath("")
 metadata/_custom_type_script = "uid://v6qncoss0ivu"
 
-[node name="State" type="Node" parent="stage_1"]
+[node name="State" type="Node" parent="stage_1" node_paths=PackedStringArray("next_boss_state")]
 script = ExtResource("5_mopdb")
+next_boss_state = NodePath("../State2")
 disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath(".")
+next_state = NodePath("../State")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
-[node name="State2" type="Node" parent="stage_1"]
+[node name="State2" type="Node" parent="stage_1" node_paths=PackedStringArray("next_boss_state")]
 script = ExtResource("6_rgtop")
+next_boss_state = NodePath("../State3")
 minion_data = ExtResource("7_lafiw")
 disabled = false
 debug_mode = false
@@ -60,8 +62,9 @@ timed = false
 next_state = NodePath("../State")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
-[node name="State3" type="Node" parent="stage_1"]
+[node name="State3" type="Node" parent="stage_1" node_paths=PackedStringArray("next_boss_state")]
 script = ExtResource("8_ik35n")
+next_boss_state = NodePath("../State")
 patterns = Array[ExtResource("9_hutyx")]([ExtResource("10_0k4gy"), ExtResource("11_sufpb")])
 disabled = false
 debug_mode = false
