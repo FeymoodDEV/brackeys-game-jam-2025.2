@@ -22,4 +22,3 @@ func _on_enter(args) -> void:
 	target.hitbox_shape.shape = hitbox_shape
 	target.nombox_shape.shape = nombox_shape
 	target.speed = speed
-	

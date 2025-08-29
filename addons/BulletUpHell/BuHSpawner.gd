@@ -1198,9 +1198,9 @@ func bullet_collide_body(body_rid:RID,body:Node,body_shape_index:int,local_shape
 		B["trig_collider"] = body
 		B["trig_container"].checkTriggers(B, rid)
 
-	if body.is_in_group("Player"):
-		#Spawning.delete_bullet(rid);
-		pass
+	#if body.is_in_group("Player"):
+		##Spawning.delete_bullet(rid);
+		#pass
 	elif B["props"]["death_from_collision"]:
 		delete_bullet(rid)
 		pass
