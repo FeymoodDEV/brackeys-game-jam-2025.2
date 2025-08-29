@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=38 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://src/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://devb6j2col43u" path="res://assets/sprites/player/ship3.png" id="2_uf5tr"]
@@ -6,7 +6,7 @@
 [ext_resource type="Shape2D" uid="uid://cdxuhi06dx5ji" path="res://prefabs/player/level_2_hitbox.tres" id="3_lgqa7"]
 [ext_resource type="PackedScene" uid="uid://cdmeut6gpnrdx" path="res://prefabs/player/player_gun.tscn" id="3_myrg7"]
 [ext_resource type="Shape2D" uid="uid://2i71f8o8iqxk" path="res://prefabs/player/level_3_nombox.tres" id="3_uf5tr"]
-[ext_resource type="Script" path="res://src/player/thrusters.gd" id="4_ag4y2"]
+[ext_resource type="Script" uid="uid://bch8fmopdft1u" path="res://src/player/thrusters.gd" id="4_ag4y2"]
 [ext_resource type="Shape2D" uid="uid://cu1nofnlrgf2a" path="res://prefabs/player/level_3_hitbox.tres" id="4_lgqa7"]
 [ext_resource type="SpriteFrames" uid="uid://bmhq5ceo5wdkr" path="res://resources/animations/ship-thrusters-anim.tres" id="4_vtpqo"]
 [ext_resource type="Shape2D" uid="uid://bivjpsiot2lxr" path="res://prefabs/player/level_2_nombox.tres" id="5_8ydkj"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://yw44daxcsxw0" path="res://src/player/states/movement_state.gd" id="7_h17s1"]
 [ext_resource type="Script" uid="uid://dlfvfwm3dmxry" path="res://src/player/trail_particles.gd" id="7_hp4ge"]
 [ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://src/player/states/normal_state.gd" id="8_qek5x"]
+[ext_resource type="Texture2D" uid="uid://dj3abyu5tht7s" path="res://assets/sprites/player/nomdash.png" id="8_xtdcv"]
 [ext_resource type="Script" uid="uid://des4f477v63vn" path="res://src/player/states/circling_state.gd" id="9_5gtgg"]
 [ext_resource type="Script" uid="uid://cbvm26wvakcp0" path="res://prefabs/player/audio.gd" id="10_4jdxe"]
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://src/player/states/nom_dash_state.gd" id="10_h17s1"]
@@ -33,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://cal60wifol3qs" path="res://assets/sprites/player/soft-lock.svg" id="14_fcs02"]
 [ext_resource type="AudioStream" uid="uid://c0sw3ke3l6tb5" path="res://assets/sounds/player/dead.ogg" id="14_xtdcv"]
 [ext_resource type="Texture2D" uid="uid://dr2oj506weijh" path="res://assets/sprites/player/hard-lock.svg" id="15_fcs02"]
+[ext_resource type="AudioStream" uid="uid://08c3m3kad13n" path="res://assets/sounds/player/dash.ogg" id="16_kxs7h"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ris0"]
 particle_flag_disable_z = true
@@ -135,6 +137,12 @@ texture = ExtResource("6_dmwb1")
 process_material = SubResource("ParticleProcessMaterial_8ris0")
 script = ExtResource("7_hp4ge")
 
+[node name="NomdashVFX" type="Sprite2D" parent="."]
+visible = false
+rotation = 1.57079
+texture = ExtResource("8_xtdcv")
+offset = Vector2(0, 28)
+
 [node name="ShipSprite" type="Sprite2D" parent="."]
 rotation = 1.5708
 texture = ExtResource("7_8ris0")
@@ -160,6 +168,9 @@ stream = ExtResource("13_lxdfn")
 
 [node name="Death" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("14_xtdcv")
+
+[node name="Dash" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("16_kxs7h")
 
 [node name="DashCooldownTimer" type="Timer" parent="."]
 one_shot = true
@@ -300,10 +311,11 @@ texture = ExtResource("15_fcs02")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Crosshair/HardLockReticle"]
 
-[connection signal="player_damaged" from="." to="Audio/Damaged" method="play"]
-[connection signal="player_dead" from="." to="Audio/Death" method="play"]
 [connection signal="upgrade_level_changed" from="." to="Root/Upgrade" method="_on_player_upgrade_level_changed"]
 [connection signal="player_shot" from="Gun" to="Audio/Shooting" method="play"]
+[connection signal="state_entered" from="Root/Movement/NomDash" to="NomdashVFX" method="show" unbinds=1]
+[connection signal="state_entered" from="Root/Movement/NomDash" to="Audio/Dash" method="play" unbinds=1]
+[connection signal="state_exited" from="Root/Movement/NomDash" to="NomdashVFX" method="hide" unbinds=1]
 [connection signal="hard_lock_changed" from="Crosshair" to="Root/Movement" method="_on_crosshair_hard_lock_changed"]
 [connection signal="body_entered" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_entered"]
 [connection signal="body_exited" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_exited"]
