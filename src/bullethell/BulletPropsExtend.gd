@@ -19,7 +19,7 @@ class_name BulletPropsExtend
 var direction: Vector2 = Vector2.RIGHT
 var time_alive: float = 0.0
 var remaining_pierce: int = 0
-var hit_vfx: GPUParticles2D;
+var hit_vfx: Node2D;
 
 func _init():
 	if hit_vfx:

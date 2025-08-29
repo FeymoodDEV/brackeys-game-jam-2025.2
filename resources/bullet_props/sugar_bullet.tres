@@ -1,7 +1,7 @@
 [gd_resource type="PackedDataContainer" script_class="BulletPropsExtend" load_steps=7 format=3 uid="uid://4im82kt0pnq3"]
 
 [ext_resource type="Script" uid="uid://bapo6jcdsje8y" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="1_jv3a1"]
-[ext_resource type="PackedScene" uid="uid://cbqgxhuvoxtgg" path="res://prefabs/particles/first_hit_vfx.tscn" id="2_7v7wl"]
+[ext_resource type="PackedScene" uid="uid://cbrnosqibc4mg" path="res://prefabs/particles/green_spack_vfx.tscn" id="2_jv3a1"]
 [ext_resource type="Script" uid="uid://dvueqbi8eexbm" path="res://src/bullethell/BulletPropsExtend.gd" id="3_hhtqg"]
 [ext_resource type="Texture2D" uid="uid://c2haqjj6x27gw" path="res://assets/sprites/bullet/sugar_bullet.png" id="4_w8mc3"]
 
@@ -16,7 +16,7 @@ pierce_count = 0
 knockback = 0.0
 absorb_points = 1
 sprite_scale = 0.25
-packed_hit_vfx = ExtResource("2_7v7wl")
+packed_hit_vfx = ExtResource("2_jv3a1")
 anim_more = Array[ExtResource("1_jv3a1")]([])
 damage = 1.0
 speed = 100.0

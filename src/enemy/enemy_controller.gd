@@ -4,6 +4,9 @@ class_name EnemyController
 const PLAYER_COLLISION_LAYER = 2
 const WALL_COLLISION_LAYER = 0
 
+signal damaged
+signal dead
+
 @export var enemy_data: EnemyData;
 
 var spawn_position: Vector2
@@ -54,7 +57,7 @@ func _physics_process(delta: float) -> void:
 # This exists to ensure nodes attached to this one can avoid being freed alongside
 # this node (ex: target reticles). Sorry.
 signal freeing
-func die() -> void:
+func safe_queue_free() -> void:
 	freeing.emit()
 	queue_free.call_deferred()
 
@@ -110,9 +113,21 @@ func pick_new_direction() -> void:
 	current_direction = (spawn_position - global_position).normalized()
 
 func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2) -> void:
+	damaged.emit()
 	health -= damage;
 	if health <= 0:
-		die();
+		die()
+
+func die() -> void:
+	dead.emit()
+	var vfx = enemy_data.death_vfx.instantiate()
+	
+	get_tree().get_root().add_child(vfx)
+	vfx.top_level = true
+	vfx.global_position = global_position
+	vfx.play(&"default")
+	
+	safe_queue_free()
 
 func _on_player_spawned(path: NodePath):
 	player = get_node(path)

@@ -1,11 +1,12 @@
-[gd_scene load_steps=34 format=3 uid="uid://cbvj4rmuhfog3"]
+[gd_scene load_steps=35 format=3 uid="uid://cbvj4rmuhfog3"]
 
 [ext_resource type="Script" uid="uid://cgd1wjud4ds5l" path="res://src/manager/bullet_manager.gd" id="1_s87c5"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://prefabs/player/player.tscn" id="2_5m336"]
-[ext_resource type="PackedScene" uid="uid://cbqgxhuvoxtgg" path="res://prefabs/particles/first_hit_vfx.tscn" id="3_5m336"]
 [ext_resource type="Script" uid="uid://bjmse0liopcrp" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="3_er4hb"]
 [ext_resource type="Script" uid="uid://bapo6jcdsje8y" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="4_um252"]
 [ext_resource type="Script" uid="uid://dvueqbi8eexbm" path="res://src/bullethell/BulletPropsExtend.gd" id="7_05w0v"]
+[ext_resource type="PackedScene" uid="uid://ctcm0nmbs655s" path="res://prefabs/particles/blue_spack_vfx.tscn" id="8_er4hb"]
+[ext_resource type="PackedScene" uid="uid://b2mqu7dv1l8a3" path="res://prefabs/particles/red_spack_vfx.tscn" id="9_er4hb"]
 [ext_resource type="Texture2D" uid="uid://cuungxd61dxw0" path="res://assets/sprites/bullet/chocolate_bullet.png" id="9_s87c5"]
 [ext_resource type="Script" uid="uid://c8ydhn2yvq3dc" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="10_bvdue"]
 [ext_resource type="Texture2D" uid="uid://c2haqjj6x27gw" path="res://assets/sprites/bullet/sugar_bullet.png" id="11_er4hb"]
@@ -28,7 +29,7 @@ pierce_count = 0
 knockback = 0.0
 absorb_points = 1
 sprite_scale = 0.25
-packed_hit_vfx = ExtResource("3_5m336")
+packed_hit_vfx = ExtResource("9_er4hb")
 anim_more = Array[ExtResource("4_um252")]([])
 damage = 1.0
 speed = 200.0
@@ -111,7 +112,7 @@ pierce_count = 0
 knockback = 0.0
 absorb_points = 1
 sprite_scale = 0.25
-packed_hit_vfx = ExtResource("3_5m336")
+packed_hit_vfx = ExtResource("8_er4hb")
 anim_more = Array[ExtResource("4_um252")]([])
 damage = 1.0
 speed = 100.0
@@ -194,7 +195,7 @@ pierce_count = 0
 knockback = 0.0
 absorb_points = 1
 sprite_scale = 0.25
-packed_hit_vfx = ExtResource("3_5m336")
+packed_hit_vfx = ExtResource("9_er4hb")
 anim_more = Array[ExtResource("4_um252")]([])
 damage = 1.0
 speed = 1000.0
