@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://7o3oduj74buw"]
+[gd_scene load_steps=3 format=3 uid="uid://br8yife8lenk4"]
 
 [ext_resource type="AudioStream" uid="uid://bicpr6gn4fthc" path="res://assets/sounds/music/Biscy_Business_01.ogg" id="1_5ct42"]
-[ext_resource type="Script" uid="uid://cp3pysis6c2kg" path="res://src/manager/bgm_manager.gd" id="2_7oplk"]
+[ext_resource type="Script" path="res://src/manager/bgm_manager.gd" id="2_7oplk"]
 
 [node name="BgmManager" type="AudioStreamPlayer"]
 stream = ExtResource("1_5ct42")

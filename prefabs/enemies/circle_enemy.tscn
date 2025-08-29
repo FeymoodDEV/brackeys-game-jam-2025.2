@@ -33,6 +33,3 @@ stream = ExtResource("4_3ua2v")
 
 [node name="Dead" type="AudioStreamPlayer2D" parent="EnemySounds"]
 stream = ExtResource("5_our6g")
-
-[connection signal="damaged" from="." to="EnemySounds/Damaged" method="play"]
-[connection signal="dead" from="." to="EnemySounds/Dead" method="play"]

@@ -15,10 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://b18crkv7x2kpf" path="res://assets/sprites/player/thruster-particle.png" id="6_dmwb1"]
 [ext_resource type="Texture2D" uid="uid://ogb51tdot7ho" path="res://assets/sprites/player/ship1.png" id="7_8ris0"]
 [ext_resource type="Script" uid="uid://yw44daxcsxw0" path="res://src/player/states/movement_state.gd" id="7_h17s1"]
-[ext_resource type="Script" uid="uid://dlfvfwm3dmxry" path="res://src/player/trail_particles.gd" id="7_hp4ge"]
+[ext_resource type="Script" path="res://src/player/trail_particles.gd" id="7_hp4ge"]
 [ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://src/player/states/normal_state.gd" id="8_qek5x"]
 [ext_resource type="Script" uid="uid://des4f477v63vn" path="res://src/player/states/circling_state.gd" id="9_5gtgg"]
-[ext_resource type="Script" uid="uid://cbvm26wvakcp0" path="res://prefabs/player/audio.gd" id="10_4jdxe"]
+[ext_resource type="Script" path="res://prefabs/player/audio.gd" id="10_4jdxe"]
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://src/player/states/nom_dash_state.gd" id="10_h17s1"]
 [ext_resource type="Script" uid="uid://crak72h5onoyp" path="res://src/player/gun/upgrade_level.gd" id="10_kvlxm"]
 [ext_resource type="Script" uid="uid://bwsv0v5wgoh2s" path="res://src/player/gun/upgrade.gd" id="10_myrg7"]
@@ -302,10 +302,7 @@ texture = ExtResource("15_fcs02")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Crosshair/HardLockReticle"]
 
-[connection signal="player_damaged" from="." to="Audio/Damaged" method="play"]
-[connection signal="player_dead" from="." to="Audio/Death" method="play"]
 [connection signal="upgrade_level_changed" from="." to="Root/Upgrade" method="_on_player_upgrade_level_changed"]
-[connection signal="player_shot" from="Gun" to="Audio/Shooting" method="play"]
 [connection signal="hard_lock_changed" from="Crosshair" to="Root/Movement" method="_on_crosshair_hard_lock_changed"]
 [connection signal="body_entered" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_entered"]
 [connection signal="body_exited" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_exited"]
