@@ -8,10 +8,16 @@ class_name PlayerUI
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var boss_label: Label = $BossName
 
+func _on_boss_killed():
+	boss_health_bar.hide();
+	boss_label.hide();
+	pass
+
 func _ready() -> void:
 	EventManager.health_changed.connect(_on_health_changed)
 	EventManager.boss_health_changed.connect(_on_boss_health_changed)
 	EventManager.setup_boss_ui.connect(_on_boss_spawned)
+	EventManager.boss_killed.connect(_on_boss_killed)
 	EventManager.progress_changed.connect(_on_progress_changed)
 	EventManager.player_setup.connect(_on_setup)
 	

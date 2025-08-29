@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=24 format=3 uid="uid://dyik6mrjr87vp"]
+
+[ext_resource type="Texture2D" uid="uid://dfeeu7xpu3qc3" path="res://assets/sprites/tile/tile1.png" id="1_f183m"]
+[ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://prefabs/blocks/block_1.tscn" id="1_i2xk7"]
+[ext_resource type="Texture2D" uid="uid://soy0ejrja2pr" path="res://assets/sprites/tile/tile2.png" id="2_ertwf"]
+[ext_resource type="PackedScene" uid="uid://cux5gt5ppivxe" path="res://prefabs/blocks/block_2.tscn" id="2_rhpp2"]
+[ext_resource type="Texture2D" uid="uid://b58gbdvdur8" path="res://assets/sprites/tile/tile3.png" id="3_3cjyy"]
+[ext_resource type="PackedScene" uid="uid://y2xgcb36jh3" path="res://prefabs/blocks/block_3.tscn" id="3_itr4j"]
+[ext_resource type="Texture2D" uid="uid://dx578871kyda3" path="res://assets/sprites/tile/tile4.png" id="4_wgmho"]
+[ext_resource type="PackedScene" uid="uid://bq8imdqkwil54" path="res://prefabs/bosses/chocolate_king.tscn" id="4_xxrvx"]
+[ext_resource type="Script" uid="uid://2pwnys3t54yw" path="res://src/enemy/EnemyData.gd" id="5_ibpya"]
+[ext_resource type="Texture2D" uid="uid://dsiu66k67apec" path="res://assets/sprites/tile/tile5.png" id="5_kbunl"]
+[ext_resource type="Resource" uid="uid://ca4ewugaitcqx" path="res://resources/enemy_data/chocolate_enemy.tres" id="6_c0s30"]
+[ext_resource type="Texture2D" uid="uid://ttmeaan4q6cb" path="res://assets/sprites/tile/tile6.png" id="6_syqn1"]
+[ext_resource type="Resource" uid="uid://enusg5jloedi" path="res://resources/enemy_data/circle_enemy.tres" id="7_4r1fs"]
+[ext_resource type="Texture2D" uid="uid://b0riwn21p8ulc" path="res://assets/sprites/tile/tile7.png" id="7_ds6j8"]
+[ext_resource type="Resource" uid="uid://bqxvy5sr6pupv" path="res://resources/enemy_data/line_enemy.tres" id="8_1uuav"]
+[ext_resource type="Texture2D" uid="uid://bvg7d5ts87b3n" path="res://assets/sprites/tile/tile8.png" id="8_jf8tv"]
+[ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://prefabs/enemies/basic_enemy.tscn" id="9_3flve"]
+[ext_resource type="Texture2D" uid="uid://h83hqaeiljnx" path="res://assets/sprites/tile/tile9.png" id="9_3jupg"]
+[ext_resource type="Texture2D" uid="uid://baa7ewnrju7ds" path="res://assets/sprites/tile/tile10.png" id="10_68ow5"]
+[ext_resource type="PackedScene" uid="uid://b2u0qpleqhkrm" path="res://scenes/levels/level_2.tscn" id="10_luj5s"]
+[ext_resource type="Texture2D" uid="uid://bmew6t1pkr6n1" path="res://assets/sprites/tile/tile11.png" id="11_mv4n1"]
+[ext_resource type="Script" uid="uid://bsxc5d4jawjyr" path="res://src/level_data.gd" id="11_u605j"]
+[ext_resource type="Texture2D" uid="uid://7bg2n6nm23ly" path="res://assets/sprites/tile/tile12.png" id="12_qdile"]
+
+[resource]
+script = ExtResource("11_u605j")
+map_width = 40
+map_height = 30
+cell_size = 64
+cluster_chance = 0.01
+cluster_size = 4
+border_scene = ExtResource("3_itr4j")
+block_scenes = Array[PackedScene]([ExtResource("1_i2xk7"), ExtResource("2_rhpp2"), ExtResource("3_itr4j")])
+enemy_scene = ExtResource("9_3flve")
+enemy_datas = Array[ExtResource("5_ibpya")]([ExtResource("6_c0s30"), ExtResource("7_4r1fs"), ExtResource("8_1uuav")])
+background_tiles = Array[Texture]([ExtResource("1_f183m"), ExtResource("2_ertwf"), ExtResource("3_3cjyy"), ExtResource("4_wgmho"), ExtResource("5_kbunl"), ExtResource("6_syqn1"), ExtResource("7_ds6j8"), ExtResource("8_jf8tv"), ExtResource("9_3jupg"), ExtResource("10_68ow5"), ExtResource("11_mv4n1"), ExtResource("12_qdile")])
+boss_scene = ExtResource("4_xxrvx")
+next_level = ExtResource("10_luj5s")
+metadata/_custom_type_script = "uid://bsxc5d4jawjyr"

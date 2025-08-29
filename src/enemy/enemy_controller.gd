@@ -29,7 +29,6 @@ var pattern: String = "line";
 
 func _ready() -> void:
 	assert(enemy_data, "EnemyData resource is null!");
-	EventManager.player_spawned.connect(_on_player_spawned)
 	
 	# Load enemy data into local variables
 	if enemy_data.sprite:
@@ -113,6 +112,3 @@ func apply_damage(damage: int, knockback: float, global_position: Vector2, direc
 	health -= damage;
 	if health <= 0:
 		die();
-
-func _on_player_spawned(path: NodePath):
-	player = get_node(path)

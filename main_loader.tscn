@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cscfgbkbj3nb"]
+[gd_scene load_steps=9 format=3 uid="uid://cscfgbkbj3nb"]
 
 [ext_resource type="Script" uid="uid://dhwkvbcdj6spb" path="res://src/main_loader.gd" id="1_krakd"]
 [ext_resource type="PackedScene" uid="uid://3yj03daybfvf" path="res://scenes/main_menu.tscn" id="2_6dey0"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cbqgxhuvoxtgg" path="res://prefabs/particles/first_hit_vfx.tscn" id="4_6dey0"]
 [ext_resource type="PackedScene" uid="uid://dv7y8svel5iok" path="res://prefabs/particles/first_trail.tscn" id="5_jixal"]
 [ext_resource type="PackedScene" uid="uid://bh4n0qihnupx7" path="res://prefabs/managers/bullet_manager.tscn" id="6_jixal"]
+[ext_resource type="PackedScene" uid="uid://cxxnbcxiuusqt" path="res://prefabs/managers/level_manager.tscn" id="7_jmiai"]
+[ext_resource type="PackedScene" uid="uid://j4ljg2vl3nfv" path="res://prefabs/ui/player_ui.tscn" id="8_0sdr2"]
 
 [node name="Loader" type="Node2D"]
 script = ExtResource("1_krakd")
@@ -14,3 +16,7 @@ packed_test_scene = ExtResource("3_6dey0")
 packed_particles = Array[PackedScene]([ExtResource("4_6dey0"), ExtResource("5_jixal")])
 
 [node name="BulletManager" parent="." instance=ExtResource("6_jixal")]
+
+[node name="LevelManager" parent="." instance=ExtResource("7_jmiai")]
+
+[node name="PlayerUI" parent="." instance=ExtResource("8_0sdr2")]

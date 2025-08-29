@@ -16,9 +16,10 @@ func _ready():
 		game_scene = packed_game_scene.instantiate();
 
 func _on_play_btn_pressed():
-	get_parent().add_child(game_scene);
 	self.hide();
 	ui_layer.hide();
+	EventManager.game_started.emit();
+	EventManager.level_scene_instanced.emit(game_scene);
 	pass
 	
 func _on_options_button_pressed():
