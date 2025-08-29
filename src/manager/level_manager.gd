@@ -140,6 +140,7 @@ func _on_boss_spawn() -> void:
 		block.die()
 
 func _on_boss_killed() -> void:
+	assert(next_level, "setup next level scene");
 	# Start the slowdown effect
 	await slow_motion(0.2, 1.0, 0.5)  # target_scale, duration, hold_time
 	Spawning.clear_all_bullets()
