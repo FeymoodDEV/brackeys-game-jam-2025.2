@@ -87,10 +87,15 @@ func _enter_tree():
 	
 func _ready():
 	timer.timeout.connect(EventManager.spawn_boss.emit)
+	$BG.hide();
 	
+func _on_game_ended():
+	$BG.hide();
 
 func _level_ready() -> void:
 	$BG.texture = background_tiles[randi() % background_tiles.size()]
+	$BG.show();
+	
 	create_empty_grid()
 	generate_level()
 	spawn_enemies()
@@ -205,7 +210,6 @@ func _on_boss_spawn() -> void:
 		block.die()
 
 func _on_boss_killed() -> void:
-	assert(next_level, "setup next level scene");
 	# Start the slowdown effect
 	await slow_motion(0.2, 1.0, 0.5)  # target_scale, duration, hold_time
 	Spawning.clear_all_bullets()

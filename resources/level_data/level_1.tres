@@ -26,7 +26,7 @@
 
 [resource]
 script = ExtResource("11_u605j")
-map_time = 5.0
+map_time = 15.0
 map_width = 40
 map_height = 30
 cell_size = 64

@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://s5wdbvyf7fxt"]
+[gd_scene load_steps=6 format=3 uid="uid://s5wdbvyf7fxt"]
 
-[ext_resource type="Script" uid="uid://bc7o63ppdn8uw" path="res://testing/cybrnight_main.gd" id="1_w3c6p"]
+[ext_resource type="Script" path="res://src/level.gd" id="1_x0b7u"]
+[ext_resource type="Resource" uid="uid://dyik6mrjr87vp" path="res://resources/level_data/level_1.tres" id="2_mvsys"]
 [ext_resource type="PackedScene" uid="uid://bh4n0qihnupx7" path="res://prefabs/managers/bullet_manager.tscn" id="2_npses"]
 [ext_resource type="PackedScene" uid="uid://cxxnbcxiuusqt" path="res://prefabs/managers/level_manager.tscn" id="3_mvsys"]
 [ext_resource type="PackedScene" uid="uid://j4ljg2vl3nfv" path="res://prefabs/ui/player_ui.tscn" id="6_npses"]
 
 [node name="CybrnightMain" type="Node2D"]
-script = ExtResource("1_w3c6p")
+script = ExtResource("1_x0b7u")
+level_data = ExtResource("2_mvsys")
 
 [node name="LevelManager" parent="." instance=ExtResource("3_mvsys")]
 
