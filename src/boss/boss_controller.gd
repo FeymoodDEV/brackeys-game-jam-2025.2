@@ -36,4 +36,8 @@ func apply_damage(damage: int, knockback: float, global_position: Vector2, direc
 	EventManager.emit_signal("boss_health_changed", health)
 	
 	if health <= 0:
-		queue_free.call_deferred()
+		die()
+
+func die():
+	queue_free.call_deferred()
+	EventManager.boss_killed.emit()

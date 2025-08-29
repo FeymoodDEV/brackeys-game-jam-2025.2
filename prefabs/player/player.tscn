@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=30 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://src/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://devb6j2col43u" path="res://assets/sprites/player/ship3.png" id="2_uf5tr"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://b2l0jlbk7oecc" path="res://addons/xsm/state_regions.gd" id="6_0owmy"]
 [ext_resource type="Texture2D" uid="uid://b18crkv7x2kpf" path="res://assets/sprites/player/thruster-particle.png" id="6_dmwb1"]
 [ext_resource type="Script" uid="uid://yw44daxcsxw0" path="res://src/player/states/movement_state.gd" id="7_h17s1"]
+[ext_resource type="Script" uid="uid://c6dd72g31782" path="res://src/player/player_camera.gd" id="8_8ris0"]
 [ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://src/player/states/normal_state.gd" id="8_qek5x"]
 [ext_resource type="Script" uid="uid://des4f477v63vn" path="res://src/player/states/circling_state.gd" id="9_5gtgg"]
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://src/player/states/nom_dash_state.gd" id="10_h17s1"]
@@ -133,6 +134,9 @@ rotation = 1.5708
 texture = ExtResource("2_uf5tr")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("8_8ris0")
+look_ahead_distance = 75.0
+smoothing = 35.0
 
 [node name="Gun" parent="." instance=ExtResource("3_myrg7")]
 rotation = 1.5708

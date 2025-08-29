@@ -262,27 +262,6 @@ script = ExtResource("1_s87c5")
 [node name="Player" parent="." instance=ExtResource("2_5m336")]
 position = Vector2(2031, 1523)
 
-[node name="Level1" parent="Player/Root/Upgrade" index="1"]
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("")
-
-[node name="Level2" parent="Player/Root/Upgrade" index="2"]
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("")
-
-[node name="Level3" parent="Player/Root/Upgrade" index="3"]
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("")
-
 [node name="BulletProps" type="Node2D" parent="."]
 
 [node name="ChocolateBullet" type="Path2D" parent="BulletProps"]
