@@ -10,11 +10,23 @@ var game_scene: Node2D;
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
 	play_btn.pressed.connect(_on_play_btn_pressed)
+	
+	EventManager.game_started.connect(_on_game_started);
+	EventManager.game_ended.connect(_on_game_ended);
+	
 	play_btn.grab_focus();
+	
+func _on_game_started():
+	ui_layer.hide();
+	set_process(false);
+	set_process_input(false);
+	
+func _on_game_ended():
+	set_process(true);
+	set_process_input(true);
+	ui_layer.show();
 
 func _on_play_btn_pressed():
-	self.hide();
-	ui_layer.hide();
 	EventManager.game_started.emit();
 	pass
 	

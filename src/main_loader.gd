@@ -20,14 +20,13 @@ func _init():
 	pass
 
 func _on_game_ended():
-	menu_scene.show();
+	$PlayerUI.hide();
 	
 func _on_game_started():
 	$PlayerUI.show();
 	
-func _ready():
+func _ready():	
 	$PlayerUI.hide();
-	
 	EventManager.game_started.connect(_on_game_started);
 	EventManager.game_ended.connect(_on_game_ended);
 	

@@ -107,10 +107,12 @@ func _ready():
 	})
 
 	EventManager.game_started.connect(_on_game_started)
+	EventManager.game_ended.connect(_on_game_ended)
+	
 	EventManager.player_ready.emit(get_path())
 	
 	# States run their on_enter behaviour before _ready, which causes a problem
-	# when they try to mutate player properties.
+	# when they try to mutate player propersaties.
 	# The solution in this case is to have an initial state with no behaviour
 	# (PreInit) that we switch away from on _ready.
 	$Root/Upgrade.change_state("Level1")

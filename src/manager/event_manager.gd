@@ -6,7 +6,7 @@ signal player_setup(dictionary)
 signal menu_loaded;
 signal game_started;
 
-signal level_scene_instanced(level_scene: Node2D);
+signal level_scene_instanced(level_data: LevelData);
 signal level_started(map_time: float);
 signal level_ended;
 
