@@ -27,6 +27,9 @@ var pattern: String = "line";
 
 #endregion
 
+signal damaged
+signal dead
+
 func _ready() -> void:
 	assert(enemy_data, "EnemyData resource is null!");
 	

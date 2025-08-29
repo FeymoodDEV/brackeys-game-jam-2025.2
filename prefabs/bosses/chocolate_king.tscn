@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bq8imdqkwil54"]
+[gd_scene load_steps=14 format=3 uid="uid://bq8imdqkwil54"]
 
 [ext_resource type="Script" uid="uid://crdkg38w76q45" path="res://src/boss/boss_controller.gd" id="1_4wwgs"]
 [ext_resource type="Texture2D" uid="uid://cuungxd61dxw0" path="res://assets/sprites/bullet/chocolate_bullet.png" id="3_iivlh"]
@@ -9,7 +9,9 @@
 [ext_resource type="Script" uid="uid://ctur53xodcjsv" path="res://src/boss/states/patterns_repeat_state.gd" id="8_ik35n"]
 [ext_resource type="Script" uid="uid://bwjfyj5t13444" path="res://src/boss/boss_pattern_data.gd" id="9_hutyx"]
 [ext_resource type="Resource" uid="uid://c7f7gum5i0x" path="res://resources/boss_patterns/chocolate_circle_pattern.tres" id="10_0k4gy"]
+[ext_resource type="AudioStream" uid="uid://cjhw80h3cj4fb" path="res://assets/sounds/enemy/damaged.ogg" id="11_hts6l"]
 [ext_resource type="Resource" uid="uid://dxsad11r8sdxi" path="res://resources/boss_patterns/chocolate_v_shape_pattern.tres" id="11_sufpb"]
+[ext_resource type="AudioStream" uid="uid://cblbt71io5gvo" path="res://assets/sounds/enemy/dead.ogg" id="12_iivlh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysfue"]
 size = Vector2(128, 128)
@@ -72,3 +74,11 @@ target_path = NodePath("")
 timed = false
 next_state = NodePath("../State")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="EnemySounds" type="Node2D" parent="."]
+
+[node name="Damaged" type="AudioStreamPlayer2D" parent="EnemySounds"]
+stream = ExtResource("11_hts6l")
+
+[node name="Dead" type="AudioStreamPlayer2D" parent="EnemySounds"]
+stream = ExtResource("12_iivlh")

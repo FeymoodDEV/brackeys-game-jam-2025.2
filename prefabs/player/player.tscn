@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=36 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://src/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://devb6j2col43u" path="res://assets/sprites/player/ship3.png" id="2_uf5tr"]
@@ -13,19 +13,25 @@
 [ext_resource type="Shape2D" uid="uid://cmn0egykq5740" path="res://prefabs/player/level_1_nombox.tres" id="5_kvlxm"]
 [ext_resource type="Script" uid="uid://b2l0jlbk7oecc" path="res://addons/xsm/state_regions.gd" id="6_0owmy"]
 [ext_resource type="Texture2D" uid="uid://b18crkv7x2kpf" path="res://assets/sprites/player/thruster-particle.png" id="6_dmwb1"]
+[ext_resource type="Texture2D" uid="uid://ogb51tdot7ho" path="res://assets/sprites/player/ship1.png" id="7_8ris0"]
 [ext_resource type="Script" uid="uid://yw44daxcsxw0" path="res://src/player/states/movement_state.gd" id="7_h17s1"]
-[ext_resource type="Script" path="res://src/player/player_camera.gd" id="8_8ris0"]
+[ext_resource type="Script" uid="uid://dlfvfwm3dmxry" path="res://src/player/trail_particles.gd" id="7_hp4ge"]
 [ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://src/player/states/normal_state.gd" id="8_qek5x"]
 [ext_resource type="Script" uid="uid://des4f477v63vn" path="res://src/player/states/circling_state.gd" id="9_5gtgg"]
+[ext_resource type="Script" uid="uid://cbvm26wvakcp0" path="res://prefabs/player/audio.gd" id="10_4jdxe"]
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://src/player/states/nom_dash_state.gd" id="10_h17s1"]
 [ext_resource type="Script" uid="uid://crak72h5onoyp" path="res://src/player/gun/upgrade_level.gd" id="10_kvlxm"]
 [ext_resource type="Script" uid="uid://bwsv0v5wgoh2s" path="res://src/player/gun/upgrade.gd" id="10_myrg7"]
+[ext_resource type="AudioStream" uid="uid://rq82uv4hvhtw" path="res://assets/sounds/player/thrusters.ogg" id="11_a0po4"]
 [ext_resource type="Script" uid="uid://bh8rpek0w1o47" path="res://src/player/targeting/crosshair.gd" id="11_fm80t"]
 [ext_resource type="Script" uid="uid://5yo5iu6shjs3" path="res://addons/xsm/state.gd" id="12_cnsyf"]
 [ext_resource type="Texture2D" uid="uid://bptr4hwxaoyjv" path="res://assets/sprites/player/crosshair.svg" id="12_gx1jg"]
+[ext_resource type="AudioStream" uid="uid://d3m0l6i7bdoon" path="res://assets/sounds/player/shoot2.ogg" id="12_lxdfn"]
+[ext_resource type="AudioStream" uid="uid://b7kinyl0gjisp" path="res://assets/sounds/player/damaged.ogg" id="13_lxdfn"]
 [ext_resource type="Texture2D" uid="uid://cb0h3dqmm5j15" path="res://assets/sprites/player/ship2.png" id="13_uf5tr"]
 [ext_resource type="Script" uid="uid://cfmoqb7g6yigs" path="res://src/player/targeting/lock_reticle.gd" id="13_ugbui"]
 [ext_resource type="Texture2D" uid="uid://cal60wifol3qs" path="res://assets/sprites/player/soft-lock.svg" id="14_fcs02"]
+[ext_resource type="AudioStream" uid="uid://c0sw3ke3l6tb5" path="res://assets/sounds/player/dead.ogg" id="14_xtdcv"]
 [ext_resource type="Texture2D" uid="uid://dr2oj506weijh" path="res://assets/sprites/player/hard-lock.svg" id="15_fcs02"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ris0"]
@@ -47,7 +53,6 @@ dash_power = 1000.0
 dash_friction = 0.9
 
 [node name="NomDashAoE" type="Area2D" parent="."]
-visible = false
 collision_mask = 16
 monitoring = false
 
@@ -69,7 +74,7 @@ upgrade_state = NodePath("../../Root/Upgrade/Level1")
 position = Vector2(-14, -5)
 rotation = 1.5708
 sprite_frames = ExtResource("4_vtpqo")
-animation = &"end"
+animation = &"move"
 offset = Vector2(0, -7)
 
 [node name="ThrusterRSprite" type="AnimatedSprite2D" parent="Thrusters/Level1Thrusters" groups=["thrusters"]]
@@ -125,21 +130,36 @@ sprite_frames = ExtResource("4_vtpqo")
 animation = &"move"
 offset = Vector2(0, -7)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Thrusters"]
+[node name="TrailParticles" type="GPUParticles2D" parent="."]
 texture = ExtResource("6_dmwb1")
 process_material = SubResource("ParticleProcessMaterial_8ris0")
+script = ExtResource("7_hp4ge")
 
 [node name="ShipSprite" type="Sprite2D" parent="."]
 rotation = 1.5708
-texture = ExtResource("2_uf5tr")
+texture = ExtResource("7_8ris0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("8_8ris0")
-look_ahead_distance = 75.0
-smoothing = 35.0
 
 [node name="Gun" parent="." instance=ExtResource("3_myrg7")]
 rotation = 1.5708
+
+[node name="Audio" type="Node2D" parent="."]
+script = ExtResource("10_4jdxe")
+
+[node name="Moving" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("11_a0po4")
+volume_db = -13.866
+pitch_scale = 1.09
+
+[node name="Shooting" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("12_lxdfn")
+
+[node name="Damaged" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("13_lxdfn")
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("14_xtdcv")
 
 [node name="DashCooldownTimer" type="Timer" parent="."]
 one_shot = true
@@ -156,6 +176,7 @@ next_state = NodePath("")
 metadata/_custom_type_script = "uid://b2l0jlbk7oecc"
 
 [node name="Movement" type="Node" parent="Root"]
+process_mode = 1
 script = ExtResource("7_h17s1")
 disabled = false
 debug_mode = false
@@ -279,7 +300,10 @@ texture = ExtResource("15_fcs02")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Crosshair/HardLockReticle"]
 
+[connection signal="player_damaged" from="." to="Audio/Damaged" method="play"]
+[connection signal="player_dead" from="." to="Audio/Death" method="play"]
 [connection signal="upgrade_level_changed" from="." to="Root/Upgrade" method="_on_player_upgrade_level_changed"]
+[connection signal="player_shot" from="Gun" to="Audio/Shooting" method="play"]
 [connection signal="hard_lock_changed" from="Crosshair" to="Root/Movement" method="_on_crosshair_hard_lock_changed"]
 [connection signal="body_entered" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_entered"]
 [connection signal="body_exited" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_exited"]

@@ -15,4 +15,4 @@ offset_bottom = 10167.0
 texture = ExtResource("8_5dqnh")
 stretch_mode = 1
 
-[node name="Timer" type="Timer" parent="."]
+[node name="LevelTimer" type="Timer" parent="."]

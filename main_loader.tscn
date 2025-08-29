@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dhwkvbcdj6spb" path="res://src/main_loader.gd" id="1_krakd"]
 [ext_resource type="PackedScene" uid="uid://3yj03daybfvf" path="res://scenes/main_menu.tscn" id="2_6dey0"]
-[ext_resource type="PackedScene" uid="uid://ccrxh34dcnijy" path="res://testing/cybrnight_main.tscn" id="3_6dey0"]
+[ext_resource type="PackedScene" uid="uid://s5wdbvyf7fxt" path="res://testing/cybrnight_main.tscn" id="3_6dey0"]
 [ext_resource type="PackedScene" uid="uid://cbqgxhuvoxtgg" path="res://prefabs/particles/first_hit_vfx.tscn" id="4_6dey0"]
 [ext_resource type="PackedScene" uid="uid://dv7y8svel5iok" path="res://prefabs/particles/first_trail.tscn" id="5_jixal"]
 [ext_resource type="PackedScene" uid="uid://bh4n0qihnupx7" path="res://prefabs/managers/bullet_manager.tscn" id="6_jixal"]

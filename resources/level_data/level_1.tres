@@ -21,11 +21,12 @@
 [ext_resource type="Texture2D" uid="uid://baa7ewnrju7ds" path="res://assets/sprites/tile/tile10.png" id="10_68ow5"]
 [ext_resource type="PackedScene" uid="uid://b2u0qpleqhkrm" path="res://scenes/levels/level_2.tscn" id="10_luj5s"]
 [ext_resource type="Texture2D" uid="uid://bmew6t1pkr6n1" path="res://assets/sprites/tile/tile11.png" id="11_mv4n1"]
-[ext_resource type="Script" uid="uid://bsxc5d4jawjyr" path="res://src/level_data.gd" id="11_u605j"]
+[ext_resource type="Script" path="res://src/level_data.gd" id="11_u605j"]
 [ext_resource type="Texture2D" uid="uid://7bg2n6nm23ly" path="res://assets/sprites/tile/tile12.png" id="12_qdile"]
 
 [resource]
 script = ExtResource("11_u605j")
+map_time = 5.0
 map_width = 40
 map_height = 30
 cell_size = 64

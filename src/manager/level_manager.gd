@@ -31,7 +31,7 @@ var level_data: LevelData;
 var grid: Array = []
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
-@onready var timer = $Timer;
+@onready var timer: Timer = $LevelTimer;
 
 func _input(event):
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -39,7 +39,7 @@ func _input(event):
 
 func _on_level_scene_instanced(level: Level):
 	if not is_instance_valid(level):
-		push_error("Scene null!")
+		push_error("Scen`e null!")
 		return;
 		
 	if not level.level_data:
@@ -84,6 +84,10 @@ func _enter_tree():
 	EventManager.level_scene_instanced.connect(_on_level_scene_instanced);
 	EventManager.spawn_boss.connect(_on_boss_spawn)
 	EventManager.boss_killed.connect(_on_boss_killed)
+	
+func _ready():
+	timer.timeout.connect(EventManager.spawn_boss.emit)
+	
 
 func _level_ready() -> void:
 	$BG.texture = background_tiles[randi() % background_tiles.size()]
@@ -91,6 +95,17 @@ func _level_ready() -> void:
 	generate_level()
 	spawn_enemies()
 	place_player()
+	
+	timer.wait_time = map_time
+	timer.one_shot = true;
+	
+	timer.start();
+	
+	EventManager.level_started.emit(map_time);
+
+func _on_level_timer_timeout():
+	
+	pass
 
 ## Initialize grid with false in order to track empty cells
 func create_empty_grid() -> void:
@@ -190,6 +205,7 @@ func _on_boss_spawn() -> void:
 		block.die()
 
 func _on_boss_killed() -> void:
+	assert(next_level, "setup next level scene");
 	# Start the slowdown effect
 	await slow_motion(0.2, 1.0, 0.5)  # target_scale, duration, hold_time
 	Spawning.clear_all_bullets()
