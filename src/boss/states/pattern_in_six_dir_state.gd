@@ -1,6 +1,8 @@
 @tool
 extends State
 
+@export var next_boss_state: State
+
 @export var state_duration: float = 10
 @export var pattern_spawn_delay: float = 1
 @export var pattern: String = "chocolate_spin_pattern"
@@ -20,4 +22,4 @@ func _on_timeout(_name: String) -> void:
 			target.spawn_pattern(pattern, Vector2.ZERO, 225)
 
 		"go_to_next_state":
-			change_to_next()
+			change_state(next_boss_state.name)

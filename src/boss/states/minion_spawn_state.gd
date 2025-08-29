@@ -1,6 +1,7 @@
 @tool
 extends State
 
+@export var next_boss_state: State
 @export var minion_data: EnemyData
 
 @export var minion_amount: int = 5
@@ -28,4 +29,4 @@ func _on_timeout(_name: String) -> void:
 			if minions_left_to_spawn > 0:
 				add_timer("spawn_minion", minion_spawn_speed)
 			else:
-				change_to_next()
+				change_state(next_boss_state.name)

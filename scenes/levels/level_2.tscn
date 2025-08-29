@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2u0qpleqhkrm"]
+
+[ext_resource type="PackedScene" uid="uid://j4ljg2vl3nfv" path="res://prefabs/ui/player_ui.tscn" id="1_g2h2n"]
+[ext_resource type="PackedScene" uid="uid://bh4n0qihnupx7" path="res://prefabs/managers/bullet_manager.tscn" id="1_j2425"]
+
+[node name="Level2" type="Node2D"]
+
+[node name="PlayerUI" parent="." instance=ExtResource("1_g2h2n")]
+
+[node name="BulletManager" parent="." instance=ExtResource("1_j2425")]
