@@ -11,6 +11,3 @@ func _process(delta: float) -> void:
 		if not moving.playing: moving.play()
 	else:
 		moving.stop()
- 
-func _on_gun_player_shot() -> void:
-	shooting.play()

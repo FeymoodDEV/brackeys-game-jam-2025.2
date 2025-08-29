@@ -70,6 +70,9 @@ var absorb_pts : int = 0 :
 var health: float
 @export var max_health: float = 100
 @export var death_vfx: PackedScene = preload("res://prefabs/particles/explode_vfx.tscn")
+
+signal player_dead
+signal player_damaged
 #endregion
 
 func _ready():
@@ -120,6 +123,8 @@ func get_look_relative_vector() -> Vector2:
 
 ## Reduces health by `damage` and signals the change. 
 func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2):
+	player_damaged.emit()
+	
 	health -= damage
 	EventManager.emit_signal("health_changed", health)
 	
@@ -128,10 +133,10 @@ func apply_damage(damage: int, knockback: float, global_position: Vector2, direc
 	
 	# TODO: implement knockback.
 
-signal player_dead
-
 func die() -> void:
 	print("DIE")
+	player_dead.emit()
+	
 	var vfx = death_vfx.instantiate()
 	add_child(vfx)
 	vfx.top_level = true
