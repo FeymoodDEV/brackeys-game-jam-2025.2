@@ -15,11 +15,11 @@
 [ext_resource type="Texture2D" uid="uid://b18crkv7x2kpf" path="res://assets/sprites/player/thruster-particle.png" id="6_dmwb1"]
 [ext_resource type="Texture2D" uid="uid://ogb51tdot7ho" path="res://assets/sprites/player/ship1.png" id="7_8ris0"]
 [ext_resource type="Script" uid="uid://yw44daxcsxw0" path="res://src/player/states/movement_state.gd" id="7_h17s1"]
-[ext_resource type="Script" path="res://src/player/trail_particles.gd" id="7_hp4ge"]
+[ext_resource type="Script" uid="uid://dlfvfwm3dmxry" path="res://src/player/trail_particles.gd" id="7_hp4ge"]
 [ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://src/player/states/normal_state.gd" id="8_qek5x"]
 [ext_resource type="Texture2D" uid="uid://dj3abyu5tht7s" path="res://assets/sprites/player/nomdash.png" id="8_xtdcv"]
 [ext_resource type="Script" uid="uid://des4f477v63vn" path="res://src/player/states/circling_state.gd" id="9_5gtgg"]
-[ext_resource type="Script" path="res://prefabs/player/audio.gd" id="10_4jdxe"]
+[ext_resource type="Script" uid="uid://cbvm26wvakcp0" path="res://prefabs/player/audio.gd" id="10_4jdxe"]
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://src/player/states/nom_dash_state.gd" id="10_h17s1"]
 [ext_resource type="Script" uid="uid://crak72h5onoyp" path="res://src/player/gun/upgrade_level.gd" id="10_kvlxm"]
 [ext_resource type="Script" uid="uid://bwsv0v5wgoh2s" path="res://src/player/gun/upgrade.gd" id="10_myrg7"]
@@ -159,11 +159,9 @@ script = ExtResource("10_4jdxe")
 stream = ExtResource("11_a0po4")
 volume_db = -13.866
 pitch_scale = 1.09
-bus = &"SFX"
 
 [node name="Shooting" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("12_lxdfn")
-bus = &"SFX"
 
 [node name="Damaged" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("13_lxdfn")

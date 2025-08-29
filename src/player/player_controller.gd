@@ -75,7 +75,30 @@ signal player_dead
 signal player_damaged
 #endregion
 
+func set_active(value: bool = true):
+	propagate_call("set_process", [value])
+	propagate_call("set_physics_process", [value])
+	propagate_call("set_process", [value])
+	propagate_call("set_physics_process", [value])
+	if value:
+		show();
+	else:
+		hide();
+
+#Re-enable processing when the game starts
+func _on_game_started():
+	set_active(true);
+	
+func _on_game_ended():
+	set_active(false);
+
 func _ready():
+	# When the player first readys, hide and disable;
+	propagate_call("set_process", [false])
+	# Also disable physics if needed
+	propagate_call("set_physics_process", [false])
+	hide();
+	
 	health = max_health
 	
 	EventManager.player_setup.emit({
@@ -83,7 +106,8 @@ func _ready():
 		"health_max_value": max_health,
 	})
 
-	EventManager.player_spawned.emit(get_path())
+	EventManager.game_started.connect(_on_game_started)
+	EventManager.player_ready.emit(get_path())
 	
 	# States run their on_enter behaviour before _ready, which causes a problem
 	# when they try to mutate player properties.

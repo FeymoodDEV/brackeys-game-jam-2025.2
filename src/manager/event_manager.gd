@@ -1,10 +1,13 @@
 extends Node
 
-signal player_spawned(path)
+signal player_ready(path)
 signal player_setup(dictionary)
 
 signal menu_loaded;
-signal game_scene_loaded;
+signal game_started;
+signal level_scene_instanced(level_scene: Node2D);
+signal level_started;
+
 signal game_paused;
 
 signal health_changed(new_health)
