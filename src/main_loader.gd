@@ -18,14 +18,17 @@ var testing_scene_node: Node2D;
 
 func _init():
 	pass
+
+func _on_game_ended():
+	$PlayerUI.hide();
 	
 func _on_game_started():
 	$PlayerUI.show();
 	
-func _ready():
+func _ready():	
 	$PlayerUI.hide();
-	
 	EventManager.game_started.connect(_on_game_started);
+	EventManager.game_ended.connect(_on_game_ended);
 	
 	if debug_mode:
 		testing_scene_node = packed_test_scene.instantiate();

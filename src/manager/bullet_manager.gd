@@ -11,5 +11,4 @@ func _on_game_started():
 	Spawning.create_pool("SugarBullet", "1", 2000);
 
 	player_node.add_to_group("Player");
-	player_node.reparent(get_parent())
 	

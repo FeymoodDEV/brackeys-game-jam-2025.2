@@ -4,6 +4,11 @@ class_name LevelManager
 var player: PlayerController
 var chosen: Vector2i
 
+@export var level_scenes: Array[PackedScene];
+@export var levels: Array[LevelData];
+@export var level_scene: PackedScene;
+var level_node: Node2D;
+
 ## map width and height references cell count
 var map_time: float = 10;
 var map_width: int = 40
@@ -25,8 +30,8 @@ var background_tiles: Array[Texture]
 var boss_instance: Node2D
 var next_level: Level;
 
-var current_level: Node2D;
-var level_data: LevelData;
+var current_level: LevelData;
+var level_index = 0;
 
 var grid: Array = []
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -37,17 +42,11 @@ func _input(event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		EventManager.level_scene_instanced.emit(next_level);
 
-func _on_level_scene_instanced(level: Level):
-	if not is_instance_valid(level):
-		push_error("Scen`e null!")
+func _on_level_scene_instanced(data: LevelData):
+	if not data:
 		return;
-		
-	if not level.level_data:
-		push_error("LevelData null!")
-		return;
-	var data = level.level_data;
-	level_data = data;
 	
+	# Load all level data into LevelManager
 	map_time = data.map_time;
 	map_height = data.map_height;
 	map_width = data.map_width;
@@ -64,14 +63,10 @@ func _on_level_scene_instanced(level: Level):
 	background_tiles = data.background_tiles;
 	
 	boss_instance = data.boss_scene.instantiate();
-	next_level = data.next_level.instantiate() as Level;
 	
-	if is_instance_valid(level):
-		current_level = level;
+	current_level = data;	
 	
-		add_child(level);
-		_level_ready();
-
+	_level_ready();
 	pass
 
 func _on_player_ready(player_path):
@@ -79,18 +74,59 @@ func _on_player_ready(player_path):
 	assert(player);
 	pass
 
+func _on_game_started():	
+	level_index = 0;
+	
+	level_node = level_scene.instantiate();
+	add_child(level_node);
+	
+	EventManager.level_scene_instanced.emit(levels[0]);
+	pass
+
+func _on_game_ended():
+	$BG.hide();
+	pass	
+
+func _on_level_started(map_time):
+	player.reparent(level_node);
+	$BG.show();
+	pass
+	
+func _on_level_ended():
+	# If there are still more levels to play load the next level
+	if level_index < level_scenes.size():
+		next_level = level_scenes[level_index].instantiate() as Level;	
+		EventManager.level_scene_instanced.emit(next_level);
+		level_index += 1;
+	else:
+		player.reparent(self);
+		level_node.queue_free();
+		EventManager.game_ended.emit();
+
+	pass
+
 func _enter_tree():
 	EventManager.player_ready.connect(_on_player_ready)
+	
+	EventManager.game_started.connect(_on_game_started)
+	EventManager.game_ended.connect(_on_game_ended);
+	
 	EventManager.level_scene_instanced.connect(_on_level_scene_instanced);
+	EventManager.level_started.connect(_on_level_started)
+	EventManager.level_ended.connect(_on_level_ended)
 	EventManager.spawn_boss.connect(_on_boss_spawn)
 	EventManager.boss_killed.connect(_on_boss_killed)
 	
-func _ready():
+func _ready():		
 	timer.timeout.connect(EventManager.spawn_boss.emit)
+	$BG.hide();
 	
+
 
 func _level_ready() -> void:
 	$BG.texture = background_tiles[randi() % background_tiles.size()]
+	$BG.show();
+	
 	create_empty_grid()
 	generate_level()
 	spawn_enemies()
@@ -104,7 +140,6 @@ func _level_ready() -> void:
 	EventManager.level_started.emit(map_time);
 
 func _on_level_timer_timeout():
-	
 	pass
 
 ## Initialize grid with false in order to track empty cells
@@ -146,7 +181,7 @@ func spawn_block(scene: PackedScene, x: int, y: int) -> void:
 
 	var block: Block = scene.instantiate()
 	block.position = Vector2(x * cell_size, y * cell_size)
-	get_parent().add_child.call_deferred(block)
+	level_node.add_child.call_deferred(block)
 
 	grid[y][x] = block  # mark as occupied
 
@@ -161,7 +196,7 @@ func spawn_enemies() -> void:
 				enemy.position = Vector2(x * cell_size, y * cell_size);
 				enemy.enemy_data = enemy_datas[randi() % enemy_datas.size()]
 				enemy.player = player;
-				get_parent().add_child.call_deferred(enemy)
+				level_node.add_child.call_deferred(enemy)
 				
 				grid[y][x] = enemy
 
@@ -195,7 +230,7 @@ func _on_boss_spawn() -> void:
 	assert(boss_instance, "setup Boss scene");
 	
 	boss_instance.global_position = Vector2(chosen.x * cell_size, chosen.y * cell_size)
-	current_level.add_child(boss_instance)
+	level_node.add_child(boss_instance)
 	
 	Spawning.clear_all_bullets()
 	
@@ -205,11 +240,10 @@ func _on_boss_spawn() -> void:
 		block.die()
 
 func _on_boss_killed() -> void:
-	assert(next_level, "setup next level scene");
 	# Start the slowdown effect
 	await slow_motion(0.2, 1.0, 0.5)  # target_scale, duration, hold_time
 	Spawning.clear_all_bullets()
-	EventManager.level_scene_instanced.emit(next_level);
+	EventManager.level_ended.emit();
 
 # Coroutine function for slow motion
 func slow_motion(target_scale: float, duration: float, hold_time: float) -> void:

@@ -550,7 +550,6 @@ func _spawn(bullets:Array):
 	var props:Dictionary
 	for b in bullets:
 		if not poolBullets.has(b):
-			push_error("Warning: Bullet of ID "+str(b)+" is missing.")
 			continue
 
 		B = poolBullets[b]

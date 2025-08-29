@@ -49,10 +49,10 @@ func _on_health_changed(health: float) -> void:
 func _on_boss_health_changed(health: float) -> void:
 	boss_health_bar.value = health
 	
-func _on_boss_spawned(max_health: float, boss_name: String) -> void:
-	boss_health_bar.visible = true
-	boss_label.visible = true
-	countdown_label.visible = false
+func _on_boss_spawned(max_health: float, boss_name: String) -> void:	
+	boss_health_bar.show()
+	boss_label.show()
+	countdown_label.show()
 	
 	boss_health_bar.max_value = max_health
 	boss_health_bar.value = max_health

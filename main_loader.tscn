@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cscfgbkbj3nb"]
+[gd_scene load_steps=14 format=3 uid="uid://cscfgbkbj3nb"]
 
 [ext_resource type="Script" uid="uid://dhwkvbcdj6spb" path="res://src/main_loader.gd" id="1_krakd"]
 [ext_resource type="PackedScene" uid="uid://3yj03daybfvf" path="res://scenes/main_menu.tscn" id="2_6dey0"]
@@ -8,6 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://bh4n0qihnupx7" path="res://prefabs/managers/bullet_manager.tscn" id="6_jixal"]
 [ext_resource type="PackedScene" uid="uid://cxxnbcxiuusqt" path="res://prefabs/managers/level_manager.tscn" id="7_jmiai"]
 [ext_resource type="PackedScene" uid="uid://j4ljg2vl3nfv" path="res://prefabs/ui/player_ui.tscn" id="8_0sdr2"]
+[ext_resource type="PackedScene" uid="uid://2ads1o1pbagk" path="res://scenes/levels/level_1.tscn" id="8_8cus5"]
+[ext_resource type="Script" uid="uid://bsxc5d4jawjyr" path="res://src/level_data.gd" id="8_vpio5"]
+[ext_resource type="Resource" uid="uid://dyik6mrjr87vp" path="res://resources/level_data/level_1.tres" id="9_p5kom"]
+[ext_resource type="Resource" uid="uid://d4lop5a6dmpbs" path="res://resources/level_data/level_2.tres" id="10_c5ip0"]
+[ext_resource type="Resource" uid="uid://du1yy3510yiyd" path="res://resources/level_data/level_3.tres" id="11_7oy37"]
 
 [node name="Loader" type="Node2D"]
 script = ExtResource("1_krakd")
@@ -18,5 +23,8 @@ packed_particles = Array[PackedScene]([ExtResource("4_6dey0"), ExtResource("5_ji
 [node name="BulletManager" parent="." instance=ExtResource("6_jixal")]
 
 [node name="LevelManager" parent="." instance=ExtResource("7_jmiai")]
+level_scenes = Array[PackedScene]([])
+levels = Array[ExtResource("8_vpio5")]([ExtResource("9_p5kom"), ExtResource("10_c5ip0"), ExtResource("11_7oy37")])
+level_scene = ExtResource("8_8cus5")
 
 [node name="PlayerUI" parent="." instance=ExtResource("8_0sdr2")]
