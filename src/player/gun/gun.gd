@@ -25,11 +25,13 @@ func _physics_process(delta: float) -> void:
 			shoot()
 			shot_cooldown_timer.start(shot_cooldown)
 
+signal player_shot
+
 func shoot() -> void:
 	#var spawn_pos = $SpawnPoint.global_position;
 	#var rot = global_rotation
 	#var node = get_parent().get_parent()
-
+	player_shot.emit()
 	Spawning.spawn(self, pattern, "0")
 	
 	

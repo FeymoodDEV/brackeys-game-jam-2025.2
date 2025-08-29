@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=34 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://src/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://devb6j2col43u" path="res://assets/sprites/player/ship3.png" id="2_uf5tr"]
@@ -18,12 +18,15 @@
 [ext_resource type="Script" uid="uid://dlfvfwm3dmxry" path="res://src/player/trail_particles.gd" id="7_hp4ge"]
 [ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://src/player/states/normal_state.gd" id="8_qek5x"]
 [ext_resource type="Script" uid="uid://des4f477v63vn" path="res://src/player/states/circling_state.gd" id="9_5gtgg"]
+[ext_resource type="Script" uid="uid://cbvm26wvakcp0" path="res://prefabs/player/audio.gd" id="10_4jdxe"]
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://src/player/states/nom_dash_state.gd" id="10_h17s1"]
 [ext_resource type="Script" uid="uid://crak72h5onoyp" path="res://src/player/gun/upgrade_level.gd" id="10_kvlxm"]
 [ext_resource type="Script" uid="uid://bwsv0v5wgoh2s" path="res://src/player/gun/upgrade.gd" id="10_myrg7"]
+[ext_resource type="AudioStream" uid="uid://dh4eviuweugh3" path="res://assets/sounds/player/thrusters.ogg" id="11_a0po4"]
 [ext_resource type="Script" uid="uid://bh8rpek0w1o47" path="res://src/player/targeting/crosshair.gd" id="11_fm80t"]
 [ext_resource type="Script" uid="uid://5yo5iu6shjs3" path="res://addons/xsm/state.gd" id="12_cnsyf"]
 [ext_resource type="Texture2D" uid="uid://bptr4hwxaoyjv" path="res://assets/sprites/player/crosshair.svg" id="12_gx1jg"]
+[ext_resource type="AudioStream" uid="uid://bpokfk34rpp3t" path="res://assets/sounds/player/shoot.ogg" id="12_t7063"]
 [ext_resource type="Texture2D" uid="uid://cb0h3dqmm5j15" path="res://assets/sprites/player/ship2.png" id="13_uf5tr"]
 [ext_resource type="Script" uid="uid://cfmoqb7g6yigs" path="res://src/player/targeting/lock_reticle.gd" id="13_ugbui"]
 [ext_resource type="Texture2D" uid="uid://cal60wifol3qs" path="res://assets/sprites/player/soft-lock.svg" id="14_fcs02"]
@@ -139,6 +142,19 @@ texture = ExtResource("7_8ris0")
 [node name="Gun" parent="." instance=ExtResource("3_myrg7")]
 rotation = 1.5708
 
+[node name="Audio" type="Node2D" parent="."]
+script = ExtResource("10_4jdxe")
+
+[node name="Moving" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("11_a0po4")
+volume_db = -13.866
+pitch_scale = 1.09
+bus = &"SFX"
+
+[node name="Shooting" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("12_t7063")
+bus = &"SFX"
+
 [node name="DashCooldownTimer" type="Timer" parent="."]
 one_shot = true
 
@@ -160,7 +176,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Upgrade")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Normal" type="Node" parent="Root/Movement"]
@@ -169,7 +185,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Circling")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Circling" type="Node" parent="Root/Movement"]
@@ -215,7 +231,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Level2")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level2" type="Node" parent="Root/Upgrade"]
@@ -228,7 +244,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Level3")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level3" type="Node" parent="Root/Upgrade"]
@@ -279,6 +295,7 @@ texture = ExtResource("15_fcs02")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Crosshair/HardLockReticle"]
 
 [connection signal="upgrade_level_changed" from="." to="Root/Upgrade" method="_on_player_upgrade_level_changed"]
+[connection signal="player_shot" from="Gun" to="Audio" method="_on_gun_player_shot"]
 [connection signal="hard_lock_changed" from="Crosshair" to="Root/Movement" method="_on_crosshair_hard_lock_changed"]
 [connection signal="body_entered" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_entered"]
 [connection signal="body_exited" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_exited"]

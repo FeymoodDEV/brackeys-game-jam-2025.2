@@ -11,7 +11,6 @@ script = ExtResource("1_w3c6p")
 
 [node name="LevelManager" parent="." instance=ExtResource("3_mvsys")]
 boss_scene = ExtResource("3_npses")
-next_level = null
 
 [node name="BulletManager" parent="." instance=ExtResource("2_npses")]
 
