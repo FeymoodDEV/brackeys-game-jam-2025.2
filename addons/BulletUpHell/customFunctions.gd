@@ -80,30 +80,7 @@ func bullet_collide_area(area_rid:RID,area:Area2D,area_shape_index:int,local_sha
 	
 	############## emit signal
 	Spawning.bullet_collided_area.emit(area,area_shape_index,B,local_shape_index,shared_area)
-	
-	if area is ShieldRadius:
-		B["props"]["remaining_pierce"] -= 1;
-		if B["props"]["remaining_pierce"] <= 0:
-			var hit_vfx;
-			if particles.size() < 500:
-				hit_vfx = B["props"]["hit_vfx"].duplicate();
-				# hacky: for supporting vfxsprite2D instead of GPUparticles2D
-				if hit_vfx is GPUParticles2D:
-					hit_vfx.finished.connect(_on_hit_particle_finished.bind(hit_vfx))
-				elif hit_vfx is VFXSprite2D:
-					hit_vfx.animation_finished.connect(_on_hit_particle_finished.bind(hit_vfx))
-				area.get_parent().add_child(hit_vfx);
-			else:
-				hit_vfx = particles.pop_front();
-			
-			if hit_vfx:
-				hit_vfx.show();
-				hit_vfx.global_position = (B["position"] as Vector2);
-				if hit_vfx is GPUParticles2D:
-					hit_vfx.emitting = true
-				elif hit_vfx is VFXSprite2D:
-					hit_vfx.play(&"default")
-			Spawning.delete_bullet(rid);
+
 		
 	
 	############## uncomment to manage trigger collisions with area collisions

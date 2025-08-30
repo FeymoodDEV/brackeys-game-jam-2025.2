@@ -316,4 +316,3 @@ func clear_everything():
 #		for block: Block in get_tree().get_nodes_in_group("block"):
 #			block.die()
 #	timer.wait_time = 1.0
-

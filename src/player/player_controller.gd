@@ -241,6 +241,10 @@ func level_up() -> void:
 	health = max_health
 	EventManager.emit_signal("health_changed", max_health, max_health)
 
+func _absorb_bullet(rid, points) -> void:	
+	absorb_pts += points;
+	EventManager.progress_changed.emit(absorb_pts, upgrade_threshold * (current_level + 1));
+	Spawning.delete_bullet(rid);
 
 func _on_item_pickup_radius_area_entered(area):
 	if area is Pickup:
@@ -252,5 +256,6 @@ func _on_item_pickup_radius_area_entered(area):
 		else:
 			area.global_position = global_position;
 			area.reparent.call_deferred(self);
+			area.player = self;
 			area.picked_up()
 	pass # Replace with function body.
