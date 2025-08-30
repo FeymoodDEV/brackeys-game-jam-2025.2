@@ -42,6 +42,11 @@ window/stretch/scale_mode="integer"
 
 enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg", "res://addons/xsm/plugin.cfg")
 
+[global_group]
+
+pickup=""
+boss=""
+
 [input]
 
 move_up={

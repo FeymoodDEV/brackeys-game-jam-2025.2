@@ -93,6 +93,7 @@ func _on_level_started(map_time):
 	pass
 	
 func _on_level_restart():
+	clear_everything()
 	EventManager.level_scene_instanced.emit(levels[level_index])
 	
 func _on_level_ended():
@@ -246,17 +247,12 @@ func place_player() -> void:
 	grid[chosen.y][chosen.x] = true
 
 func _on_boss_spawn() -> void:
+	clear_everything()
+	
 	assert(boss_instance, "setup Boss scene");
 	
 	boss_instance.global_position = player.global_position + Vector2(0, -200)
 	level_node.add_child(boss_instance)
-	
-	Spawning.clear_all_bullets()
-	
-	for enemy: EnemyController in get_tree().get_nodes_in_group("enemy"):
-		enemy.die()
-	for block: Block in get_tree().get_nodes_in_group("block"):
-		block.die()
 
 func _on_boss_killed() -> void:
 	await slow_motion(0.2, 1.0, 0.5)  # target_scale, duration, hold_time
@@ -293,11 +289,20 @@ func slow_motion(target_scale: float, duration: float, hold_time: float) -> void
 	Engine.time_scale = 1.0
 
 func _on_main_menu():
+	clear_everything()
+
 	player.reparent(self);
 	level_node.queue_free();
-	clear_everything()
 	EventManager.game_ended.emit();
-	
 
 func clear_everything():
 	Spawning.clear_all_bullets()
+
+	for enemy: EnemyController in get_tree().get_nodes_in_group("enemy"):
+		enemy.die()
+	for block: Block in get_tree().get_nodes_in_group("block"):
+		block.queue_free.call_deferred()
+	for pickup: Pickup in get_tree().get_nodes_in_group("pickup"):
+		pickup.queue_free.call_deferred()
+	for boss: BossControler in get_tree().get_nodes_in_group("boss"):
+		boss.queue_free.call_deferred()

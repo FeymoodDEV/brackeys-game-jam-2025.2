@@ -10,7 +10,7 @@ radius = 24.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_8m4mx"]
 radius = 50.0
 
-[node name="ShieldPickup" type="Area2D"]
+[node name="ShieldPickup" type="Area2D" groups=["pickup"]]
 script = ExtResource("1_17rcf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

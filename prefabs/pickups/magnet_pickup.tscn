@@ -9,7 +9,7 @@ radius = 24.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_8m4mx"]
 radius = 100.0
 
-[node name="MagnetPickup" type="Area2D"]
+[node name="MagnetPickup" type="Area2D" groups=["pickup"]]
 script = ExtResource("1_8m4mx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

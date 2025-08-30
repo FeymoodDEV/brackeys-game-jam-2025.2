@@ -14,7 +14,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysfue"]
 size = Vector2(128, 128)
 
-[node name="SugarQueen" type="CharacterBody2D"]
+[node name="SugarQueen" type="CharacterBody2D" groups=["boss"]]
 collision_layer = 34
 collision_mask = 0
 script = ExtResource("1_t30ok")
