@@ -113,7 +113,7 @@ func _on_level_ended():
 	
 # Modify me if you want chance of not spawning item
 func _on_block_destroyed(position: Vector2):
-	if (randi_range(1, 3) == 1):
+	if (randi_range(1, 15) < 6):
 		# Grab random pickup and duplicate instance
 		var pickup = pickup_pool.pick_random().duplicate();
 		pickup.global_position = position;
