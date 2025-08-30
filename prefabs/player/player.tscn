@@ -1,6 +1,7 @@
-[gd_scene load_steps=42 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=43 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://src/player/player_controller.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://ciqnncb30bm8r" path="res://prefabs/player/modifier_handler.gd" id="2_rykmw"]
 [ext_resource type="Texture2D" uid="uid://devb6j2col43u" path="res://assets/sprites/player/ship3.png" id="2_uf5tr"]
 [ext_resource type="Shape2D" uid="uid://cnjor30f1xoa1" path="res://prefabs/player/level_1_hitbox.tres" id="3_kvlxm"]
 [ext_resource type="Shape2D" uid="uid://cdxuhi06dx5ji" path="res://prefabs/player/level_2_hitbox.tres" id="3_lgqa7"]
@@ -142,6 +143,9 @@ script = ExtResource("1_g2els")
 dash_cooldown = 1.0
 dash_power = 1500.0
 dash_friction = 0.9
+
+[node name="ModifierHandler" type="Node" parent="."]
+script = ExtResource("2_rykmw")
 
 [node name="ItemPickupRadius" type="Area2D" parent="."]
 
@@ -287,7 +291,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Upgrade")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Normal" type="Node" parent="Root/Movement"]
@@ -296,7 +300,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Circling")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Circling" type="Node" parent="Root/Movement"]
@@ -341,7 +345,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Level2")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level2" type="Node" parent="Root/Upgrade"]
@@ -354,7 +358,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Level3")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level3" type="Node" parent="Root/Upgrade"]
