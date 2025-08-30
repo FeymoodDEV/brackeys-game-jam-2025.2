@@ -4,7 +4,6 @@ class_name LevelManager
 var player: PlayerController
 var chosen: Vector2i
 
-@export var level_scenes: Array[PackedScene];
 @export var levels: Array[LevelData];
 @export var level_scene: PackedScene;
 var level_node: Node2D;
@@ -94,11 +93,13 @@ func _on_level_started(map_time):
 	pass
 	
 func _on_level_ended():
+	level_index += 1;
 	# If there are still more levels to play load the next level
-	if level_index < level_scenes.size():
-		next_level = level_scenes[level_index].instantiate() as Level;	
-		EventManager.level_scene_instanced.emit(next_level);
-		level_index += 1;
+	if level_index < levels.size():		
+		for node in level_node.get_children():
+			if not node is PlayerController:
+				node.queue_free();
+		EventManager.level_scene_instanced.emit(levels[level_index]);
 	else:
 		player.reparent(self);
 		level_node.queue_free();

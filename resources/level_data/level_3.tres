@@ -25,10 +25,9 @@
 
 [resource]
 script = ExtResource("23_hooar")
-map_time = 15.0
+map_time = 1.0
 map_width = 40
 map_height = 30
-cell_size = 64
 cluster_chance = 0.01
 cluster_size = 4
 border_scene = ExtResource("15_sffhl")
