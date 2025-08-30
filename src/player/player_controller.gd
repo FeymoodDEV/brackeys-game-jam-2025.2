@@ -214,3 +214,7 @@ func level_up() -> void:
 	max_health = base_health * (current_level + 1)
 	health = max_health
 	EventManager.emit_signal("health_changed", max_health, max_health)
+
+
+func _on_item_pickup_radius_area_entered(area):
+	pass # Replace with function body.
