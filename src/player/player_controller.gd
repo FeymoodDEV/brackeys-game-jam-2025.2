@@ -87,8 +87,7 @@ signal player_damaged
 func set_active(value: bool = true):
 	propagate_call("set_process", [value])
 	propagate_call("set_physics_process", [value])
-	propagate_call("set_process", [value])
-	propagate_call("set_physics_process", [value])
+	propagate_call("set_process_input", [value])
 	if value:
 		show();
 	else:
