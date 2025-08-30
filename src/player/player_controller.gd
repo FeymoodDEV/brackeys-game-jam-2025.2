@@ -217,6 +217,7 @@ func respawn() -> void:
 	max_health = base_health
 	health = max_health
 	absorb_pts = 0
+	current_level = 0
 	EventManager.player_setup.emit({
 		"progress_max_value": upgrade_threshold, 
 		"health_max_value": max_health,

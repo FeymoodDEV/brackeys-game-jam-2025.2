@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://j4ljg2vl3nfv"]
+[gd_scene load_steps=28 format=3 uid="uid://j4ljg2vl3nfv"]
 
 [ext_resource type="Script" uid="uid://dsiawai5lafl8" path="res://src/manager/ui_manager.gd" id="1_jkj6h"]
 [ext_resource type="Texture2D" uid="uid://cvpcx48cuikco" path="res://assets/sprites/ui/hud.png" id="2_2kqep"]
@@ -423,6 +423,67 @@ bg_color = Color(0.0383972, 0.0383972, 0.0383971, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tpsno"]
 
+[sub_resource type="Animation" id="Animation_1354d"]
+resource_name = "show_level"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 2.2, 3),
+"transitions": PackedFloat32Array(1, 1.93187, 1.93187, 0.225312),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hj0ct"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_krprk"]
+_data = {
+&"RESET": SubResource("Animation_hj0ct"),
+&"show_level": SubResource("Animation_1354d")
+}
+
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource("1_jkj6h")
 
@@ -624,6 +685,32 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_2kqep")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_svfv5")
 text = "QUIT
 "
+
+[node name="LevelLoad" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="LevelLoad"]
+layout_mode = 0
+offset_left = 203.0
+offset_top = 49.0
+offset_right = 442.0
+offset_bottom = 152.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 36
+text = "Chocolate lair
+Level : 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelLoad"]
+libraries = {
+&"": SubResource("AnimationLibrary_krprk")
+}
 
 [connection signal="pressed" from="DeathScreeen/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="DeathScreeen/Quit" to="." method="_on_quit_pressed"]

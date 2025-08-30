@@ -23,13 +23,15 @@
 [ext_resource type="Resource" uid="uid://bqxvy5sr6pupv" path="res://resources/enemy_data/line_enemy.tres" id="20_vkwch"]
 [ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://prefabs/enemies/basic_enemy.tscn" id="21_e0imc"]
 [ext_resource type="Script" uid="uid://bsxc5d4jawjyr" path="res://src/level_data.gd" id="23_hooar"]
-[ext_resource type="PackedScene" path="res://prefabs/pickups/bomb.tscn" id="23_vhqtq"]
+[ext_resource type="PackedScene" uid="uid://dylrycs1bm5q2" path="res://prefabs/pickups/bomb.tscn" id="23_vhqtq"]
 [ext_resource type="PackedScene" uid="uid://xk7m8bb1bgnj" path="res://prefabs/pickups/magnet_pickup.tscn" id="24_dht0h"]
-[ext_resource type="PackedScene" path="res://prefabs/pickups/shield.tscn" id="25_wodyi"]
+[ext_resource type="PackedScene" uid="uid://cmchg3hobqx50" path="res://prefabs/pickups/shield.tscn" id="25_wodyi"]
 [ext_resource type="PackedScene" uid="uid://bk2lujutq3gnf" path="res://prefabs/pickups/xp_orb.tscn" id="26_8ldk3"]
 
 [resource]
 script = ExtResource("23_hooar")
+level_name = "N.O.M. Hideout
+Level : 3"
 map_time = 1.0
 map_width = 40
 map_height = 30

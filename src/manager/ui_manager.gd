@@ -23,7 +23,10 @@ func _ready() -> void:
 	EventManager.show_death_screen.connect(_on_show_death_screen)
 	EventManager.boss_killed.connect(_on_boss_killed)
 	
-func _on_level_started(map_time):
+func _on_level_started(map_time, level_name):
+	$LevelLoad/Label.text = level_name
+	$LevelLoad/AnimationPlayer.play("show_level")
+	
 	timer.wait_time = map_time;
 	timer.one_shot = true;
 	timer.start();
