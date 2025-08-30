@@ -68,6 +68,9 @@ var absorb_pts : int = 0 :
 @onready var nombox_shape: CollisionShape2D = $NomDashAoE/NomboxShape
 @onready var hitbox_shape: CollisionShape2D = $HitboxShape
 @onready var gun: Node2D = $Gun
+
+## Per upgrade level multiplier to absorb points gained.
+var absorb_pts_multiplier : float = 1.0
 #endregion
 
 #region Health
@@ -229,20 +232,32 @@ func level_down() -> void:
 	
 	current_level -= 1
 	upgrade_level_changed.emit()
-	max_health = base_health * (current_level + 1)
-	if health > max_health:
-		health = max_health
+	health = max(health+2, max_health)
+	
+	$LevelChange.emitting = true
+	
 	EventManager.emit_signal("health_changed", health, max_health)
 
 func level_up() -> void:
 	current_level += 1
 	
-	max_health = base_health * (current_level + 1)
-	health = max_health
-	EventManager.emit_signal("health_changed", max_health, max_health)
+	$LevelChange.emitting = true
+	
+	# fey: we don't want to give the player more health based on level;
+	# the risk element is based on your size
+	# if you counteract a bigger ship with more health there's no point
+	#max_health = base_health * (current_level + 1)
+	#health = max_health
+	#EventManager.emit_signal("health_changed", max_health, max_health)
 
 func _absorb_bullet(rid, points) -> void:	
-	absorb_pts += points;
+	absorb_pts += points * absorb_pts_multiplier;
+	
+	# handle anim
+	var tween = get_tree().create_tween()
+	tween.tween_property(sprite_2d, "modulate", Color(2.0, 2.0, 2.0, 1.0), 0.1)
+	tween.tween_property(sprite_2d, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.1).set_trans(Tween.TRANS_CIRC)
+	
 	EventManager.progress_changed.emit(absorb_pts, upgrade_threshold * (current_level + 1));
 	Spawning.delete_bullet(rid);
 

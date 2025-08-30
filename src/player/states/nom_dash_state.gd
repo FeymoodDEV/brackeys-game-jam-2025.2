@@ -58,7 +58,7 @@ func _on_exit(args) -> void:
 	dash_velocity = 0
 	dash_vector = Vector2.ZERO
 	is_dashing = false;
-	
+
 
 func _absorb_bullet(area:Area2D,area_shape_index:int, bullet:Dictionary,local_shape_index:int,shared_area:Area2D) -> void:
 	var rid = Spawning.shape_rids.get(shared_area.name, {}).get(local_shape_index)
