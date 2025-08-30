@@ -179,8 +179,7 @@ func die() -> void:
 	vfx.play(&"default")
 	
 	isDead = true
-	$ShipSprite.hide()
-	$HitboxShape.disabled = true
+	set_active(false);
 	
 	
 	EventManager.player_killed.emit()
