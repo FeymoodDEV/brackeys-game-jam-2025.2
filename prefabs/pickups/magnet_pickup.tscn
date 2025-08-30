@@ -1,26 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://xk7m8bb1bgnj"]
+[gd_scene load_steps=6 format=3 uid="uid://cmchg3hobqx50"]
 
-[ext_resource type="Script" uid="uid://bjnhtfivga472" path="res://src/pickup/magnet_power.gd" id="1_8m4mx"]
-[ext_resource type="Texture2D" uid="uid://c2o1lagj6g0ol" path="res://assets/sprites/pickups/magnet.png" id="2_8m4mx"]
+[ext_resource type="Script" uid="uid://cciuh5r0vtkj6" path="res://prefabs/pickups/magnet_power.gd" id="1_17rcf"]
+[ext_resource type="Texture2D" uid="uid://c2o1lagj6g0ol" path="res://assets/sprites/pickups/magnet.png" id="2_17rcf"]
+[ext_resource type="Script" uid="uid://bga7iol0c6qxb" path="res://prefabs/pickups/magnet_radius.gd" id="3_17rcf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fkvdb"]
 radius = 24.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8m4mx"]
-radius = 100.0
+radius = 50.0
 
-[node name="MagnetPickup" type="Area2D" groups=["pickup"]]
-script = ExtResource("1_8m4mx")
+[node name="MagnetPowerup" type="Area2D" groups=["pickup"]]
+script = ExtResource("1_17rcf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_8m4mx")
+position = Vector2(0, -2)
+texture = ExtResource("2_17rcf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_fkvdb")
 
-[node name="MagnetRadius" type="Area2D" parent="."]
+[node name="Radius" type="Area2D" parent="."]
+collision_layer = 17
+collision_mask = 16
+script = ExtResource("3_17rcf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MagnetRadius"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Radius"]
 shape = SubResource("CircleShape2D_8m4mx")
 
-[connection signal="area_entered" from="MagnetRadius" to="." method="_on_magnet_radius_area_entered"]
+[connection signal="area_entered" from="Radius" to="." method="_on_magnet_radius_area_entered"]
