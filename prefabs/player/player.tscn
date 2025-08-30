@@ -37,7 +37,7 @@
 [ext_resource type="AudioStream" uid="uid://08c3m3kad13n" path="res://assets/sounds/player/dash.ogg" id="16_kxs7h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kxs7h"]
-radius = 30.0
+radius = 30.0666
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ris0"]
 particle_flag_disable_z = true
