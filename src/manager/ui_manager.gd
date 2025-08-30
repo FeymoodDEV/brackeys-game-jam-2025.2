@@ -40,6 +40,10 @@ func _on_setup(dict: Dictionary) -> void:
 	progress_bar.max_value = dict.progress_max_value
 	health_bar.value = dict.health_max_value
 	health_bar.max_value = dict.health_max_value
+	boss_health_bar.hide()
+	boss_label.hide()
+	boss_hud.hide()
+	countdown_label.show()
 	
 func _process(delta) -> void:
 	countdown_label.text = "%02d:%02d" % display_timer();

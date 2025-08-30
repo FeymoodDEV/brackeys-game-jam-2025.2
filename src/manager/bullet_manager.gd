@@ -9,8 +9,12 @@ func _ready():
 
 func _deferred_ready():
 	Spawning.create_pool("PBullet", "0", 2000);
+	Spawning.create_pool("PBullet2", "0", 2000);
 	Spawning.create_pool("ChocBullet", "1", 2000);
 	Spawning.create_pool("SugarBullet", "1", 2000);
+	Spawning.create_pool("SugarBulletBig", "1", 2000);
+	Spawning.create_pool("SugarTriggerBullet", "1", 2000);
+	Spawning.create_pool("EggBullet", "1", 2000);
 
 func _process(delta):
 	pass

@@ -92,6 +92,7 @@ func _on_level_started(map_time):
 	pass
 	
 func _on_level_restart():
+	timer.wait_time = current_level.map_time
 	clear_everything()
 	EventManager.level_scene_instanced.emit(levels[level_index])
 	
@@ -299,7 +300,7 @@ func clear_everything():
 	Spawning.clear_all_bullets()
 
 	for enemy: EnemyController in get_tree().get_nodes_in_group("enemy"):
-		enemy.die()
+		enemy.queue_free.call_deferred()
 	for block: Block in get_tree().get_nodes_in_group("block"):
 		block.queue_free.call_deferred()
 	for pickup: Pickup in get_tree().get_nodes_in_group("pickup"):
@@ -316,4 +317,3 @@ func clear_everything():
 #		for block: Block in get_tree().get_nodes_in_group("block"):
 #			block.die()
 #	timer.wait_time = 1.0
-
