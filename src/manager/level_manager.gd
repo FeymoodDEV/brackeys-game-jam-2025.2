@@ -31,6 +31,7 @@ var next_level: Level;
 
 var current_level: LevelData;
 var level_index = 0;
+var pickup_pool: Array[Pickup];
 
 var grid: Array = []
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -63,6 +64,9 @@ func _on_level_scene_instanced(data: LevelData):
 	boss_instance = data.boss_scene.instantiate();
 	
 	current_level = data;	
+	
+	for p in data.packed_items:
+		pickup_pool.append(p.instantiate());		
 	
 	_level_ready();
 	pass
@@ -106,6 +110,15 @@ func _on_level_ended():
 		EventManager.game_ended.emit();
 
 	pass
+	
+# Modify me if you want chance of not spawning item
+func _on_block_destroyed(position: Vector2):
+	# Grab random pickup and duplicate instance
+	var pickup = pickup_pool.pick_random().duplicate();
+	pickup.global_position = position;
+	level_node.add_child.call_deferred(pickup)
+	
+	pass
 
 func _enter_tree():
 	EventManager.player_ready.connect(_on_player_ready)
@@ -119,6 +132,8 @@ func _enter_tree():
 	EventManager.level_ended.connect(_on_level_ended)
 	EventManager.spawn_boss.connect(_on_boss_spawn)
 	EventManager.boss_killed.connect(_on_boss_killed)
+	
+	EventManager.block_destroyed.connect(_on_block_destroyed)
 	
 	EventManager.main_menu.connect(_on_main_menu)
 	

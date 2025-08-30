@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name Block
 
 @export var data: BlockData
@@ -19,6 +19,7 @@ func _ready():
 # this node (ex: target reticles). Sorry.
 signal freeing
 func die() -> void:
+	EventManager.block_destroyed.emit(global_position);
 	freeing.emit()
 	queue_free.call_deferred()
 

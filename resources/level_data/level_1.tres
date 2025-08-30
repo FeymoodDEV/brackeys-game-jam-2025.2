@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelData" load_steps=23 format=3 uid="uid://dyik6mrjr87vp"]
+[gd_resource type="Resource" script_class="LevelData" load_steps=24 format=3 uid="uid://dyik6mrjr87vp"]
 
 [ext_resource type="Texture2D" uid="uid://dfeeu7xpu3qc3" path="res://assets/sprites/tile/tile1.png" id="1_f183m"]
 [ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://prefabs/blocks/block_1.tscn" id="1_i2xk7"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://bmew6t1pkr6n1" path="res://assets/sprites/tile/tile11.png" id="11_mv4n1"]
 [ext_resource type="Script" uid="uid://bsxc5d4jawjyr" path="res://src/level_data.gd" id="11_u605j"]
 [ext_resource type="Texture2D" uid="uid://7bg2n6nm23ly" path="res://assets/sprites/tile/tile12.png" id="12_qdile"]
+[ext_resource type="PackedScene" uid="uid://bk2lujutq3gnf" path="res://prefabs/pickups/xp_orb.tscn" id="22_f183m"]
 
 [resource]
 script = ExtResource("11_u605j")
@@ -36,4 +37,5 @@ enemy_scene = ExtResource("9_3flve")
 enemy_datas = Array[ExtResource("5_ibpya")]([ExtResource("6_c0s30"), ExtResource("7_4r1fs"), ExtResource("8_1uuav")])
 background_tiles = Array[Texture]([ExtResource("1_f183m"), ExtResource("2_ertwf"), ExtResource("3_3cjyy"), ExtResource("4_wgmho"), ExtResource("5_kbunl"), ExtResource("6_syqn1"), ExtResource("7_ds6j8"), ExtResource("8_jf8tv"), ExtResource("9_3jupg"), ExtResource("10_68ow5"), ExtResource("11_mv4n1"), ExtResource("12_qdile")])
 boss_scene = ExtResource("4_xxrvx")
+packed_items = Array[PackedScene]([ExtResource("22_f183m")])
 metadata/_custom_type_script = "uid://bsxc5d4jawjyr"
