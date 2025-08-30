@@ -235,10 +235,12 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 20
+motion_mode = 1
 script = ExtResource("1_g2els")
 dash_cooldown = 1.0
 dash_power = 1500.0
 dash_friction = 0.9
+upgrade_threshold = 20
 
 [node name="ModifierHandler" type="Node" parent="."]
 script = ExtResource("2_rykmw")
@@ -451,6 +453,7 @@ pattern = "player_level_2"
 texture = ExtResource("13_uf5tr")
 hitbox_shape = ExtResource("3_lgqa7")
 nombox_shape = ExtResource("5_8ydkj")
+absorb_pts_multiplier = 0.7
 disabled = false
 debug_mode = false
 target_path = NodePath("")
@@ -464,6 +467,7 @@ pattern = "player_level_3"
 texture = ExtResource("2_uf5tr")
 hitbox_shape = ExtResource("4_lgqa7")
 nombox_shape = ExtResource("3_uf5tr")
+absorb_pts_multiplier = 0.5
 disabled = false
 debug_mode = false
 target_path = NodePath("")
