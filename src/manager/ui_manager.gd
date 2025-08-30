@@ -76,5 +76,6 @@ func _on_restart_pressed():
 
 
 func _on_quit_pressed():
+	BgmManager.change_bgm(preload("res://assets/sounds/music/Biscuit_Intro.ogg"))
 	death_screen.hide()
 	EventManager.main_menu.emit()
