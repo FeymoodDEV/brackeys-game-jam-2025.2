@@ -42,7 +42,7 @@ signal upgrade_level_changed
 var current_level : int = 0
 ## Progress towards upgrading. Increases when absorbing bullets with nom dash,
 ## consumed by  when leveling up
-var absorb_pts : int = 0 :
+var absorb_pts : float = 0 :
 	set(val):
 		if current_level >= max_level: return
 		
