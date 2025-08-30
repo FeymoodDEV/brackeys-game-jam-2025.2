@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BossPatternData" load_steps=2 format=3 uid="uid://ceapq5yqne1oo"]
+
+[ext_resource type="Script" uid="uid://bwjfyj5t13444" path="res://src/boss/boss_pattern_data.gd" id="1_nr7en"]
+
+[resource]
+script = ExtResource("1_nr7en")
+name = "EggCircleReturning"
+start_after = 1.0
+repeat_after = 1.0
+metadata/_custom_type_script = "uid://bwjfyj5t13444"

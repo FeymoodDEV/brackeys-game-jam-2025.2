@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://src/player/states/nom_dash_state.gd" id="10_h17s1"]
 [ext_resource type="Script" uid="uid://crak72h5onoyp" path="res://src/player/gun/upgrade_level.gd" id="10_kvlxm"]
 [ext_resource type="Script" uid="uid://bwsv0v5wgoh2s" path="res://src/player/gun/upgrade.gd" id="10_myrg7"]
+[ext_resource type="Script" uid="uid://c6dd72g31782" path="res://src/player/player_camera.gd" id="10_rykmw"]
 [ext_resource type="AudioStream" uid="uid://rq82uv4hvhtw" path="res://assets/sounds/player/thrusters.ogg" id="11_a0po4"]
 [ext_resource type="Script" uid="uid://bh8rpek0w1o47" path="res://src/player/targeting/crosshair.gd" id="11_fm80t"]
 [ext_resource type="Script" uid="uid://5yo5iu6shjs3" path="res://addons/xsm/state.gd" id="12_cnsyf"]
@@ -341,6 +342,7 @@ rotation = 1.5708
 texture = ExtResource("7_8ris0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("10_rykmw")
 
 [node name="Gun" parent="." instance=ExtResource("3_myrg7")]
 rotation = 1.5708

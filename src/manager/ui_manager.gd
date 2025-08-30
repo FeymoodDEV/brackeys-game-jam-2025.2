@@ -4,9 +4,12 @@ class_name PlayerUI
 @onready var timer: Timer = $Timer
 @onready var countdown_label: Label = $Countdown
 @onready var health_bar: ProgressBar = $HealthBar
+
 @onready var boss_health_bar: ProgressBar = $BossHealthBar
-@onready var progress_bar: ProgressBar = $ProgressBar
 @onready var boss_label: Label = $BossName
+@onready var boss_hud: TextureRect = $BossHud
+
+@onready var progress_bar: ProgressBar = $ProgressBar
 @onready var death_screen: Control = $DeathScreeen
 
 func _on_boss_killed():
@@ -55,7 +58,8 @@ func _on_boss_health_changed(health: float) -> void:
 func _on_boss_spawned(max_health: float, boss_name: String) -> void:
 	boss_health_bar.show()
 	boss_label.show()
-	countdown_label.show()
+	boss_hud.show()
+	countdown_label.hide()
 	
 	boss_health_bar.max_value = max_health
 	boss_health_bar.value = max_health

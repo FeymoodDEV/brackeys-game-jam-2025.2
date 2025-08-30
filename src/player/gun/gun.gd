@@ -25,13 +25,13 @@ func _physics_process(delta: float) -> void:
 			shoot()
 			shot_cooldown_timer.start(shot_cooldown)
 
-signal player_shot
 
 func shoot() -> void:
 	#var spawn_pos = $SpawnPoint.global_position;
 	#var rot = global_rotation
 	#var node = get_parent().get_parent()
-	player_shot.emit()
+	get_parent().audio.shooting.pitch_scale = randf_range(0.9, 1.1)
+	get_parent().audio.shooting.play()
 	Spawning.spawn(self, pattern, "0")
 	
 	

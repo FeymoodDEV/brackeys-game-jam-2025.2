@@ -91,6 +91,8 @@ signal player_dead
 #endregion
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var audio: = $Audio
+
 
 func set_active(value: bool = true):
 	isDead = !value;
@@ -176,7 +178,7 @@ func get_look_relative_vector() -> Vector2:
 	return look_relative
 
 ## Reduces health by `damage` and signals the change. 
-func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2):
+func apply_damage(damage: int, knockback: float = 0, global_position: Vector2 = Vector2.ZERO, direction: Vector2 = Vector2.ZERO):
 	if isDead: return
 	if is_invulnerable: return
 	
@@ -206,10 +208,9 @@ func die() -> void:
 	isDead = true
 	set_active(false);
 	
-	
 	EventManager.player_killed.emit()
 
-func respawn() -> void:
+func respawn() -> void:	
 	isDead = false
 	$ShipSprite.show()
 	$HitboxShape.disabled = false

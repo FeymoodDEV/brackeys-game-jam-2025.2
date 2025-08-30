@@ -559,7 +559,7 @@ func _spawn(bullets:Array):
 
 		if b is Node2D: # scene spawning
 			_spawn_object(b, B)
-
+		
 		props = B["props"]
 		if b is RID or props.has("speed"):
 			if not change_animation(B,"spawn",b): B["state"] = BState.Spawning
@@ -753,7 +753,6 @@ func bullet_movement():
 		if B["state"] == BState.QueuedFree:
 			_apply_movement(B, b, props)
 			continue
-
 		if B.has("death_counter"):
 			B["death_counter"] += _delta
 			if B["death_counter"] >= props["death_after_time"]:

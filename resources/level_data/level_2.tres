@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://prefabs/blocks/block_1.tscn" id="13_5po6n"]
 [ext_resource type="PackedScene" uid="uid://cux5gt5ppivxe" path="res://prefabs/blocks/block_2.tscn" id="14_cnptq"]
 [ext_resource type="PackedScene" uid="uid://y2xgcb36jh3" path="res://prefabs/blocks/block_3.tscn" id="15_p2w6n"]
-[ext_resource type="PackedScene" uid="uid://bq8imdqkwil54" path="res://prefabs/bosses/chocolate_king.tscn" id="16_hv3ye"]
+[ext_resource type="PackedScene" uid="uid://cvsie1ld28fe8" path="res://prefabs/bosses/sugar_queen.tscn" id="16_aaext"]
 [ext_resource type="Script" uid="uid://2pwnys3t54yw" path="res://src/enemy/EnemyData.gd" id="17_a52j8"]
 [ext_resource type="Resource" uid="uid://ca4ewugaitcqx" path="res://resources/enemy_data/chocolate_enemy.tres" id="18_op4nk"]
 [ext_resource type="Resource" uid="uid://enusg5jloedi" path="res://resources/enemy_data/circle_enemy.tres" id="19_xpmto"]
@@ -29,7 +29,7 @@
 
 [resource]
 script = ExtResource("23_x8ew3")
-map_time = 30.0
+map_time = 60.0
 map_width = 40
 map_height = 30
 cluster_chance = 0.01
@@ -39,6 +39,5 @@ block_scenes = Array[PackedScene]([ExtResource("13_5po6n"), ExtResource("14_cnpt
 enemy_scene = ExtResource("21_yobwi")
 enemy_datas = Array[ExtResource("17_a52j8")]([ExtResource("18_op4nk"), ExtResource("19_xpmto"), ExtResource("20_aevx6")])
 background_tiles = Array[Texture]([ExtResource("1_h4hnp"), ExtResource("2_ml42g"), ExtResource("3_q7vog"), ExtResource("4_nl4os"), ExtResource("5_xtp5c"), ExtResource("6_b61ei"), ExtResource("7_sqkwb"), ExtResource("8_qvsnn"), ExtResource("9_iun3v"), ExtResource("10_rwhc4"), ExtResource("11_7wix1"), ExtResource("12_81tsg")])
-boss_scene = ExtResource("16_hv3ye")
-packed_items = Array[PackedScene]([ExtResource("22_q7vog"), ExtResource("23_nl4os"), ExtResource("24_xtp5c"), ExtResource("25_nl4os")])
+boss_scene = ExtResource("16_aaext")
 metadata/_custom_type_script = "uid://bsxc5d4jawjyr"
