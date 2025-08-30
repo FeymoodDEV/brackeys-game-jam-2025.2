@@ -222,7 +222,8 @@ func _on_item_pickup_radius_area_entered(area):
 			absorb_pts += area.xp_amount;
 			EventManager.progress_changed.emit(absorb_pts, upgrade_threshold * (current_level + 1));
 			area.queue_free()
-		if area is MagnetPower:
+		else:
 			area.global_position = global_position;
 			area.reparent.call_deferred(self);
+			area.picked_up()
 	pass # Replace with function body.
