@@ -8,6 +8,8 @@ extends Node2D
 
 @export var help_back_btn: Button;
 
+@export var bgm: AudioStream = preload("res://assets/sounds/music/Biscuit_Intro.ogg")
+
 @onready var main_layer: CanvasLayer = $MainLayer;
 @onready var options_layer: CanvasLayer = $OptionsLayer;
 
@@ -24,6 +26,8 @@ func set_active(value: bool = true):
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
+	BgmManager.change_bgm(bgm)
+	
 	
 	play_btn.pressed.connect(_on_play_btn_pressed)
 	help_btn.pressed.connect(_on_help_button_pressed);

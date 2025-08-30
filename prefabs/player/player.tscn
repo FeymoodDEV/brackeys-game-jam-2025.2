@@ -7,7 +7,7 @@
 [ext_resource type="Shape2D" uid="uid://cdxuhi06dx5ji" path="res://prefabs/player/level_2_hitbox.tres" id="3_lgqa7"]
 [ext_resource type="PackedScene" uid="uid://cdmeut6gpnrdx" path="res://prefabs/player/player_gun.tscn" id="3_myrg7"]
 [ext_resource type="Shape2D" uid="uid://2i71f8o8iqxk" path="res://prefabs/player/level_3_nombox.tres" id="3_uf5tr"]
-[ext_resource type="Script" path="res://src/player/thrusters.gd" id="4_ag4y2"]
+[ext_resource type="Script" uid="uid://bch8fmopdft1u" path="res://src/player/thrusters.gd" id="4_ag4y2"]
 [ext_resource type="Shape2D" uid="uid://cu1nofnlrgf2a" path="res://prefabs/player/level_3_hitbox.tres" id="4_lgqa7"]
 [ext_resource type="SpriteFrames" uid="uid://bmhq5ceo5wdkr" path="res://resources/animations/ship-thrusters-anim.tres" id="4_vtpqo"]
 [ext_resource type="Shape2D" uid="uid://bivjpsiot2lxr" path="res://prefabs/player/level_2_nombox.tres" id="5_8ydkj"]
@@ -16,11 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://b18crkv7x2kpf" path="res://assets/sprites/player/thruster-particle.png" id="6_dmwb1"]
 [ext_resource type="Texture2D" uid="uid://ogb51tdot7ho" path="res://assets/sprites/player/ship1.png" id="7_8ris0"]
 [ext_resource type="Script" uid="uid://yw44daxcsxw0" path="res://src/player/states/movement_state.gd" id="7_h17s1"]
-[ext_resource type="Script" path="res://src/player/trail_particles.gd" id="7_hp4ge"]
+[ext_resource type="Script" uid="uid://dlfvfwm3dmxry" path="res://src/player/trail_particles.gd" id="7_hp4ge"]
 [ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://src/player/states/normal_state.gd" id="8_qek5x"]
 [ext_resource type="Texture2D" uid="uid://dj3abyu5tht7s" path="res://assets/sprites/player/nomdash.png" id="8_xtdcv"]
 [ext_resource type="Script" uid="uid://des4f477v63vn" path="res://src/player/states/circling_state.gd" id="9_5gtgg"]
-[ext_resource type="Script" path="res://prefabs/player/audio.gd" id="10_4jdxe"]
+[ext_resource type="Script" uid="uid://cbvm26wvakcp0" path="res://prefabs/player/audio.gd" id="10_4jdxe"]
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://src/player/states/nom_dash_state.gd" id="10_h17s1"]
 [ext_resource type="Script" uid="uid://crak72h5onoyp" path="res://src/player/gun/upgrade_level.gd" id="10_kvlxm"]
 [ext_resource type="Script" uid="uid://bwsv0v5wgoh2s" path="res://src/player/gun/upgrade.gd" id="10_myrg7"]
@@ -115,6 +115,34 @@ tracks/4/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_i3xdb"]
+resource_name = "damaged"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShipSprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShipSprite:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.200831),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.349066, -0.349066, 0.0, 0.0]
+}
+
 [sub_resource type="Animation" id="Animation_rykmw"]
 resource_name = "dash"
 length = 0.5
@@ -170,34 +198,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.411765)]
-}
-
-[sub_resource type="Animation" id="Animation_i3xdb"]
-resource_name = "damaged"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShipSprite:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ShipSprite:skew")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.2, 0.200831),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.349066, -0.349066, 0.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_560yn"]
