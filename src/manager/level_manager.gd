@@ -106,7 +106,7 @@ func _on_level_ended():
 	else:
 		player.reparent(self);
 		level_node.queue_free();
-		EventManager.game_ended.emit();
+		EventManager.game_won.emit();
 
 	pass
 	

@@ -16,6 +16,7 @@ signal block_destroyed(position: Vector2);
 
 signal game_paused;
 signal game_ended;
+signal game_won
 
 signal health_changed(new_health)
 signal progress_changed(new_xp, xp_to_level_up)
