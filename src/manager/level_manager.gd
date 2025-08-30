@@ -72,9 +72,8 @@ func _on_player_ready(player_path):
 	assert(player);
 	pass
 
-func _on_game_started():	
+func _on_game_started():
 	level_index = 2
-	
 	level_node = level_scene.instantiate();
 	add_child(level_node);
 	
@@ -149,6 +148,7 @@ func _level_ready() -> void:
 	create_empty_grid()
 	generate_level()
 	spawn_enemies()
+
 	place_player()
 	
 	timer.wait_time = map_time
