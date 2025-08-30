@@ -75,11 +75,18 @@ var absorb_pts : int = 0 :
 @export var base_health: float = 50
 var health: float
 var max_health: float
+@export var IFRAME_DURATION: float = 1.0
 @export var death_vfx: PackedScene = preload("res://prefabs/particles/explode_vfx.tscn")
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 var isDead: bool = false
+var is_invulnerable: bool = false
 
 signal player_damaged
+#endregion
+
+#region Modifiers
+@onready var modifier_handler: ModifierHandler = $ModifierHandler
 #endregion
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
@@ -130,6 +137,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("level_down"):
 		# TODO: add VFX, and potentially a transitory state
 		level_down()
+	
+	modifier_handler.update(self)
 
 ## Returns currently inputted direction.
 func get_movement_vector() -> Vector2:
@@ -159,11 +168,17 @@ func get_look_relative_vector() -> Vector2:
 ## Reduces health by `damage` and signals the change. 
 func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2):
 	if isDead: return
+	if is_invulnerable: return
 	
 	player_damaged.emit()
 	
+	animation_player.play("damaged")
+	
 	health -= damage
 	EventManager.emit_signal("health_changed", health, max_health)
+	
+	# Handle iframes:
+	modifier_handler.add_child(InvulnModifier.new(IFRAME_DURATION))
 	
 	if health <= 0:
 		die()

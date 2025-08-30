@@ -1,6 +1,7 @@
-[gd_scene load_steps=42 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=45 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://src/player/player_controller.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://ciqnncb30bm8r" path="res://prefabs/player/modifier_handler.gd" id="2_rykmw"]
 [ext_resource type="Texture2D" uid="uid://devb6j2col43u" path="res://assets/sprites/player/ship3.png" id="2_uf5tr"]
 [ext_resource type="Shape2D" uid="uid://cnjor30f1xoa1" path="res://prefabs/player/level_1_hitbox.tres" id="3_kvlxm"]
 [ext_resource type="Shape2D" uid="uid://cdxuhi06dx5ji" path="res://prefabs/player/level_2_hitbox.tres" id="3_lgqa7"]
@@ -89,6 +90,30 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShipSprite:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ShipSprite:skew")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_rykmw"]
 resource_name = "dash"
@@ -130,10 +155,57 @@ tracks/2/keys = {
 "values": [Vector2(1, 1), Vector2(0.6, 0.6)]
 }
 
+[sub_resource type="Animation" id="Animation_560yn"]
+resource_name = "invulnerable"
+length = 0.1
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShipSprite:self_modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.411765)]
+}
+
+[sub_resource type="Animation" id="Animation_i3xdb"]
+resource_name = "damaged"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShipSprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShipSprite:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.200831),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.349066, -0.349066, 0.0, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_560yn"]
 _data = {
 &"RESET": SubResource("Animation_ro1o0"),
-&"dash": SubResource("Animation_rykmw")
+&"damaged": SubResource("Animation_i3xdb"),
+&"dash": SubResource("Animation_rykmw"),
+&"invulnerable": SubResource("Animation_560yn")
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
@@ -142,6 +214,9 @@ script = ExtResource("1_g2els")
 dash_cooldown = 1.0
 dash_power = 1500.0
 dash_friction = 0.9
+
+[node name="ModifierHandler" type="Node" parent="."]
+script = ExtResource("2_rykmw")
 
 [node name="ItemPickupRadius" type="Area2D" parent="."]
 
