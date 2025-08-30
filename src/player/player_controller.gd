@@ -233,10 +233,15 @@ func level_down() -> void:
 	current_level -= 1
 	upgrade_level_changed.emit()
 	health = max(health+2, max_health)
+	
+	$LevelChange.emitting = true
+	
 	EventManager.emit_signal("health_changed", health, max_health)
 
 func level_up() -> void:
 	current_level += 1
+	
+	$LevelChange.emitting = true
 	
 	# fey: we don't want to give the player more health based on level;
 	# the risk element is based on your size
