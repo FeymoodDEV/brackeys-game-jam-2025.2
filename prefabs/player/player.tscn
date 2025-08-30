@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=42 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://src/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://devb6j2col43u" path="res://assets/sprites/player/ship3.png" id="2_uf5tr"]
@@ -35,6 +35,9 @@
 [ext_resource type="AudioStream" uid="uid://c0sw3ke3l6tb5" path="res://assets/sounds/player/dead.ogg" id="14_xtdcv"]
 [ext_resource type="Texture2D" uid="uid://dr2oj506weijh" path="res://assets/sprites/player/hard-lock.svg" id="15_fcs02"]
 [ext_resource type="AudioStream" uid="uid://08c3m3kad13n" path="res://assets/sounds/player/dash.ogg" id="16_kxs7h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kxs7h"]
+radius = 30.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ris0"]
 particle_flag_disable_z = true
@@ -139,6 +142,11 @@ script = ExtResource("1_g2els")
 dash_cooldown = 1.0
 dash_power = 1500.0
 dash_friction = 0.9
+
+[node name="ItemPickupRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemPickupRadius"]
+shape = SubResource("CircleShape2D_kxs7h")
 
 [node name="NomDashAoE" type="Area2D" parent="."]
 collision_mask = 16
@@ -401,6 +409,7 @@ libraries = {
 }
 
 [connection signal="upgrade_level_changed" from="." to="Root/Upgrade" method="_on_player_upgrade_level_changed"]
+[connection signal="area_entered" from="ItemPickupRadius" to="." method="_on_item_pickup_radius_area_entered"]
 [connection signal="player_shot" from="Gun" to="Audio/Shooting" method="play"]
 [connection signal="state_entered" from="Root/Movement/NomDash" to="Audio/Dash" method="play" unbinds=1]
 [connection signal="hard_lock_changed" from="Crosshair" to="Root/Movement" method="_on_crosshair_hard_lock_changed"]

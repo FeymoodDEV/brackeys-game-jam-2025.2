@@ -214,3 +214,11 @@ func level_up() -> void:
 	max_health = base_health * (current_level + 1)
 	health = max_health
 	EventManager.emit_signal("health_changed", max_health, max_health)
+
+
+func _on_item_pickup_radius_area_entered(area):
+	if area is XPOrb:
+		absorb_pts += area.xp_amount;
+		EventManager.progress_changed.emit(absorb_pts, upgrade_threshold * (current_level + 1));
+		area.queue_free()
+	pass # Replace with function body.

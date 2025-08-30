@@ -19,3 +19,5 @@ class_name LevelData;
 @export var background_tiles: Array[Texture]
 
 @export var boss_scene: PackedScene
+
+@export var packed_items: Array[PackedScene]
