@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://enusg5jloedi"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://enusg5jloedi"]
 
 [ext_resource type="Script" uid="uid://2pwnys3t54yw" path="res://src/enemy/EnemyData.gd" id="1_a8j4b"]
 [ext_resource type="PackedScene" uid="uid://dtjdj7nbtlxrr" path="res://prefabs/particles/explode_vfx.tscn" id="1_jnnu6"]
+[ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="3_1po32"]
 
 [resource]
 script = ExtResource("1_a8j4b")
@@ -10,7 +11,8 @@ speed = 150.0
 health = 1.0
 damage = 10.0
 xp_worth = 10.0
+sprite = ExtResource("3_1po32")
 modulate_color = Color(1, 0.0690199, 0.169378, 1)
-scale = 1.0
+scale = 0.2
 death_vfx = ExtResource("1_jnnu6")
 metadata/_custom_type_script = "uid://2pwnys3t54yw"

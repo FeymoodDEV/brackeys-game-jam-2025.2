@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bapo6jcdsje8y" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="1_jv3a1"]
 [ext_resource type="PackedScene" uid="uid://cbrnosqibc4mg" path="res://prefabs/particles/green_spack_vfx.tscn" id="2_jv3a1"]
 [ext_resource type="Script" uid="uid://dvueqbi8eexbm" path="res://src/bullethell/BulletPropsExtend.gd" id="3_hhtqg"]
-[ext_resource type="Texture2D" uid="uid://c2haqjj6x27gw" path="res://assets/sprites/bullet/sugar_bullet.png" id="4_w8mc3"]
+[ext_resource type="Texture2D" uid="uid://crio2wvuklolq" path="res://assets/sprites/bullet/sugar_bullet_12x12.png" id="4_jv3a1"]
 
 [sub_resource type="Curve" id="Curve_1h4s3"]
 
@@ -11,16 +11,16 @@
 
 [resource]
 script = ExtResource("3_hhtqg")
-texture = ExtResource("4_w8mc3")
+texture = ExtResource("4_jv3a1")
 pierce_count = 0
 knockback = 0.0
 absorb_points = 1
 sprite_scale = 0.25
 packed_hit_vfx = ExtResource("2_jv3a1")
 anim_more = Array[ExtResource("1_jv3a1")]([])
-damage = 1.0
+damage = 10.0
 speed = 100.0
-scale = 0.25
+scale = 1.0
 angle = 0.0
 groups = PackedStringArray()
 spec_bounces = 0

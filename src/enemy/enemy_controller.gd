@@ -72,7 +72,7 @@ func handle_movement(delta: float) -> void:
 	velocity = current_direction * speed
 	
 	shoot_counter += delta;
-	if player and player.global_position.distance_to(global_position) < 250:
+	if player and player.global_position.distance_to(global_position) < 125:
 		if shoot_counter > 1.5:
 			var spawn_pos = global_position;
 			var rot = global_rotation

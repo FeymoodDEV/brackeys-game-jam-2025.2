@@ -20,9 +20,11 @@ func _init():
 
 func _on_game_ended():
 	$PlayerUI.hide();
+	menu_scene.show()
 	
 func _on_game_started():
 	$PlayerUI.show();
+	menu_scene.hide()
 	
 func _deferred_ready():
 	Spawning.spawn(self, "player_level_1", "0")

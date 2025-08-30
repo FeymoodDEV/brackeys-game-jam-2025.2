@@ -44,19 +44,23 @@ var current_level : int = 0
 ## consumed by  when leveling up
 var absorb_pts : int = 0 :
 	set(val):
+		if current_level >= max_level: return
+		
 		absorb_pts = val
 		
 		var pending_signal : bool = false
-		while current_level < max_level and absorb_pts >= upgrade_threshold:
+		
+		while absorb_pts >= upgrade_threshold * (1 + current_level):
 			absorb_pts -= upgrade_threshold
-			current_level += 1
 			pending_signal = true
+			level_up()
+		
 		if pending_signal: upgrade_level_changed.emit()
 
 ## Points required for upgrade. Mind: this is constant. To make the cost increase
 ## for higher levels, we'll use multipliers.
 @export_category("Upgrading")
-@export var upgrade_threshold : int = 10
+@export var upgrade_threshold : int = 50
 ## Max upgrade level. Starts at zero!!!
 @export var max_level : int = 2
 
@@ -68,11 +72,13 @@ var absorb_pts : int = 0 :
 
 #region Health
 @export_category("Health")
+@export var base_health: float = 50
 var health: float
-@export var max_health: float = 100
+var max_health: float
 @export var death_vfx: PackedScene = preload("res://prefabs/particles/explode_vfx.tscn")
 
-signal player_dead
+var isDead: bool = false
+
 signal player_damaged
 #endregion
 
@@ -102,6 +108,7 @@ func _ready():
 	propagate_call("set_physics_process", [false])
 	hide();
 	
+	max_health = base_health
 	health = max_health
 	
 	EventManager.player_setup.emit({
@@ -152,10 +159,12 @@ func get_look_relative_vector() -> Vector2:
 
 ## Reduces health by `damage` and signals the change. 
 func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2):
+	if isDead: return
+	
 	player_damaged.emit()
 	
 	health -= damage
-	EventManager.emit_signal("health_changed", health)
+	EventManager.emit_signal("health_changed", health, max_health)
 	
 	if health <= 0:
 		die()
@@ -163,19 +172,46 @@ func apply_damage(damage: int, knockback: float, global_position: Vector2, direc
 	# TODO: implement knockback.
 
 func die() -> void:
-	print("DIE")
-	player_dead.emit()
-	
 	var vfx = death_vfx.instantiate()
 	add_child(vfx)
 	vfx.top_level = true
 	vfx.global_position = global_position
 	vfx.play(&"default")
-	player_dead.emit(player_dead)
 	
+	isDead = true
+	$ShipSprite.hide()
+	$HitboxShape.disabled = true
+	
+	
+	EventManager.player_killed.emit()
+
+func respawn() -> void:
+	isDead = false
+	$ShipSprite.show()
+	$HitboxShape.disabled = false
+	max_health = base_health
+	health = max_health
+	absorb_pts = 0
+	EventManager.player_setup.emit({
+		"progress_max_value": upgrade_threshold, 
+		"health_max_value": max_health,
+	})
+	$Root/Upgrade.change_state("Level1")
 
 ## Reduces upgrade level by one. 
 func level_down() -> void:
-	if current_level > 0:
-		current_level -= 1
-		upgrade_level_changed.emit()
+	if current_level <= 0: return
+	
+	current_level -= 1
+	upgrade_level_changed.emit()
+	max_health = base_health * (current_level + 1)
+	if health > max_health:
+		health = max_health
+	EventManager.emit_signal("health_changed", health, max_health)
+
+func level_up() -> void:
+	current_level += 1
+	
+	max_health = base_health * (current_level + 1)
+	health = max_health
+	EventManager.emit_signal("health_changed", max_health, max_health)

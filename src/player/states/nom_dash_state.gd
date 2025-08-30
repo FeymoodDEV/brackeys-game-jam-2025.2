@@ -32,6 +32,7 @@ func _on_enter(args) -> void:
 	remaining_time = target.dash_duration
 
 func _on_update(_delta) -> void:
+	if target.isDead: return
 	# move player
 	target.velocity = dash_vector * dash_velocity
 	target.move_and_slide()
@@ -64,5 +65,5 @@ func _absorb_bullet(area:Area2D,area_shape_index:int, bullet:Dictionary,local_sh
 	
 	if is_dashing and area.name == "NomDashAoE":
 		target.absorb_pts += bullet["props"]["absorb_points"];
-		EventManager.progress_changed.emit(target.absorb_pts, target.upgrade_threshold);
+		EventManager.progress_changed.emit(target.absorb_pts, target.upgrade_threshold * (target.current_level + 1));
 		Spawning.delete_bullet(rid);

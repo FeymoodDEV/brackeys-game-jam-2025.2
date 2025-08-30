@@ -14,7 +14,7 @@ var map_time: float = 10;
 var map_width: int = 40
 var map_height: int = 30
 
-var cell_size: int = 64 #px
+var cell_size: int = 32 #px
 
 ## so blocks are being placed in clusters rather scattered around
 var cluster_chance: float = 0.01
@@ -52,7 +52,6 @@ func _on_level_scene_instanced(data: LevelData):
 	map_width = data.map_width;
 	timer.wait_time = data.map_time;
 	
-	cell_size = data.cell_size;
 	cluster_chance = data.cluster_chance;
 	cluster_size = data.cluster_size;
 	border_scene = data.border_scene;
@@ -81,6 +80,8 @@ func _on_game_started():
 	add_child(level_node);
 	
 	EventManager.level_scene_instanced.emit(levels[0]);
+	
+	player.respawn()
 	pass
 
 func _on_game_ended():
@@ -107,6 +108,7 @@ func _on_level_ended():
 
 func _enter_tree():
 	EventManager.player_ready.connect(_on_player_ready)
+	EventManager.player_killed.connect(_on_player_killed)
 	
 	EventManager.game_started.connect(_on_game_started)
 	EventManager.game_ended.connect(_on_game_ended);
@@ -117,11 +119,11 @@ func _enter_tree():
 	EventManager.spawn_boss.connect(_on_boss_spawn)
 	EventManager.boss_killed.connect(_on_boss_killed)
 	
+	EventManager.main_menu.connect(_on_main_menu)
+	
 func _ready():		
 	timer.timeout.connect(EventManager.spawn_boss.emit)
 	$BG.hide();
-	
-
 
 func _level_ready() -> void:
 	$BG.texture = background_tiles[randi() % background_tiles.size()]
@@ -190,7 +192,7 @@ func spawn_enemies() -> void:
 	for y: int in range(map_height):
 		for x: int in range(map_width):
 			if grid[y][x] == null:
-				if rng.randi_range(1, 15) != 1: continue
+				if rng.randi_range(1, 30) != 1: continue
 				var enemy: EnemyController = enemy_scene.instantiate()
 				
 				enemy.position = Vector2(x * cell_size, y * cell_size);
@@ -240,11 +242,13 @@ func _on_boss_spawn() -> void:
 		block.die()
 
 func _on_boss_killed() -> void:
-	# Start the slowdown effect
 	await slow_motion(0.2, 1.0, 0.5)  # target_scale, duration, hold_time
 	Spawning.clear_all_bullets()
 	EventManager.level_ended.emit();
 
+func _on_player_killed() -> void:
+	await slow_motion(0.2, 0.5, 0.2)
+	EventManager.show_death_screen.emit()
 # Coroutine function for slow motion
 func slow_motion(target_scale: float, duration: float, hold_time: float) -> void:
 	var start_scale = Engine.time_scale
@@ -269,3 +273,13 @@ func slow_motion(target_scale: float, duration: float, hold_time: float) -> void
 		Engine.time_scale = lerp(target_scale, 1.0, t)
 		await get_tree().process_frame
 	Engine.time_scale = 1.0
+
+func _on_main_menu():
+	player.reparent(self);
+	level_node.queue_free();
+	clear_everything()
+	EventManager.game_ended.emit();
+	
+
+func clear_everything():
+	Spawning.clear_all_bullets()

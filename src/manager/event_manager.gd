@@ -2,6 +2,7 @@ extends Node
 
 signal player_ready(path)
 signal player_setup(dictionary)
+signal player_killed()
 
 signal menu_loaded;
 signal game_started;
@@ -14,11 +15,16 @@ signal game_paused;
 signal game_ended;
 
 signal health_changed(new_health)
-signal boss_health_changed(new_health)
+signal progress_changed(new_xp, xp_to_level_up)
+
 signal spawn_boss()
 signal setup_boss_ui(boss_max_health, boss_name)
-signal progress_changed(new_xp, xp_to_level_up)
 signal boss_killed()
+signal boss_health_changed(new_health)
+
+signal show_death_screen()
+
+signal main_menu()
 
 func _ready():
 	game_paused.connect(_on_game_paused)

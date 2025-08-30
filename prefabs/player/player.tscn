@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=41 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://src/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://devb6j2col43u" path="res://assets/sprites/player/ship3.png" id="2_uf5tr"]
@@ -23,7 +23,6 @@
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://src/player/states/nom_dash_state.gd" id="10_h17s1"]
 [ext_resource type="Script" uid="uid://crak72h5onoyp" path="res://src/player/gun/upgrade_level.gd" id="10_kvlxm"]
 [ext_resource type="Script" uid="uid://bwsv0v5wgoh2s" path="res://src/player/gun/upgrade.gd" id="10_myrg7"]
-[ext_resource type="Script" uid="uid://c6dd72g31782" path="res://src/player/player_camera.gd" id="10_rykmw"]
 [ext_resource type="AudioStream" uid="uid://rq82uv4hvhtw" path="res://assets/sounds/player/thrusters.ogg" id="11_a0po4"]
 [ext_resource type="Script" uid="uid://bh8rpek0w1o47" path="res://src/player/targeting/crosshair.gd" id="11_fm80t"]
 [ext_resource type="Script" uid="uid://5yo5iu6shjs3" path="res://addons/xsm/state.gd" id="12_cnsyf"]
@@ -48,6 +47,45 @@ radial_accel_max = 13.99
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fm80t"]
 radius = 36.0555
+
+[sub_resource type="Animation" id="Animation_ro1o0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NomdashVFX:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NomdashVFX:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NomdashVFX:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_rykmw"]
 resource_name = "dash"
@@ -89,45 +127,6 @@ tracks/2/keys = {
 "values": [Vector2(1, 1), Vector2(0.6, 0.6)]
 }
 
-[sub_resource type="Animation" id="Animation_ro1o0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NomdashVFX:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("NomdashVFX:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("NomdashVFX:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_560yn"]
 _data = {
 &"RESET": SubResource("Animation_ro1o0"),
@@ -164,7 +163,7 @@ position = Vector2(-14, -5)
 rotation = 1.5708
 sprite_frames = ExtResource("4_vtpqo")
 animation = &"move"
-frame_progress = 0.955405
+frame_progress = 0.268286
 offset = Vector2(0, -7)
 
 [node name="ThrusterRSprite" type="AnimatedSprite2D" parent="Thrusters/Level1Thrusters" groups=["thrusters"]]
@@ -235,7 +234,6 @@ rotation = 1.5708
 texture = ExtResource("7_8ris0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("10_rykmw")
 
 [node name="Gun" parent="." instance=ExtResource("3_myrg7")]
 rotation = 1.5708
@@ -331,7 +329,6 @@ metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level1" type="Node" parent="Root/Upgrade"]
 script = ExtResource("10_kvlxm")
-speed = 300.0
 disabled = false
 debug_mode = false
 target_path = NodePath("")
@@ -358,7 +355,6 @@ pattern = "player_level_3"
 texture = ExtResource("2_uf5tr")
 hitbox_shape = ExtResource("4_lgqa7")
 nombox_shape = ExtResource("3_uf5tr")
-speed = 150.0
 disabled = false
 debug_mode = false
 target_path = NodePath("")

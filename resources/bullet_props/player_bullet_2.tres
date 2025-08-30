@@ -1,25 +1,25 @@
-[gd_resource type="PackedDataContainer" script_class="BulletPropsExtend" load_steps=7 format=3 uid="uid://xdi81avumb0q"]
+[gd_resource type="PackedDataContainer" script_class="BulletPropsExtend" load_steps=7 format=3 uid="uid://cc33ff14dikt2"]
 
-[ext_resource type="Script" uid="uid://bapo6jcdsje8y" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="1_wuprn"]
-[ext_resource type="PackedScene" uid="uid://b2mqu7dv1l8a3" path="res://prefabs/particles/red_spack_vfx.tscn" id="2_wuprn"]
-[ext_resource type="Script" uid="uid://dvueqbi8eexbm" path="res://src/bullethell/BulletPropsExtend.gd" id="3_o4npb"]
-[ext_resource type="Texture2D" uid="uid://caotutblf4xvo" path="res://assets/sprites/bullet/player_bullet.png" id="4_wuprn"]
+[ext_resource type="Script" uid="uid://bapo6jcdsje8y" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="1_yvgk4"]
+[ext_resource type="PackedScene" uid="uid://b2mqu7dv1l8a3" path="res://prefabs/particles/red_spack_vfx.tscn" id="2_inncp"]
+[ext_resource type="Script" uid="uid://dvueqbi8eexbm" path="res://src/bullethell/BulletPropsExtend.gd" id="3_rsyhn"]
+[ext_resource type="Texture2D" uid="uid://bfj1tfa0m8pun" path="res://assets/sprites/bullet/player_bullet_2.png" id="4_yvgk4"]
 
 [sub_resource type="Curve" id="Curve_dub4d"]
 
 [sub_resource type="Curve" id="Curve_bvdue"]
 
 [resource]
-script = ExtResource("3_o4npb")
-texture = ExtResource("4_wuprn")
+script = ExtResource("3_rsyhn")
+texture = ExtResource("4_yvgk4")
 pierce_count = 0
 knockback = 0.0
 absorb_points = 1
 sprite_scale = 0.25
-packed_hit_vfx = ExtResource("2_wuprn")
-anim_more = Array[ExtResource("1_wuprn")]([])
-damage = 1.0
-speed = 500.0
+packed_hit_vfx = ExtResource("2_inncp")
+anim_more = Array[ExtResource("1_yvgk4")]([])
+damage = 2.0
+speed = 1000.0
 scale = 1.0
 angle = 0.0
 groups = PackedStringArray()

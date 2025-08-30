@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b64gl8o1ua1rg" path="res://assets/sprites/block/chocolate_block.png" id="3_uitx0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
-size = Vector2(64, 64)
+size = Vector2(32, 32)
 
 [sub_resource type="Animation" id="Animation_4kun4"]
 length = 0.001
@@ -51,6 +51,7 @@ script = ExtResource("1_8lane")
 data = ExtResource("2_8lane")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_uitx0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
