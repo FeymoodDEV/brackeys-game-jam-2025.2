@@ -35,7 +35,9 @@ func display_timer() -> Array:
 	return [minute, second]
 
 func _on_setup(dict: Dictionary) -> void:
-	progress_bar.value = dict.progress_max_value
+	print('prograsesaasdga')
+	print(dict.progress_max_value)
+	progress_bar.value = 0
 	progress_bar.max_value = dict.progress_max_value
 	health_bar.value = dict.health_max_value
 	health_bar.max_value = dict.health_max_value
@@ -58,5 +60,6 @@ func _on_boss_spawned(max_health: float, boss_name: String) -> void:
 	boss_health_bar.value = max_health
 	boss_label.text = boss_name
 	
-func _on_progress_changed(new_value: float) -> void:
+func _on_progress_changed(new_value: float, xp_to_level_up: float) -> void:
 	progress_bar.value = new_value
+	progress_bar.max_value = xp_to_level_up
