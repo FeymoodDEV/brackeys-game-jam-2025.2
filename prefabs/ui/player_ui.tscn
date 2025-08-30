@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://j4ljg2vl3nfv"]
+[gd_scene load_steps=25 format=3 uid="uid://j4ljg2vl3nfv"]
 
 [ext_resource type="Script" uid="uid://dsiawai5lafl8" path="res://src/manager/ui_manager.gd" id="1_jkj6h"]
 [ext_resource type="Texture2D" uid="uid://cvpcx48cuikco" path="res://assets/sprites/ui/hud.png" id="2_2kqep"]
@@ -16,125 +16,6 @@ texture = ExtResource("5_1354d")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6doxs"]
 texture = ExtResource("6_hj0ct")
-
-[sub_resource type="Animation" id="Animation_tpsno"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel:theme_override_styles/panel:bg_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.0383972, 0.0383972, 0.0383971, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label:theme_override_colors/font_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.533326, 0, 0, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Restart:self_modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Quit:self_modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_miamk"]
-resource_name = "open"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel:theme_override_styles/panel:bg_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.0392157, 0.0392157, 0.0392157, 0), Color(0.0383972, 0.0383972, 0.0383971, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label:theme_override_colors/font_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.633333, 1),
-"transitions": PackedFloat32Array(12.5533, 1),
-"update": 0,
-"values": [Color(0.533333, 0, 0, 0), Color(0.533326, 0, 0, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Restart:self_modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.633333, 1),
-"transitions": PackedFloat32Array(12.5533, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Quit:self_modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.633333, 1),
-"transitions": PackedFloat32Array(12.5533, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2kqep"]
-_data = {
-&"RESET": SubResource("Animation_tpsno"),
-&"open": SubResource("Animation_miamk")
-}
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0vdx"]
-bg_color = Color(0.0383972, 0.0383972, 0.0383971, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_miamk"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2kqep"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_svfv5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tpsno"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svfv5"]
 bg_color = Color(0, 0, 0, 1)
@@ -421,6 +302,127 @@ variation_embolden = 2.0
 variation_transform = Transform2D(1, 0.31, 0, 1.245, 0, 0)
 spacing_glyph = 8
 
+[sub_resource type="Animation" id="Animation_tpsno"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.0383972, 0.0383972, 0.0383971, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.533326, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Restart:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Quit:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_miamk"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0392157, 0.0392157, 0.0392157, 0), Color(0.0383972, 0.0383972, 0.0383971, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.633333, 1),
+"transitions": PackedFloat32Array(12.5533, 1),
+"update": 0,
+"values": [Color(0.533333, 0, 0, 0), Color(0.533326, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Restart:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.633333, 1),
+"transitions": PackedFloat32Array(12.5533, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Quit:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.633333, 1),
+"transitions": PackedFloat32Array(12.5533, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2kqep"]
+_data = {
+&"RESET": SubResource("Animation_tpsno"),
+&"open": SubResource("Animation_miamk")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0vdx"]
+bg_color = Color(0.0383972, 0.0383972, 0.0383971, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wcejd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_miamk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2kqep"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_svfv5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tpsno"]
+
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource("1_jkj6h")
 
@@ -499,74 +501,6 @@ offset_bottom = 352.0
 theme_override_styles/fill = SubResource("StyleBoxTexture_6doxs")
 show_percentage = false
 
-[node name="DeathScreeen" type="Control" parent="."]
-visible = false
-z_index = 1
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="DeathScreeen"]
-libraries = {
-&"": SubResource("AnimationLibrary_2kqep")
-}
-
-[node name="Panel" type="Panel" parent="DeathScreeen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_c0vdx")
-
-[node name="Label" type="Label" parent="DeathScreeen"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -104.0
-offset_top = -90.0
-offset_right = 104.0
-offset_bottom = -62.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.533326, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "YOU ARE DEAD BITCH"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Restart" type="Button" parent="DeathScreeen"]
-layout_mode = 0
-offset_left = 283.0
-offset_top = 144.0
-offset_right = 348.0
-offset_bottom = 175.0
-theme_override_colors/font_hover_color = Color(0.822013, 0.645975, 3.85046e-07, 1)
-theme_override_styles/hover = SubResource("StyleBoxEmpty_miamk")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_2kqep")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_svfv5")
-text = "RESPAWN"
-
-[node name="Quit" type="Button" parent="DeathScreeen"]
-layout_mode = 0
-offset_left = 284.0
-offset_top = 176.0
-offset_right = 349.0
-offset_bottom = 207.0
-theme_override_colors/font_hover_color = Color(0.822013, 0.645975, 3.85046e-07, 1)
-theme_override_styles/hover = SubResource("StyleBoxEmpty_tpsno")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_2kqep")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_svfv5")
-text = "QUIT
-"
-
 [node name="BossCutScene" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -620,6 +554,76 @@ theme_override_constants/outline_size = 12
 theme_override_fonts/font = SubResource("FontVariation_hj0ct")
 theme_override_font_sizes/font_size = 35
 text = "CHOCOLATE KING"
+
+[node name="DeathScreeen" type="Control" parent="."]
+visible = false
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DeathScreeen"]
+libraries = {
+&"": SubResource("AnimationLibrary_2kqep")
+}
+
+[node name="Panel" type="Panel" parent="DeathScreeen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c0vdx")
+
+[node name="Label" type="Label" parent="DeathScreeen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -90.0
+offset_right = 104.0
+offset_bottom = -62.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.533326, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "YOU ARE DEAD BITCH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Restart" type="Button" parent="DeathScreeen"]
+layout_mode = 0
+offset_left = 283.0
+offset_top = 144.0
+offset_right = 348.0
+offset_bottom = 175.0
+theme_override_colors/font_hover_color = Color(0.822013, 0.645975, 3.85046e-07, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wcejd")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_miamk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_2kqep")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_svfv5")
+text = "RESPAWN"
+
+[node name="Quit" type="Button" parent="DeathScreeen"]
+layout_mode = 0
+offset_left = 284.0
+offset_top = 176.0
+offset_right = 349.0
+offset_bottom = 207.0
+theme_override_colors/font_hover_color = Color(0.822013, 0.645975, 3.85046e-07, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wcejd")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tpsno")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_2kqep")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_svfv5")
+text = "QUIT
+"
 
 [connection signal="pressed" from="DeathScreeen/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="DeathScreeen/Quit" to="." method="_on_quit_pressed"]
