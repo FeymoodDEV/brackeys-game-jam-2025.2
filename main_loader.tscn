@@ -30,7 +30,6 @@ preload_scenes = Array[PackedScene]([ExtResource("4_sptmn"), ExtResource("5_kfoa
 [node name="BulletManager" parent="." instance=ExtResource("6_jixal")]
 
 [node name="LevelManager" parent="." instance=ExtResource("7_jmiai")]
-level_scenes = Array[PackedScene]([])
 levels = Array[ExtResource("8_vpio5")]([ExtResource("9_p5kom"), ExtResource("10_c5ip0"), ExtResource("11_7oy37")])
 level_scene = ExtResource("12_p5kom")
 
