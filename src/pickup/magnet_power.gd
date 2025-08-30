@@ -11,7 +11,8 @@ func _on_area_entered(area):
 	pass # Replace with function body.
 
 func _draw():
-	draw_circle(position, magnet_area.get_node("CollisionShape2D").shape.radius, Color.RED, false, 5);
+	if active:
+		draw_circle(position, magnet_area.get_node("CollisionShape2D").shape.radius, Color.RED, false, 5);
 
 func _process(delta):
 	counter += delta;

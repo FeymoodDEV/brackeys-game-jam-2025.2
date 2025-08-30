@@ -36,4 +36,5 @@ enemy_scene = ExtResource("21_e0imc")
 enemy_datas = Array[ExtResource("17_ixhah")]([ExtResource("18_erpkr"), ExtResource("19_16qpw"), ExtResource("20_vkwch")])
 background_tiles = Array[Texture]([ExtResource("1_k7wwm"), ExtResource("2_jbkd1"), ExtResource("3_ftkf4"), ExtResource("4_rxjw4"), ExtResource("5_dn4kj"), ExtResource("6_vhqtq"), ExtResource("7_dht0h"), ExtResource("8_wodyi"), ExtResource("9_8ldk3"), ExtResource("10_tk5m2"), ExtResource("11_t0hmu"), ExtResource("12_tx27m")])
 boss_scene = ExtResource("16_p0chv")
+packed_items = Array[PackedScene]([])
 metadata/_custom_type_script = "uid://bsxc5d4jawjyr"
