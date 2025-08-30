@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=42 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://src/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://devb6j2col43u" path="res://assets/sprites/player/ship3.png" id="2_uf5tr"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://src/player/states/nom_dash_state.gd" id="10_h17s1"]
 [ext_resource type="Script" uid="uid://crak72h5onoyp" path="res://src/player/gun/upgrade_level.gd" id="10_kvlxm"]
 [ext_resource type="Script" uid="uid://bwsv0v5wgoh2s" path="res://src/player/gun/upgrade.gd" id="10_myrg7"]
+[ext_resource type="Script" uid="uid://c6dd72g31782" path="res://src/player/player_camera.gd" id="10_rykmw"]
 [ext_resource type="AudioStream" uid="uid://rq82uv4hvhtw" path="res://assets/sounds/player/thrusters.ogg" id="11_a0po4"]
 [ext_resource type="Script" uid="uid://bh8rpek0w1o47" path="res://src/player/targeting/crosshair.gd" id="11_fm80t"]
 [ext_resource type="Script" uid="uid://5yo5iu6shjs3" path="res://addons/xsm/state.gd" id="12_cnsyf"]
@@ -234,6 +235,7 @@ rotation = 1.5708
 texture = ExtResource("7_8ris0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("10_rykmw")
 
 [node name="Gun" parent="." instance=ExtResource("3_myrg7")]
 rotation = 1.5708
@@ -401,7 +403,6 @@ libraries = {
 }
 
 [connection signal="upgrade_level_changed" from="." to="Root/Upgrade" method="_on_player_upgrade_level_changed"]
-[connection signal="player_shot" from="Gun" to="Audio/Shooting" method="play"]
 [connection signal="state_entered" from="Root/Movement/NomDash" to="Audio/Dash" method="play" unbinds=1]
 [connection signal="hard_lock_changed" from="Crosshair" to="Root/Movement" method="_on_crosshair_hard_lock_changed"]
 [connection signal="body_entered" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_entered"]

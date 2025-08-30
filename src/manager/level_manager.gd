@@ -74,12 +74,12 @@ func _on_player_ready(player_path):
 	pass
 
 func _on_game_started():	
-	level_index = 0;
+	level_index = 2
 	
 	level_node = level_scene.instantiate();
 	add_child(level_node);
 	
-	EventManager.level_scene_instanced.emit(levels[0]);
+	EventManager.level_scene_instanced.emit(levels[level_index]);
 	
 	player.respawn()
 	pass
@@ -249,6 +249,7 @@ func _on_boss_killed() -> void:
 func _on_player_killed() -> void:
 	await slow_motion(0.2, 0.5, 0.2)
 	EventManager.show_death_screen.emit()
+	
 # Coroutine function for slow motion
 func slow_motion(target_scale: float, duration: float, hold_time: float) -> void:
 	var start_scale = Engine.time_scale

@@ -1,0 +1,150 @@
+[gd_scene load_steps=13 format=3 uid="uid://bd5i3sglov82i"]
+
+[ext_resource type="Script" uid="uid://crdkg38w76q45" path="res://src/boss/boss_controller.gd" id="1_5ghuj"]
+[ext_resource type="Texture2D" uid="uid://cja5sr5puc4e2" path="res://assets/sprites/block/bisquit.png" id="2_6fe1r"]
+[ext_resource type="Script" uid="uid://cfgbc008l4rro" path="res://src/boss/states/stage.gd" id="3_6f15j"]
+[ext_resource type="Script" uid="uid://v6qncoss0ivu" path="res://addons/xsm/state_loop.gd" id="3_yrihk"]
+[ext_resource type="Script" uid="uid://baagqy81kjrdl" path="res://src/boss/states/attack_spawn_on_player_state.gd" id="4_6f15j"]
+[ext_resource type="Script" uid="uid://dxpxm6x5hgepx" path="res://src/boss/states/idle_state.gd" id="4_dysf2"]
+[ext_resource type="PackedScene" uid="uid://cl008a18f1mtu" path="res://prefabs/attacks/milk_laser.tscn" id="5_6fe1r"]
+[ext_resource type="AudioStream" uid="uid://cjhw80h3cj4fb" path="res://assets/sounds/enemy/damaged.ogg" id="5_dysf2"]
+[ext_resource type="AudioStream" uid="uid://cblbt71io5gvo" path="res://assets/sounds/enemy/dead.ogg" id="6_urlrh"]
+[ext_resource type="Script" uid="uid://b22hvoowka3oo" path="res://src/boss/states/pattern_in_six_dir_state.gd" id="6_yrihk"]
+[ext_resource type="Script" uid="uid://b2l0jlbk7oecc" path="res://addons/xsm/state_regions.gd" id="9_urlrh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysfue"]
+size = Vector2(128, 128)
+
+[node name="N_U_M Captain" type="CharacterBody2D" node_paths=PackedStringArray("stage_1", "stage_2")]
+collision_layer = 34
+collision_mask = 0
+script = ExtResource("1_5ghuj")
+boss_name = "N.U.M. Captain"
+stage_1 = NodePath("state_machine/stage_1")
+stage_2 = NodePath("state_machine/stage_2")
+max_health = 750.0
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-5.72205e-06, -5.72205e-06)
+scale = Vector2(2.415, 2.415)
+texture = ExtResource("2_6fe1r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ysfue")
+
+[node name="state_machine" type="Node" parent="."]
+script = ExtResource("9_urlrh")
+history_size = 0
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://b2l0jlbk7oecc"
+
+[node name="stage_1" type="Node" parent="state_machine"]
+script = ExtResource("3_yrihk")
+loop_mode = 1
+exit_state = NodePath("")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("../StateRegions")
+metadata/_custom_type_script = "uid://v6qncoss0ivu"
+
+[node name="Idle" type="Node" parent="state_machine/stage_1"]
+script = ExtResource("4_dysf2")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="State" type="Node" parent="state_machine/stage_1" node_paths=PackedStringArray("next_boss_state")]
+script = ExtResource("4_6f15j")
+next_boss_state = NodePath("../State2")
+attack_scene = ExtResource("5_6fe1r")
+attack_amount = 10
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="State2" type="Node" parent="state_machine/stage_1" node_paths=PackedStringArray("next_boss_state")]
+script = ExtResource("6_yrihk")
+next_boss_state = NodePath("../State")
+state_duration = 8.0
+pattern = "EggCircleReturning"
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="stage_2" type="Node" parent="state_machine"]
+script = ExtResource("3_6f15j")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://b2l0jlbk7oecc"
+
+[node name="loop_1" type="Node" parent="state_machine/stage_2"]
+script = ExtResource("3_yrihk")
+loop_mode = 1
+exit_state = NodePath("")
+disabled = true
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://v6qncoss0ivu"
+
+[node name="State3" type="Node" parent="state_machine/stage_2/loop_1"]
+script = ExtResource("6_yrihk")
+state_duration = 99999.0
+pattern = "EggCircleReturning"
+repeat = true
+repeat_after = 7.0
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="loop_2" type="Node" parent="state_machine/stage_2"]
+script = ExtResource("3_yrihk")
+loop_mode = 1
+exit_state = NodePath("")
+disabled = true
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://v6qncoss0ivu"
+
+[node name="State4" type="Node" parent="state_machine/stage_2/loop_2"]
+script = ExtResource("4_6f15j")
+attack_scene = ExtResource("5_6fe1r")
+attack_amount = 999999
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="EnemySounds" type="Node2D" parent="."]
+
+[node name="Damaged" type="AudioStreamPlayer2D" parent="EnemySounds"]
+stream = ExtResource("5_dysf2")
+
+[node name="Dead" type="AudioStreamPlayer2D" parent="EnemySounds"]
+stream = ExtResource("6_urlrh")

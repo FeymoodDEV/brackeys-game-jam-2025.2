@@ -1,15 +1,21 @@
-[gd_scene load_steps=31 format=3 uid="uid://bh4n0qihnupx7"]
+[gd_scene load_steps=48 format=3 uid="uid://bh4n0qihnupx7"]
 
 [ext_resource type="Script" uid="uid://cgd1wjud4ds5l" path="res://src/manager/bullet_manager.gd" id="1_s87c5"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://prefabs/player/player.tscn" id="2_5m336"]
 [ext_resource type="Script" uid="uid://bjmse0liopcrp" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="3_er4hb"]
 [ext_resource type="PackedDataContainer" uid="uid://vvxu0dtkc53o" path="res://resources/bullet_props/chocolate_bullet.tres" id="4_5m336"]
 [ext_resource type="PackedDataContainer" uid="uid://4im82kt0pnq3" path="res://resources/bullet_props/sugar_bullet.tres" id="5_2wnuu"]
+[ext_resource type="PackedDataContainer" uid="uid://cq07spk5u5wfw" path="res://resources/bullet_props/sugar_bullet_big.tres" id="6_74aju"]
+[ext_resource type="PackedDataContainer" uid="uid://ceo8oacqgggim" path="res://resources/bullet_props/sugar_bullet_trigger.tres" id="6_drf3u"]
 [ext_resource type="PackedDataContainer" uid="uid://xdi81avumb0q" path="res://resources/bullet_props/player_bullet.tres" id="6_jtxhu"]
 [ext_resource type="PackedDataContainer" uid="uid://cc33ff14dikt2" path="res://resources/bullet_props/player_bullet_2.tres" id="7_eacl2"]
 [ext_resource type="NavigationPolygon" uid="uid://co2c4c28w1wnl" path="res://resources/bullet_patterns/player_patterns/patt_player_level_1.tres" id="8_jtxhu"]
 [ext_resource type="NavigationPolygon" uid="uid://bmfjycd8jhs3i" path="res://resources/bullet_patterns/player_patterns/patt_player_level_3.tres" id="9_6vri1"]
+[ext_resource type="Script" uid="uid://byqtl0fpuphlx" path="res://addons/BulletUpHell/Triggers/TriggerTime.gd" id="9_hisra"]
+[ext_resource type="Script" uid="uid://1jbwc4x3yit7" path="res://addons/BulletUpHell/Nodes/BuHTriggerContainer.gd" id="10_74aju"]
 [ext_resource type="Script" uid="uid://c8ydhn2yvq3dc" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="10_bvdue"]
+[ext_resource type="Script" uid="uid://dmdv2p44th2h7" path="res://addons/BulletUpHell/SpawnPatterns/Pattern.gd" id="10_drf3u"]
+[ext_resource type="PackedDataContainer" uid="uid://dlj7fapvfgjde" path="res://resources/bullet_props/egg_bullet.tres" id="10_o4o8s"]
 [ext_resource type="Script" uid="uid://b6cup3hdpqd6v" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="11_lswlb"]
 [ext_resource type="Script" uid="uid://c8a1x50bjmkue" path="res://addons/BulletUpHell/SpawnPatterns/PatternLine.gd" id="12_fnh7x"]
 [ext_resource type="NavigationPolygon" uid="uid://dna10wu54md6s" path="res://resources/bullet_patterns/enemy_pattern/patt_chocolate_spin.tres" id="13_5660t"]
@@ -20,7 +26,47 @@
 
 [sub_resource type="Curve2D" id="Curve2D_aga20"]
 
+[sub_resource type="Curve2D" id="Curve2D_w2k3w"]
+
+[sub_resource type="Curve2D" id="Curve2D_o4o8s"]
+
 [sub_resource type="Curve2D" id="Curve2D_53pd8"]
+
+[sub_resource type="Curve2D" id="Curve2D_rn18r"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_74aju"]
+script = ExtResource("9_hisra")
+time = 1.0
+metadata/_custom_type_script = "uid://byqtl0fpuphlx"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_o4o8s"]
+resource_name = "PatternCircle"
+script = ExtResource("13_h02f0")
+radius = 0
+angle_total = 6.28319
+angle_decal = 0.0
+symmetric = false
+center = 0
+symmetry_type = 0
+bullet = "SugarBullet"
+nbr = 5
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+metadata/_custom_type_script = "uid://csxp6a77ij7sk"
 
 [sub_resource type="Curve2D" id="Curve2D_ttg52"]
 _data = {
@@ -179,20 +225,110 @@ metadata/_custom_type_script = "uid://csxp6a77ij7sk"
 
 [sub_resource type="Curve2D" id="Curve2D_5660t"]
 
+[sub_resource type="Curve2D" id="Curve2D_7q45u"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_hisra"]
+resource_name = "PatternCircle"
+script = ExtResource("13_h02f0")
+radius = 0
+angle_total = 6.28319
+angle_decal = 0.0
+symmetric = false
+center = 0
+symmetry_type = 0
+bullet = "SugarTriggerBullet"
+nbr = 12
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+metadata/_custom_type_script = "uid://csxp6a77ij7sk"
+
+[sub_resource type="Curve2D" id="Curve2D_74aju"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_w2k3w"]
+resource_name = "PatternOne"
+script = ExtResource("11_lswlb")
+bullet = "SugarBulletBig"
+nbr = 1
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("../../../Player")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+metadata/_custom_type_script = "uid://b6cup3hdpqd6v"
+
+[sub_resource type="Curve2D" id="Curve2D_cff3j"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7q45u"]
+resource_name = "PatternCircle"
+script = ExtResource("13_h02f0")
+radius = 0
+angle_total = 1.0472
+angle_decal = 0.174533
+symmetric = false
+center = 0
+symmetry_type = 0
+bullet = "EggBullet"
+nbr = 6
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 7.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 1.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 5
+wait_tween_length = 500.0
+wait_tween_time = 3.0
+metadata/_custom_type_script = "uid://csxp6a77ij7sk"
+
 [node name="BulletManager" type="Node2D"]
 script = ExtResource("1_s87c5")
 
 [node name="Player" parent="." instance=ExtResource("2_5m336")]
 position = Vector2(2031, 1523)
 
+[node name="Movement" parent="Player/Root" index="0"]
+next_state = NodePath("../Upgrade")
+
+[node name="Normal" parent="Player/Root/Movement" index="0"]
+next_state = NodePath("../Circling")
+
 [node name="Level1" parent="Player/Root/Upgrade" index="1"]
-speed = 220.0
+next_state = NodePath("../Level2")
 
 [node name="Level2" parent="Player/Root/Upgrade" index="2"]
-speed = 220.0
-
-[node name="Level3" parent="Player/Root/Upgrade" index="3"]
-speed = 220.0
+next_state = NodePath("../Level3")
 
 [node name="BulletProps" type="Node2D" parent="."]
 
@@ -208,6 +344,20 @@ script = ExtResource("3_er4hb")
 id = "SugarBullet"
 props = ExtResource("5_2wnuu")
 
+[node name="SugarBigBullet" type="Path2D" parent="BulletProps"]
+curve = SubResource("Curve2D_w2k3w")
+script = ExtResource("3_er4hb")
+id = "SugarBulletBig"
+props = ExtResource("6_74aju")
+metadata/_custom_type_script = "uid://bjmse0liopcrp"
+
+[node name="SugarBulletWithTrigger" type="Path2D" parent="BulletProps"]
+curve = SubResource("Curve2D_o4o8s")
+script = ExtResource("3_er4hb")
+id = "SugarTriggerBullet"
+props = ExtResource("6_drf3u")
+metadata/_custom_type_script = "uid://bjmse0liopcrp"
+
 [node name="PlayerBullet" type="Path2D" parent="BulletProps"]
 curve = SubResource("Curve2D_aga20")
 script = ExtResource("3_er4hb")
@@ -220,6 +370,23 @@ script = ExtResource("3_er4hb")
 id = "PBullet2"
 props = ExtResource("7_eacl2")
 metadata/_custom_type_script = "uid://bjmse0liopcrp"
+
+[node name="EggBullet" type="Path2D" parent="BulletProps"]
+curve = SubResource("Curve2D_rn18r")
+script = ExtResource("3_er4hb")
+id = "EggBullet"
+props = ExtResource("10_o4o8s")
+metadata/_custom_type_script = "uid://bjmse0liopcrp"
+
+[node name="Triggers" type="Node2D" parent="."]
+
+[node name="SugarCircleTrigger" type="Node" parent="Triggers"]
+script = ExtResource("10_74aju")
+id = "sugar_circle_trigger"
+advanced_controls = "0=0"
+triggers = Array[RichTextEffect]([SubResource("RichTextEffect_74aju")])
+patterns = Array[ExtResource("10_drf3u")]([SubResource("NavigationPolygon_o4o8s")])
+metadata/_custom_type_script = "uid://1jbwc4x3yit7"
 
 [node name="Patterns" type="Node2D" parent="."]
 
@@ -293,6 +460,31 @@ curve = SubResource("Curve2D_5660t")
 script = ExtResource("10_bvdue")
 id = "chocolate_v_shape_pattern"
 pattern = ExtResource("15_53pd8")
+metadata/_custom_type_script = "uid://c8ydhn2yvq3dc"
+
+[node name="SugarQueen" type="Node2D" parent="Patterns"]
+
+[node name="CircleWithTrigger" type="Path2D" parent="Patterns/SugarQueen"]
+curve = SubResource("Curve2D_7q45u")
+script = ExtResource("10_bvdue")
+id = "sugar_trigger_circle_pattern"
+pattern = SubResource("NavigationPolygon_hisra")
+metadata/_custom_type_script = "uid://c8ydhn2yvq3dc"
+
+[node name="sugar_one_big_pattern" type="Path2D" parent="Patterns/SugarQueen"]
+curve = SubResource("Curve2D_74aju")
+script = ExtResource("10_bvdue")
+id = "sugar_one_big_pattern"
+pattern = SubResource("NavigationPolygon_w2k3w")
+metadata/_custom_type_script = "uid://c8ydhn2yvq3dc"
+
+[node name="Egg" type="Node2D" parent="Patterns"]
+
+[node name="EggCircleReturning" type="Path2D" parent="Patterns/Egg"]
+curve = SubResource("Curve2D_cff3j")
+script = ExtResource("10_bvdue")
+id = "EggCircleReturning"
+pattern = SubResource("NavigationPolygon_7q45u")
 metadata/_custom_type_script = "uid://c8ydhn2yvq3dc"
 
 [node name="SpawnPoint" type="Node2D" parent="."]

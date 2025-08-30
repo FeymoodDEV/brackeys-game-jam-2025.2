@@ -1,9 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://j4ljg2vl3nfv"]
 
 [ext_resource type="Script" uid="uid://dsiawai5lafl8" path="res://src/manager/ui_manager.gd" id="1_jkj6h"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sx3m1"]
-bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.815686)
+[ext_resource type="Texture2D" uid="uid://cvpcx48cuikco" path="res://assets/sprites/ui/hud.png" id="2_2kqep"]
+[ext_resource type="Texture2D" uid="uid://dxibw07chc4by" path="res://assets/sprites/ui/boss_bar.png" id="3_c0vdx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mvsys"]
 bg_color = Color(0.630101, 0.0510413, 4.81308e-08, 1)
@@ -11,62 +10,8 @@ bg_color = Color(0.630101, 0.0510413, 4.81308e-08, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npses"]
 bg_color = Color(0.370014, 0.689214, 0.322664, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjgpp"]
-bg_color = Color(0.114897, 0.114897, 0.114897, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sijxs"]
-bg_color = Color(1, 0.866667, 0, 1)
-
-[sub_resource type="Animation" id="Animation_miamk"]
-resource_name = "open"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel:theme_override_styles/panel:bg_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.0392157, 0.0392157, 0.0392157, 0), Color(0.0383972, 0.0383972, 0.0383971, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label:theme_override_colors/font_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.633333, 1),
-"transitions": PackedFloat32Array(12.5533, 1),
-"update": 0,
-"values": [Color(0.533333, 0, 0, 0), Color(0.533326, 0, 0, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Restart:self_modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.633333, 1),
-"transitions": PackedFloat32Array(12.5533, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Quit:self_modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.633333, 1),
-"transitions": PackedFloat32Array(12.5533, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kqep"]
+bg_color = Color(0.6, 0.290196, 1, 1)
 
 [sub_resource type="Animation" id="Animation_tpsno"]
 length = 0.001
@@ -119,6 +64,57 @@ tracks/3/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_miamk"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0392157, 0.0392157, 0.0392157, 0), Color(0.0383972, 0.0383972, 0.0383971, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.633333, 1),
+"transitions": PackedFloat32Array(12.5533, 1),
+"update": 0,
+"values": [Color(0.533333, 0, 0, 0), Color(0.533326, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Restart:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.633333, 1),
+"transitions": PackedFloat32Array(12.5533, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Quit:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.633333, 1),
+"transitions": PackedFloat32Array(12.5533, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2kqep"]
 _data = {
 &"RESET": SubResource("Animation_tpsno"),
@@ -139,6 +135,46 @@ bg_color = Color(0.0383972, 0.0383972, 0.0383971, 1)
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource("1_jkj6h")
 
+[node name="Hud" type="TextureRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("2_2kqep")
+
+[node name="BossHud" type="TextureRect" parent="."]
+visible = false
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("3_c0vdx")
+
+[node name="BossHealthBar" type="ProgressBar" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -108.0
+offset_top = 16.0
+offset_right = 162.0
+offset_bottom = 53.0
+grow_horizontal = 2
+scale = Vector2(0.799999, 0.6)
+theme_override_styles/fill = SubResource("StyleBoxFlat_mvsys")
+value = 50.0
+show_percentage = false
+
+[node name="BossName" type="Label" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -108.0
+offset_top = 15.0
+offset_right = 108.0
+offset_bottom = 38.0
+grow_horizontal = 2
+text = "BIG BAD GUY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Countdown" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
@@ -156,76 +192,27 @@ metadata/_edit_use_anchors_ = true
 wait_time = 10.0
 one_shot = true
 
-[node name="BossHealthBar" type="ProgressBar" parent="."]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -154.0
-offset_top = 33.0
-offset_right = 235.0
-offset_bottom = 69.0
-grow_horizontal = 2
-scale = Vector2(0.799999, 0.6)
-theme_override_styles/background = SubResource("StyleBoxFlat_sx3m1")
-theme_override_styles/fill = SubResource("StyleBoxFlat_mvsys")
-value = 50.0
-show_percentage = false
-
-[node name="BossName" type="Label" parent="."]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -153.5
-offset_top = 33.0
-offset_right = 157.5
-offset_bottom = 56.0
-grow_horizontal = 2
-text = "BIG BAD GUY"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="HealthBar" type="ProgressBar" parent="."]
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 1.03333
-anchor_right = 1.07969
-anchor_bottom = 1.0
-offset_left = -129.0
-offset_top = -59.0
-offset_right = 260.0
-offset_bottom = -23.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.369881, 1)
-theme_override_styles/background = SubResource("StyleBoxFlat_sx3m1")
+offset_left = 36.0
+offset_top = 336.0
+offset_right = 154.0
+offset_bottom = 352.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_npses")
 value = 100.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 1.01111
-anchor_right = 1.01094
-anchor_bottom = 1.0
-offset_left = -129.0
-offset_top = -33.0
-offset_right = 304.0
-offset_bottom = -23.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.369881, 1)
-size_flags_vertical = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_kjgpp")
-theme_override_styles/fill = SubResource("StyleBoxFlat_sijxs")
+offset_left = 511.0
+offset_top = 332.0
+offset_right = 609.0
+offset_bottom = 352.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_2kqep")
 show_percentage = false
-metadata/_edit_use_anchors_ = true
 
 [node name="DeathScreeen" type="Control" parent="."]
 visible = false
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

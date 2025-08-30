@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name BossControler
 
 @export var boss_name: String = "Jeff"
+@export var stage_1: State
+@export var stage_2: State
 
 @export_group("Gameplay")
 @export var speed: float = 600.0
@@ -19,6 +21,8 @@ class_name BossControler
 
 var health: float
 
+signal switch_stage
+
 func _ready():
 	health = max_health
 	EventManager.emit_signal("setup_boss_ui", max_health, boss_name)
@@ -34,6 +38,14 @@ func apply_damage(damage: int, knockback: float, global_position: Vector2, direc
 	health -= damage;
 	
 	EventManager.emit_signal("boss_health_changed", health)
+	
+	if health <= max_health / 2 and stage_2:
+		switch_stage.emit()
+		
+		stage_2.enter()
+		for c in stage_2.get_children():
+			if c is State:
+				c._init_status_active()
 	
 	if health <= 0:
 		die()
