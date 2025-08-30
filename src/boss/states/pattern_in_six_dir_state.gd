@@ -11,7 +11,6 @@ extends State
 @export var repeat_after: float = 1
 
 func _on_enter(args) -> void:
-	target.switch_stage.connect(_on_switch_stage)
 	add_timer(pattern, pattern_spawn_delay)
 	if !repeat:
 		add_timer("go_to_next_state", state_duration)
@@ -30,8 +29,3 @@ func _on_timeout(_name: String) -> void:
 
 		"go_to_next_state":
 			change_state(next_boss_state.name)
-
-func _on_switch_stage():
-	remove_active_state(self)
-	exit()
-	disabled = true

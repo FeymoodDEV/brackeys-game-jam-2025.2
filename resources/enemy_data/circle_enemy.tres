@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://enusg5jloedi"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=7 format=3 uid="uid://enusg5jloedi"]
 
 [ext_resource type="Script" uid="uid://2pwnys3t54yw" path="res://src/enemy/EnemyData.gd" id="1_a8j4b"]
 [ext_resource type="PackedScene" uid="uid://dtjdj7nbtlxrr" path="res://prefabs/particles/explode_vfx.tscn" id="1_jnnu6"]
 [ext_resource type="AudioStream" uid="uid://cjhw80h3cj4fb" path="res://assets/sounds/enemy/damaged.ogg" id="1_vqthp"]
 [ext_resource type="AudioStream" uid="uid://cblbt71io5gvo" path="res://assets/sounds/enemy/dead.ogg" id="2_ecijq"]
 [ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="3_1po32"]
+[ext_resource type="AudioStream" uid="uid://cdijd6rih3cp2" path="res://assets/sounds/enemy/shoot.ogg" id="5_ecijq"]
 
 [resource]
 script = ExtResource("1_a8j4b")
@@ -19,4 +20,5 @@ scale = 0.2
 damage_sfx = ExtResource("1_vqthp")
 death_vfx = ExtResource("1_jnnu6")
 death_sfx = ExtResource("2_ecijq")
+shoot_sfx = ExtResource("5_ecijq")
 metadata/_custom_type_script = "uid://2pwnys3t54yw"

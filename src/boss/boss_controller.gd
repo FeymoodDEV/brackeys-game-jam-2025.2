@@ -21,8 +21,6 @@ class_name BossControler
 
 var health: float
 
-signal switch_stage
-
 func _ready():
 	health = max_health
 	EventManager.emit_signal("setup_boss_ui", max_health, boss_name)
@@ -40,7 +38,12 @@ func apply_damage(damage: int, knockback: float, global_position: Vector2, direc
 	EventManager.emit_signal("boss_health_changed", health)
 	
 	if health <= max_health / 2 and stage_2:
-		switch_stage.emit()
+		stage_1.disabled = true
+		stage_1.exit()
+		for c in stage_1.get_children():
+			if c is State:
+				c.exit()
+				c.disabled = true
 		
 		stage_2.enter()
 		for c in stage_2.get_children():

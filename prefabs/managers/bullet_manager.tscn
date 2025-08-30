@@ -319,16 +319,16 @@ script = ExtResource("1_s87c5")
 position = Vector2(2031, 1523)
 
 [node name="Movement" parent="Player/Root" index="0"]
-next_state = NodePath("../Upgrade")
+next_state = NodePath("")
 
 [node name="Normal" parent="Player/Root/Movement" index="0"]
-next_state = NodePath("../Circling")
+next_state = NodePath("")
 
 [node name="Level1" parent="Player/Root/Upgrade" index="1"]
-next_state = NodePath("../Level2")
+next_state = NodePath("")
 
 [node name="Level2" parent="Player/Root/Upgrade" index="2"]
-next_state = NodePath("../Level3")
+next_state = NodePath("")
 
 [node name="BulletProps" type="Node2D" parent="."]
 

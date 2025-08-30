@@ -17,7 +17,6 @@ func _ready():
 func _on_enter(args) -> void:
 	attacks_left_to_spawn = attack_amount
 	add_timer("spawn_attack", attack_spawn_delay)
-	target.switch_stage.connect(_on_switch_stage)
 
 func _on_timeout(_name: String) -> void:
 	match _name:
@@ -37,8 +36,3 @@ func _on_timeout(_name: String) -> void:
 				add_timer("spawn_attack", attack_spawn_speed)
 			else:
 				change_state(next_boss_state.name)
-
-func _on_switch_stage():
-	remove_active_state(self)
-	exit()
-	disabled = true

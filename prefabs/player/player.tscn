@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=46 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://src/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Script" uid="uid://ciqnncb30bm8r" path="res://prefabs/player/modifier_handler.gd" id="2_rykmw"]
@@ -388,7 +388,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Upgrade")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Normal" type="Node" parent="Root/Movement"]
@@ -397,7 +397,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Circling")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Circling" type="Node" parent="Root/Movement"]
@@ -442,7 +442,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Level2")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level2" type="Node" parent="Root/Upgrade"]
@@ -455,7 +455,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Level3")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level3" type="Node" parent="Root/Upgrade"]
@@ -513,7 +513,6 @@ libraries = {
 [connection signal="player_dead" from="." to="Audio/Death" method="play"]
 [connection signal="upgrade_level_changed" from="." to="Root/Upgrade" method="_on_player_upgrade_level_changed"]
 [connection signal="area_entered" from="ItemPickupRadius" to="." method="_on_item_pickup_radius_area_entered"]
-[connection signal="player_shot" from="Gun" to="Audio/Shooting" method="play"]
 [connection signal="state_entered" from="Root/Movement/NomDash" to="Audio/Dash" method="play" unbinds=1]
 [connection signal="hard_lock_changed" from="Crosshair" to="Root/Movement" method="_on_crosshair_hard_lock_changed"]
 [connection signal="body_entered" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_entered"]

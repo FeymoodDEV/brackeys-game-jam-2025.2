@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cp3pysis6c2kg" path="res://src/manager/bgm_manager.gd" id="2_7oplk"]
 
 [node name="BgmManager" type="AudioStreamPlayer"]
+volume_db = -5.0
 autoplay = true
 bus = &"Music"
 script = ExtResource("2_7oplk")
