@@ -8,8 +8,7 @@ extends Node2D
 @export var debug_mode: bool;
 @export var packed_test_scene: PackedScene;
 
-@export var packed_particles: Array[PackedScene]
-
+@export var preload_scenes: Array[PackedScene]
 
 var bullet_manager: Node2D #TODO Create class type for this
 var menu_scene: Node2D;
@@ -24,6 +23,14 @@ func _on_game_ended():
 	
 func _on_game_started():
 	$PlayerUI.show();
+	
+func _deferred_ready():
+	Spawning.spawn(self, "player_level_1", "0")
+	Spawning.spawn(self, "chocolate_spin_pattern", "1")
+	Spawning.spawn(self, "chocolate_v_shape_pattern", "1")
+	Spawning.spawn(self, "enemy_circle_sugar", "1")
+	Spawning.spawn(self, "enemy_circle", "1")
+	Spawning.spawn(self, "enemy_one", "1")
 	
 func _ready():	
 	$PlayerUI.hide();
@@ -48,10 +55,14 @@ func _ready():
 			
 	if is_instance_valid(menu_scene):
 		add_child(menu_scene);
-		
-	for packed in packed_particles:
-		var p_node = packed.instantiate();
-		p_node.emitting = true;
-		p_node.finished.connect.bind(p_node.queue_free.call_deferred);
-		add_child.call_deferred(p_node);
 	
+	if preload_scenes.size() > 0:
+		for packed in preload_scenes:
+			var p_node = packed.instantiate();
+			if p_node is GPUParticles2D:
+				p_node.emitting = true
+			elif p_node is VFXSprite2D:
+				p_node.play(&"default")
+			$Preloaded.add_child(p_node);
+	_deferred_ready.call_deferred();
+		
