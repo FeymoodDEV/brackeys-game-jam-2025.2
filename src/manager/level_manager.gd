@@ -301,3 +301,13 @@ func _on_main_menu():
 
 func clear_everything():
 	Spawning.clear_all_bullets()
+
+
+# cheat
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("cheat_key"):
+		for enemy: EnemyController in get_tree().get_nodes_in_group("enemy"):
+			enemy.die()
+		for block: Block in get_tree().get_nodes_in_group("block"):
+			block.die()
+	timer.wait_time = 1.0
