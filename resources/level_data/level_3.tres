@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelData" load_steps=28 format=3 uid="uid://du1yy3510yiyd"]
+[gd_resource type="Resource" script_class="LevelData" load_steps=27 format=3 uid="uid://du1yy3510yiyd"]
 
 [ext_resource type="Texture2D" uid="uid://dfeeu7xpu3qc3" path="res://assets/sprites/tile/tile1.png" id="1_k7wwm"]
 [ext_resource type="Texture2D" uid="uid://soy0ejrja2pr" path="res://assets/sprites/tile/tile2.png" id="2_jbkd1"]
@@ -44,5 +44,5 @@ enemy_datas = Array[ExtResource("17_ixhah")]([ExtResource("18_erpkr"), ExtResour
 background_tiles = Array[Texture]([ExtResource("1_k7wwm"), ExtResource("2_jbkd1"), ExtResource("3_ftkf4"), ExtResource("4_rxjw4"), ExtResource("5_dn4kj"), ExtResource("6_vhqtq"), ExtResource("7_dht0h"), ExtResource("8_wodyi"), ExtResource("9_8ldk3"), ExtResource("10_tk5m2"), ExtResource("11_t0hmu"), ExtResource("12_tx27m")])
 bgm = ExtResource("13_dn4kj")
 boss_scene = ExtResource("16_lm3he")
-packed_items = Array[PackedScene]([ExtResource("23_vhqtq"), ExtResource("24_dht0h"), ExtResource("25_wodyi"), ExtResource("26_8ldk3")])
+packed_items = Array[PackedScene]([ExtResource("23_vhqtq"), ExtResource("25_wodyi"), ExtResource("26_8ldk3")])
 metadata/_custom_type_script = "uid://bsxc5d4jawjyr"

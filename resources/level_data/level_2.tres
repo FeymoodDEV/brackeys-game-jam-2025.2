@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelData" load_steps=28 format=3 uid="uid://d4lop5a6dmpbs"]
+[gd_resource type="Resource" script_class="LevelData" load_steps=27 format=3 uid="uid://d4lop5a6dmpbs"]
 
 [ext_resource type="Texture2D" uid="uid://dfeeu7xpu3qc3" path="res://assets/sprites/tile/tile1.png" id="1_h4hnp"]
 [ext_resource type="Texture2D" uid="uid://soy0ejrja2pr" path="res://assets/sprites/tile/tile2.png" id="2_ml42g"]
@@ -24,8 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://prefabs/enemies/basic_enemy.tscn" id="21_yobwi"]
 [ext_resource type="PackedScene" uid="uid://dylrycs1bm5q2" path="res://prefabs/pickups/bomb.tscn" id="23_b61ei"]
 [ext_resource type="Script" uid="uid://bsxc5d4jawjyr" path="res://src/level_data.gd" id="23_x8ew3"]
-[ext_resource type="PackedScene" uid="uid://xk7m8bb1bgnj" path="res://prefabs/pickups/magnet_pickup.tscn" id="24_sqkwb"]
-[ext_resource type="PackedScene" uid="uid://cmchg3hobqx50" path="res://prefabs/pickups/shield.tscn" id="25_qvsnn"]
+[ext_resource type="PackedScene" uid="uid://cmchg3hobqx50" path="res://prefabs/pickups/magnet_pickup.tscn" id="25_qvsnn"]
 [ext_resource type="PackedScene" uid="uid://bk2lujutq3gnf" path="res://prefabs/pickups/xp_orb.tscn" id="26_iun3v"]
 
 [resource]
@@ -44,5 +43,5 @@ enemy_datas = Array[ExtResource("17_a52j8")]([ExtResource("18_op4nk"), ExtResour
 background_tiles = Array[Texture]([ExtResource("1_h4hnp"), ExtResource("2_ml42g"), ExtResource("3_q7vog"), ExtResource("4_nl4os"), ExtResource("5_xtp5c"), ExtResource("6_b61ei"), ExtResource("7_sqkwb"), ExtResource("8_qvsnn"), ExtResource("9_iun3v"), ExtResource("10_rwhc4"), ExtResource("11_7wix1"), ExtResource("12_81tsg")])
 bgm = ExtResource("13_xtp5c")
 boss_scene = ExtResource("16_aaext")
-packed_items = Array[PackedScene]([ExtResource("23_b61ei"), ExtResource("24_sqkwb"), ExtResource("25_qvsnn"), ExtResource("26_iun3v")])
+packed_items = Array[PackedScene]([ExtResource("23_b61ei"), ExtResource("25_qvsnn"), ExtResource("26_iun3v")])
 metadata/_custom_type_script = "uid://bsxc5d4jawjyr"

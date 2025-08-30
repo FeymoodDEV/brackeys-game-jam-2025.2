@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=50 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://src/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Script" uid="uid://ciqnncb30bm8r" path="res://prefabs/player/modifier_handler.gd" id="2_rykmw"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://crak72h5onoyp" path="res://src/player/gun/upgrade_level.gd" id="10_kvlxm"]
 [ext_resource type="Script" uid="uid://bwsv0v5wgoh2s" path="res://src/player/gun/upgrade.gd" id="10_myrg7"]
 [ext_resource type="Script" uid="uid://c6dd72g31782" path="res://src/player/player_camera.gd" id="10_rykmw"]
+[ext_resource type="Texture2D" uid="uid://du6pv6302r0aw" path="res://assets/sprites/player/upgrade_particle.png" id="11_560yn"]
 [ext_resource type="AudioStream" uid="uid://rq82uv4hvhtw" path="res://assets/sounds/player/thrusters.ogg" id="11_a0po4"]
 [ext_resource type="Script" uid="uid://bh8rpek0w1o47" path="res://src/player/targeting/crosshair.gd" id="11_fm80t"]
 [ext_resource type="Script" uid="uid://5yo5iu6shjs3" path="res://addons/xsm/state.gd" id="12_cnsyf"]
@@ -49,6 +50,26 @@ emission_sphere_radius = 1.0
 gravity = Vector3(0, 0, 0)
 radial_accel_min = -2.23517e-06
 radial_accel_max = 13.99
+
+[sub_resource type="Curve" id="Curve_560yn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.606897, 0.966292), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_i3xdb"]
+curve = SubResource("Curve_560yn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i3xdb"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 27.33
+initial_velocity_max = 54.65
+gravity = Vector3(0, 0, 0)
+scale_min = 0.8
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_i3xdb")
+hue_variation_min = -0.05
+hue_variation_max = 0.07
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fm80t"]
 radius = 36.0555
@@ -235,10 +256,12 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 20
+motion_mode = 1
 script = ExtResource("1_g2els")
 dash_cooldown = 1.0
 dash_power = 1500.0
 dash_friction = 0.9
+upgrade_threshold = 20
 
 [node name="ModifierHandler" type="Node" parent="."]
 script = ExtResource("2_rykmw")
@@ -341,6 +364,15 @@ offset = Vector2(0, 28)
 rotation = 1.5708
 texture = ExtResource("7_8ris0")
 
+[node name="LevelChange" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 32
+texture = ExtResource("11_560yn")
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_i3xdb")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("10_rykmw")
 
@@ -388,7 +420,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Upgrade")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Normal" type="Node" parent="Root/Movement"]
@@ -397,7 +429,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Circling")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Circling" type="Node" parent="Root/Movement"]
@@ -442,7 +474,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Level2")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level2" type="Node" parent="Root/Upgrade"]
@@ -451,11 +483,12 @@ pattern = "player_level_2"
 texture = ExtResource("13_uf5tr")
 hitbox_shape = ExtResource("3_lgqa7")
 nombox_shape = ExtResource("5_8ydkj")
+absorb_pts_multiplier = 0.85
 disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Level3")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level3" type="Node" parent="Root/Upgrade"]
@@ -464,6 +497,7 @@ pattern = "player_level_3"
 texture = ExtResource("2_uf5tr")
 hitbox_shape = ExtResource("4_lgqa7")
 nombox_shape = ExtResource("3_uf5tr")
+absorb_pts_multiplier = 0.7
 disabled = false
 debug_mode = false
 target_path = NodePath("")

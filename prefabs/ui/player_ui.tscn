@@ -5,7 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://dxibw07chc4by" path="res://assets/sprites/ui/boss_bar.png" id="3_c0vdx"]
 [ext_resource type="Texture2D" uid="uid://mswmy2vt4m65" path="res://assets/sprites/ui/bossbar.png" id="4_wcejd"]
 [ext_resource type="Texture2D" uid="uid://dwdffucbbyhpw" path="res://assets/sprites/ui/healthbar.png" id="5_1354d"]
+[ext_resource type="Theme" uid="uid://cu7dsieob1vx1" path="res://resources/themes/menu_theme.tres" id="5_hj0ct"]
 [ext_resource type="Texture2D" uid="uid://dke4jp74yomd3" path="res://assets/sprites/ui/LvlBar.png" id="6_hj0ct"]
+[ext_resource type="LabelSettings" uid="uid://dskob74g8kene" path="res://resources/label_settings/hud_label.tres" id="6_krprk"]
 [ext_resource type="Texture2D" uid="uid://jaln4ui4a8fq" path="res://assets/sprites/bosses/choco_boss_lines_outline.png" id="7_krprk"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wafl3"]
@@ -488,8 +490,11 @@ _data = {
 script = ExtResource("1_jkj6h")
 
 [node name="Hud" type="TextureRect" parent="."]
-offset_right = 640.0
-offset_bottom = 360.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_2kqep")
 
 [node name="BossHud" type="TextureRect" parent="."]
@@ -499,7 +504,6 @@ offset_bottom = 360.0
 texture = ExtResource("3_c0vdx")
 
 [node name="BossHealthBar" type="ProgressBar" parent="."]
-visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -514,16 +518,17 @@ value = 50.0
 show_percentage = false
 
 [node name="BossName" type="Label" parent="."]
-visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -108.0
-offset_top = 15.0
+offset_top = 11.0
 offset_right = 108.0
-offset_bottom = 38.0
+offset_bottom = 44.0
 grow_horizontal = 2
+theme = ExtResource("5_hj0ct")
 text = "BIG BAD GUY"
+label_settings = ExtResource("6_krprk")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -531,36 +536,39 @@ vertical_alignment = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
+offset_left = -27.0
+offset_right = 27.0
+offset_bottom = 31.0
 grow_horizontal = 2
+theme = ExtResource("5_hj0ct")
 theme_override_font_sizes/font_size = 30
 text = "05:00"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = 36.0
-offset_top = 336.0
-offset_right = 154.0
-offset_bottom = 352.0
+anchors_preset = -1
+anchor_left = 0.05625
+anchor_top = 0.933333
+anchor_right = 0.240625
+anchor_bottom = 0.977778
 theme_override_styles/fill = SubResource("StyleBoxTexture_sgkm8")
 value = 100.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 511.0
-offset_top = 332.0
-offset_right = 609.0
-offset_bottom = 352.0
+anchors_preset = -1
+anchor_left = 0.798437
+anchor_top = 0.922222
+anchor_right = 0.951563
+anchor_bottom = 0.977778
 theme_override_styles/fill = SubResource("StyleBoxTexture_6doxs")
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="BossCutScene" type="Control" parent="."]
 layout_mode = 3
@@ -603,18 +611,22 @@ libraries = {
 
 [node name="Label" type="Label" parent="BossCutScene"]
 layout_mode = 0
-offset_left = 475.0
-offset_top = -74.0
-offset_right = 896.0
-offset_bottom = -25.0
+anchor_left = 0.742188
+anchor_top = -0.205556
+anchor_right = 1.43961
+anchor_bottom = 0.0828203
+offset_right = -25.3481
+offset_bottom = -54.8153
 rotation = 0.112657
 scale = Vector2(1.08121, 1.08121)
+theme = ExtResource("5_hj0ct")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 12
 theme_override_fonts/font = SubResource("FontVariation_hj0ct")
 theme_override_font_sizes/font_size = 35
 text = "CHOCOLATE KING"
+metadata/_edit_use_anchors_ = true
 
 [node name="DeathScreeen" type="Control" parent="."]
 visible = false
@@ -653,6 +665,7 @@ offset_right = 104.0
 offset_bottom = -62.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_hj0ct")
 theme_override_colors/font_color = Color(0.533326, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "YOU ARE DEAD BITCH"
@@ -665,6 +678,7 @@ offset_left = 283.0
 offset_top = 144.0
 offset_right = 348.0
 offset_bottom = 175.0
+theme = ExtResource("5_hj0ct")
 theme_override_colors/font_hover_color = Color(0.822013, 0.645975, 3.85046e-07, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wcejd")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_miamk")
@@ -678,6 +692,7 @@ offset_left = 284.0
 offset_top = 176.0
 offset_right = 349.0
 offset_bottom = 207.0
+theme = ExtResource("5_hj0ct")
 theme_override_colors/font_hover_color = Color(0.822013, 0.645975, 3.85046e-07, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wcejd")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_tpsno")
