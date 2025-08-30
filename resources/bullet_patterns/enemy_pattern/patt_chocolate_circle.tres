@@ -1,0 +1,32 @@
+[gd_resource type="NavigationPolygon" script_class="PatternCircle" load_steps=2 format=3 uid="uid://0hwvl3612a7o"]
+
+[ext_resource type="Script" uid="uid://csxp6a77ij7sk" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="1_6pdbr"]
+
+[resource]
+resource_name = "PatternCircle"
+script = ExtResource("1_6pdbr")
+radius = 60
+angle_total = 6.28319
+angle_decal = 0.349066
+symmetric = false
+center = 3
+symmetry_type = 0
+bullet = "ChocBullet"
+nbr = 30
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.5
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+metadata/_custom_type_script = "uid://csxp6a77ij7sk"

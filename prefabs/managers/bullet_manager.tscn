@@ -6,11 +6,15 @@
 [ext_resource type="PackedDataContainer" uid="uid://vvxu0dtkc53o" path="res://resources/bullet_props/chocolate_bullet.tres" id="4_5m336"]
 [ext_resource type="PackedDataContainer" uid="uid://4im82kt0pnq3" path="res://resources/bullet_props/sugar_bullet.tres" id="5_2wnuu"]
 [ext_resource type="PackedDataContainer" uid="uid://xdi81avumb0q" path="res://resources/bullet_props/player_bullet.tres" id="6_jtxhu"]
-[ext_resource type="NavigationPolygon" uid="uid://co2c4c28w1wnl" path="res://resources/bullet_patterns/patt_player_one.tres" id="8_jtxhu"]
+[ext_resource type="NavigationPolygon" uid="uid://co2c4c28w1wnl" path="res://resources/bullet_patterns/player_patterns/patt_player_level_1.tres" id="8_jtxhu"]
+[ext_resource type="NavigationPolygon" uid="uid://bmfjycd8jhs3i" path="res://resources/bullet_patterns/player_patterns/patt_player_level_3.tres" id="9_6vri1"]
 [ext_resource type="Script" uid="uid://c8ydhn2yvq3dc" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="10_bvdue"]
 [ext_resource type="Script" uid="uid://b6cup3hdpqd6v" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="11_lswlb"]
 [ext_resource type="Script" uid="uid://c8a1x50bjmkue" path="res://addons/BulletUpHell/SpawnPatterns/PatternLine.gd" id="12_fnh7x"]
+[ext_resource type="NavigationPolygon" uid="uid://dna10wu54md6s" path="res://resources/bullet_patterns/enemy_pattern/patt_chocolate_spin.tres" id="13_5660t"]
 [ext_resource type="Script" uid="uid://csxp6a77ij7sk" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="13_h02f0"]
+[ext_resource type="NavigationPolygon" uid="uid://0hwvl3612a7o" path="res://resources/bullet_patterns/enemy_pattern/patt_chocolate_circle.tres" id="14_eacl2"]
+[ext_resource type="NavigationPolygon" uid="uid://dl7mxy7kn5d7i" path="res://resources/bullet_patterns/enemy_pattern/patt_chocolate_v_shape.tres" id="15_53pd8"]
 [ext_resource type="Script" uid="uid://okf4mtltak8l" path="res://addons/BulletUpHell/Nodes/BuHSpawnPoint.gd" id="15_er4hb"]
 
 [sub_resource type="Curve2D" id="Curve2D_aga20"]
@@ -20,32 +24,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 701, 125, 0, 0, 0, 0, 753, 91, 0, 0, 0, 0, 799, 123, 0, 0, 0, 0, 787, 73, 0, 0, 0, 0, 832, 48, 0, 0, 0, 0, 777, 39, 0, 0, 0, 0, 758, -13, 0, 0, 0, 0, 731, 36, 0, 0, 0, 0, 686, 41, 0, 0, 0, 0, 723, 71)
 }
 point_count = 10
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_er4hb"]
-resource_name = "PatternLine"
-script = ExtResource("12_fnh7x")
-offset = Vector2(2, 28.02)
-center = 1
-symmetric = true
-bullet = "PBullet"
-nbr = 3
-iterations = 1
-pattern_angle = 0.0
-pattern_angle_target = NodePath("")
-pattern_angle_mouse = false
-forced_angle = 0.0
-forced_target = NodePath("")
-forced_lookat_mouse = true
-forced_pattern_lookat = true
-cooldown_stasis = false
-cooldown_spawn = 1.0
-cooldown_shoot = 0.0
-cooldown_next_spawn = 0.0
-cooldown_next_shoot = 0.0
-wait_tween_momentum = 0
-wait_tween_length = 0.0
-wait_tween_time = 0.0
-metadata/_custom_type_script = "uid://c8a1x50bjmkue"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5h2se"]
 resource_name = "PatternOne"
@@ -168,99 +146,27 @@ metadata/_custom_type_script = "uid://csxp6a77ij7sk"
 
 [sub_resource type="Curve2D" id="Curve2D_em72g"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_6vri1"]
-resource_name = "PatternCircle"
-script = ExtResource("13_h02f0")
-radius = 0
-angle_total = 6.28319
-angle_decal = 0.174533
-symmetric = false
-center = 0
-symmetry_type = 0
-bullet = "ChocBullet"
-nbr = 90
-iterations = 1
-pattern_angle = 0.0
-pattern_angle_target = NodePath("")
-pattern_angle_mouse = false
-forced_angle = 0.0
-forced_target = NodePath("")
-forced_lookat_mouse = false
-forced_pattern_lookat = true
-cooldown_stasis = false
-cooldown_spawn = 1.0
-cooldown_shoot = 0.0
-cooldown_next_spawn = 0.06
-cooldown_next_shoot = 0.0
-wait_tween_momentum = 0
-wait_tween_length = 0.0
-wait_tween_time = 0.0
-metadata/_custom_type_script = "uid://csxp6a77ij7sk"
-
 [sub_resource type="Curve2D" id="Curve2D_5b5br"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_d0tu5"]
-resource_name = "PatternCircle"
-script = ExtResource("13_h02f0")
-radius = 60
-angle_total = 6.28319
-angle_decal = 0.349066
-symmetric = false
-center = 3
-symmetry_type = 0
-bullet = "ChocBullet"
-nbr = 30
-iterations = 1
-pattern_angle = 0.0
-pattern_angle_target = NodePath("")
-pattern_angle_mouse = false
-forced_angle = 0.0
-forced_target = NodePath("")
-forced_lookat_mouse = false
-forced_pattern_lookat = true
-cooldown_stasis = false
-cooldown_spawn = 1.0
-cooldown_shoot = 0.5
-cooldown_next_spawn = 0.0
-cooldown_next_shoot = 0.0
-wait_tween_momentum = 0
-wait_tween_length = 0.0
-wait_tween_time = 0.0
-metadata/_custom_type_script = "uid://csxp6a77ij7sk"
-
 [sub_resource type="Curve2D" id="Curve2D_5660t"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_eacl2"]
-resource_name = "PatternLine"
-script = ExtResource("12_fnh7x")
-offset = Vector2(30, 20)
-center = 3
-symmetric = true
-bullet = "ChocBullet"
-nbr = 5
-iterations = 1
-pattern_angle = 0.0
-pattern_angle_target = NodePath("")
-pattern_angle_mouse = false
-forced_angle = 0.0
-forced_target = NodePath("../../../Player")
-forced_lookat_mouse = false
-forced_pattern_lookat = true
-cooldown_stasis = false
-cooldown_spawn = 1.0
-cooldown_shoot = 0.0
-cooldown_next_spawn = 0.0
-cooldown_next_shoot = 0.0
-wait_tween_momentum = 0
-wait_tween_length = 0.0
-wait_tween_time = 0.0
-metadata/_custom_type_script = "uid://c8a1x50bjmkue"
 
 [node name="BulletManager" type="Node2D"]
 script = ExtResource("1_s87c5")
 
 [node name="Player" parent="." instance=ExtResource("2_5m336")]
 position = Vector2(2031, 1523)
+
+[node name="Movement" parent="Player/Root" index="0"]
+next_state = NodePath("../Upgrade")
+
+[node name="Normal" parent="Player/Root/Movement" index="0"]
+next_state = NodePath("../Circling")
+
+[node name="Level1" parent="Player/Root/Upgrade" index="1"]
+next_state = NodePath("../Level2")
+
+[node name="Level2" parent="Player/Root/Upgrade" index="2"]
+next_state = NodePath("../Level3")
 
 [node name="BulletProps" type="Node2D" parent="."]
 
@@ -294,13 +200,13 @@ pattern = ExtResource("8_jtxhu")
 curve = SubResource("Curve2D_ttg52")
 script = ExtResource("10_bvdue")
 id = "player_level_2"
-pattern = SubResource("NavigationPolygon_er4hb")
+pattern = ExtResource("9_6vri1")
 
 [node name="PlayerLevel3" type="Path2D" parent="Patterns"]
 curve = SubResource("Curve2D_ttg52")
 script = ExtResource("10_bvdue")
 id = "player_level_3"
-pattern = SubResource("NavigationPolygon_er4hb")
+pattern = ExtResource("9_6vri1")
 
 [node name="Chocolate" type="Node2D" parent="Patterns"]
 
@@ -338,7 +244,7 @@ pattern = SubResource("NavigationPolygon_5m336")
 curve = SubResource("Curve2D_em72g")
 script = ExtResource("10_bvdue")
 id = "chocolate_spin_pattern"
-pattern = SubResource("NavigationPolygon_6vri1")
+pattern = ExtResource("13_5660t")
 metadata/_custom_type_script = "uid://c8ydhn2yvq3dc"
 
 [node name="chocolate_circle_pattern" type="Path2D" parent="Patterns/ChocolateKing"]
@@ -346,14 +252,14 @@ position = Vector2(1814, 1495)
 curve = SubResource("Curve2D_5b5br")
 script = ExtResource("10_bvdue")
 id = "chocolate_circle_pattern"
-pattern = SubResource("NavigationPolygon_d0tu5")
+pattern = ExtResource("14_eacl2")
 metadata/_custom_type_script = "uid://c8ydhn2yvq3dc"
 
 [node name="chocolate_v_shape_pattern" type="Path2D" parent="Patterns/ChocolateKing"]
 curve = SubResource("Curve2D_5660t")
 script = ExtResource("10_bvdue")
 id = "chocolate_v_shape_pattern"
-pattern = SubResource("NavigationPolygon_eacl2")
+pattern = ExtResource("15_53pd8")
 metadata/_custom_type_script = "uid://c8ydhn2yvq3dc"
 
 [node name="SpawnPoint" type="Node2D" parent="."]
