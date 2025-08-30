@@ -21,6 +21,8 @@ func _on_enter(args) -> void:
 	# render player intangible
 	target.set_collision_layer_value(1, false)
 	
+	target.anim.play('dash')
+	target.dash_vfx.global_rotation = target.velocity.angle() + deg_to_rad(90)
 	
 	dash_velocity = target.dash_power
 	dash_vector = args.normalized() # this should be a vector2 direction
@@ -62,5 +64,5 @@ func _absorb_bullet(area:Area2D,area_shape_index:int, bullet:Dictionary,local_sh
 	
 	if is_dashing and area.name == "NomDashAoE":
 		target.absorb_pts += bullet["props"]["absorb_points"];
-		EventManager.progress_changed.emit(target.absorb_pts);
+		EventManager.progress_changed.emit(target.absorb_pts, target.upgrade_threshold);
 		Spawning.delete_bullet(rid);
