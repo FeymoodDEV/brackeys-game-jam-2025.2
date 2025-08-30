@@ -76,9 +76,10 @@ func _on_show_death_screen() -> void:
 
 func _on_restart_pressed():
 	death_screen.hide()
-	EventManager.main_menu.emit()
+	EventManager.level_restart.emit();
 
 
 func _on_quit_pressed():
+	BgmManager.change_bgm(preload("res://assets/sounds/music/Biscuit_Intro.ogg"))
 	death_screen.hide()
 	EventManager.main_menu.emit()

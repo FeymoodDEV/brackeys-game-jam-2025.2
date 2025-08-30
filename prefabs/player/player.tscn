@@ -1,6 +1,7 @@
-[gd_scene load_steps=42 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=45 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://src/player/player_controller.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://ciqnncb30bm8r" path="res://prefabs/player/modifier_handler.gd" id="2_rykmw"]
 [ext_resource type="Texture2D" uid="uid://devb6j2col43u" path="res://assets/sprites/player/ship3.png" id="2_uf5tr"]
 [ext_resource type="Shape2D" uid="uid://cnjor30f1xoa1" path="res://prefabs/player/level_1_hitbox.tres" id="3_kvlxm"]
 [ext_resource type="Shape2D" uid="uid://cdxuhi06dx5ji" path="res://prefabs/player/level_2_hitbox.tres" id="3_lgqa7"]
@@ -36,6 +37,9 @@
 [ext_resource type="AudioStream" uid="uid://c0sw3ke3l6tb5" path="res://assets/sounds/player/dead.ogg" id="14_xtdcv"]
 [ext_resource type="Texture2D" uid="uid://dr2oj506weijh" path="res://assets/sprites/player/hard-lock.svg" id="15_fcs02"]
 [ext_resource type="AudioStream" uid="uid://08c3m3kad13n" path="res://assets/sounds/player/dash.ogg" id="16_kxs7h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kxs7h"]
+radius = 30.0666
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ris0"]
 particle_flag_disable_z = true
@@ -87,6 +91,58 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShipSprite:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ShipSprite:skew")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_i3xdb"]
+resource_name = "damaged"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShipSprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShipSprite:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.200831),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.349066, -0.349066, 0.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_rykmw"]
 resource_name = "dash"
@@ -127,11 +183,54 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.6, 0.6)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShipSprite:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ShipSprite:skew")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_560yn"]
+resource_name = "invulnerable"
+length = 0.1
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShipSprite:self_modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.411765)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_560yn"]
 _data = {
 &"RESET": SubResource("Animation_ro1o0"),
-&"dash": SubResource("Animation_rykmw")
+&"damaged": SubResource("Animation_i3xdb"),
+&"dash": SubResource("Animation_rykmw"),
+&"invulnerable": SubResource("Animation_560yn")
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
@@ -140,6 +239,14 @@ script = ExtResource("1_g2els")
 dash_cooldown = 1.0
 dash_power = 1500.0
 dash_friction = 0.9
+
+[node name="ModifierHandler" type="Node" parent="."]
+script = ExtResource("2_rykmw")
+
+[node name="ItemPickupRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemPickupRadius"]
+shape = SubResource("CircleShape2D_kxs7h")
 
 [node name="NomDashAoE" type="Area2D" parent="."]
 collision_mask = 16
@@ -281,7 +388,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Upgrade")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Normal" type="Node" parent="Root/Movement"]
@@ -290,7 +397,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Circling")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Circling" type="Node" parent="Root/Movement"]
@@ -335,7 +442,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Level2")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level2" type="Node" parent="Root/Upgrade"]
@@ -348,7 +455,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Level3")
 metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level3" type="Node" parent="Root/Upgrade"]
@@ -402,7 +509,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_560yn")
 }
 
+[connection signal="player_damaged" from="." to="Audio/Damaged" method="play"]
+[connection signal="player_dead" from="." to="Audio/Death" method="play"]
 [connection signal="upgrade_level_changed" from="." to="Root/Upgrade" method="_on_player_upgrade_level_changed"]
+[connection signal="area_entered" from="ItemPickupRadius" to="." method="_on_item_pickup_radius_area_entered"]
+[connection signal="player_shot" from="Gun" to="Audio/Shooting" method="play"]
 [connection signal="state_entered" from="Root/Movement/NomDash" to="Audio/Dash" method="play" unbinds=1]
 [connection signal="hard_lock_changed" from="Crosshair" to="Root/Movement" method="_on_crosshair_hard_lock_changed"]
 [connection signal="body_entered" from="Crosshair/LockOnTargetArea" to="Crosshair" method="_on_lock_on_target_area_body_entered"]

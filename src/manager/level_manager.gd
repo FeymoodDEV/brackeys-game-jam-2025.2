@@ -4,7 +4,6 @@ class_name LevelManager
 var player: PlayerController
 var chosen: Vector2i
 
-@export var level_scenes: Array[PackedScene];
 @export var levels: Array[LevelData];
 @export var level_scene: PackedScene;
 var level_node: Node2D;
@@ -32,15 +31,12 @@ var next_level: Level;
 
 var current_level: LevelData;
 var level_index = 0;
+var pickup_pool: Array[Pickup];
 
 var grid: Array = []
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 @onready var timer: Timer = $LevelTimer;
-
-func _input(event):
-	if Input.is_action_just_pressed("ui_cancel"):
-		EventManager.level_scene_instanced.emit(next_level);
 
 func _on_level_scene_instanced(data: LevelData):
 	if not data:
@@ -64,6 +60,9 @@ func _on_level_scene_instanced(data: LevelData):
 	boss_instance = data.boss_scene.instantiate();
 	
 	current_level = data;	
+	
+	for p in data.packed_items:
+		pickup_pool.append(p.instantiate());		
 	
 	_level_ready();
 	pass
@@ -93,17 +92,32 @@ func _on_level_started(map_time):
 	$BG.show();
 	pass
 	
+func _on_level_restart():
+	EventManager.level_scene_instanced.emit(levels[level_index])
+	
 func _on_level_ended():
+	level_index += 1;
 	# If there are still more levels to play load the next level
-	if level_index < level_scenes.size():
-		next_level = level_scenes[level_index].instantiate() as Level;	
-		EventManager.level_scene_instanced.emit(next_level);
-		level_index += 1;
+	if level_index < levels.size():		
+		for node in level_node.get_children():
+			if not node is PlayerController:
+				node.queue_free();
+		EventManager.level_scene_instanced.emit(levels[level_index]);
 	else:
 		player.reparent(self);
 		level_node.queue_free();
 		EventManager.game_ended.emit();
 
+	pass
+	
+# Modify me if you want chance of not spawning item
+func _on_block_destroyed(position: Vector2):
+	if (randi_range(1, 15) < 6):
+		# Grab random pickup and duplicate instance
+		var pickup = pickup_pool.pick_random().duplicate();
+		pickup.global_position = position;
+		level_node.add_child.call_deferred(pickup)
+	
 	pass
 
 func _enter_tree():
@@ -112,12 +126,15 @@ func _enter_tree():
 	
 	EventManager.game_started.connect(_on_game_started)
 	EventManager.game_ended.connect(_on_game_ended);
+	EventManager.level_restart.connect(_on_level_restart)
 	
 	EventManager.level_scene_instanced.connect(_on_level_scene_instanced);
 	EventManager.level_started.connect(_on_level_started)
 	EventManager.level_ended.connect(_on_level_ended)
 	EventManager.spawn_boss.connect(_on_boss_spawn)
 	EventManager.boss_killed.connect(_on_boss_killed)
+	
+	EventManager.block_destroyed.connect(_on_block_destroyed)
 	
 	EventManager.main_menu.connect(_on_main_menu)
 	

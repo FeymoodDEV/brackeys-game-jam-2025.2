@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxxnbcxiuusqt"]
+[gd_scene load_steps=7 format=3 uid="uid://cxxnbcxiuusqt"]
 
 [ext_resource type="Script" uid="uid://dh1h11m36jqp0" path="res://src/manager/level_manager.gd" id="1_l1ep3"]
-[ext_resource type="PackedScene" uid="uid://2ads1o1pbagk" path="res://scenes/levels/level_1.tscn" id="2_wwihr"]
-[ext_resource type="PackedScene" uid="uid://b2u0qpleqhkrm" path="res://scenes/levels/level_2.tscn" id="3_emmn7"]
-[ext_resource type="PackedScene" uid="uid://v8cuu0pu7gfx" path="res://scenes/levels/level_3.tscn" id="4_a3r8x"]
+[ext_resource type="Script" uid="uid://bsxc5d4jawjyr" path="res://src/level_data.gd" id="2_emmn7"]
+[ext_resource type="Resource" uid="uid://dyik6mrjr87vp" path="res://resources/level_data/level_1.tres" id="3_a3r8x"]
+[ext_resource type="Resource" uid="uid://d4lop5a6dmpbs" path="res://resources/level_data/level_2.tres" id="4_dkb8k"]
+[ext_resource type="Resource" uid="uid://du1yy3510yiyd" path="res://resources/level_data/level_3.tres" id="5_ay66k"]
 [ext_resource type="Texture2D" uid="uid://soy0ejrja2pr" path="res://assets/sprites/tile/tile2.png" id="8_5dqnh"]
 
 [node name="LevelManager" type="Node2D"]
 script = ExtResource("1_l1ep3")
-level_scenes = Array[PackedScene]([ExtResource("2_wwihr"), ExtResource("3_emmn7"), ExtResource("4_a3r8x")])
+levels = Array[ExtResource("2_emmn7")]([ExtResource("3_a3r8x"), ExtResource("4_dkb8k"), ExtResource("5_ay66k")])
 
 [node name="BG" type="TextureRect" parent="."]
 z_index = -1

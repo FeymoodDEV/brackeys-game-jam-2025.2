@@ -75,11 +75,19 @@ var absorb_pts : int = 0 :
 @export var base_health: float = 50
 var health: float
 var max_health: float
+@export var IFRAME_DURATION: float = 1.0
 @export var death_vfx: PackedScene = preload("res://prefabs/particles/explode_vfx.tscn")
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 var isDead: bool = false
+var is_invulnerable: bool = false
 
 signal player_damaged
+signal player_dead
+#endregion
+
+#region Modifiers
+@onready var modifier_handler: ModifierHandler = $ModifierHandler
 #endregion
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
@@ -87,14 +95,19 @@ signal player_damaged
 
 
 func set_active(value: bool = true):
+	isDead = !value;
+	
 	propagate_call("set_process", [value])
 	propagate_call("set_physics_process", [value])
-	propagate_call("set_process", [value])
-	propagate_call("set_physics_process", [value])
+	propagate_call("set_process_input", [value])
 	if value:
 		show();
 	else:
 		hide();
+		
+func _on_level_started():
+	set_active(true);
+	respawn();
 
 #Re-enable processing when the game starts
 func _on_game_started():
@@ -121,6 +134,9 @@ func _ready():
 	EventManager.game_started.connect(_on_game_started)
 	EventManager.game_ended.connect(_on_game_ended)
 	
+	EventManager.level_restart.connect(_on_level_started);
+	EventManager.level_started.connect(_on_level_started);
+	
 	EventManager.player_ready.emit(get_path())
 	
 	# States run their on_enter behaviour before _ready, which causes a problem
@@ -133,6 +149,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("level_down"):
 		# TODO: add VFX, and potentially a transitory state
 		level_down()
+	
+	modifier_handler.update(self)
 
 ## Returns currently inputted direction.
 func get_movement_vector() -> Vector2:
@@ -162,11 +180,17 @@ func get_look_relative_vector() -> Vector2:
 ## Reduces health by `damage` and signals the change. 
 func apply_damage(damage: int, knockback: float = 0, global_position: Vector2 = Vector2.ZERO, direction: Vector2 = Vector2.ZERO):
 	if isDead: return
+	if is_invulnerable: return
 	
 	player_damaged.emit()
 	
+	animation_player.play("damaged")
+	
 	health -= damage
 	EventManager.emit_signal("health_changed", health, max_health)
+	
+	# Handle iframes:
+	modifier_handler.add_child(InvulnModifier.new(IFRAME_DURATION))
 	
 	if health <= 0:
 		die()
@@ -174,6 +198,7 @@ func apply_damage(damage: int, knockback: float = 0, global_position: Vector2 = 
 	# TODO: implement knockback.
 
 func die() -> void:
+	player_dead.emit()
 	var vfx = death_vfx.instantiate()
 	add_child(vfx)
 	vfx.top_level = true
@@ -181,8 +206,7 @@ func die() -> void:
 	vfx.play(&"default")
 	
 	isDead = true
-	$ShipSprite.hide()
-	$HitboxShape.disabled = true
+	set_active(false);
 	
 	EventManager.player_killed.emit()
 
@@ -216,3 +240,17 @@ func level_up() -> void:
 	max_health = base_health * (current_level + 1)
 	health = max_health
 	EventManager.emit_signal("health_changed", max_health, max_health)
+
+
+func _on_item_pickup_radius_area_entered(area):
+	if area is Pickup:
+		area.active = true;
+		if area is XPOrb:
+			absorb_pts += area.xp_amount;
+			EventManager.progress_changed.emit(absorb_pts, upgrade_threshold * (current_level + 1));
+			area.queue_free()
+		else:
+			area.global_position = global_position;
+			area.reparent.call_deferred(self);
+			area.picked_up()
+	pass # Replace with function body.

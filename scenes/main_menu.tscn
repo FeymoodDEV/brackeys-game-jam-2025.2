@@ -1,30 +1,192 @@
-[gd_scene load_steps=3 format=3 uid="uid://3yj03daybfvf"]
+[gd_scene load_steps=11 format=3 uid="uid://3yj03daybfvf"]
 
 [ext_resource type="Script" uid="uid://8qe1bhp35ve4" path="res://src/menu/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="PackedScene" uid="uid://2ads1o1pbagk" path="res://scenes/levels/level_1.tscn" id="2_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://dvmelf1c58r5d" path="res://icon.jpg" id="3_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://dj3abyu5tht7s" path="res://assets/sprites/player/nomdash.png" id="4_oa1go"]
+[ext_resource type="Texture2D" uid="uid://ogb51tdot7ho" path="res://assets/sprites/player/ship1.png" id="4_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://cb0h3dqmm5j15" path="res://assets/sprites/player/ship2.png" id="5_oa1go"]
+[ext_resource type="Texture2D" uid="uid://devb6j2col43u" path="res://assets/sprites/player/ship3.png" id="6_tbmy8"]
+[ext_resource type="Texture2D" uid="uid://hilih370gh88" path="res://assets/sprites/end-screen.png" id="8_jk1qb"]
+[ext_resource type="FontFile" uid="uid://dgcbklepstex8" path="res://assets/fonts/Kenney Thick.ttf" id="9_5dd4i"]
 
-[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("play_btn")]
+[sub_resource type="Theme" id="Theme_lgwnu"]
+default_font = ExtResource("9_5dd4i")
+default_font_size = 48
+
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("play_btn", "help_btn", "quit_btn", "help_back_btn")]
 script = ExtResource("1_l6cm7")
 packed_game_scene = ExtResource("2_ekxnf")
-play_btn = NodePath("UILayer/GridContainer/PlayBtn")
+play_btn = NodePath("MainLayer/MenuButtons/PlayBtn")
+help_btn = NodePath("MainLayer/MenuButtons/Options")
+quit_btn = NodePath("MainLayer/MenuButtons/Exit")
+help_back_btn = NodePath("OptionsLayer/Back")
 
-[node name="UILayer" type="CanvasLayer" parent="."]
+[node name="MainLayer" type="CanvasLayer" parent="."]
 
-[node name="GridContainer" type="GridContainer" parent="UILayer"]
+[node name="GameLogo" type="TextureRect" parent="MainLayer"]
+anchors_preset = -1
+anchor_left = 0.46875
+anchor_top = 0.0805556
+anchor_right = 0.53125
+anchor_bottom = 0.191667
+offset_left = -120.0
+offset_right = 152.0
+offset_bottom = 272.0
+grow_horizontal = 2
+scale = Vector2(1, 0.36)
+texture = ExtResource("3_bqqt6")
+metadata/_edit_use_anchors_ = true
+
+[node name="MenuButtons" type="VBoxContainer" parent="MainLayer"]
+anchors_preset = -1
+anchor_left = 0.390625
+anchor_top = 0.441667
+anchor_right = 0.659375
+anchor_bottom = 0.775
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayBtn" type="Button" parent="MainLayer/MenuButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Play"
+
+[node name="Options" type="Button" parent="MainLayer/MenuButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Help & Options
+"
+
+[node name="Exit" type="Button" parent="MainLayer/MenuButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Quit"
+
+[node name="OptionsLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="OptionsLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -54.0
-offset_right = 102.0
-offset_bottom = 66.0
+offset_left = -199.0
+offset_top = -177.0
+offset_right = 115.0
+offset_bottom = 106.0
 grow_horizontal = 2
 grow_vertical = 2
+text = "Welcome to SuperBiscuitMan!
 
-[node name="PlayBtn" type="Button" parent="UILayer/GridContainer"]
-layout_mode = 2
+This game plays like a twin stick shooter.
+Controls:
+W-A-S-D: Movement
+Mouse: Aim
+LeftMouse: Shoot
+RightMouse: Lock-On
+Space: Dash
+
+Dash through enemy bullets to upgrade!"
+
+[node name="Back" type="Button" parent="OptionsLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -50.0
+offset_right = 32.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Play"
+text = "Back
+"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="OptionsLayer"]
+anchors_preset = -1
+anchor_left = 0.525
+anchor_top = 0.308333
+anchor_right = 0.675
+anchor_bottom = 1.30833
+offset_top = 24.0
+offset_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Dash" type="TextureRect" parent="OptionsLayer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("4_oa1go")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsLayer"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -135.0
+offset_top = 3.0
+offset_right = -71.0
+offset_bottom = 3.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Ship1" type="TextureRect" parent="OptionsLayer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_rtw2f")
+metadata/_edit_use_anchors_ = true
+
+[node name="Ship2" type="TextureRect" parent="OptionsLayer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_oa1go")
+metadata/_edit_use_anchors_ = true
+
+[node name="Ship3" type="TextureRect" parent="OptionsLayer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_tbmy8")
+metadata/_edit_use_anchors_ = true
+
+[node name="Dash" type="TextureRect" parent="OptionsLayer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_tbmy8")
+metadata/_edit_use_anchors_ = true
+
+[node name="EndScreenLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="EndScreenLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("8_jk1qb")
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="EndScreenLayer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -27.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_lgwnu")
+bbcode_enabled = true
+text = "[color=red][i][b]YOU WIN[/b][/i][/color]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Back" type="Button" parent="EndScreenLayer"]
+offset_right = 8.0
+offset_bottom = 8.0

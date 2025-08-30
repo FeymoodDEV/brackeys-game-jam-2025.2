@@ -9,7 +9,10 @@ signal game_started;
 
 signal level_scene_instanced(level_data: LevelData);
 signal level_started(map_time: float);
+signal level_restart;
 signal level_ended;
+
+signal block_destroyed(position: Vector2);
 
 signal game_paused;
 signal game_ended;
