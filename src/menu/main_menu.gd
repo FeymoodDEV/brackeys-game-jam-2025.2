@@ -19,10 +19,8 @@ func set_active(value: bool = true):
 	propagate_call("set_process_input", [value])
 	if value:
 		show();
-		propagate_call("show")
 	else:
 		hide();
-		propagate_call("hide")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
@@ -40,9 +38,11 @@ func _ready():
 	
 func _on_game_started():
 	set_active(false);
+	main_layer.propagate_call("hide");
 	
 func _on_game_ended():
 	set_active(true);
+	main_layer.propagate_call("show")
 
 func _on_play_btn_pressed():
 	set_active(false);
