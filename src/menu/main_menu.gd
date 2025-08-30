@@ -12,6 +12,7 @@ extends Node2D
 
 @onready var main_layer: CanvasLayer = $MainLayer;
 @onready var options_layer: CanvasLayer = $OptionsLayer;
+@onready var end_screen_layer: CanvasLayer = $EndScreenLayer
 
 var game_scene: Node2D;
 
@@ -45,8 +46,9 @@ func _on_game_started():
 	main_layer.propagate_call("hide");
 	
 func _on_game_ended():
-	set_active(true);
-	main_layer.propagate_call("show")
+	#set_active(true);
+	#main_layer.propagate_call("show")
+	end_screen_layer.propagate_call("show")
 
 func _on_play_btn_pressed():
 	set_active(false);
