@@ -73,7 +73,6 @@ func _on_player_ready(player_path):
 	pass
 
 func _on_game_started():	
-	level_index = 0
 	
 	level_node = level_scene.instantiate();
 	add_child(level_node);
@@ -107,7 +106,7 @@ func _on_level_ended():
 	else:
 		player.reparent(self);
 		level_node.queue_free();
-		EventManager.game_ended.emit();
+		EventManager.game_won.emit();
 
 	pass
 	
@@ -150,6 +149,7 @@ func _level_ready() -> void:
 	create_empty_grid()
 	generate_level()
 	spawn_enemies()
+
 	place_player()
 	
 	timer.wait_time = map_time
@@ -306,3 +306,14 @@ func clear_everything():
 		pickup.queue_free.call_deferred()
 	for boss: BossControler in get_tree().get_nodes_in_group("boss"):
 		boss.queue_free.call_deferred()
+
+
+# cheat
+#func _unhandled_input(event: InputEvent) -> void:
+#	if event.is_action_pressed("cheat_key"):
+#		for enemy: EnemyController in get_tree().get_nodes_in_group("enemy"):
+#			enemy.die()
+#		for block: Block in get_tree().get_nodes_in_group("block"):
+#			block.die()
+#	timer.wait_time = 1.0
+
