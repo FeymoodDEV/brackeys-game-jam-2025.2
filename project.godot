@@ -120,5 +120,4 @@ viewport/hdr_2d=true
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="mobile"
 viewport/hdr_2d=true

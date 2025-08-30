@@ -55,7 +55,11 @@ func _on_health_changed(health: float, max_health: float) -> void:
 func _on_boss_health_changed(health: float) -> void:
 	boss_health_bar.value = health
 	
-func _on_boss_spawned(max_health: float, boss_name: String) -> void:
+func _on_boss_spawned(max_health: float, boss_name: String, sprite: Texture2D) -> void:
+	$BossCutScene/Label.text = boss_name
+	$BossCutScene/BossProfile.texture = sprite
+	$BossCutScene/AnimationPlayer.play("introduction")
+	
 	boss_health_bar.show()
 	boss_label.show()
 	boss_hud.show()

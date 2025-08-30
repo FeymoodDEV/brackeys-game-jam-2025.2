@@ -23,7 +23,7 @@ var health: float
 
 func _ready():
 	health = max_health
-	EventManager.emit_signal("setup_boss_ui", max_health, boss_name)
+	EventManager.emit_signal("setup_boss_ui", max_health, boss_name, sprite)
 
 func spawn_pattern(pattern: String, pos_offset: Vector2 = Vector2.ZERO, rot_offset: int = 0) -> void:
 	Spawning.spawn({

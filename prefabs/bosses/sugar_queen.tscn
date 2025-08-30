@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://cvsie1ld28fe8"]
+[gd_scene load_steps=12 format=3 uid="uid://cvsie1ld28fe8"]
 
 [ext_resource type="Script" uid="uid://crdkg38w76q45" path="res://src/boss/boss_controller.gd" id="1_t30ok"]
-[ext_resource type="Texture2D" uid="uid://c2haqjj6x27gw" path="res://assets/sprites/bullet/sugar_bullet.png" id="2_tqi15"]
+[ext_resource type="Texture2D" uid="uid://byh2nqvgn7d44" path="res://assets/sprites/bosses/sugar_cube_queen_outline.png" id="2_uaams"]
 [ext_resource type="Script" uid="uid://v6qncoss0ivu" path="res://addons/xsm/state_loop.gd" id="3_8vvi0"]
 [ext_resource type="Script" uid="uid://ctur53xodcjsv" path="res://src/boss/states/patterns_repeat_state.gd" id="4_18jh6"]
 [ext_resource type="Script" uid="uid://bwjfyj5t13444" path="res://src/boss/boss_pattern_data.gd" id="5_1ji2w"]
 [ext_resource type="Resource" uid="uid://hhg8wfohwcn8" path="res://resources/boss_patterns/sugar_circle_trigger_pattern.tres" id="6_uaams"]
 [ext_resource type="Resource" uid="uid://b5qbec3350i4y" path="res://resources/boss_patterns/sugar_one_big_pattern.tres" id="7_1ji2w"]
+[ext_resource type="PackedScene" uid="uid://b1gylpwntx0ac" path="res://prefabs/bosses/boss_border.tscn" id="10_uaams"]
 [ext_resource type="AudioStream" uid="uid://cjhw80h3cj4fb" path="res://assets/sounds/enemy/damaged.ogg" id="11_5o1np"]
 [ext_resource type="AudioStream" uid="uid://cblbt71io5gvo" path="res://assets/sounds/enemy/dead.ogg" id="12_n8yww"]
 
@@ -19,11 +20,12 @@ collision_mask = 0
 script = ExtResource("1_t30ok")
 boss_name = "Sugar Queen"
 max_health = 500.0
+sprite = ExtResource("2_uaams")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(-5.72205e-06, -5.72205e-06)
-scale = Vector2(1.6, 1.6)
-texture = ExtResource("2_tqi15")
+position = Vector2(2.86102e-06, -10.6364)
+scale = Vector2(2.32727, 2.32727)
+texture = ExtResource("2_uaams")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ysfue")
@@ -59,3 +61,5 @@ stream = ExtResource("11_5o1np")
 
 [node name="Dead" type="AudioStreamPlayer2D" parent="EnemySounds"]
 stream = ExtResource("12_n8yww")
+
+[node name="boss_border" parent="." instance=ExtResource("10_uaams")]
