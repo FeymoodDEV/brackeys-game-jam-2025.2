@@ -66,10 +66,10 @@ func _on_boss_spawned(max_health: float, boss_name: String, sprite: Texture2D) -
 	boss_label.text = boss_name
 	
 func _on_boss_killed() -> void:
-	boss_health_bar.show()
-	boss_label.show()
-	boss_hud.show()
-	countdown_label.hide()
+	boss_health_bar.hide()
+	boss_label.hide()
+	boss_hud.hide()
+	countdown_label.show()
 
 func _on_progress_changed(new_value: float, xp_to_level_up: float) -> void:
 	progress_bar.value = new_value
