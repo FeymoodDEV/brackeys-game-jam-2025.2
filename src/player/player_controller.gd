@@ -78,7 +78,7 @@ var max_health: float
 @export var IFRAME_DURATION: float = 1.0
 @export var death_vfx: PackedScene = preload("res://prefabs/particles/explode_vfx.tscn")
 
-
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 var isDead: bool = false
 var is_invulnerable: bool = false
 
@@ -172,6 +172,8 @@ func apply_damage(damage: int, knockback: float, global_position: Vector2, direc
 	if is_invulnerable: return
 	
 	player_damaged.emit()
+	
+	animation_player.play("damaged")
 	
 	health -= damage
 	EventManager.emit_signal("health_changed", health, max_health)
