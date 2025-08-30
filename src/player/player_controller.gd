@@ -217,8 +217,13 @@ func level_up() -> void:
 
 
 func _on_item_pickup_radius_area_entered(area):
-	if area is XPOrb:
-		absorb_pts += area.xp_amount;
-		EventManager.progress_changed.emit(absorb_pts, upgrade_threshold * (current_level + 1));
-		area.queue_free()
+	if area is Pickup:
+		area.active = true;
+		if area is XPOrb:
+			absorb_pts += area.xp_amount;
+			EventManager.progress_changed.emit(absorb_pts, upgrade_threshold * (current_level + 1));
+			area.queue_free()
+		if area is MagnetPower:
+			area.global_position = global_position;
+			area.reparent.call_deferred(self);
 	pass # Replace with function body.
