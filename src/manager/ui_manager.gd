@@ -24,6 +24,7 @@ func _ready() -> void:
 	EventManager.boss_killed.connect(_on_boss_killed)
 	
 func _on_level_started(map_time):
+	print("LEVEL STARTED!")
 	timer.wait_time = map_time;
 	timer.one_shot = true;
 	timer.start();
@@ -36,6 +37,7 @@ func display_timer() -> Array:
 	return [minute, second]
 
 func _on_setup(dict: Dictionary) -> void:
+	print("Setting up scenes with following values: \n%s" % str(dict))
 	progress_bar.value = 0
 	progress_bar.max_value = dict.progress_max_value
 	health_bar.value = dict.health_max_value
@@ -56,6 +58,7 @@ func _on_boss_health_changed(health: float) -> void:
 	boss_health_bar.value = health
 	
 func _on_boss_spawned(max_health: float, boss_name: String, sprite: Texture2D) -> void:
+	print("Boss spawned: %s" % boss_name)
 	$BossCutScene/Label.text = boss_name
 	$BossCutScene/BossProfile.texture = sprite
 	$BossCutScene/AnimationPlayer.play("introduction")
@@ -74,20 +77,24 @@ func _on_boss_killed() -> void:
 	boss_label.hide()
 	boss_hud.hide()
 	countdown_label.show()
+	print("Boss is dead, long live the boss")
 
 func _on_progress_changed(new_value: float, xp_to_level_up: float) -> void:
 	progress_bar.value = new_value
 	progress_bar.max_value = xp_to_level_up
 
 func _on_show_death_screen() -> void:
+	print("Showing death screen")
 	death_screen.show()
 	$DeathScreeen/AnimationPlayer.play('open')
 
 func _on_restart_pressed():
+	print("Button pressed: restart")
 	death_screen.hide()
 	EventManager.level_restart.emit();
 
 func _on_quit_pressed():
+	print("Button pressed: quit")
 	BgmManager.change_bgm(preload("res://assets/sounds/music/Biscuit_Intro.ogg"))
 	death_screen.hide()
 	EventManager.main_menu.emit()

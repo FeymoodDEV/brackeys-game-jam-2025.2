@@ -185,6 +185,8 @@ func apply_damage(damage: int, knockback: float = 0, global_position: Vector2 = 
 	if isDead: return
 	if is_invulnerable: return
 	
+	print("Damage taken: %s at position %s" % [str(damage), str(global_position)])
+	
 	player_damaged.emit()
 	
 	animation_player.play("damaged")
@@ -212,8 +214,10 @@ func die() -> void:
 	set_active(false);
 	
 	EventManager.player_killed.emit()
+	print("Player dead!")
 
 func respawn() -> void:	
+	print("Respawning!")
 	isDead = false
 	$ShipSprite.show()
 	$HitboxShape.disabled = false
@@ -237,11 +241,13 @@ func level_down() -> void:
 	$LevelChange.emitting = true
 	
 	EventManager.emit_signal("health_changed", health, max_health)
+	print("Leveled down to %s" % str(current_level))
 
 func level_up() -> void:
 	current_level += 1
 	
 	$LevelChange.emitting = true
+	print("Leveled up to %s" % str(current_level))
 	
 	# fey: we don't want to give the player more health based on level;
 	# the risk element is based on your size
@@ -252,6 +258,7 @@ func level_up() -> void:
 
 func _absorb_bullet(rid, points) -> void:	
 	absorb_pts += points * absorb_pts_multiplier;
+	print("Absorbing bullet %s for %s * %s = %s points" % [str(rid), str(points), str(absorb_pts_multiplier), str(points * absorb_pts_multiplier)])
 	
 	# handle anim
 	var tween = get_tree().create_tween()
@@ -263,6 +270,7 @@ func _absorb_bullet(rid, points) -> void:
 
 func _on_item_pickup_radius_area_entered(area):
 	if area is Pickup:
+		print("Picked up %s" % str(area.get_parent()))
 		area.active = true;
 		if area is XPOrb:
 			absorb_pts += area.xp_amount;
