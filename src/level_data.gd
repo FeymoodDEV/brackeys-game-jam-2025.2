@@ -18,6 +18,8 @@ class_name LevelData;
 @export var enemy_datas: Array[EnemyData]
 @export var background_tiles: Array[Texture]
 
+@export var bgm : AudioStream = preload("res://assets/sounds/music/Biscy_Business_01.ogg")
+
 @export var boss_scene: PackedScene
 
 @export var packed_items: Array[PackedScene]

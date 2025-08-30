@@ -9,8 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://devb6j2col43u" path="res://assets/sprites/player/ship3.png" id="6_tbmy8"]
 
 [node name="MainMenu" type="Node2D" node_paths=PackedStringArray("play_btn", "help_btn", "quit_btn", "help_back_btn")]
-position = Vector2(nan, nan)
-scale = Vector2(646.992, inf_neg)
 script = ExtResource("1_l6cm7")
 packed_game_scene = ExtResource("2_ekxnf")
 play_btn = NodePath("MainLayer/MenuButtons/PlayBtn")
