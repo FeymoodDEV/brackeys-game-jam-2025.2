@@ -27,6 +27,7 @@ var look_direction : Vector2
 @export var dash_duration : float = 0.5
 ## Velocity lost per tick during dash in units per tick.
 @export var dash_friction : float = 10.0
+@onready var dash_vfx: Sprite2D = $NomdashVFX
 #endregion
 
 #region Targeting variables
@@ -75,6 +76,8 @@ signal player_dead
 signal player_damaged
 #endregion
 
+@onready var anim: AnimationPlayer = $AnimationPlayer
+
 func set_active(value: bool = true):
 	propagate_call("set_process", [value])
 	propagate_call("set_physics_process", [value])
@@ -102,7 +105,7 @@ func _ready():
 	health = max_health
 	
 	EventManager.player_setup.emit({
-		"progress_max_value": 100, 
+		"progress_max_value": upgrade_threshold, 
 		"health_max_value": max_health,
 	})
 

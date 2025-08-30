@@ -1,4 +1,5 @@
 extends Node2D
+class_name Thrusters
 
 @onready var thruster_sprites = get_children()#.filter(func(x): return x.is_in_group(&"thrusters"))
 @export var upgrade_state : State
@@ -13,7 +14,7 @@ func _process(delta: float) -> void:
 	var movement_vector : Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if movement_vector != Vector2.ZERO:
 		for x : AnimatedSprite2D in thruster_sprites:
-			x.rotation = movement_vector.angle() + PI
+			x.global_rotation = movement_vector.angle() + deg_to_rad(90)
 			if x.animation != &"move":
 				x.play(&"move")
 	else:

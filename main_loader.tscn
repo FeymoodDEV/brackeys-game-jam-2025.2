@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://52etq7okqcxy" path="res://prefabs/particles/rgb_spack_vfx.tscn" id="10_42cgd"]
 [ext_resource type="Resource" uid="uid://d4lop5a6dmpbs" path="res://resources/level_data/level_2.tres" id="10_c5ip0"]
 [ext_resource type="Resource" uid="uid://du1yy3510yiyd" path="res://resources/level_data/level_3.tres" id="11_7oy37"]
+[ext_resource type="PackedScene" uid="uid://b2u0qpleqhkrm" path="res://scenes/levels/level_2.tscn" id="12_p5kom"]
 
 [node name="Loader" type="Node2D"]
 script = ExtResource("1_krakd")
@@ -32,6 +33,6 @@ preload_scenes = Array[PackedScene]([ExtResource("4_sptmn"), ExtResource("5_kfoa
 [node name="LevelManager" parent="." instance=ExtResource("7_jmiai")]
 level_scenes = Array[PackedScene]([])
 levels = Array[ExtResource("8_vpio5")]([ExtResource("9_p5kom"), ExtResource("10_c5ip0"), ExtResource("11_7oy37")])
-level_scene = ExtResource("8_8cus5")
+level_scene = ExtResource("12_p5kom")
 
 [node name="PlayerUI" parent="." instance=ExtResource("8_0sdr2")]
