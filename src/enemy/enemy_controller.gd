@@ -75,6 +75,8 @@ func handle_movement(delta: float) -> void:
 	shoot_counter += delta;
 	if player and player.global_position.distance_to(global_position) < 125:
 		if shoot_counter > 1.5:
+			play_sound(enemy_data.shoot_sfx)
+			
 			var spawn_pos = global_position;
 			var rot = global_rotation
 			Spawning.spawn(self, pattern, "1")

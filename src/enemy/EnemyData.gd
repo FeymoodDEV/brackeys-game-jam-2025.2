@@ -18,3 +18,4 @@ class_name EnemyData
 @export var damage_sfx: AudioStream = preload("res://assets/sounds/enemy/damaged.ogg")
 @export var death_vfx: PackedScene;
 @export var death_sfx: AudioStream = preload("res://assets/sounds/enemy/dead.ogg")
+@export var shoot_sfx: AudioStream = preload("res://assets/sounds/enemy/shoot.ogg")

@@ -83,6 +83,7 @@ var isDead: bool = false
 var is_invulnerable: bool = false
 
 signal player_damaged
+signal player_dead
 #endregion
 
 #region Modifiers
@@ -195,6 +196,7 @@ func apply_damage(damage: int, knockback: float, global_position: Vector2, direc
 	# TODO: implement knockback.
 
 func die() -> void:
+	player_dead.emit()
 	var vfx = death_vfx.instantiate()
 	add_child(vfx)
 	vfx.top_level = true
