@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c2o1lagj6g0ol" path="res://assets/sprites/pickups/magnet.png" id="2_8m4mx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fkvdb"]
-radius = 42.0476
+radius = 24.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8m4mx"]
 radius = 100.0

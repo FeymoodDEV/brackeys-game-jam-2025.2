@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bga7iol0c6qxb" path="res://prefabs/pickups/shield_radius.gd" id="3_17rcf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fkvdb"]
-radius = 42.0476
+radius = 24.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8m4mx"]
 radius = 50.0
