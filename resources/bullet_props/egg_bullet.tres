@@ -1,4 +1,4 @@
-[gd_resource type="PackedDataContainer" script_class="BulletPropsExtend" load_steps=7 format=3 uid="uid://dlj7fapvfgjde"]
+[gd_resource type="PackedDataContainer" script_class="BulletPropsExtend" load_steps=7 format=3 uid="uid://bjnlvnl0xfue3"]
 
 [ext_resource type="Script" uid="uid://bapo6jcdsje8y" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="1_nujdl"]
 [ext_resource type="PackedScene" uid="uid://cbrnosqibc4mg" path="res://prefabs/particles/green_spack_vfx.tscn" id="2_ujyu1"]
