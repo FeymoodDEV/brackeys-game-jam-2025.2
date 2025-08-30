@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://cxxnbcxiuusqt" path="res://prefabs/managers/level_manager.tscn" id="7_jmiai"]
 [ext_resource type="PackedScene" uid="uid://j4ljg2vl3nfv" path="res://prefabs/ui/player_ui.tscn" id="8_0sdr2"]
 [ext_resource type="PackedScene" uid="uid://cbrnosqibc4mg" path="res://prefabs/particles/green_spack_vfx.tscn" id="8_1sj7g"]
-[ext_resource type="PackedScene" uid="uid://2ads1o1pbagk" path="res://scenes/levels/level_1.tscn" id="8_8cus5"]
 [ext_resource type="Script" uid="uid://bsxc5d4jawjyr" path="res://src/level_data.gd" id="8_vpio5"]
 [ext_resource type="PackedScene" uid="uid://b2mqu7dv1l8a3" path="res://prefabs/particles/red_spack_vfx.tscn" id="9_g3i6j"]
 [ext_resource type="Resource" uid="uid://dyik6mrjr87vp" path="res://resources/level_data/level_1.tres" id="9_p5kom"]

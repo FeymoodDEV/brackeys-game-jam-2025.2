@@ -21,4 +21,4 @@ func _on_enter(args) -> void:
 	target.sprite_2d.texture = texture
 	target.hitbox_shape.shape = hitbox_shape
 	target.nombox_shape.shape = nombox_shape
-	target.speed = speed
+	#target.speed = speed

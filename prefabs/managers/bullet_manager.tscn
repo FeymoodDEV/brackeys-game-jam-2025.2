@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bh4n0qihnupx7"]
+[gd_scene load_steps=31 format=3 uid="uid://bh4n0qihnupx7"]
 
 [ext_resource type="Script" uid="uid://cgd1wjud4ds5l" path="res://src/manager/bullet_manager.gd" id="1_s87c5"]
 [ext_resource type="PackedScene" uid="uid://2gsa8xymn0k3" path="res://prefabs/player/player.tscn" id="2_5m336"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedDataContainer" uid="uid://vvxu0dtkc53o" path="res://resources/bullet_props/chocolate_bullet.tres" id="4_5m336"]
 [ext_resource type="PackedDataContainer" uid="uid://4im82kt0pnq3" path="res://resources/bullet_props/sugar_bullet.tres" id="5_2wnuu"]
 [ext_resource type="PackedDataContainer" uid="uid://xdi81avumb0q" path="res://resources/bullet_props/player_bullet.tres" id="6_jtxhu"]
+[ext_resource type="PackedDataContainer" uid="uid://cc33ff14dikt2" path="res://resources/bullet_props/player_bullet_2.tres" id="7_eacl2"]
 [ext_resource type="NavigationPolygon" uid="uid://co2c4c28w1wnl" path="res://resources/bullet_patterns/player_patterns/patt_player_level_1.tres" id="8_jtxhu"]
 [ext_resource type="NavigationPolygon" uid="uid://bmfjycd8jhs3i" path="res://resources/bullet_patterns/player_patterns/patt_player_level_3.tres" id="9_6vri1"]
 [ext_resource type="Script" uid="uid://c8ydhn2yvq3dc" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="10_bvdue"]
@@ -19,11 +20,39 @@
 
 [sub_resource type="Curve2D" id="Curve2D_aga20"]
 
+[sub_resource type="Curve2D" id="Curve2D_53pd8"]
+
 [sub_resource type="Curve2D" id="Curve2D_ttg52"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 701, 125, 0, 0, 0, 0, 753, 91, 0, 0, 0, 0, 799, 123, 0, 0, 0, 0, 787, 73, 0, 0, 0, 0, 832, 48, 0, 0, 0, 0, 777, 39, 0, 0, 0, 0, 758, -13, 0, 0, 0, 0, 731, 36, 0, 0, 0, 0, 686, 41, 0, 0, 0, 0, 723, 71)
 }
 point_count = 10
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_eacl2"]
+resource_name = "PatternLine"
+script = ExtResource("12_fnh7x")
+offset = Vector2(2, 28.02)
+center = 2
+symmetric = true
+bullet = "PBullet2"
+nbr = 3
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("")
+forced_lookat_mouse = true
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+metadata/_custom_type_script = "uid://c8a1x50bjmkue"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5h2se"]
 resource_name = "PatternOne"
@@ -57,7 +86,7 @@ point_count = 10
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_iuweo"]
 resource_name = "PatternLine"
 script = ExtResource("12_fnh7x")
-offset = Vector2(20, -20)
+offset = Vector2(10, -5)
 center = 5
 symmetric = true
 bullet = "ChocBullet"
@@ -156,17 +185,14 @@ script = ExtResource("1_s87c5")
 [node name="Player" parent="." instance=ExtResource("2_5m336")]
 position = Vector2(2031, 1523)
 
-[node name="Movement" parent="Player/Root" index="0"]
-next_state = NodePath("../Upgrade")
-
-[node name="Normal" parent="Player/Root/Movement" index="0"]
-next_state = NodePath("../Circling")
-
 [node name="Level1" parent="Player/Root/Upgrade" index="1"]
-next_state = NodePath("../Level2")
+speed = 220.0
 
 [node name="Level2" parent="Player/Root/Upgrade" index="2"]
-next_state = NodePath("../Level3")
+speed = 220.0
+
+[node name="Level3" parent="Player/Root/Upgrade" index="3"]
+speed = 220.0
 
 [node name="BulletProps" type="Node2D" parent="."]
 
@@ -188,6 +214,13 @@ script = ExtResource("3_er4hb")
 id = "PBullet"
 props = ExtResource("6_jtxhu")
 
+[node name="Player2Bullet" type="Path2D" parent="BulletProps"]
+curve = SubResource("Curve2D_53pd8")
+script = ExtResource("3_er4hb")
+id = "PBullet2"
+props = ExtResource("7_eacl2")
+metadata/_custom_type_script = "uid://bjmse0liopcrp"
+
 [node name="Patterns" type="Node2D" parent="."]
 
 [node name="PlayerLevel1" type="Path2D" parent="Patterns"]
@@ -206,7 +239,7 @@ pattern = ExtResource("9_6vri1")
 curve = SubResource("Curve2D_ttg52")
 script = ExtResource("10_bvdue")
 id = "player_level_3"
-pattern = ExtResource("9_6vri1")
+pattern = SubResource("NavigationPolygon_eacl2")
 
 [node name="Chocolate" type="Node2D" parent="Patterns"]
 

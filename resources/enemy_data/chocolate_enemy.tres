@@ -13,6 +13,6 @@ damage = 10.0
 xp_worth = 10.0
 sprite = ExtResource("3_hkc0m")
 modulate_color = Color(1, 1, 1, 1)
-scale = 1.5
+scale = 0.3
 death_vfx = ExtResource("1_hkc0m")
 metadata/_custom_type_script = "uid://2pwnys3t54yw"
