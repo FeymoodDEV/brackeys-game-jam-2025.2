@@ -57,6 +57,7 @@ func _physics_process(delta: float) -> void:
 # this node (ex: target reticles). Sorry.
 signal freeing
 func die() -> void:
+	play_sound(enemy_data.death_sfx)
 	freeing.emit()
 	queue_free.call_deferred()
 
@@ -112,6 +113,16 @@ func pick_new_direction() -> void:
 	current_direction = (spawn_position - global_position).normalized()
 
 func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2) -> void:
+	play_sound(enemy_data.damage_sfx)
 	health -= damage;
 	if health <= 0:
 		die();
+
+# hacky way to get sounds working
+func play_sound(stream: AudioStream):
+	var player := AudioStreamPlayer.new()
+	get_tree().get_root().add_child(player)
+	player.stream = stream
+	player.pitch_scale = randf_range(0.9, 1.1) # random pitchd
+	player.bus = &"SFX"
+	player.play()
