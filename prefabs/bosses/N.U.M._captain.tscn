@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bd5i3sglov82i"]
+[gd_scene load_steps=14 format=3 uid="uid://bd5i3sglov82i"]
 
 [ext_resource type="Script" uid="uid://crdkg38w76q45" path="res://src/boss/boss_controller.gd" id="1_5ghuj"]
 [ext_resource type="Texture2D" uid="uid://cja5sr5puc4e2" path="res://assets/sprites/block/bisquit.png" id="2_6fe1r"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://cblbt71io5gvo" path="res://assets/sounds/enemy/dead.ogg" id="6_urlrh"]
 [ext_resource type="Script" uid="uid://b22hvoowka3oo" path="res://src/boss/states/pattern_in_six_dir_state.gd" id="6_yrihk"]
 [ext_resource type="Script" uid="uid://b2l0jlbk7oecc" path="res://addons/xsm/state_regions.gd" id="9_urlrh"]
+[ext_resource type="PackedScene" uid="uid://b1gylpwntx0ac" path="res://prefabs/bosses/boss_border.tscn" id="12_qmlfy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysfue"]
 size = Vector2(128, 128)
@@ -23,6 +24,7 @@ boss_name = "N.U.M. Captain"
 stage_1 = NodePath("state_machine/stage_1")
 stage_2 = NodePath("state_machine/stage_2")
 max_health = 750.0
+sprite = ExtResource("2_6fe1r")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(-5.72205e-06, -5.72205e-06)
@@ -103,7 +105,7 @@ disabled = true
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../loop_2")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://v6qncoss0ivu"
 
 [node name="State3" type="Node" parent="state_machine/stage_2/loop_1"]
@@ -148,3 +150,5 @@ stream = ExtResource("5_dysf2")
 
 [node name="Dead" type="AudioStreamPlayer2D" parent="EnemySounds"]
 stream = ExtResource("6_urlrh")
+
+[node name="boss_border" parent="." instance=ExtResource("12_qmlfy")]
