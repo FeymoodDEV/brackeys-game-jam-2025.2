@@ -38,10 +38,6 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 @onready var timer: Timer = $LevelTimer;
 
-func _input(event):
-	if Input.is_action_just_pressed("ui_cancel"):
-		EventManager.level_scene_instanced.emit(next_level);
-
 func _on_level_scene_instanced(data: LevelData):
 	if not data:
 		return;
@@ -96,6 +92,9 @@ func _on_level_started(map_time):
 	$BG.show();
 	pass
 	
+func _on_level_restart():
+	EventManager.level_scene_instanced.emit(levels[level_index])
+	
 func _on_level_ended():
 	level_index += 1;
 	# If there are still more levels to play load the next level
@@ -127,6 +126,7 @@ func _enter_tree():
 	
 	EventManager.game_started.connect(_on_game_started)
 	EventManager.game_ended.connect(_on_game_ended);
+	EventManager.level_restart.connect(_on_level_restart)
 	
 	EventManager.level_scene_instanced.connect(_on_level_scene_instanced);
 	EventManager.level_started.connect(_on_level_started)

@@ -92,6 +92,8 @@ signal player_damaged
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
 func set_active(value: bool = true):
+	isDead = !value;
+	
 	propagate_call("set_process", [value])
 	propagate_call("set_physics_process", [value])
 	propagate_call("set_process_input", [value])
@@ -99,6 +101,10 @@ func set_active(value: bool = true):
 		show();
 	else:
 		hide();
+		
+func _on_level_started():
+	set_active(true);
+	respawn();
 
 #Re-enable processing when the game starts
 func _on_game_started():
@@ -124,6 +130,9 @@ func _ready():
 
 	EventManager.game_started.connect(_on_game_started)
 	EventManager.game_ended.connect(_on_game_ended)
+	
+	EventManager.level_restart.connect(_on_level_started);
+	EventManager.level_started.connect(_on_level_started);
 	
 	EventManager.player_ready.emit(get_path())
 	

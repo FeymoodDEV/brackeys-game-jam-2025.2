@@ -15,7 +15,7 @@ extends Node2D
 
 var game_scene: Node2D;
 
-func set_active(value: bool = true):
+func set_active(value: bool = true):	
 	propagate_call("set_process", [value])
 	propagate_call("set_physics_process", [value])
 	propagate_call("set_process_input", [value])
