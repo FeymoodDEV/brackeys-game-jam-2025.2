@@ -25,7 +25,7 @@
 
 [resource]
 script = ExtResource("11_u605j")
-map_time = 10.0
+map_time = 15.0
 map_width = 80
 map_height = 60
 cluster_chance = 0.01
