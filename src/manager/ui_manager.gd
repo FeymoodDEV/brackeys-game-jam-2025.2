@@ -12,11 +12,6 @@ class_name PlayerUI
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var death_screen: Control = $DeathScreeen
 
-func _on_boss_killed():
-	boss_health_bar.hide();
-	boss_label.hide();
-	pass
-
 func _ready() -> void:
 	EventManager.health_changed.connect(_on_health_changed)
 	EventManager.boss_health_changed.connect(_on_boss_health_changed)
@@ -26,6 +21,7 @@ func _ready() -> void:
 	EventManager.player_setup.connect(_on_setup)
 	EventManager.level_started.connect(_on_level_started)
 	EventManager.show_death_screen.connect(_on_show_death_screen)
+	EventManager.boss_killed.connect(_on_boss_killed)
 	
 func _on_level_started(map_time):
 	timer.wait_time = map_time;
@@ -44,6 +40,10 @@ func _on_setup(dict: Dictionary) -> void:
 	progress_bar.max_value = dict.progress_max_value
 	health_bar.value = dict.health_max_value
 	health_bar.max_value = dict.health_max_value
+	boss_health_bar.hide()
+	boss_label.hide()
+	boss_hud.hide()
+	countdown_label.show()
 	
 func _process(delta) -> void:
 	countdown_label.text = "%02d:%02d" % display_timer();
@@ -69,6 +69,12 @@ func _on_boss_spawned(max_health: float, boss_name: String, sprite: Texture2D) -
 	boss_health_bar.value = max_health
 	boss_label.text = boss_name
 	
+func _on_boss_killed() -> void:
+	boss_health_bar.hide()
+	boss_label.hide()
+	boss_hud.hide()
+	countdown_label.show()
+
 func _on_progress_changed(new_value: float, xp_to_level_up: float) -> void:
 	progress_bar.value = new_value
 	progress_bar.max_value = xp_to_level_up
@@ -77,11 +83,9 @@ func _on_show_death_screen() -> void:
 	death_screen.show()
 	$DeathScreeen/AnimationPlayer.play('open')
 
-
 func _on_restart_pressed():
 	death_screen.hide()
 	EventManager.level_restart.emit();
-
 
 func _on_quit_pressed():
 	BgmManager.change_bgm(preload("res://assets/sounds/music/Biscuit_Intro.ogg"))

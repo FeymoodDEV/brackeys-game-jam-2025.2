@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_fkvdb"]
 radius = 42.0476
 
-[node name="XpOrb" type="Area2D"]
+[node name="XpOrb" type="Area2D" groups=["pickup"]]
 script = ExtResource("1_c57qr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

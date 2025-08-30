@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_fkvdb"]
 radius = 22.0
 
-[node name="Bomb" type="Area2D"]
+[node name="Bomb" type="Area2D" groups=["pickup"]]
 script = ExtResource("1_tpc3l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
