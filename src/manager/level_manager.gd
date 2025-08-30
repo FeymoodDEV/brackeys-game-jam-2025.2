@@ -248,7 +248,7 @@ func place_player() -> void:
 func _on_boss_spawn() -> void:
 	assert(boss_instance, "setup Boss scene");
 	
-	boss_instance.global_position = Vector2(chosen.x * cell_size, chosen.y * cell_size)
+	boss_instance.global_position = player.global_position + Vector2(0, -200)
 	level_node.add_child(boss_instance)
 	
 	Spawning.clear_all_bullets()
