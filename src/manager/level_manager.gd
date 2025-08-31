@@ -73,7 +73,7 @@ func _on_player_ready(player_path):
 	pass
 
 func _on_game_started():	
-	
+	level_index = 0;
 	level_node = level_scene.instantiate();
 	add_child(level_node);
 	

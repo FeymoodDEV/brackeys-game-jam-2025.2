@@ -3,15 +3,17 @@ extends Node2D
 @export var packed_game_scene: PackedScene;
 
 @export var play_btn: Button;
-@export var help_btn: Button;
+@export var options_btn: Button;
 @export var quit_btn: Button;
 
-@export var help_back_btn: Button;
+@export var options_back_btn: Button;
+@export var intro_play_btn: Button;
 
 @export var bgm: AudioStream = preload("res://assets/sounds/music/Biscuit_Intro.ogg")
 
 @onready var main_layer: CanvasLayer = $MainLayer;
 @onready var options_layer: CanvasLayer = $OptionsLayer;
+@onready var intro_layer: CanvasLayer = $IntroTutorial;
 @onready var end_screen_layer: CanvasLayer = $EndScreenLayer
 
 var game_scene: Node2D;
@@ -40,15 +42,17 @@ func _ready():
 	
 	
 	play_btn.pressed.connect(_on_play_btn_pressed)
-	help_btn.pressed.connect(_on_help_button_pressed);
+	options_btn.pressed.connect(_on_options_btn_pressed);
 	quit_btn.pressed.connect(_on_exit_button_pressed);
-	help_back_btn.pressed.connect(_on_help_back_button_pressed);
-	
+	options_back_btn.pressed.connect(_on_options_back_btn_pressed);
+	intro_play_btn.pressed.connect(_on_intro_play_btn_pressed);
 	
 	EventManager.game_started.connect(_on_game_started);
 	EventManager.game_ended.connect(_on_game_ended)
 	EventManager.game_won.connect(_on_game_won);
-	
+	main_layer.show();
+	options_layer.hide();
+	intro_layer.hide();
 	play_btn.grab_focus();
 
 func _on_game_started():
@@ -65,18 +69,23 @@ func _on_game_ended():
 	main_layer.propagate_call("show")
 
 func _on_play_btn_pressed():
-	set_main_menu_active(false);
+	main_layer.hide();
+	intro_layer.show();
+	pass
+	
+func _on_intro_play_btn_pressed():
+	intro_layer.hide();
 	EventManager.game_started.emit();
 	pass
 	
-func _on_help_back_button_pressed():
-	$MainLayer.show();
-	$OptionsLayer.hide();
+func _on_options_btn_pressed():
+	options_layer.show();
+	main_layer.hide();
 	pass
 	
-func _on_help_button_pressed():
-	$MainLayer.hide();
-	$OptionsLayer.show();
+func _on_options_back_btn_pressed():
+	main_layer.show();
+	options_layer.hide();
 	pass
 	
 func _on_exit_button_pressed():
