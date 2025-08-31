@@ -592,33 +592,35 @@ grow_vertical = 2
 texture = ExtResource("2_2kqep")
 
 [node name="BossHud" type="TextureRect" parent="."]
-visible = false
-offset_right = 640.0
-offset_bottom = 360.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("3_c0vdx")
+expand_mode = 1
 
 [node name="BossHealthBar" type="ProgressBar" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -108.0
-offset_top = 16.0
-offset_right = 162.0
-offset_bottom = 53.0
+anchors_preset = -1
+anchor_left = 0.33125
+anchor_top = 0.0444444
+anchor_right = 0.66875
+anchor_bottom = 0.106111
+offset_right = 54.0003
+offset_bottom = 14.8
 grow_horizontal = 2
 scale = Vector2(0.799999, 0.6)
 theme_override_styles/fill = SubResource("StyleBoxTexture_wafl3")
 value = 50.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="BossName" type="Label" parent="."]
 anchors_preset = -1
 anchor_left = 0.33125
-anchor_top = 0.0305556
+anchor_top = 0.0277778
 anchor_right = 0.66875
-anchor_bottom = 0.122222
-offset_top = -1.0
-offset_bottom = -1.0
+anchor_bottom = 0.119444
 grow_horizontal = 2
 theme = ExtResource("5_hj0ct")
 text = "BIG BAD GUY"
@@ -740,6 +742,7 @@ text = "CHOCOLATE KING"
 metadata/_edit_use_anchors_ = true
 
 [node name="DeathScreeen" type="Control" parent="."]
+visible = false
 z_index = 1
 layout_mode = 3
 anchors_preset = 15

@@ -31,7 +31,7 @@
 script = ExtResource("23_x8ew3")
 level_name = "Sugar Land
 Level : 2"
-map_time = 5.0
+map_time = 30.0
 map_width = 80
 map_height = 60
 cluster_chance = 0.01
