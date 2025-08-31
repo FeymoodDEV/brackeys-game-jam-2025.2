@@ -58,6 +58,7 @@ func _ready():
 			var p_node = packed.instantiate();
 			if p_node is GPUParticles2D:
 				p_node.emitting = true
+				p_node.finished.connect(p_node.queue_free);
 			elif p_node is VFXSprite2D:
 				p_node.play(&"default")
 			$Preloaded.add_child(p_node);

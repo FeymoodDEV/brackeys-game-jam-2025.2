@@ -25,7 +25,7 @@ script = ExtResource("1_l6cm7")
 packed_game_scene = ExtResource("2_ekxnf")
 play_btn = NodePath("MainLayer/MenuButtons/PlayBtn")
 options_btn = NodePath("MainLayer/MenuButtons/Options")
-quit_btn = NodePath("MainLayer/MenuButtons/Exit")
+quit_btn = NodePath("MainLayer/MenuButtons/Credits")
 options_back_btn = NodePath("OptionsLayer/OptionsBack")
 intro_play_btn = NodePath("IntroTutorial/IntroPlay")
 master_vol_slider = NodePath("OptionsLayer/PanelContainer/MasterVolume/MasterVolSlider")
@@ -91,12 +91,12 @@ theme = ExtResource("4_5dd4i")
 text = "Options
 "
 
-[node name="Exit" type="Button" parent="MainLayer/MenuButtons"]
+[node name="Credits" type="Button" parent="MainLayer/MenuButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5dd4i")
-text = "Quit"
+text = "Credits"
 
 [node name="Label" type="Label" parent="MainLayer"]
 anchors_preset = 5
@@ -209,7 +209,75 @@ offset_bottom = 95.0
 theme = ExtResource("4_5dd4i")
 text = "Settings"
 
+[node name="CreditsLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="CreditsTitle" type="Label" parent="CreditsLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -43.5
+offset_right = 43.5
+offset_bottom = 66.0
+grow_horizontal = 2
+theme = ExtResource("4_5dd4i")
+text = "Credits
+"
+
+[node name="HBoxContainer" type="GridContainer" parent="CreditsLayer"]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -167.0
+offset_top = 29.0
+offset_right = 168.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Art" type="Label" parent="CreditsLayer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_5dd4i")
+text = "
+Art:
+VetNovice, MS-13 Reset"
+
+[node name="Programmer" type="Label" parent="CreditsLayer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_5dd4i")
+text = "Programming:
+Trobador, CybrNight, Cabage"
+
+[node name="Music" type="Label" parent="CreditsLayer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_5dd4i")
+text = "
+Music:
+VetNovice"
+
+[node name="CreditsBack" type="Button" parent="CreditsLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -58.0
+offset_right = 32.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5dd4i")
+text = "Back
+"
+
 [node name="IntroTutorial" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="IntroPlay" type="Button" parent="IntroTutorial"]
 anchors_preset = -1

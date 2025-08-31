@@ -15,6 +15,7 @@ extends Node2D
 @onready var options_layer: CanvasLayer = $OptionsLayer;
 @onready var intro_layer: CanvasLayer = $IntroTutorial;
 @onready var end_screen_layer: CanvasLayer = $EndScreenLayer
+@onready var credits_layer: CanvasLayer = $CreditsLayer;
 
 @export var master_vol_slider: HSlider;
 @export var music_vol_slider: HSlider;
@@ -61,6 +62,9 @@ func _ready():
 	music_bus = AudioServer.get_bus_index("Music");
 	sfx_bus = AudioServer.get_bus_index("SFX");
 	
+	master_vol_slider.value = -15
+	music_vol_slider.value = -15
+	sfx_vol_slider.value = -15
 	AudioServer.set_bus_volume_db(master_bus, master_vol_slider.value);
 	AudioServer.set_bus_volume_db(music_bus, music_vol_slider.value);
 	AudioServer.set_bus_volume_db(sfx_bus, sfx_vol_slider.value);
@@ -81,6 +85,7 @@ func _ready():
 	main_layer.show();
 	options_layer.hide();
 	intro_layer.hide();
+	credits_layer.hide();
 	play_btn.grab_focus();
 
 func _on_game_started():
@@ -118,7 +123,9 @@ func _on_options_back_btn_pressed():
 	pass
 	
 func _on_exit_button_pressed():
-	get_tree().quit(1);
+	main_layer.hide();
+	credits_layer.show();
+	pass
 
 
 func _on_end_screen_btn_pressed() -> void:

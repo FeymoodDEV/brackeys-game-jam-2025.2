@@ -3,15 +3,15 @@
 [ext_resource type="Script" uid="uid://dhwkvbcdj6spb" path="res://src/main_loader.gd" id="1_krakd"]
 [ext_resource type="PackedScene" uid="uid://3yj03daybfvf" path="res://scenes/main_menu.tscn" id="2_6dey0"]
 [ext_resource type="PackedScene" uid="uid://s5wdbvyf7fxt" path="res://testing/cybrnight_main.tscn" id="3_6dey0"]
-[ext_resource type="PackedScene" uid="uid://cbqgxhuvoxtgg" path="res://prefabs/particles/first_hit_vfx.tscn" id="4_6dey0"]
 [ext_resource type="PackedScene" uid="uid://ctcm0nmbs655s" path="res://prefabs/particles/blue_spack_vfx.tscn" id="4_sptmn"]
-[ext_resource type="PackedScene" uid="uid://dv7y8svel5iok" path="res://prefabs/particles/first_trail.tscn" id="5_jixal"]
 [ext_resource type="PackedScene" uid="uid://dtjdj7nbtlxrr" path="res://prefabs/particles/explode_vfx.tscn" id="5_kfoa5"]
 [ext_resource type="PackedScene" uid="uid://bh4n0qihnupx7" path="res://prefabs/managers/bullet_manager.tscn" id="6_jixal"]
 [ext_resource type="PackedScene" uid="uid://cxxnbcxiuusqt" path="res://prefabs/managers/level_manager.tscn" id="7_jmiai"]
 [ext_resource type="PackedScene" uid="uid://j4ljg2vl3nfv" path="res://prefabs/ui/player_ui.tscn" id="8_0sdr2"]
 [ext_resource type="PackedScene" uid="uid://cbrnosqibc4mg" path="res://prefabs/particles/green_spack_vfx.tscn" id="8_1sj7g"]
+[ext_resource type="PackedScene" uid="uid://dbh6mhsyfiypt" path="res://prefabs/particles/trail_particles.tscn" id="9_c5ip0"]
 [ext_resource type="PackedScene" uid="uid://b2mqu7dv1l8a3" path="res://prefabs/particles/red_spack_vfx.tscn" id="9_g3i6j"]
+[ext_resource type="PackedScene" uid="uid://clwohafimldu0" path="res://prefabs/particles/level_change.tscn" id="10_7oy37"]
 [ext_resource type="PackedScene" uid="uid://52etq7okqcxy" path="res://prefabs/particles/rgb_spack_vfx.tscn" id="10_42cgd"]
 [ext_resource type="PackedScene" uid="uid://b2u0qpleqhkrm" path="res://scenes/levels/level_2.tscn" id="12_p5kom"]
 
@@ -19,7 +19,7 @@
 script = ExtResource("1_krakd")
 packed_menu_scene = ExtResource("2_6dey0")
 packed_test_scene = ExtResource("3_6dey0")
-preload_scenes = Array[PackedScene]([ExtResource("4_sptmn"), ExtResource("5_kfoa5"), ExtResource("4_6dey0"), ExtResource("5_jixal"), ExtResource("8_1sj7g"), ExtResource("9_g3i6j"), ExtResource("10_42cgd")])
+preload_scenes = Array[PackedScene]([ExtResource("4_sptmn"), ExtResource("5_kfoa5"), ExtResource("8_1sj7g"), ExtResource("9_g3i6j"), ExtResource("10_42cgd"), ExtResource("9_c5ip0"), ExtResource("10_7oy37")])
 
 [node name="Preloaded" type="Node2D" parent="."]
 

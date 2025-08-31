@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://2gsa8xymn0k3"]
+[gd_scene load_steps=45 format=3 uid="uid://2gsa8xymn0k3"]
 
 [ext_resource type="Script" uid="uid://xydw8pnry765" path="res://src/player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Script" uid="uid://ciqnncb30bm8r" path="res://prefabs/player/modifier_handler.gd" id="2_rykmw"]
@@ -13,19 +13,18 @@
 [ext_resource type="Shape2D" uid="uid://bivjpsiot2lxr" path="res://prefabs/player/level_2_nombox.tres" id="5_8ydkj"]
 [ext_resource type="Shape2D" uid="uid://cmn0egykq5740" path="res://prefabs/player/level_1_nombox.tres" id="5_kvlxm"]
 [ext_resource type="Script" uid="uid://b2l0jlbk7oecc" path="res://addons/xsm/state_regions.gd" id="6_0owmy"]
-[ext_resource type="Texture2D" uid="uid://b18crkv7x2kpf" path="res://assets/sprites/player/thruster-particle.png" id="6_dmwb1"]
 [ext_resource type="Texture2D" uid="uid://ogb51tdot7ho" path="res://assets/sprites/player/ship1.png" id="7_8ris0"]
 [ext_resource type="Script" uid="uid://yw44daxcsxw0" path="res://src/player/states/movement_state.gd" id="7_h17s1"]
-[ext_resource type="Script" path="res://src/player/trail_particles.gd" id="7_hp4ge"]
+[ext_resource type="PackedScene" uid="uid://dbh6mhsyfiypt" path="res://prefabs/particles/trail_particles.tscn" id="7_ro1o0"]
 [ext_resource type="Script" uid="uid://danupjfx2f7rj" path="res://src/player/states/normal_state.gd" id="8_qek5x"]
 [ext_resource type="Texture2D" uid="uid://dj3abyu5tht7s" path="res://assets/sprites/player/nomdash.png" id="8_xtdcv"]
 [ext_resource type="Script" uid="uid://des4f477v63vn" path="res://src/player/states/circling_state.gd" id="9_5gtgg"]
 [ext_resource type="Script" uid="uid://cbvm26wvakcp0" path="res://prefabs/player/audio.gd" id="10_4jdxe"]
+[ext_resource type="PackedScene" uid="uid://clwohafimldu0" path="res://prefabs/particles/level_change.tscn" id="10_560yn"]
 [ext_resource type="Script" uid="uid://bjodpqxwvqv2n" path="res://src/player/states/nom_dash_state.gd" id="10_h17s1"]
 [ext_resource type="Script" uid="uid://crak72h5onoyp" path="res://src/player/gun/upgrade_level.gd" id="10_kvlxm"]
 [ext_resource type="Script" uid="uid://bwsv0v5wgoh2s" path="res://src/player/gun/upgrade.gd" id="10_myrg7"]
 [ext_resource type="Script" uid="uid://c6dd72g31782" path="res://src/player/player_camera.gd" id="10_rykmw"]
-[ext_resource type="Texture2D" uid="uid://du6pv6302r0aw" path="res://assets/sprites/player/upgrade_particle.png" id="11_560yn"]
 [ext_resource type="AudioStream" uid="uid://rq82uv4hvhtw" path="res://assets/sounds/player/thrusters.ogg" id="11_a0po4"]
 [ext_resource type="Script" uid="uid://bh8rpek0w1o47" path="res://src/player/targeting/crosshair.gd" id="11_fm80t"]
 [ext_resource type="Script" uid="uid://5yo5iu6shjs3" path="res://addons/xsm/state.gd" id="12_cnsyf"]
@@ -41,35 +40,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kxs7h"]
 radius = 30.0666
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ris0"]
-particle_flag_disable_z = true
-emission_shape_scale = Vector3(1.5, 1.5, 1.5)
-emission_shape = 1
-emission_sphere_radius = 1.0
-gravity = Vector3(0, 0, 0)
-radial_accel_min = -2.23517e-06
-radial_accel_max = 13.99
-
-[sub_resource type="Curve" id="Curve_560yn"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.606897, 0.966292), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_i3xdb"]
-curve = SubResource("Curve_560yn")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i3xdb"]
-particle_flag_disable_z = true
-direction = Vector3(0, -1, 0)
-spread = 180.0
-initial_velocity_min = 27.33
-initial_velocity_max = 54.65
-gravity = Vector3(0, 0, 0)
-scale_min = 0.8
-scale_max = 1.2
-scale_curve = SubResource("CurveTexture_i3xdb")
-hue_variation_min = -0.05
-hue_variation_max = 0.07
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fm80t"]
 radius = 36.0555
@@ -350,10 +320,7 @@ sprite_frames = ExtResource("4_vtpqo")
 animation = &"move"
 offset = Vector2(0, -7)
 
-[node name="TrailParticles" type="GPUParticles2D" parent="."]
-texture = ExtResource("6_dmwb1")
-process_material = SubResource("ParticleProcessMaterial_8ris0")
-script = ExtResource("7_hp4ge")
+[node name="TrailParticles" parent="." instance=ExtResource("7_ro1o0")]
 
 [node name="NomdashVFX" type="Sprite2D" parent="."]
 visible = false
@@ -364,14 +331,7 @@ offset = Vector2(0, 28)
 rotation = 1.5708
 texture = ExtResource("7_8ris0")
 
-[node name="LevelChange" type="GPUParticles2D" parent="."]
-emitting = false
-amount = 32
-texture = ExtResource("11_560yn")
-one_shot = true
-explosiveness = 1.0
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_i3xdb")
+[node name="LevelChange" parent="." instance=ExtResource("10_560yn")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("10_rykmw")
