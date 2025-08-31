@@ -102,6 +102,7 @@ func _on_game_won():
 
 func _on_game_ended():
 	set_main_menu_active(true)
+	$Background.show();
 	main_layer.propagate_call("show")
 
 func _on_play_btn_pressed():
