@@ -23,6 +23,7 @@
 [ext_resource type="NavigationPolygon" uid="uid://0hwvl3612a7o" path="res://resources/bullet_patterns/enemy_pattern/patt_chocolate_circle.tres" id="14_eacl2"]
 [ext_resource type="NavigationPolygon" uid="uid://dl7mxy7kn5d7i" path="res://resources/bullet_patterns/enemy_pattern/patt_chocolate_v_shape.tres" id="15_53pd8"]
 [ext_resource type="Script" uid="uid://okf4mtltak8l" path="res://addons/BulletUpHell/Nodes/BuHSpawnPoint.gd" id="15_er4hb"]
+[ext_resource type="NavigationPolygon" uid="uid://dyntskjhwg680" path="res://resources/bullet_patterns/enemy_pattern/egg_circle_return.tres" id="23_w2k3w"]
 
 [sub_resource type="Curve2D" id="Curve2D_aga20"]
 
@@ -283,40 +284,23 @@ metadata/_custom_type_script = "uid://b6cup3hdpqd6v"
 
 [sub_resource type="Curve2D" id="Curve2D_cff3j"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_7q45u"]
-resource_name = "PatternCircle"
-script = ExtResource("13_h02f0")
-radius = 0
-angle_total = 1.0472
-angle_decal = 0.174533
-symmetric = false
-center = 0
-symmetry_type = 0
-bullet = "EggBullet"
-nbr = 6
-iterations = 1
-pattern_angle = 0.0
-pattern_angle_target = NodePath("")
-pattern_angle_mouse = false
-forced_angle = 0.0
-forced_target = NodePath("")
-forced_lookat_mouse = false
-forced_pattern_lookat = true
-cooldown_stasis = false
-cooldown_spawn = 7.0
-cooldown_shoot = 0.0
-cooldown_next_spawn = 1.0
-cooldown_next_shoot = 0.0
-wait_tween_momentum = 5
-wait_tween_length = 500.0
-wait_tween_time = 3.0
-metadata/_custom_type_script = "uid://csxp6a77ij7sk"
-
 [node name="BulletManager" type="Node2D"]
 script = ExtResource("1_s87c5")
 
 [node name="Player" parent="." instance=ExtResource("2_5m336")]
 position = Vector2(2031, 1523)
+
+[node name="Movement" parent="Player/Root" index="0"]
+next_state = NodePath("../Upgrade")
+
+[node name="Normal" parent="Player/Root/Movement" index="0"]
+next_state = NodePath("../Circling")
+
+[node name="Level1" parent="Player/Root/Upgrade" index="1"]
+next_state = NodePath("../Level2")
+
+[node name="Level2" parent="Player/Root/Upgrade" index="2"]
+next_state = NodePath("../Level3")
 
 [node name="BulletProps" type="Node2D" parent="."]
 
@@ -472,7 +456,7 @@ metadata/_custom_type_script = "uid://c8ydhn2yvq3dc"
 curve = SubResource("Curve2D_cff3j")
 script = ExtResource("10_bvdue")
 id = "EggCircleReturning"
-pattern = SubResource("NavigationPolygon_7q45u")
+pattern = ExtResource("23_w2k3w")
 metadata/_custom_type_script = "uid://c8ydhn2yvq3dc"
 
 [node name="SpawnPoint" type="Node2D" parent="."]
