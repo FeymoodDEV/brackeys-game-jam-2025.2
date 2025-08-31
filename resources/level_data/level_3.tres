@@ -31,9 +31,9 @@
 script = ExtResource("23_hooar")
 level_name = "N.O.M. Hideout
 Level : 3"
-map_time = 60.0
-map_width = 40
-map_height = 30
+map_time = 5.0
+map_width = 80
+map_height = 60
 cluster_chance = 0.01
 cluster_size = 4
 border_scene = ExtResource("15_sffhl")

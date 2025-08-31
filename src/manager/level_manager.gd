@@ -83,6 +83,7 @@ func _on_game_started():
 	pass
 
 func _on_game_ended():
+	level_index = 0;
 	$BG.hide();
 	pass	
 
@@ -293,6 +294,7 @@ func _on_main_menu():
 	clear_everything()
 
 	player.reparent(self);
+	level_index = 0;
 	level_node.queue_free();
 	EventManager.game_ended.emit();
 
