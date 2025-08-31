@@ -59,6 +59,7 @@ signal freeing
 func die() -> void:
 	play_sound(enemy_data.death_sfx)
 	freeing.emit()
+	EventManager.enemy_died.emit(enemy_data.score_value)
 	queue_free.call_deferred()
 
 func handle_movement(delta: float) -> void:

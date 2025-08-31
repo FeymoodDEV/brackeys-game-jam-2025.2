@@ -4,6 +4,9 @@ signal player_ready(path)
 signal player_setup(dictionary)
 signal player_killed()
 
+signal enemy_died(score_value)
+signal score_changed(new_value, new_multiplier)
+
 signal menu_loaded;
 signal game_started;
 
