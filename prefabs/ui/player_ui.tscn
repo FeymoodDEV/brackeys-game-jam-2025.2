@@ -777,8 +777,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_hj0ct")
 theme_override_colors/font_color = Color(0.533326, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "YOU ARE DEAD BITCH"
+theme_override_font_sizes/font_size = 48
+text = "YOU ARE DEAD!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
