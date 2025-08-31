@@ -1,7 +1,7 @@
 extends AudioStreamPlayer
 
-signal change_bgm(track: AudioStream)
+signal bgm_changed(track: AudioStream)
 
-func _on_change_bgm(track: AudioStream) -> void:
+func change_bgm(track: AudioStream) -> void:
 	stream = track
 	play()

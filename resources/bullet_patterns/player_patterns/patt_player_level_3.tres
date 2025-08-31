@@ -1,0 +1,29 @@
+[gd_resource type="NavigationPolygon" script_class="PatternLine" load_steps=2 format=3 uid="uid://bmfjycd8jhs3i"]
+
+[ext_resource type="Script" uid="uid://c8a1x50bjmkue" path="res://addons/BulletUpHell/SpawnPatterns/PatternLine.gd" id="1_rg4yx"]
+
+[resource]
+resource_name = "PatternLine"
+script = ExtResource("1_rg4yx")
+offset = Vector2(2, 28.02)
+center = 1
+symmetric = true
+bullet = "PBullet"
+nbr = 3
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("")
+forced_lookat_mouse = true
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+metadata/_custom_type_script = "uid://c8a1x50bjmkue"

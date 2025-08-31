@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk2lujutq3gnf"]
+
+[ext_resource type="Script" uid="uid://ch4bd6uui6twp" path="res://src/pickup/xp_orb.gd" id="1_c57qr"]
+[ext_resource type="Texture2D" uid="uid://b82fxh5qe4osi" path="res://assets/sprites/pickups/xp_orb.png" id="1_fkvdb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fkvdb"]
+radius = 42.0476
+
+[node name="XpOrb" type="Area2D" groups=["pickup"]]
+script = ExtResource("1_c57qr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fkvdb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fkvdb")

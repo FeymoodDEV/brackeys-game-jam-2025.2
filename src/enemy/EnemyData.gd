@@ -7,12 +7,16 @@ class_name EnemyData
 @export var health: float = 100.0;
 @export var damage: float = 10.0;
 @export var xp_worth: float = 10.0;
+@export var score_value: int = 100
 
 @export_group("Visuals")
 @export var sprite: Texture2D
 @export var color_palette: ColorPalette;
-@export var modulate_color: Color;
+@export var modulate_color: Color = Color.WHITE;
 @export var scale: float = 1.0
 
 @export_group("Effects")
+@export var damage_sfx: AudioStream = preload("res://assets/sounds/enemy/damaged.ogg")
 @export var death_vfx: PackedScene;
+@export var death_sfx: AudioStream = preload("res://assets/sounds/enemy/dead.ogg")
+@export var shoot_sfx: AudioStream = preload("res://assets/sounds/enemy/shoot.ogg")

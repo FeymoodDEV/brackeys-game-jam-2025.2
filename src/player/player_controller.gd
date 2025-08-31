@@ -27,6 +27,7 @@ var look_direction : Vector2
 @export var dash_duration : float = 0.5
 ## Velocity lost per tick during dash in units per tick.
 @export var dash_friction : float = 10.0
+@onready var dash_vfx: Sprite2D = $NomdashVFX
 #endregion
 
 #region Targeting variables
@@ -41,21 +42,25 @@ signal upgrade_level_changed
 var current_level : int = 0
 ## Progress towards upgrading. Increases when absorbing bullets with nom dash,
 ## consumed by  when leveling up
-var absorb_pts : int = 0 :
+var absorb_pts : float = 0 :
 	set(val):
+		if current_level >= max_level: return
+		
 		absorb_pts = val
 		
 		var pending_signal : bool = false
-		while current_level < max_level and absorb_pts >= upgrade_threshold:
+		
+		while absorb_pts >= upgrade_threshold * (1 + current_level):
 			absorb_pts -= upgrade_threshold
-			current_level += 1
 			pending_signal = true
+			level_up()
+		
 		if pending_signal: upgrade_level_changed.emit()
 
 ## Points required for upgrade. Mind: this is constant. To make the cost increase
 ## for higher levels, we'll use multipliers.
 @export_category("Upgrading")
-@export var upgrade_threshold : int = 10
+@export var upgrade_threshold : int = 50
 ## Max upgrade level. Starts at zero!!!
 @export var max_level : int = 2
 
@@ -63,27 +68,49 @@ var absorb_pts : int = 0 :
 @onready var nombox_shape: CollisionShape2D = $NomDashAoE/NomboxShape
 @onready var hitbox_shape: CollisionShape2D = $HitboxShape
 @onready var gun: Node2D = $Gun
+
+## Per upgrade level multiplier to absorb points gained.
+var absorb_pts_multiplier : float = 1.0
 #endregion
 
 #region Health
 @export_category("Health")
+@export var base_health: float = 50
 var health: float
-@export var max_health: float = 100
+var max_health: float
+@export var IFRAME_DURATION: float = 1.0
 @export var death_vfx: PackedScene = preload("res://prefabs/particles/explode_vfx.tscn")
 
-signal player_dead
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+var isDead: bool = false
+var is_invulnerable: bool = false
+
 signal player_damaged
+signal player_dead
 #endregion
 
+#region Modifiers
+@onready var modifier_handler: ModifierHandler = $ModifierHandler
+#endregion
+
+@onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var audio: = $Audio
+
+
 func set_active(value: bool = true):
+	isDead = !value;
+	
 	propagate_call("set_process", [value])
 	propagate_call("set_physics_process", [value])
-	propagate_call("set_process", [value])
-	propagate_call("set_physics_process", [value])
+	propagate_call("set_process_input", [value])
 	if value:
 		show();
 	else:
 		hide();
+		
+func _on_level_started(time, level):
+	set_active(true);
+	respawn();
 
 #Re-enable processing when the game starts
 func _on_game_started():
@@ -99,15 +126,19 @@ func _ready():
 	propagate_call("set_physics_process", [false])
 	hide();
 	
+	max_health = base_health
 	health = max_health
 	
 	EventManager.player_setup.emit({
-		"progress_max_value": 100, 
+		"progress_max_value": upgrade_threshold, 
 		"health_max_value": max_health,
 	})
 
 	EventManager.game_started.connect(_on_game_started)
 	EventManager.game_ended.connect(_on_game_ended)
+	
+	EventManager.level_restart.connect(_on_level_started);
+	EventManager.level_started.connect(_on_level_started);
 	
 	EventManager.player_ready.emit(get_path())
 	
@@ -121,6 +152,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("level_down"):
 		# TODO: add VFX, and potentially a transitory state
 		level_down()
+	
+	modifier_handler.update(self)
 
 ## Returns currently inputted direction.
 func get_movement_vector() -> Vector2:
@@ -148,11 +181,21 @@ func get_look_relative_vector() -> Vector2:
 	return look_relative
 
 ## Reduces health by `damage` and signals the change. 
-func apply_damage(damage: int, knockback: float, global_position: Vector2, direction: Vector2):
+func apply_damage(damage: int, knockback: float = 0, global_position: Vector2 = Vector2.ZERO, direction: Vector2 = Vector2.ZERO):
+	if isDead: return
+	if is_invulnerable: return
+	
+	print("Damage taken: %s at position %s" % [str(damage), str(global_position)])
+	
 	player_damaged.emit()
 	
+	animation_player.play("damaged")
+	
 	health -= damage
-	EventManager.emit_signal("health_changed", health)
+	EventManager.emit_signal("health_changed", health, max_health)
+	
+	# Handle iframes:
+	modifier_handler.add_child(InvulnModifier.new(IFRAME_DURATION))
 	
 	if health <= 0:
 		die()
@@ -160,19 +203,83 @@ func apply_damage(damage: int, knockback: float, global_position: Vector2, direc
 	# TODO: implement knockback.
 
 func die() -> void:
-	print("DIE")
 	player_dead.emit()
-	
 	var vfx = death_vfx.instantiate()
 	add_child(vfx)
 	vfx.top_level = true
 	vfx.global_position = global_position
 	vfx.play(&"default")
-	player_dead.emit(player_dead)
 	
+	isDead = true
+	set_active(false);
+	
+	EventManager.player_killed.emit()
+	print("Player dead!")
+
+func respawn() -> void:	
+	print("Respawning!")
+	isDead = false
+	$ShipSprite.show()
+	$HitboxShape.disabled = false
+	max_health = base_health
+	health = max_health
+	absorb_pts = 0
+	current_level = 0
+	EventManager.player_setup.emit({
+		"progress_max_value": upgrade_threshold, 
+		"health_max_value": max_health,
+	})
+	$Root/Upgrade.change_state("Level1")
 
 ## Reduces upgrade level by one. 
 func level_down() -> void:
-	if current_level > 0:
-		current_level -= 1
-		upgrade_level_changed.emit()
+	if current_level <= 0: return
+	
+	current_level -= 1
+	upgrade_level_changed.emit()
+	health = max(health+2, max_health)
+	
+	$LevelChange.emitting = true
+	
+	EventManager.emit_signal("health_changed", health, max_health)
+	print("Leveled down to %s" % str(current_level))
+
+func level_up() -> void:
+	current_level += 1
+	
+	$LevelChange.emitting = true
+	print("Leveled up to %s" % str(current_level))
+	
+	# fey: we don't want to give the player more health based on level;
+	# the risk element is based on your size
+	# if you counteract a bigger ship with more health there's no point
+	#max_health = base_health * (current_level + 1)
+	#health = max_health
+	#EventManager.emit_signal("health_changed", max_health, max_health)
+
+func _absorb_bullet(rid, points) -> void:	
+	absorb_pts += points * absorb_pts_multiplier;
+	print("Absorbing bullet %s for %s * %s = %s points" % [str(rid), str(points), str(absorb_pts_multiplier), str(points * absorb_pts_multiplier)])
+	
+	# handle anim
+	var tween = get_tree().create_tween()
+	tween.tween_property(sprite_2d, "modulate", Color(2.0, 2.0, 2.0, 1.0), 0.1)
+	tween.tween_property(sprite_2d, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.1).set_trans(Tween.TRANS_CIRC)
+	
+	EventManager.progress_changed.emit(absorb_pts, upgrade_threshold * (current_level + 1));
+	Spawning.delete_bullet(rid);
+
+func _on_item_pickup_radius_area_entered(area):
+	if area is Pickup:
+		print("Picked up %s" % str(area.get_parent()))
+		area.active = true;
+		if area is XPOrb:
+			absorb_pts += area.xp_amount;
+			EventManager.progress_changed.emit(absorb_pts, upgrade_threshold * (current_level + 1));
+			area.queue_free()
+		else:
+			area.global_position = global_position;
+			area.reparent.call_deferred(self);
+			area.player = self;
+			area.picked_up()
+	pass # Replace with function body.

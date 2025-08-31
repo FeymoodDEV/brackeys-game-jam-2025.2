@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://cl008a18f1mtu"]
+
+[ext_resource type="Script" uid="uid://c7bl3kjdgqh2d" path="res://src/boss/attacks/milk_laser.gd" id="1_c4lni"]
+[ext_resource type="Texture2D" uid="uid://du0lohnj4qe4f" path="res://assets/sprites/attack_indicator/laser_indicator1.png" id="2_ch6wb"]
+[ext_resource type="Texture2D" uid="uid://ccly2td7fm11f" path="res://assets/sprites/attack_indicator/laser_indicator2.png" id="3_gmn4d"]
+[ext_resource type="Texture2D" uid="uid://co1vq7essllxi" path="res://assets/sprites/attack_indicator/laser_indicator3.png" id="4_hd4qr"]
+[ext_resource type="Texture2D" uid="uid://cv7nujmrj3uup" path="res://assets/sprites/attack_indicator/laser_indicator4.png" id="5_drw0w"]
+[ext_resource type="Texture2D" uid="uid://c766nvet0xoyb" path="res://assets/sprites/attack_indicator/laser_indicator5.png" id="6_0646o"]
+[ext_resource type="Texture2D" uid="uid://4ggj1t674vsc" path="res://assets/sprites/attack_indicator/laser_indicator6.png" id="7_klmmb"]
+[ext_resource type="Texture2D" uid="uid://0oss5vr8fbms" path="res://assets/sprites/attack_indicator/laser.png" id="8_evld4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_56v1a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ch6wb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gmn4d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hd4qr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_drw0w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0646o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_klmmb")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kiuj3"]
+radius = 11.0
+
+[node name="MilkLaser" type="Area2D"]
+collision_layer = 0
+monitoring = false
+monitorable = false
+script = ExtResource("1_c4lni")
+
+[node name="Laser" type="Sprite2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(0, -70)
+texture = ExtResource("8_evld4")
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_56v1a")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kiuj3")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="animation" to="." method="_on_animation_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

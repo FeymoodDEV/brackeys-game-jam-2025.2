@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://dori44b46p7y3"]
+
+[ext_resource type="Script" uid="uid://5yo5iu6shjs3" path="res://addons/xsm/state.gd" id="1_3k5ej"]
+[ext_resource type="Script" uid="uid://v6qncoss0ivu" path="res://addons/xsm/state_loop.gd" id="2_vhilc"]
+[ext_resource type="Script" uid="uid://b22hvoowka3oo" path="res://src/boss/states/pattern_in_six_dir_state.gd" id="3_n7qui"]
+[ext_resource type="Script" uid="uid://baagqy81kjrdl" path="res://src/boss/states/attack_spawn_on_player_state.gd" id="4_5hd38"]
+[ext_resource type="PackedScene" uid="uid://cl008a18f1mtu" path="res://prefabs/attacks/milk_laser.tscn" id="5_wuljm"]
+
+[node name="stage_2" type="Node"]
+script = ExtResource("1_3k5ej")
+history_size = 0
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="loop_1" type="Node" parent="."]
+script = ExtResource("2_vhilc")
+loop_mode = 1
+exit_state = NodePath("")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://v6qncoss0ivu"
+
+[node name="State2" type="Node" parent="loop_1"]
+script = ExtResource("3_n7qui")
+state_duration = 99999.0
+pattern = "EggCircleReturning"
+repeat = true
+repeat_after = 7.0
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"
+
+[node name="loop_2" type="Node" parent="."]
+script = ExtResource("2_vhilc")
+loop_mode = 1
+exit_state = NodePath("")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://v6qncoss0ivu"
+
+[node name="State" type="Node" parent="loop_2"]
+script = ExtResource("4_5hd38")
+attack_scene = ExtResource("5_wuljm")
+attack_amount = 999999
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://5yo5iu6shjs3"

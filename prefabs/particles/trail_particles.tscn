@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbh6mhsyfiypt"]
+
+[ext_resource type="Texture2D" uid="uid://b18crkv7x2kpf" path="res://assets/sprites/player/thruster-particle.png" id="1_3jwt3"]
+[ext_resource type="Script" path="res://src/player/trail_particles.gd" id="2_uhsea"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ris0"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1.5, 1.5, 1.5)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.23517e-06
+radial_accel_max = 13.99
+
+[node name="TrailParticles" type="GPUParticles2D"]
+texture = ExtResource("1_3jwt3")
+process_material = SubResource("ParticleProcessMaterial_8ris0")
+script = ExtResource("2_uhsea")

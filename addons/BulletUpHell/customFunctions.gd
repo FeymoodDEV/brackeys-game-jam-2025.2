@@ -80,6 +80,8 @@ func bullet_collide_area(area_rid:RID,area:Area2D,area_shape_index:int,local_sha
 	
 	############## emit signal
 	Spawning.bullet_collided_area.emit(area,area_shape_index,B,local_shape_index,shared_area)
+
+		
 	
 	############## uncomment to manage trigger collisions with area collisions
 #	if B["trig_types"].has("TrigCol"):

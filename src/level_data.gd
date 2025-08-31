@@ -1,13 +1,12 @@
 extends Resource
 class_name LevelData;
 
+@export_multiline var level_name: String;
 @export var map_time: float = 10;
 
 ## map width and height references cell count
 @export var map_width: int = 40
 @export var map_height: int = 30
-
-@export var cell_size: int = 64 #px
 
 ## so blocks are being placed in clusters rather scattered around
 @export var cluster_chance: float = 0.01
@@ -20,4 +19,8 @@ class_name LevelData;
 @export var enemy_datas: Array[EnemyData]
 @export var background_tiles: Array[Texture]
 
+@export var bgm : AudioStream = preload("res://assets/sounds/music/Biscy_Business_01.ogg")
+
 @export var boss_scene: PackedScene
+
+@export var packed_items: Array[PackedScene]

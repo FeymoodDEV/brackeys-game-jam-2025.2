@@ -21,15 +21,18 @@ func _on_enter(args) -> void:
 	# render player intangible
 	target.set_collision_layer_value(1, false)
 	
+	target.anim.play('dash')
+	target.dash_vfx.global_rotation = target.velocity.angle() + deg_to_rad(90)
 	
 	dash_velocity = target.dash_power
 	dash_vector = args.normalized() # this should be a vector2 direction
 	# we normalize it again just in case but it should not be necessary
 	
-	print("dash_vector: %s" % dash_vector)
+	print("Dashing towards %s" % dash_vector)
 	remaining_time = target.dash_duration
 
 func _on_update(_delta) -> void:
+	if target.isDead: return
 	# move player
 	target.velocity = dash_vector * dash_velocity
 	target.move_and_slide()
@@ -55,12 +58,10 @@ func _on_exit(args) -> void:
 	dash_velocity = 0
 	dash_vector = Vector2.ZERO
 	is_dashing = false;
-	
+
 
 func _absorb_bullet(area:Area2D,area_shape_index:int, bullet:Dictionary,local_shape_index:int,shared_area:Area2D) -> void:
 	var rid = Spawning.shape_rids.get(shared_area.name, {}).get(local_shape_index)
-	
+	var points = bullet["props"]["absorb_points"]
 	if is_dashing and area.name == "NomDashAoE":
-		target.absorb_pts += bullet["props"]["absorb_points"];
-		EventManager.progress_changed.emit(target.absorb_pts);
-		Spawning.delete_bullet(rid);
+		(target as PlayerController)._absorb_bullet(rid, points);

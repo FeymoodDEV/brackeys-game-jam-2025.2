@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name BossControler
 
 @export var boss_name: String = "Jeff"
+@export var stage_1: State
+@export var stage_2: State
 
 @export_group("Gameplay")
 @export var speed: float = 600.0
@@ -18,10 +20,11 @@ class_name BossControler
 @export var death_vfx: PackedScene;
 
 var health: float
+@onready var anim: AnimationPlayer = $AnimationPlayer
 
 func _ready():
 	health = max_health
-	EventManager.emit_signal("setup_boss_ui", max_health, boss_name)
+	EventManager.emit_signal("setup_boss_ui", max_health, boss_name, sprite)
 
 func spawn_pattern(pattern: String, pos_offset: Vector2 = Vector2.ZERO, rot_offset: int = 0) -> void:
 	Spawning.spawn({
@@ -34,6 +37,19 @@ func apply_damage(damage: int, knockback: float, global_position: Vector2, direc
 	health -= damage;
 	
 	EventManager.emit_signal("boss_health_changed", health)
+	
+	if health <= max_health / 2 and stage_2:
+		stage_1.disabled = true
+		stage_1.exit()
+		for c in stage_1.get_children():
+			if c is State:
+				c.exit()
+				c.disabled = true
+		
+		stage_2.enter()
+		for c in stage_2.get_children():
+			if c is State:
+				c._init_status_active()
 	
 	if health <= 0:
 		die()

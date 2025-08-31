@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dylrycs1bm5q2"]
+
+[ext_resource type="Script" uid="uid://cao72wfempcc7" path="res://src/pickup/bomb.gd" id="1_tpc3l"]
+[ext_resource type="Texture2D" uid="uid://dj4bab2m71bjl" path="res://assets/sprites/pickups/bomb.png" id="2_tpc3l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fkvdb"]
+radius = 22.0
+
+[node name="Bomb" type="Area2D" groups=["pickup"]]
+script = ExtResource("1_tpc3l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tpc3l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fkvdb")

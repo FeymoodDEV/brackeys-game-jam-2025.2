@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://bq8imdqkwil54"]
+[gd_scene load_steps=18 format=3 uid="uid://bq8imdqkwil54"]
 
 [ext_resource type="Script" uid="uid://crdkg38w76q45" path="res://src/boss/boss_controller.gd" id="1_4wwgs"]
-[ext_resource type="Texture2D" uid="uid://cuungxd61dxw0" path="res://assets/sprites/bullet/chocolate_bullet.png" id="3_iivlh"]
+[ext_resource type="Texture2D" uid="uid://jaln4ui4a8fq" path="res://assets/sprites/bosses/choco_boss_lines_outline.png" id="3_vrabn"]
 [ext_resource type="Script" uid="uid://v6qncoss0ivu" path="res://addons/xsm/state_loop.gd" id="4_vrabn"]
 [ext_resource type="Script" uid="uid://b22hvoowka3oo" path="res://src/boss/states/pattern_in_six_dir_state.gd" id="5_mopdb"]
 [ext_resource type="Script" uid="uid://wru30b4sid8w" path="res://src/boss/states/minion_spawn_state.gd" id="6_rgtop"]
@@ -12,21 +12,60 @@
 [ext_resource type="AudioStream" uid="uid://cjhw80h3cj4fb" path="res://assets/sounds/enemy/damaged.ogg" id="11_hts6l"]
 [ext_resource type="Resource" uid="uid://dxsad11r8sdxi" path="res://resources/boss_patterns/chocolate_v_shape_pattern.tres" id="11_sufpb"]
 [ext_resource type="AudioStream" uid="uid://cblbt71io5gvo" path="res://assets/sounds/enemy/dead.ogg" id="12_iivlh"]
+[ext_resource type="PackedScene" uid="uid://b1gylpwntx0ac" path="res://prefabs/bosses/boss_border.tscn" id="13_iivlh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysfue"]
 size = Vector2(128, 128)
 
-[node name="ChocolateKing" type="CharacterBody2D"]
+[sub_resource type="Animation" id="Animation_cvyo1"]
+resource_name = "attack"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.220629, 0.7),
+"transitions": PackedFloat32Array(2.82843, 0.517632, 0.517632),
+"update": 0,
+"values": [Vector2(2.1931, 2.1931), Vector2(1.9131, 2.5131), Vector2(2.1931, 2.1931)]
+}
+
+[sub_resource type="Animation" id="Animation_521e7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.1931, 2.1931)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_woxuc"]
+_data = {
+&"RESET": SubResource("Animation_521e7"),
+&"attack": SubResource("Animation_cvyo1")
+}
+
+[node name="ChocolateKing" type="CharacterBody2D" groups=["boss"]]
 collision_layer = 34
 collision_mask = 0
 script = ExtResource("1_4wwgs")
 boss_name = "Chocolate King"
-max_health = 10.0
+max_health = 500.0
+sprite = ExtResource("3_vrabn")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(-5.72205e-06, -5.72205e-06)
-scale = Vector2(1.6, 1.6)
-texture = ExtResource("3_iivlh")
+position = Vector2(-0.599999, -12.1379)
+scale = Vector2(2.1931, 2.1931)
+texture = ExtResource("3_vrabn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ysfue")
@@ -82,3 +121,10 @@ stream = ExtResource("11_hts6l")
 
 [node name="Dead" type="AudioStreamPlayer2D" parent="EnemySounds"]
 stream = ExtResource("12_iivlh")
+
+[node name="boss_border" parent="." instance=ExtResource("13_iivlh")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_woxuc")
+}

@@ -1,0 +1,89 @@
+[gd_resource type="PackedDataContainer" script_class="BulletPropsExtend" load_steps=7 format=3 uid="uid://cc33ff14dikt2"]
+
+[ext_resource type="Script" uid="uid://bapo6jcdsje8y" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="1_yvgk4"]
+[ext_resource type="PackedScene" uid="uid://b2mqu7dv1l8a3" path="res://prefabs/particles/red_spack_vfx.tscn" id="2_inncp"]
+[ext_resource type="Script" uid="uid://dvueqbi8eexbm" path="res://src/bullethell/BulletPropsExtend.gd" id="3_rsyhn"]
+[ext_resource type="Texture2D" uid="uid://bfj1tfa0m8pun" path="res://assets/sprites/bullet/player_bullet_2.png" id="4_yvgk4"]
+
+[sub_resource type="Curve" id="Curve_dub4d"]
+
+[sub_resource type="Curve" id="Curve_bvdue"]
+
+[resource]
+script = ExtResource("3_rsyhn")
+texture = ExtResource("4_yvgk4")
+pierce_count = 0
+knockback = 0.0
+absorb_points = 1
+sprite_scale = 0.25
+packed_hit_vfx = ExtResource("2_inncp")
+anim_more = Array[ExtResource("1_yvgk4")]([])
+damage = 2.0
+speed = 1000.0
+scale = 1.0
+angle = 0.0
+groups = PackedStringArray()
+spec_bounces = 0
+spec_no_collision = false
+spec_modulate_loop = 0.0
+spec_trail_length = 0.0
+spec_trail_width = 0.0
+spec_trail_modulate = Color(1, 1, 1, 1)
+spec_rotating_speed = 0.0
+death_after_time = 0.5
+death_outside_box = Rect2(0, 0, 0, 0)
+death_from_collision = false
+a_direction_equation = ""
+a_curve_movement = 0
+a_speed_multiplier = SubResource("Curve_dub4d")
+a_speed_multi_iterations = 0
+a_speed_multi_scale = 0.0
+trigger_container = ""
+trigger_wait_for_shot = true
+homing_type = 0
+homing_target = NodePath("")
+homing_steer = 0.0
+homing_time_start = 0.0
+homing_duration = 999.0
+scale_multi_iterations = 0
+scale_multiplier = SubResource("Curve_bvdue")
+scale_multi_scale = 1.0
+r_randomisation_chances = 1.0
+r_speed_choice = PackedFloat32Array()
+r_speed_variation = Vector3(0, 0, 0)
+r_scale_choice = PackedFloat32Array()
+r_scale_variation = Vector3(0, 0, 0)
+r_angle_choice = PackedFloat32Array()
+r_angle_variation = Vector3(0, 0, 0)
+r_group_choice = []
+r_bounce_choice = PackedInt32Array()
+r_bounce_variation = Vector3(0, 0, 0)
+r_no_coll_chances = 0.0
+r_modulate_variation = Vector3(0, 0, 0)
+r_trail_length_variation = Vector3(0, 0, 0)
+r_trail_color_variation = Vector3(0, 0, 0)
+r_rotating_variation = Vector3(0, 0, 0)
+r_death_after_choice = PackedFloat32Array()
+r_death_after_variation = Vector3(0, 0, 0)
+r_death_outside_chances = 0.0
+r_dir_equation_choice = PackedStringArray()
+r_curve_choice = []
+r_speed_multi_curve_choice = []
+r_speed_multi_iter_variation = Vector3(0, 0, 0)
+r_speed_multi_scale_variation = Vector3(0, 0, 0)
+r_trigger_choice = PackedStringArray()
+r_wait_for_shot_chances = 0.0
+r_homing_target_choice = []
+r_special_target_choice = PackedStringArray()
+r_group_target_choice = PackedStringArray()
+r_pos_target_choice = PackedVector2Array()
+r_steer_choice = PackedFloat32Array()
+r_steer_variation = Vector3(0, 0, 0)
+r_homing_delay_choice = PackedFloat32Array()
+r_homing_delay_variation = Vector3(0, 0, 0)
+r_homing_dur_choice = PackedFloat32Array()
+r_homing_dur_variation = Vector3(0, 0, 0)
+r_scale_multi_curve_choice = []
+r_scale_multi_iter_variation = Vector3(0, 0, 0)
+r_scale_multi_scale_variation = Vector3(0, 0, 0)
+metadata/_custom_type_script = "uid://dvueqbi8eexbm"
