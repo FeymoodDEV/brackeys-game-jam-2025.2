@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://3yj03daybfvf"]
+[gd_scene load_steps=17 format=3 uid="uid://3yj03daybfvf"]
 
 [ext_resource type="Script" uid="uid://8qe1bhp35ve4" path="res://src/menu/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="PackedScene" uid="uid://2ads1o1pbagk" path="res://scenes/levels/level_1.tscn" id="2_ekxnf"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://hilih370gh88" path="res://assets/sprites/end-screen.png" id="8_jk1qb"]
 [ext_resource type="FontFile" uid="uid://dgcbklepstex8" path="res://assets/fonts/Kenney Thick.ttf" id="9_5dd4i"]
 [ext_resource type="Texture2D" uid="uid://dke4jp74yomd3" path="res://assets/sprites/ui/LvlBar.png" id="9_rcqid"]
+[ext_resource type="Texture2D" uid="uid://c2o1lagj6g0ol" path="res://assets/sprites/pickups/magnet.png" id="12_1ajci"]
+[ext_resource type="Texture2D" uid="uid://dj4bab2m71bjl" path="res://assets/sprites/pickups/bomb.png" id="13_7b55j"]
 
 [sub_resource type="Theme" id="Theme_lgwnu"]
 default_font = ExtResource("9_5dd4i")
@@ -215,6 +217,10 @@ anchor_left = 0.401563
 anchor_top = 0.830556
 anchor_right = 0.6
 anchor_bottom = 0.944444
+offset_left = 147.0
+offset_top = 1.0
+offset_right = 147.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
@@ -227,9 +233,8 @@ metadata/_edit_use_anchors_ = true
 [node name="MoveControls" type="TextureRect" parent="IntroTutorial"]
 anchors_preset = -1
 anchor_left = 0.084375
-anchor_top = 0.102778
 anchor_right = 0.234375
-anchor_bottom = 0.458333
+anchor_bottom = 0.355556
 theme = ExtResource("4_5dd4i")
 metadata/_edit_use_anchors_ = true
 
@@ -272,9 +277,9 @@ Spacebar: N.O.M Dash
 E: Downgrade"
 
 [node name="DashControls" type="TextureRect" parent="IntroTutorial"]
-offset_left = 322.0
+offset_left = 233.0
 offset_top = 8.0
-offset_right = 418.0
+offset_right = 329.0
 offset_bottom = 136.0
 theme = ExtResource("4_5dd4i")
 texture = ExtResource("4_oa1go")
@@ -312,11 +317,12 @@ offset_right = -26.0
 offset_bottom = 124.0
 
 [node name="Label2" type="Label" parent="IntroTutorial/DashControls"]
-layout_mode = 0
-anchor_left = -0.270833
-anchor_top = 1.66406
-anchor_right = 3.27083
-anchor_bottom = 2.19531
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.572917
+anchor_top = 1.47656
+anchor_right = 4.11458
+anchor_bottom = 2.00781
 text = "Stronger means LARGER!
 Downgrade to REGEN HEALTH!"
 metadata/_edit_use_anchors_ = true
@@ -335,10 +341,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -18.0
-offset_top = 81.0
-offset_right = 250.0
-offset_bottom = 145.0
+offset_left = 22.0
+offset_top = 69.0
+offset_right = 290.0
+offset_bottom = 133.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_5dd4i")
@@ -357,6 +363,43 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 texture = ExtResource("6_tbmy8")
 metadata/_edit_use_anchors_ = true
+
+[node name="ItemsList" type="Label" parent="IntroTutorial"]
+offset_left = 10.0
+offset_top = 255.0
+offset_right = 106.0
+offset_bottom = 383.0
+theme = ExtResource("4_5dd4i")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="IntroTutorial/ItemsList"]
+layout_mode = 0
+offset_top = 45.0
+offset_right = 256.0
+offset_bottom = 185.0
+
+[node name="MagnetItemLabel" type="Label" parent="IntroTutorial/ItemsList/VBoxContainer"]
+layout_mode = 2
+text = "Magnet Power:
+Auto-Collects Bullets!"
+
+[node name="Magnet" type="Sprite2D" parent="IntroTutorial/ItemsList/VBoxContainer/MagnetItemLabel"]
+position = Vector2(202, 14)
+texture = ExtResource("12_1ajci")
+
+[node name="BombItemLabel" type="Label" parent="IntroTutorial/ItemsList/VBoxContainer"]
+layout_mode = 2
+text = "Bomb:
+Clears all the Bullets!"
+
+[node name="Bomb" type="Sprite2D" parent="IntroTutorial/ItemsList/VBoxContainer/BombItemLabel"]
+position = Vector2(96, 13)
+texture = ExtResource("13_7b55j")
+
+[node name="XPOrbItemLabel" type="Label" parent="IntroTutorial/ItemsList/VBoxContainer"]
+layout_mode = 2
+text = "Magnet Power:
+Auto-Collects Bullets!"
 
 [node name="EndScreenLayer" type="CanvasLayer" parent="."]
 visible = false
