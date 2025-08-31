@@ -158,7 +158,7 @@ func _level_ready() -> void:
 	
 	timer.start();
 	
-	EventManager.level_started.emit(map_time);
+	EventManager.level_started.emit(map_time, current_level.level_name);
 
 func _on_level_timer_timeout():
 	pass

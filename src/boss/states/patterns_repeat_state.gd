@@ -27,5 +27,7 @@ func _on_timeout(_name: String) -> void:
 		
 	for pattern in patterns:
 		if pattern.name == _name:
+			target.anim.play('attack')
+			await target.anim.animation_finished
 			target.spawn_pattern(pattern.name)
 			add_timer(pattern.name, pattern.repeat_after)

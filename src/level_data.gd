@@ -1,6 +1,7 @@
 extends Resource
 class_name LevelData;
 
+@export_multiline var level_name: String;
 @export var map_time: float = 10;
 
 ## map width and height references cell count
