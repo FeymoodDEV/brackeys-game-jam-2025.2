@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://j4ljg2vl3nfv"]
+[gd_scene load_steps=37 format=3 uid="uid://j4ljg2vl3nfv"]
 
 [ext_resource type="Script" uid="uid://dsiawai5lafl8" path="res://src/manager/ui_manager.gd" id="1_jkj6h"]
 [ext_resource type="Texture2D" uid="uid://cvpcx48cuikco" path="res://assets/sprites/ui/hud.png" id="2_2kqep"]
@@ -10,6 +10,7 @@
 [ext_resource type="LabelSettings" uid="uid://dskob74g8kene" path="res://resources/label_settings/hud_label.tres" id="6_krprk"]
 [ext_resource type="Texture2D" uid="uid://jaln4ui4a8fq" path="res://assets/sprites/bosses/choco_boss_lines_outline.png" id="7_krprk"]
 [ext_resource type="FontFile" uid="uid://dgcbklepstex8" path="res://assets/fonts/Kenney Thick.ttf" id="10_krprk"]
+[ext_resource type="Texture2D" uid="uid://b5f43onrggut0" path="res://assets/dont touch/pinkman.jpg" id="10_wafl3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wafl3"]
 texture = ExtResource("4_wcejd")
@@ -502,6 +503,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_wafl3"]
 length = 0.001
@@ -516,6 +529,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_sgkm8"]
@@ -532,6 +557,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 3),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sgkm8"]
@@ -598,6 +635,7 @@ offset_left = -27.0
 offset_right = 27.0
 offset_bottom = 31.0
 grow_horizontal = 2
+scale = Vector2(1.05553, 1)
 theme = ExtResource("5_hj0ct")
 theme_override_font_sizes/font_size = 30
 text = "05:00"
@@ -690,7 +728,6 @@ text = "CHOCOLATE KING"
 metadata/_edit_use_anchors_ = true
 
 [node name="DeathScreeen" type="Control" parent="."]
-visible = false
 z_index = 1
 layout_mode = 3
 anchors_preset = 15
@@ -735,10 +772,10 @@ vertical_alignment = 1
 
 [node name="Restart" type="Button" parent="DeathScreeen"]
 layout_mode = 0
-offset_left = 283.0
-offset_top = 144.0
-offset_right = 348.0
-offset_bottom = 175.0
+offset_left = 247.0
+offset_top = 133.0
+offset_right = 354.0
+offset_bottom = 166.0
 theme = ExtResource("5_hj0ct")
 theme_override_colors/font_hover_color = Color(0.822013, 0.645975, 3.85046e-07, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wcejd")
@@ -749,10 +786,10 @@ text = "RESPAWN"
 
 [node name="Quit" type="Button" parent="DeathScreeen"]
 layout_mode = 0
-offset_left = 284.0
-offset_top = 176.0
-offset_right = 349.0
-offset_bottom = 207.0
+offset_left = 248.0
+offset_top = 165.0
+offset_right = 313.0
+offset_bottom = 198.0
 theme = ExtResource("5_hj0ct")
 theme_override_colors/font_hover_color = Color(0.822013, 0.645975, 3.85046e-07, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wcejd")
@@ -761,6 +798,16 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_2kqep")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_svfv5")
 text = "QUIT
 "
+
+[node name="TextureRect" type="TextureRect" parent="DeathScreeen"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 64.0
+offset_right = 230.0
+offset_bottom = 245.0
+texture = ExtResource("10_wafl3")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="LevelLoad" type="Control" parent="."]
 layout_mode = 3
@@ -774,6 +821,7 @@ offset_left = 79.0
 offset_top = 49.0
 offset_right = 563.0
 offset_bottom = 152.0
+theme = ExtResource("5_hj0ct")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("10_krprk")
 theme_override_font_sizes/font_size = 21
