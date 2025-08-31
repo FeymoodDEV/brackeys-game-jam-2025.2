@@ -8,6 +8,7 @@ extends Node2D
 
 @export var options_back_btn: Button;
 @export var intro_play_btn: Button;
+@export var credits_back_btn: Button;
 
 @export var bgm: AudioStream = preload("res://assets/sounds/music/Biscuit_Intro.ogg")
 
@@ -62,12 +63,12 @@ func _ready():
 	music_bus = AudioServer.get_bus_index("Music");
 	sfx_bus = AudioServer.get_bus_index("SFX");
 	
-	master_vol_slider.value = -15
+	master_vol_slider.value = -10
 	music_vol_slider.value = -15
 	sfx_vol_slider.value = -15
-	AudioServer.set_bus_volume_db(master_bus, master_vol_slider.value);
-	AudioServer.set_bus_volume_db(music_bus, music_vol_slider.value);
-	AudioServer.set_bus_volume_db(sfx_bus, sfx_vol_slider.value);
+	AudioServer.set_bus_volume_db(master_bus, -12.5);
+	AudioServer.set_bus_volume_db(music_bus, -15);
+	AudioServer.set_bus_volume_db(sfx_bus, -15);
 	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
 	BgmManager.change_bgm(bgm)
@@ -78,6 +79,7 @@ func _ready():
 	quit_btn.pressed.connect(_on_exit_button_pressed);
 	options_back_btn.pressed.connect(_on_options_back_btn_pressed);
 	intro_play_btn.pressed.connect(_on_intro_play_btn_pressed);
+	credits_back_btn.pressed.connect(_on_credits_back_btn_pressed);
 	
 	EventManager.game_started.connect(_on_game_started);
 	EventManager.game_ended.connect(_on_game_ended)
@@ -126,6 +128,10 @@ func _on_exit_button_pressed():
 	main_layer.hide();
 	credits_layer.show();
 	pass
+	
+func _on_credits_back_btn_pressed():
+	main_layer.show();
+	credits_layer.hide();
 
 
 func _on_end_screen_btn_pressed() -> void:

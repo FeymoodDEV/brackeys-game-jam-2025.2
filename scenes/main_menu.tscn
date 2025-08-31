@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://3yj03daybfvf"]
+[gd_scene load_steps=18 format=3 uid="uid://3yj03daybfvf"]
 
 [ext_resource type="Script" uid="uid://8qe1bhp35ve4" path="res://src/menu/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="PackedScene" uid="uid://2ads1o1pbagk" path="res://scenes/levels/level_1.tscn" id="2_ekxnf"]
@@ -15,12 +15,13 @@
 [ext_resource type="Texture2D" uid="uid://dke4jp74yomd3" path="res://assets/sprites/ui/LvlBar.png" id="9_rcqid"]
 [ext_resource type="Texture2D" uid="uid://c2o1lagj6g0ol" path="res://assets/sprites/pickups/magnet.png" id="12_1ajci"]
 [ext_resource type="Texture2D" uid="uid://dj4bab2m71bjl" path="res://assets/sprites/pickups/bomb.png" id="13_7b55j"]
+[ext_resource type="Texture2D" uid="uid://b82fxh5qe4osi" path="res://assets/sprites/pickups/xp_orb.png" id="14_5pajh"]
 
 [sub_resource type="Theme" id="Theme_lgwnu"]
 default_font = ExtResource("9_5dd4i")
 default_font_size = 48
 
-[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("play_btn", "options_btn", "quit_btn", "options_back_btn", "intro_play_btn", "master_vol_slider", "music_vol_slider", "sfx_vol_slider")]
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("play_btn", "options_btn", "quit_btn", "options_back_btn", "intro_play_btn", "credits_back_btn", "master_vol_slider", "music_vol_slider", "sfx_vol_slider")]
 script = ExtResource("1_l6cm7")
 packed_game_scene = ExtResource("2_ekxnf")
 play_btn = NodePath("MainLayer/MenuButtons/PlayBtn")
@@ -28,6 +29,7 @@ options_btn = NodePath("MainLayer/MenuButtons/Options")
 quit_btn = NodePath("MainLayer/MenuButtons/Credits")
 options_back_btn = NodePath("OptionsLayer/OptionsBack")
 intro_play_btn = NodePath("IntroTutorial/IntroPlay")
+credits_back_btn = NodePath("CreditsLayer/CreditsBack")
 master_vol_slider = NodePath("OptionsLayer/PanelContainer/MasterVolume/MasterVolSlider")
 music_vol_slider = NodePath("OptionsLayer/PanelContainer/MusicVolume/MusicVolSlider")
 sfx_vol_slider = NodePath("OptionsLayer/PanelContainer/SFXVolume/SFXVolSlider")
@@ -277,26 +279,6 @@ text = "Back
 "
 
 [node name="IntroTutorial" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="IntroPlay" type="Button" parent="IntroTutorial"]
-anchors_preset = -1
-anchor_left = 0.401563
-anchor_top = 0.830556
-anchor_right = 0.6
-anchor_bottom = 0.944444
-offset_left = 147.0
-offset_top = 1.0
-offset_right = 147.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("4_5dd4i")
-text = "Play Game
-"
-metadata/_edit_use_anchors_ = true
 
 [node name="MoveControls" type="TextureRect" parent="IntroTutorial"]
 anchors_preset = -1
@@ -306,38 +288,41 @@ anchor_bottom = 0.355556
 theme = ExtResource("4_5dd4i")
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayerBullet2" type="Sprite2D" parent="IntroTutorial/MoveControls"]
-position = Vector2(37.3093, 28.3093)
-rotation = -0.316938
-texture = ExtResource("5_lgwnu")
-
-[node name="PlayerBullet4" type="Sprite2D" parent="IntroTutorial/MoveControls"]
-position = Vector2(44.3093, 15.3093)
-rotation = -0.316938
-texture = ExtResource("5_lgwnu")
-
-[node name="PlayerBullet5" type="Sprite2D" parent="IntroTutorial/MoveControls"]
-position = Vector2(51, 3)
-rotation = -0.316938
-texture = ExtResource("5_lgwnu")
-
 [node name="Ship1" type="TextureRect" parent="IntroTutorial/MoveControls"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.15625
-anchor_top = 0.03125
-anchor_right = 0.822917
-anchor_bottom = 0.53125
+anchor_top = 0.226562
+anchor_right = 0.666667
+anchor_bottom = 0.726562
 rotation = 0.588176
 texture = ExtResource("4_rtw2f")
 metadata/_edit_use_anchors_ = true
 
+[node name="PlayerBullet2" type="Sprite2D" parent="IntroTutorial/MoveControls/Ship1"]
+position = Vector2(32.0482, 7.84603)
+rotation = -0.905114
+scale = Vector2(1, 1)
+texture = ExtResource("5_lgwnu")
+
+[node name="PlayerBullet4" type="Sprite2D" parent="IntroTutorial/MoveControls/Ship1"]
+position = Vector2(30.6589, -6.85329)
+rotation = -0.905114
+scale = Vector2(1, 1)
+texture = ExtResource("5_lgwnu")
+
+[node name="PlayerBullet5" type="Sprite2D" parent="IntroTutorial/MoveControls/Ship1"]
+position = Vector2(29.3955, -20.8064)
+rotation = -0.905114
+scale = Vector2(1, 1)
+texture = ExtResource("5_lgwnu")
+
 [node name="Label" type="Label" parent="IntroTutorial/MoveControls"]
 layout_mode = 0
-offset_left = -47.0
-offset_top = 88.0
-offset_right = 175.0
-offset_bottom = 163.0
+offset_left = 50.0
+offset_top = 8.0
+offset_right = 272.0
+offset_bottom = 133.0
+theme_override_font_sizes/font_size = 24
 text = "Mouse: Aim
 Left Mouse: Shoot
 Right Mouse: Lock-On 
@@ -345,9 +330,9 @@ Spacebar: N.O.M Dash
 E: Downgrade"
 
 [node name="DashControls" type="TextureRect" parent="IntroTutorial"]
-offset_left = 233.0
+offset_left = 301.0
 offset_top = 8.0
-offset_right = 329.0
+offset_right = 397.0
 offset_bottom = 136.0
 theme = ExtResource("4_5dd4i")
 texture = ExtResource("4_oa1go")
@@ -365,8 +350,8 @@ anchor_left = 0.15625
 anchor_top = 0.03125
 anchor_right = 0.822917
 anchor_bottom = 0.53125
+offset_bottom = 31.0
 texture = ExtResource("4_rtw2f")
-metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="IntroTutorial/DashControls"]
 layout_mode = 0
@@ -387,10 +372,10 @@ offset_bottom = 124.0
 [node name="Label2" type="Label" parent="IntroTutorial/DashControls"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.572917
-anchor_top = 1.47656
-anchor_right = 4.11458
-anchor_bottom = 2.00781
+anchor_left = -0.09375
+anchor_top = 1.48438
+anchor_right = 3.44791
+anchor_bottom = 2.01563
 text = "Stronger means LARGER!
 Downgrade to REGEN HEALTH!"
 metadata/_edit_use_anchors_ = true
@@ -433,41 +418,67 @@ texture = ExtResource("6_tbmy8")
 metadata/_edit_use_anchors_ = true
 
 [node name="ItemsList" type="Label" parent="IntroTutorial"]
-offset_left = 10.0
-offset_top = 255.0
-offset_right = 106.0
-offset_bottom = 383.0
+offset_left = 16.0
+offset_top = 174.0
+offset_right = 112.0
+offset_bottom = 302.0
 theme = ExtResource("4_5dd4i")
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="IntroTutorial/ItemsList"]
 layout_mode = 0
-offset_top = 45.0
-offset_right = 256.0
-offset_bottom = 185.0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 766.0
+offset_bottom = 203.0
 
 [node name="MagnetItemLabel" type="Label" parent="IntroTutorial/ItemsList/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Magnet Power:
 Auto-Collects Bullets!"
 
 [node name="Magnet" type="Sprite2D" parent="IntroTutorial/ItemsList/VBoxContainer/MagnetItemLabel"]
-position = Vector2(202, 14)
+position = Vector2(156, 11)
 texture = ExtResource("12_1ajci")
 
 [node name="BombItemLabel" type="Label" parent="IntroTutorial/ItemsList/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Bomb:
 Clears all the Bullets!"
 
 [node name="Bomb" type="Sprite2D" parent="IntroTutorial/ItemsList/VBoxContainer/BombItemLabel"]
-position = Vector2(96, 13)
+position = Vector2(70, 9)
 texture = ExtResource("13_7b55j")
 
 [node name="XPOrbItemLabel" type="Label" parent="IntroTutorial/ItemsList/VBoxContainer"]
 layout_mode = 2
-text = "Magnet Power:
-Auto-Collects Bullets!"
+theme_override_font_sizes/font_size = 24
+text = "XP Orb:
+Instant XP!"
+
+[node name="XpOrb" type="Sprite2D" parent="IntroTutorial/ItemsList/VBoxContainer/XPOrbItemLabel"]
+position = Vector2(86, 11)
+texture = ExtResource("14_5pajh")
+
+[node name="IntroPlay" type="Button" parent="IntroTutorial"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -71.5
+offset_top = -58.0
+offset_right = 71.5
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5dd4i")
+text = "Start Game
+"
 
 [node name="EndScreenLayer" type="CanvasLayer" parent="."]
 visible = false
