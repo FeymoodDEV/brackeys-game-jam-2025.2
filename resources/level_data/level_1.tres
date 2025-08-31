@@ -29,6 +29,8 @@
 
 [resource]
 script = ExtResource("11_u605j")
+level_name = "Chocolate lair
+Level : 1"
 map_time = 30.0
 map_width = 80
 map_height = 60

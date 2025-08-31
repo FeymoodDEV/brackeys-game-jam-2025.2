@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvsie1ld28fe8"]
+[gd_scene load_steps=15 format=3 uid="uid://cvsie1ld28fe8"]
 
 [ext_resource type="Script" uid="uid://crdkg38w76q45" path="res://src/boss/boss_controller.gd" id="1_t30ok"]
 [ext_resource type="Texture2D" uid="uid://byh2nqvgn7d44" path="res://assets/sprites/bosses/sugar_cube_queen_outline.png" id="2_uaams"]
@@ -14,6 +14,43 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysfue"]
 size = Vector2(128, 128)
 
+[sub_resource type="Animation" id="Animation_cvyo1"]
+resource_name = "attack"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.220629, 0.7),
+"transitions": PackedFloat32Array(2.82843, 0.517632, 0.517632),
+"update": 0,
+"values": [Vector2(2.1931, 2.1931), Vector2(1.9131, 2.5131), Vector2(2.1931, 2.1931)]
+}
+
+[sub_resource type="Animation" id="Animation_521e7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.1931, 2.1931)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_woxuc"]
+_data = {
+&"RESET": SubResource("Animation_521e7"),
+&"attack": SubResource("Animation_cvyo1")
+}
+
 [node name="SugarQueen" type="CharacterBody2D" groups=["boss"]]
 collision_layer = 34
 collision_mask = 0
@@ -24,7 +61,7 @@ sprite = ExtResource("2_uaams")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(2.86102e-06, -10.6364)
-scale = Vector2(2.32727, 2.32727)
+scale = Vector2(2.1931, 2.1931)
 texture = ExtResource("2_uaams")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -63,3 +100,8 @@ stream = ExtResource("11_5o1np")
 stream = ExtResource("12_n8yww")
 
 [node name="boss_border" parent="." instance=ExtResource("10_uaams")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_woxuc")
+}

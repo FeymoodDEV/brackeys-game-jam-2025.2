@@ -8,7 +8,7 @@ signal menu_loaded;
 signal game_started;
 
 signal level_scene_instanced(level_data: LevelData);
-signal level_started(map_time: float);
+signal level_started(map_time: float, level_name: String);
 signal level_restart;
 signal level_ended;
 

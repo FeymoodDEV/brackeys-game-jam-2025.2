@@ -19,6 +19,8 @@ func _on_enter(args) -> void:
 func _on_timeout(_name: String) -> void:
 	match _name:
 		"spawn_minion":
+			target.anim.play('attack')
+			await target.anim.animation_finished
 			var minion_instance: EnemyController = enemy_scene.instantiate()
 			minion_instance.global_position = target.global_position
 			minion_instance.enemy_data = minion_data
