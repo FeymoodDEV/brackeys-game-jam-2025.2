@@ -84,6 +84,7 @@ func _ready():
 	play_btn.grab_focus();
 
 func _on_game_started():
+	$Background.hide();
 	set_main_menu_active(false);
 	main_layer.propagate_call("hide");
 
