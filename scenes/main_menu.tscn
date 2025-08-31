@@ -47,7 +47,6 @@ texture = ExtResource("3_flqon")
 stretch_mode = 1
 
 [node name="MainLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="GameLogo" type="TextureRect" parent="MainLayer"]
 anchors_preset = 8
@@ -253,6 +252,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_j7ex8")
 
 [node name="CreditsLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="CreditsTitle" type="Label" parent="CreditsLayer"]
 anchors_preset = 5
