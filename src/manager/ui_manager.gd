@@ -27,6 +27,8 @@ func _on_level_started(map_time, level_name):
 	$LevelLoad/Label.text = level_name
 	$LevelLoad/AnimationPlayer.play("show_level")
 	
+	$AnimationPlayer.play("fade_out")
+	
 	print("LEVEL STARTED!")
 	timer.wait_time = map_time;
 	timer.one_shot = true;
@@ -62,9 +64,11 @@ func _on_boss_health_changed(health: float) -> void:
 	
 func _on_boss_spawned(max_health: float, boss_name: String, sprite: Texture2D) -> void:
 	print("Boss spawned: %s" % boss_name)
+	$BossCutScene.show()
 	$BossCutScene/Label.text = boss_name
 	$BossCutScene/BossProfile.texture = sprite
 	$BossCutScene/AnimationPlayer.play("introduction")
+	$BossCutScene/AnimationPlayer.animation_finished.connect(func(): $BossCutScene.hide())
 	
 	boss_health_bar.show()
 	boss_label.show()
@@ -80,6 +84,7 @@ func _on_boss_killed() -> void:
 	boss_label.hide()
 	boss_hud.hide()
 	countdown_label.show()
+	$AnimationPlayer.play("fade_in")
 	print("Boss is dead, long live the boss")
 
 func _on_progress_changed(new_value: float, xp_to_level_up: float) -> void:

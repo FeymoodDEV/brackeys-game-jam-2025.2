@@ -20,6 +20,7 @@ class_name BossControler
 @export var death_vfx: PackedScene;
 
 var health: float
+@onready var anim: AnimationPlayer = $AnimationPlayer
 
 func _ready():
 	health = max_health

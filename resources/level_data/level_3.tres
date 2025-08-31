@@ -16,23 +16,22 @@
 [ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://prefabs/blocks/block_1.tscn" id="13_m067p"]
 [ext_resource type="PackedScene" uid="uid://cux5gt5ppivxe" path="res://prefabs/blocks/block_2.tscn" id="14_iyicy"]
 [ext_resource type="PackedScene" uid="uid://y2xgcb36jh3" path="res://prefabs/blocks/block_3.tscn" id="15_sffhl"]
-[ext_resource type="PackedScene" uid="uid://bd5i3sglov82i" path="res://prefabs/bosses/N.U.M._captain.tscn" id="16_lm3he"]
 [ext_resource type="Script" uid="uid://2pwnys3t54yw" path="res://src/enemy/EnemyData.gd" id="17_ixhah"]
+[ext_resource type="PackedScene" uid="uid://bd5i3sglov82i" path="res://prefabs/bosses/N.O.M._captain.tscn" id="17_rxjw4"]
 [ext_resource type="Resource" uid="uid://ca4ewugaitcqx" path="res://resources/enemy_data/chocolate_enemy.tres" id="18_erpkr"]
 [ext_resource type="Resource" uid="uid://enusg5jloedi" path="res://resources/enemy_data/circle_enemy.tres" id="19_16qpw"]
 [ext_resource type="Resource" uid="uid://bqxvy5sr6pupv" path="res://resources/enemy_data/line_enemy.tres" id="20_vkwch"]
 [ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://prefabs/enemies/basic_enemy.tscn" id="21_e0imc"]
 [ext_resource type="Script" uid="uid://bsxc5d4jawjyr" path="res://src/level_data.gd" id="23_hooar"]
 [ext_resource type="PackedScene" uid="uid://dylrycs1bm5q2" path="res://prefabs/pickups/bomb.tscn" id="23_vhqtq"]
-[ext_resource type="PackedScene" uid="uid://xk7m8bb1bgnj" path="res://prefabs/pickups/magnet_pickup.tscn" id="24_dht0h"]
-[ext_resource type="PackedScene" uid="uid://cmchg3hobqx50" path="res://prefabs/pickups/shield.tscn" id="25_wodyi"]
+[ext_resource type="PackedScene" uid="uid://cmchg3hobqx50" path="res://prefabs/pickups/magnet_pickup.tscn" id="25_wodyi"]
 [ext_resource type="PackedScene" uid="uid://bk2lujutq3gnf" path="res://prefabs/pickups/xp_orb.tscn" id="26_8ldk3"]
 
 [resource]
 script = ExtResource("23_hooar")
 level_name = "N.O.M. Hideout
 Level : 3"
-map_time = 1.0
+map_time = 60.0
 map_width = 40
 map_height = 30
 cluster_chance = 0.01
@@ -43,6 +42,6 @@ enemy_scene = ExtResource("21_e0imc")
 enemy_datas = Array[ExtResource("17_ixhah")]([ExtResource("18_erpkr"), ExtResource("19_16qpw"), ExtResource("20_vkwch")])
 background_tiles = Array[Texture]([ExtResource("1_k7wwm"), ExtResource("2_jbkd1"), ExtResource("3_ftkf4"), ExtResource("4_rxjw4"), ExtResource("5_dn4kj"), ExtResource("6_vhqtq"), ExtResource("7_dht0h"), ExtResource("8_wodyi"), ExtResource("9_8ldk3"), ExtResource("10_tk5m2"), ExtResource("11_t0hmu"), ExtResource("12_tx27m")])
 bgm = ExtResource("13_dn4kj")
-boss_scene = ExtResource("16_lm3he")
+boss_scene = ExtResource("17_rxjw4")
 packed_items = Array[PackedScene]([ExtResource("23_vhqtq"), ExtResource("25_wodyi"), ExtResource("26_8ldk3")])
 metadata/_custom_type_script = "uid://bsxc5d4jawjyr"
