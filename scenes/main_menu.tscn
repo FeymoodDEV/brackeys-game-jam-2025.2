@@ -112,7 +112,7 @@ grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = ExtResource("4_5dd4i")
-text = "Mission N.O.M"
+text = "Operation N.O.M"
 
 [node name="copyright" type="Label" parent="MainLayer"]
 anchors_preset = 2
@@ -362,19 +362,16 @@ metadata/_edit_use_anchors_ = true
 [node name="PlayerBullet2" type="Sprite2D" parent="IntroTutorial/MoveControls/Ship1"]
 position = Vector2(32.0482, 7.84603)
 rotation = -0.905114
-scale = Vector2(1, 1)
 texture = ExtResource("5_lgwnu")
 
 [node name="PlayerBullet4" type="Sprite2D" parent="IntroTutorial/MoveControls/Ship1"]
 position = Vector2(30.6589, -6.85329)
 rotation = -0.905114
-scale = Vector2(1, 1)
 texture = ExtResource("5_lgwnu")
 
 [node name="PlayerBullet5" type="Sprite2D" parent="IntroTutorial/MoveControls/Ship1"]
 position = Vector2(29.3955, -20.8064)
 rotation = -0.905114
-scale = Vector2(1, 1)
 texture = ExtResource("5_lgwnu")
 
 [node name="Label" type="Label" parent="IntroTutorial/MoveControls"]
