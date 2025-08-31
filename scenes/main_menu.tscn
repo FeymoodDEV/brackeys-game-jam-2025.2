@@ -1,29 +1,50 @@
-[gd_scene load_steps=12 format=3 uid="uid://3yj03daybfvf"]
+[gd_scene load_steps=17 format=3 uid="uid://3yj03daybfvf"]
 
 [ext_resource type="Script" uid="uid://8qe1bhp35ve4" path="res://src/menu/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="PackedScene" uid="uid://2ads1o1pbagk" path="res://scenes/levels/level_1.tscn" id="2_ekxnf"]
 [ext_resource type="Texture2D" uid="uid://dvmelf1c58r5d" path="res://icon.jpg" id="3_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://soy0ejrja2pr" path="res://assets/sprites/tile/tile2.png" id="3_flqon"]
 [ext_resource type="Theme" uid="uid://cu7dsieob1vx1" path="res://resources/themes/menu_theme.tres" id="4_5dd4i"]
 [ext_resource type="Texture2D" uid="uid://dj3abyu5tht7s" path="res://assets/sprites/player/nomdash.png" id="4_oa1go"]
 [ext_resource type="Texture2D" uid="uid://ogb51tdot7ho" path="res://assets/sprites/player/ship1.png" id="4_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://caotutblf4xvo" path="res://assets/sprites/bullet/player_bullet.png" id="5_lgwnu"]
 [ext_resource type="Texture2D" uid="uid://cb0h3dqmm5j15" path="res://assets/sprites/player/ship2.png" id="5_oa1go"]
 [ext_resource type="Texture2D" uid="uid://devb6j2col43u" path="res://assets/sprites/player/ship3.png" id="6_tbmy8"]
 [ext_resource type="Texture2D" uid="uid://hilih370gh88" path="res://assets/sprites/end-screen.png" id="8_jk1qb"]
 [ext_resource type="FontFile" uid="uid://dgcbklepstex8" path="res://assets/fonts/Kenney Thick.ttf" id="9_5dd4i"]
+[ext_resource type="Texture2D" uid="uid://dke4jp74yomd3" path="res://assets/sprites/ui/LvlBar.png" id="9_rcqid"]
+[ext_resource type="Texture2D" uid="uid://c2o1lagj6g0ol" path="res://assets/sprites/pickups/magnet.png" id="12_1ajci"]
+[ext_resource type="Texture2D" uid="uid://dj4bab2m71bjl" path="res://assets/sprites/pickups/bomb.png" id="13_7b55j"]
 
 [sub_resource type="Theme" id="Theme_lgwnu"]
 default_font = ExtResource("9_5dd4i")
 default_font_size = 48
 
-[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("play_btn", "help_btn", "quit_btn", "help_back_btn")]
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("play_btn", "options_btn", "quit_btn", "options_back_btn", "intro_play_btn", "master_vol_slider", "music_vol_slider", "sfx_vol_slider")]
 script = ExtResource("1_l6cm7")
 packed_game_scene = ExtResource("2_ekxnf")
 play_btn = NodePath("MainLayer/MenuButtons/PlayBtn")
-help_btn = NodePath("MainLayer/MenuButtons/Options")
+options_btn = NodePath("MainLayer/MenuButtons/Options")
 quit_btn = NodePath("MainLayer/MenuButtons/Exit")
-help_back_btn = NodePath("OptionsLayer/Back")
+options_back_btn = NodePath("OptionsLayer/OptionsBack")
+intro_play_btn = NodePath("IntroTutorial/IntroPlay")
+master_vol_slider = NodePath("OptionsLayer/PanelContainer/MasterVolume/MasterVolSlider")
+music_vol_slider = NodePath("OptionsLayer/PanelContainer/MusicVolume/MusicVolSlider")
+sfx_vol_slider = NodePath("OptionsLayer/PanelContainer/SFXVolume/SFXVolSlider")
+
+[node name="Background" type="CanvasLayer" parent="."]
+
+[node name="BG" type="TextureRect" parent="Background"]
+z_index = -1
+offset_left = -3032.0
+offset_top = -2232.0
+offset_right = 14493.0
+offset_bottom = 10167.0
+texture = ExtResource("3_flqon")
+stretch_mode = 1
 
 [node name="MainLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="GameLogo" type="TextureRect" parent="MainLayer"]
 anchors_preset = 8
@@ -51,6 +72,7 @@ anchor_right = 0.640625
 anchor_bottom = 0.838889
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_5dd4i")
 theme_override_constants/separation = 10
 metadata/_edit_use_anchors_ = true
 
@@ -66,7 +88,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5dd4i")
-text = "Help & Options
+text = "Options
 "
 
 [node name="Exit" type="Button" parent="MainLayer/MenuButtons"]
@@ -93,31 +115,7 @@ text = "Mission N.O.M"
 [node name="OptionsLayer" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="Label" type="Label" parent="OptionsLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -199.0
-offset_top = -177.0
-offset_right = 115.0
-offset_bottom = 106.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Welcome to SuperBiscuitMan!
-
-This game plays like a twin stick shooter.
-Controls:
-W-A-S-D: Movement
-Mouse: Aim
-LeftMouse: Shoot
-RightMouse: Lock-On
-Space: Dash
-
-Dash through enemy bullets to upgrade!"
-
-[node name="Back" type="Button" parent="OptionsLayer"]
+[node name="OptionsBack" type="Button" parent="OptionsLayer"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -131,57 +129,277 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("4_5dd4i")
 text = "Back
 "
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="OptionsLayer"]
-anchors_preset = -1
-anchor_left = 0.525
-anchor_top = 0.308333
-anchor_right = 0.675
-anchor_bottom = 1.30833
-offset_top = 24.0
-offset_bottom = 24.0
-grow_horizontal = 0
+[node name="PanelContainer" type="VBoxContainer" parent="OptionsLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -193.5
+offset_top = -53.5
+offset_right = 193.5
+offset_bottom = 53.5
+grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_5dd4i")
+
+[node name="MasterVolume" type="HBoxContainer" parent="OptionsLayer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsLayer/PanelContainer/MasterVolume"]
+layout_mode = 2
+theme = ExtResource("4_5dd4i")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Master Volume:"
+
+[node name="MasterVolSlider" type="HSlider" parent="OptionsLayer/PanelContainer/MasterVolume"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_5dd4i")
+min_value = -35.0
+max_value = 5.0
+value = -15.0
+
+[node name="MusicVolume" type="HBoxContainer" parent="OptionsLayer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsLayer/PanelContainer/MusicVolume"]
+layout_mode = 2
+theme = ExtResource("4_5dd4i")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Music Volume:"
+
+[node name="MusicVolSlider" type="HSlider" parent="OptionsLayer/PanelContainer/MusicVolume"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_5dd4i")
+min_value = -35.0
+max_value = 5.0
+value = -15.0
+
+[node name="SFXVolume" type="HBoxContainer" parent="OptionsLayer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsLayer/PanelContainer/SFXVolume"]
+layout_mode = 2
+theme = ExtResource("4_5dd4i")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "SFX Volume:"
+
+[node name="SFXVolSlider" type="HSlider" parent="OptionsLayer/PanelContainer/SFXVolume"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_5dd4i")
+min_value = -35.0
+max_value = 5.0
+value = -15.0
+
+[node name="Label" type="Label" parent="OptionsLayer"]
+offset_left = 275.0
+offset_top = 62.0
+offset_right = 377.0
+offset_bottom = 95.0
+theme = ExtResource("4_5dd4i")
+text = "Settings"
+
+[node name="IntroTutorial" type="CanvasLayer" parent="."]
+
+[node name="IntroPlay" type="Button" parent="IntroTutorial"]
+anchors_preset = -1
+anchor_left = 0.401563
+anchor_top = 0.830556
+anchor_right = 0.6
+anchor_bottom = 0.944444
+offset_left = 147.0
+offset_top = 1.0
+offset_right = 147.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5dd4i")
+text = "Play Game
+"
 metadata/_edit_use_anchors_ = true
 
-[node name="Dash" type="TextureRect" parent="OptionsLayer/VBoxContainer2"]
-layout_mode = 2
+[node name="MoveControls" type="TextureRect" parent="IntroTutorial"]
+anchors_preset = -1
+anchor_left = 0.084375
+anchor_right = 0.234375
+anchor_bottom = 0.355556
+theme = ExtResource("4_5dd4i")
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerBullet2" type="Sprite2D" parent="IntroTutorial/MoveControls"]
+position = Vector2(37.3093, 28.3093)
+rotation = -0.316938
+texture = ExtResource("5_lgwnu")
+
+[node name="PlayerBullet4" type="Sprite2D" parent="IntroTutorial/MoveControls"]
+position = Vector2(44.3093, 15.3093)
+rotation = -0.316938
+texture = ExtResource("5_lgwnu")
+
+[node name="PlayerBullet5" type="Sprite2D" parent="IntroTutorial/MoveControls"]
+position = Vector2(51, 3)
+rotation = -0.316938
+texture = ExtResource("5_lgwnu")
+
+[node name="Ship1" type="TextureRect" parent="IntroTutorial/MoveControls"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15625
+anchor_top = 0.03125
+anchor_right = 0.822917
+anchor_bottom = 0.53125
+rotation = 0.588176
+texture = ExtResource("4_rtw2f")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="IntroTutorial/MoveControls"]
+layout_mode = 0
+offset_left = -47.0
+offset_top = 88.0
+offset_right = 175.0
+offset_bottom = 163.0
+text = "Mouse: Aim
+Left Mouse: Shoot
+Right Mouse: Lock-On 
+Spacebar: N.O.M Dash
+E: Downgrade"
+
+[node name="DashControls" type="TextureRect" parent="IntroTutorial"]
+offset_left = 233.0
+offset_top = 8.0
+offset_right = 329.0
+offset_bottom = 136.0
+theme = ExtResource("4_5dd4i")
 texture = ExtResource("4_oa1go")
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="OptionsLayer"]
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -135.0
-offset_top = 3.0
-offset_right = -71.0
-offset_bottom = 3.0
-grow_horizontal = 0
-grow_vertical = 2
+[node name="LvlBar" type="Sprite2D" parent="IntroTutorial/DashControls"]
+position = Vector2(180, 118)
+scale = Vector2(1.7551, 1)
+texture = ExtResource("9_rcqid")
 
-[node name="Ship1" type="TextureRect" parent="OptionsLayer/VBoxContainer"]
+[node name="Ship1" type="TextureRect" parent="IntroTutorial/DashControls"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15625
+anchor_top = 0.03125
+anchor_right = 0.822917
+anchor_bottom = 0.53125
+texture = ExtResource("4_rtw2f")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="IntroTutorial/DashControls"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 32.0
+offset_right = 365.0
+offset_bottom = 98.0
+text = "N.O.M Dash 
+Bullets to Fill XP"
+
+[node name="Label" type="Label" parent="IntroTutorial/DashControls/Label"]
+layout_mode = 0
+offset_left = -66.0
+offset_top = 101.0
+offset_right = -26.0
+offset_bottom = 124.0
+
+[node name="Label2" type="Label" parent="IntroTutorial/DashControls"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.572917
+anchor_top = 1.47656
+anchor_right = 4.11458
+anchor_bottom = 2.00781
+text = "Stronger means LARGER!
+Downgrade to REGEN HEALTH!"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="IntroTutorial/DashControls/Label2"]
+layout_mode = 0
+offset_left = -66.0
+offset_top = 101.0
+offset_right = -26.0
+offset_bottom = 124.0
+
+[node name="VBoxContainer" type="HBoxContainer" parent="IntroTutorial/DashControls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 22.0
+offset_top = 69.0
+offset_right = 290.0
+offset_bottom = 133.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5dd4i")
+
+[node name="Ship1" type="TextureRect" parent="IntroTutorial/DashControls/VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("4_rtw2f")
 metadata/_edit_use_anchors_ = true
 
-[node name="Ship2" type="TextureRect" parent="OptionsLayer/VBoxContainer"]
+[node name="Ship2" type="TextureRect" parent="IntroTutorial/DashControls/VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("5_oa1go")
 metadata/_edit_use_anchors_ = true
 
-[node name="Ship3" type="TextureRect" parent="OptionsLayer/VBoxContainer"]
+[node name="Ship3" type="TextureRect" parent="IntroTutorial/DashControls/VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("6_tbmy8")
 metadata/_edit_use_anchors_ = true
 
-[node name="Dash" type="TextureRect" parent="OptionsLayer/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("6_tbmy8")
+[node name="ItemsList" type="Label" parent="IntroTutorial"]
+offset_left = 10.0
+offset_top = 255.0
+offset_right = 106.0
+offset_bottom = 383.0
+theme = ExtResource("4_5dd4i")
 metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="IntroTutorial/ItemsList"]
+layout_mode = 0
+offset_top = 45.0
+offset_right = 256.0
+offset_bottom = 185.0
+
+[node name="MagnetItemLabel" type="Label" parent="IntroTutorial/ItemsList/VBoxContainer"]
+layout_mode = 2
+text = "Magnet Power:
+Auto-Collects Bullets!"
+
+[node name="Magnet" type="Sprite2D" parent="IntroTutorial/ItemsList/VBoxContainer/MagnetItemLabel"]
+position = Vector2(202, 14)
+texture = ExtResource("12_1ajci")
+
+[node name="BombItemLabel" type="Label" parent="IntroTutorial/ItemsList/VBoxContainer"]
+layout_mode = 2
+text = "Bomb:
+Clears all the Bullets!"
+
+[node name="Bomb" type="Sprite2D" parent="IntroTutorial/ItemsList/VBoxContainer/BombItemLabel"]
+position = Vector2(96, 13)
+texture = ExtResource("13_7b55j")
+
+[node name="XPOrbItemLabel" type="Label" parent="IntroTutorial/ItemsList/VBoxContainer"]
+layout_mode = 2
+text = "Magnet Power:
+Auto-Collects Bullets!"
 
 [node name="EndScreenLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -227,4 +445,7 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Return to main menu"
 
+[connection signal="value_changed" from="OptionsLayer/PanelContainer/MasterVolume/MasterVolSlider" to="." method="_on_master_vol_slider_changed"]
+[connection signal="value_changed" from="OptionsLayer/PanelContainer/MusicVolume/MusicVolSlider" to="." method="_on_music_vol_slider_changed"]
+[connection signal="value_changed" from="OptionsLayer/PanelContainer/SFXVolume/SFXVolSlider" to="." method="_on_sfx_vol_slider_changed"]
 [connection signal="pressed" from="EndScreenLayer/Button" to="." method="_on_end_screen_btn_pressed"]

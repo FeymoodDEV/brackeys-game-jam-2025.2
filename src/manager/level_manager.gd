@@ -73,7 +73,7 @@ func _on_player_ready(player_path):
 	pass
 
 func _on_game_started():	
-	
+	level_index = 0;
 	level_node = level_scene.instantiate();
 	add_child(level_node);
 	
@@ -158,7 +158,7 @@ func _level_ready() -> void:
 	
 	timer.start();
 	
-	EventManager.level_started.emit(map_time);
+	EventManager.level_started.emit(map_time, current_level.level_name);
 
 func _on_level_timer_timeout():
 	pass

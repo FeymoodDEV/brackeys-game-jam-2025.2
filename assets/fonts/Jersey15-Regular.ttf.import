@@ -13,8 +13,8 @@ dest_files=["res://.godot/imported/Jersey15-Regular.ttf-02b7a9c16d7f58e87e7892dd
 [params]
 
 Rendering=null
-antialiasing=1
-generate_mipmaps=false
+antialiasing=0
+generate_mipmaps=true
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8

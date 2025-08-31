@@ -18,6 +18,8 @@ func _on_enter(args) -> void:
 func _on_timeout(_name: String) -> void:
 	match _name:
 		pattern:
+			target.anim.play('attack')
+			await target.anim.animation_finished
 			target.spawn_pattern(pattern, Vector2.ZERO, 0)
 			target.spawn_pattern(pattern, Vector2.ZERO, 45)
 			target.spawn_pattern(pattern, Vector2.ZERO, 90)

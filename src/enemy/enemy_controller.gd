@@ -125,6 +125,7 @@ func apply_damage(damage: int, knockback: float, global_position: Vector2, direc
 func play_sound(stream: AudioStream):
 	var player := AudioStreamPlayer.new()
 	get_tree().get_root().add_child(player)
+	player.finished.connect(player.queue_free);
 	player.stream = stream
 	player.pitch_scale = randf_range(0.9, 1.1) # random pitchd
 	player.bus = &"SFX"

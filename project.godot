@@ -48,6 +48,10 @@ enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg", "res://addons/
 pickup=""
 boss=""
 
+[gui]
+
+theme/custom_font="uid://dgcbklepstex8"
+
 [input]
 
 move_up={
