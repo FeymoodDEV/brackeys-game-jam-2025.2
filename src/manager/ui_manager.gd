@@ -26,6 +26,9 @@ func _ready() -> void:
 func _on_level_started(map_time, level_name):
 	$LevelLoad/Label.text = level_name
 	$LevelLoad/AnimationPlayer.play("show_level")
+
+	if death_screen:
+		death_screen.hide();
 	
 	$AnimationPlayer.play("fade_out")
 	

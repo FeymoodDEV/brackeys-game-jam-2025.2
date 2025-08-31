@@ -86,7 +86,7 @@ func _on_game_ended():
 	$BG.hide();
 	pass	
 
-func _on_level_started(map_time):
+func _on_level_started(map_time, current_level):
 	player.reparent(level_node);
 	$BG.show();
 	pass

@@ -108,7 +108,7 @@ func set_active(value: bool = true):
 	else:
 		hide();
 		
-func _on_level_started():
+func _on_level_started(time, level):
 	set_active(true);
 	respawn();
 
