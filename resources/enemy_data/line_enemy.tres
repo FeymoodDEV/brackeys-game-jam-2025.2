@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://2pwnys3t54yw" path="res://src/enemy/EnemyData.gd" id="1_5g710"]
 [ext_resource type="AudioStream" uid="uid://cjhw80h3cj4fb" path="res://assets/sounds/enemy/damaged.ogg" id="1_jbeg3"]
 [ext_resource type="PackedScene" uid="uid://dtjdj7nbtlxrr" path="res://prefabs/particles/explode_vfx.tscn" id="1_k6hlp"]
-[ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="2_6gt5l"]
 [ext_resource type="AudioStream" uid="uid://cblbt71io5gvo" path="res://assets/sounds/enemy/dead.ogg" id="2_l4dsx"]
 [ext_resource type="AudioStream" uid="uid://cdijd6rih3cp2" path="res://assets/sounds/enemy/shoot.ogg" id="5_pgl33"]
+[ext_resource type="Texture2D" uid="uid://emur5uqpulxk" path="res://assets/sprites/enemies/ship_0000.png" id="6_jbeg3"]
 
 [resource]
 script = ExtResource("1_5g710")
@@ -15,8 +15,8 @@ health = 5.0
 damage = 10.0
 xp_worth = 10.0
 score_value = 100
-sprite = ExtResource("2_6gt5l")
-modulate_color = Color(0.0588235, 1, 0, 1)
+sprite = ExtResource("6_jbeg3")
+modulate_color = Color(0.793902, 0, 0.195744, 1)
 scale = 0.2
 damage_sfx = ExtResource("1_jbeg3")
 death_vfx = ExtResource("1_k6hlp")

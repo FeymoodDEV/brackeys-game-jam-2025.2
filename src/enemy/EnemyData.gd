@@ -12,7 +12,7 @@ class_name EnemyData
 @export_group("Visuals")
 @export var sprite: Texture2D
 @export var color_palette: ColorPalette;
-@export var modulate_color: Color;
+@export var modulate_color: Color = Color.WHITE;
 @export var scale: float = 1.0
 
 @export_group("Effects")
