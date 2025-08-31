@@ -1,7 +1,56 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cu7dsieob1vx1"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cu7dsieob1vx1"]
 
 [ext_resource type="FontFile" uid="uid://ey8ibsgbs2ah" path="res://assets/fonts/Jersey15-Regular.ttf" id="1_5mavb"]
+[ext_resource type="Texture2D" uid="uid://caotutblf4xvo" path="res://assets/sprites/bullet/player_bullet.png" id="1_cu6mo"]
+[ext_resource type="Texture2D" uid="uid://bfj1tfa0m8pun" path="res://assets/sprites/bullet/player_bullet_2.png" id="1_wnm0q"]
+[ext_resource type="Texture2D" uid="uid://dke4jp74yomd3" path="res://assets/sprites/ui/LvlBar.png" id="3_aq7pu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuhw2"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.4)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8vso"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6qmnj"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101961, 0.929412, 0.101961, 0.6)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+anti_aliasing = false
 
 [resource]
 default_font = ExtResource("1_5mavb")
 default_font_size = 32
+HSlider/constants/center_grabber = 0
+HSlider/constants/grabber_offset = 0
+HSlider/icons/grabber = ExtResource("1_cu6mo")
+HSlider/icons/grabber_disabled = ExtResource("1_wnm0q")
+HSlider/icons/grabber_highlight = ExtResource("1_cu6mo")
+HSlider/icons/tick = ExtResource("3_aq7pu")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_yuhw2")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_p8vso")
+HSlider/styles/slider = SubResource("StyleBoxFlat_6qmnj")
