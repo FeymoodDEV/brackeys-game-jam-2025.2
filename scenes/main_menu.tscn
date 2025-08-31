@@ -72,7 +72,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5dd4i")
-text = "Help & Options
+text = "Options
 "
 
 [node name="Exit" type="Button" parent="MainLayer/MenuButtons"]
