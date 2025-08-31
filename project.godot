@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Operation N.O.M"
+config/name="Brackeys Game Jam 2025.2"
 run/main_scene="uid://cscfgbkbj3nb"
 config/features=PackedStringArray("4.4", "Mobile")
 boot_splash/image="uid://dx0ckk4s0dpu5"
