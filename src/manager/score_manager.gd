@@ -3,12 +3,12 @@ extends Node
 
 var score : int = 0:
 	set(new_score):
-		score = max(0,new_score)
+		score = max(0, new_score)
 		EventManager.score_changed.emit(score, multiplier)
 
 var multiplier : int = 1:
 	set(new_multiplier):
-		multiplier = max(1 ,new_multiplier)
+		multiplier = max(1, new_multiplier)
 		EventManager.score_changed.emit(score, multiplier)
 
 var previous_score : int = 0
@@ -34,4 +34,4 @@ func reset():
 	EventManager.score_changed.emit(score, multiplier)
 
 func _on_enemy_died(value):
-	score += value
+	score += value * multiplier
