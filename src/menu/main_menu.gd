@@ -16,6 +16,14 @@ extends Node2D
 @onready var intro_layer: CanvasLayer = $IntroTutorial;
 @onready var end_screen_layer: CanvasLayer = $EndScreenLayer
 
+@export var master_vol_slider: HSlider;
+@export var music_vol_slider: HSlider;
+@export var sfx_vol_slider: HSlider;
+
+var master_bus;
+var music_bus;
+var sfx_bus;
+
 var game_scene: Node2D;
 
 func set_main_menu_active(value: bool = true):	
@@ -26,6 +34,18 @@ func set_main_menu_active(value: bool = true):
 		show();
 	else:
 		hide();
+		
+func _on_master_vol_slider_changed(value: float):
+	AudioServer.set_bus_volume_db(master_bus, value)
+	pass
+
+func _on_music_vol_slider_changed(value: float):
+	AudioServer.set_bus_volume_db(music_bus, value)
+	pass
+	
+func _on_sfx_vol_slider_changed(value: float):
+	AudioServer.set_bus_volume_db(sfx_bus, value);
+	pass
 
 func set_end_screen_active(value: bool = true):
 	end_screen_layer.propagate_call("set_process", [value])
@@ -37,6 +57,14 @@ func set_end_screen_active(value: bool = true):
 		end_screen_layer.hide();
 
 func _ready():
+	master_bus = AudioServer.get_bus_index("Master");
+	music_bus = AudioServer.get_bus_index("Music");
+	sfx_bus = AudioServer.get_bus_index("SFX");
+	
+	AudioServer.set_bus_volume_db(master_bus, master_vol_slider.value);
+	AudioServer.set_bus_volume_db(music_bus, music_vol_slider.value);
+	AudioServer.set_bus_volume_db(sfx_bus, sfx_vol_slider.value);
+	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
 	BgmManager.change_bgm(bgm)
 	

@@ -16,7 +16,7 @@
 default_font = ExtResource("9_5dd4i")
 default_font_size = 48
 
-[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("play_btn", "options_btn", "quit_btn", "options_back_btn", "intro_play_btn")]
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("play_btn", "options_btn", "quit_btn", "options_back_btn", "intro_play_btn", "master_vol_slider", "music_vol_slider", "sfx_vol_slider")]
 script = ExtResource("1_l6cm7")
 packed_game_scene = ExtResource("2_ekxnf")
 play_btn = NodePath("MainLayer/MenuButtons/PlayBtn")
@@ -24,8 +24,12 @@ options_btn = NodePath("MainLayer/MenuButtons/Options")
 quit_btn = NodePath("MainLayer/MenuButtons/Exit")
 options_back_btn = NodePath("OptionsLayer/OptionsBack")
 intro_play_btn = NodePath("IntroTutorial/IntroPlay")
+master_vol_slider = NodePath("OptionsLayer/PanelContainer/MasterVolume/MasterVolSlider")
+music_vol_slider = NodePath("OptionsLayer/PanelContainer/MusicVolume/MusicVolSlider")
+sfx_vol_slider = NodePath("OptionsLayer/PanelContainer/SFXVolume/SFXVolSlider")
 
 [node name="MainLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="GameLogo" type="TextureRect" parent="MainLayer"]
 anchors_preset = 8
@@ -93,7 +97,6 @@ theme = ExtResource("4_5dd4i")
 text = "Mission N.O.M"
 
 [node name="OptionsLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="OptionsBack" type="Button" parent="OptionsLayer"]
 anchors_preset = 7
@@ -111,6 +114,73 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Back
 "
+
+[node name="PanelContainer" type="VBoxContainer" parent="OptionsLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -193.5
+offset_top = -53.5
+offset_right = 193.5
+offset_bottom = 53.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5dd4i")
+
+[node name="MasterVolume" type="HBoxContainer" parent="OptionsLayer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsLayer/PanelContainer/MasterVolume"]
+layout_mode = 2
+text = "Master Volume:"
+
+[node name="MasterVolSlider" type="HSlider" parent="OptionsLayer/PanelContainer/MasterVolume"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = -35.0
+max_value = 5.0
+value = -15.0
+
+[node name="MusicVolume" type="HBoxContainer" parent="OptionsLayer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsLayer/PanelContainer/MusicVolume"]
+layout_mode = 2
+text = "Music Volume:"
+
+[node name="MusicVolSlider" type="HSlider" parent="OptionsLayer/PanelContainer/MusicVolume"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = -35.0
+max_value = 5.0
+value = -15.0
+
+[node name="SFXVolume" type="HBoxContainer" parent="OptionsLayer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsLayer/PanelContainer/SFXVolume"]
+layout_mode = 2
+text = "SFX Volume:"
+
+[node name="SFXVolSlider" type="HSlider" parent="OptionsLayer/PanelContainer/SFXVolume"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = -35.0
+max_value = 5.0
+value = -15.0
+
+[node name="Label" type="Label" parent="OptionsLayer"]
+offset_left = 275.0
+offset_top = 62.0
+offset_right = 377.0
+offset_bottom = 95.0
+theme = ExtResource("4_5dd4i")
+text = "Settings"
 
 [node name="IntroTutorial" type="CanvasLayer" parent="."]
 visible = false
@@ -300,4 +370,7 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Return to main menu"
 
+[connection signal="value_changed" from="OptionsLayer/PanelContainer/MasterVolume/MasterVolSlider" to="." method="_on_master_vol_slider_changed"]
+[connection signal="value_changed" from="OptionsLayer/PanelContainer/MusicVolume/MusicVolSlider" to="." method="_on_music_vol_slider_changed"]
+[connection signal="value_changed" from="OptionsLayer/PanelContainer/SFXVolume/SFXVolSlider" to="." method="_on_sfx_vol_slider_changed"]
 [connection signal="pressed" from="EndScreenLayer/Button" to="." method="_on_end_screen_btn_pressed"]
