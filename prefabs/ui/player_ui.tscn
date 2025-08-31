@@ -484,17 +484,18 @@ theme_override_font_sizes/font_size = 30
 text = "05:00"
 horizontal_alignment = 1
 
-[node name="Score" type="Label" parent="."]
+[node name="Score" type="RichTextLabel" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 173.0
-offset_right = 227.0
-offset_bottom = 31.0
+offset_left = 121.0
+offset_right = 276.0
+offset_bottom = 33.0
 grow_horizontal = 2
 theme = ExtResource("5_hj0ct")
-theme_override_font_sizes/font_size = 30
-text = "999999"
+bbcode_enabled = true
+text = "52300 x [outline_size=5a][outline_color=white][color=purple]2[/color][/outline_color][/outline_size]"
+fit_content = true
 horizontal_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]

@@ -470,6 +470,7 @@ metadata/_custom_type_script = "uid://5yo5iu6shjs3"
 
 [node name="Level1" type="Node" parent="Root/Upgrade"]
 script = ExtResource("10_kvlxm")
+score_multiplier = 1.0
 disabled = false
 debug_mode = false
 target_path = NodePath("")
@@ -484,6 +485,7 @@ texture = ExtResource("13_uf5tr")
 hitbox_shape = ExtResource("3_lgqa7")
 nombox_shape = ExtResource("5_8ydkj")
 absorb_pts_multiplier = 0.7
+score_multiplier = 2.0
 disabled = false
 debug_mode = false
 target_path = NodePath("")
@@ -498,6 +500,7 @@ texture = ExtResource("2_uf5tr")
 hitbox_shape = ExtResource("4_lgqa7")
 nombox_shape = ExtResource("3_uf5tr")
 absorb_pts_multiplier = 0.5
+score_multiplier = 3.0
 disabled = false
 debug_mode = false
 target_path = NodePath("")
