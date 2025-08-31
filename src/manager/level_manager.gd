@@ -4,6 +4,8 @@ class_name LevelManager
 var player: PlayerController
 var chosen: Vector2i
 
+@export var blocks: Array[PackedScene]
+
 @export var levels: Array[LevelData];
 @export var level_scene: PackedScene;
 var level_node: Node2D;

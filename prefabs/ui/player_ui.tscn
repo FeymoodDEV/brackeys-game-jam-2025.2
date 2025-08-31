@@ -652,6 +652,7 @@ offset_right = 276.0
 offset_bottom = 33.0
 grow_horizontal = 2
 theme = ExtResource("5_hj0ct")
+theme_override_constants/outline_size = 12
 bbcode_enabled = true
 text = "52300 x [outline_size=5a][outline_color=white][color=purple]2[/color][/outline_color][/outline_size]"
 fit_content = true
