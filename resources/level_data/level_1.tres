@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelData" load_steps=27 format=3 uid="uid://dyik6mrjr87vp"]
+[gd_resource type="Resource" script_class="LevelData" load_steps=30 format=3 uid="uid://dyik6mrjr87vp"]
 
 [ext_resource type="Texture2D" uid="uid://dfeeu7xpu3qc3" path="res://assets/sprites/tile/tile1.png" id="1_f183m"]
 [ext_resource type="PackedScene" uid="uid://dyfjlfqyibwvp" path="res://prefabs/blocks/block_1.tscn" id="1_i2xk7"]
@@ -12,9 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dsiu66k67apec" path="res://assets/sprites/tile/tile5.png" id="5_kbunl"]
 [ext_resource type="Resource" uid="uid://ca4ewugaitcqx" path="res://resources/enemy_data/chocolate_enemy.tres" id="6_c0s30"]
 [ext_resource type="Texture2D" uid="uid://ttmeaan4q6cb" path="res://assets/sprites/tile/tile6.png" id="6_syqn1"]
-[ext_resource type="Resource" uid="uid://enusg5jloedi" path="res://resources/enemy_data/circle_enemy.tres" id="7_4r1fs"]
 [ext_resource type="Texture2D" uid="uid://b0riwn21p8ulc" path="res://assets/sprites/tile/tile7.png" id="7_ds6j8"]
-[ext_resource type="Resource" uid="uid://bqxvy5sr6pupv" path="res://resources/enemy_data/line_enemy.tres" id="8_1uuav"]
 [ext_resource type="Texture2D" uid="uid://bvg7d5ts87b3n" path="res://assets/sprites/tile/tile8.png" id="8_jf8tv"]
 [ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://prefabs/enemies/basic_enemy.tscn" id="9_3flve"]
 [ext_resource type="Texture2D" uid="uid://h83hqaeiljnx" path="res://assets/sprites/tile/tile9.png" id="9_3jupg"]
@@ -23,6 +21,11 @@
 [ext_resource type="Script" uid="uid://bsxc5d4jawjyr" path="res://src/level_data.gd" id="11_u605j"]
 [ext_resource type="Texture2D" uid="uid://7bg2n6nm23ly" path="res://assets/sprites/tile/tile12.png" id="12_qdile"]
 [ext_resource type="AudioStream" uid="uid://bicpr6gn4fthc" path="res://assets/sounds/music/Biscy_Business_01.ogg" id="13_kbunl"]
+[ext_resource type="PackedScene" uid="uid://w71vdmarcfl4" path="res://prefabs/blocks/butter_block.tscn" id="17_ds6j8"]
+[ext_resource type="PackedScene" uid="uid://d3ehj8cr7vohv" path="res://prefabs/blocks/flour_block.tscn" id="18_jf8tv"]
+[ext_resource type="PackedScene" uid="uid://cak1ydg84t0b0" path="res://prefabs/blocks/milk_block.tscn" id="19_3jupg"]
+[ext_resource type="Resource" uid="uid://bqxvy5sr6pupv" path="res://resources/enemy_data/chocolate_v_shape_enemy.tres" id="20_wgmho"]
+[ext_resource type="Resource" uid="uid://cg562m3d2h1hd" path="res://resources/enemy_data/chocolate_circle_enemy.tres" id="21_kbunl"]
 [ext_resource type="PackedScene" uid="uid://bk2lujutq3gnf" path="res://prefabs/pickups/xp_orb.tscn" id="22_f183m"]
 [ext_resource type="PackedScene" uid="uid://cmchg3hobqx50" path="res://prefabs/pickups/magnet_pickup.tscn" id="24_3cjyy"]
 [ext_resource type="PackedScene" uid="uid://dylrycs1bm5q2" path="res://prefabs/pickups/bomb.tscn" id="25_wgmho"]
@@ -37,9 +40,9 @@ map_height = 60
 cluster_chance = 0.01
 cluster_size = 4
 border_scene = ExtResource("3_itr4j")
-block_scenes = Array[PackedScene]([ExtResource("1_i2xk7"), ExtResource("2_rhpp2"), ExtResource("3_itr4j")])
+block_scenes = Array[PackedScene]([ExtResource("1_i2xk7"), ExtResource("2_rhpp2"), ExtResource("3_itr4j"), ExtResource("17_ds6j8"), ExtResource("18_jf8tv"), ExtResource("19_3jupg")])
 enemy_scene = ExtResource("9_3flve")
-enemy_datas = Array[ExtResource("5_ibpya")]([ExtResource("6_c0s30"), ExtResource("7_4r1fs"), ExtResource("8_1uuav")])
+enemy_datas = Array[ExtResource("5_ibpya")]([ExtResource("6_c0s30"), ExtResource("20_wgmho"), ExtResource("21_kbunl")])
 background_tiles = Array[Texture]([ExtResource("1_f183m"), ExtResource("2_ertwf"), ExtResource("3_3cjyy"), ExtResource("4_wgmho"), ExtResource("5_kbunl"), ExtResource("6_syqn1"), ExtResource("7_ds6j8"), ExtResource("8_jf8tv"), ExtResource("9_3jupg"), ExtResource("10_68ow5"), ExtResource("11_mv4n1"), ExtResource("12_qdile")])
 bgm = ExtResource("13_kbunl")
 boss_scene = ExtResource("4_xxrvx")

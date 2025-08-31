@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelData" load_steps=27 format=3 uid="uid://d4lop5a6dmpbs"]
+[gd_resource type="Resource" script_class="LevelData" load_steps=30 format=3 uid="uid://d4lop5a6dmpbs"]
 
 [ext_resource type="Texture2D" uid="uid://dfeeu7xpu3qc3" path="res://assets/sprites/tile/tile1.png" id="1_h4hnp"]
 [ext_resource type="Texture2D" uid="uid://soy0ejrja2pr" path="res://assets/sprites/tile/tile2.png" id="2_ml42g"]
@@ -18,9 +18,12 @@
 [ext_resource type="PackedScene" uid="uid://y2xgcb36jh3" path="res://prefabs/blocks/block_3.tscn" id="15_p2w6n"]
 [ext_resource type="PackedScene" uid="uid://cvsie1ld28fe8" path="res://prefabs/bosses/sugar_queen.tscn" id="16_aaext"]
 [ext_resource type="Script" uid="uid://2pwnys3t54yw" path="res://src/enemy/EnemyData.gd" id="17_a52j8"]
-[ext_resource type="Resource" uid="uid://ca4ewugaitcqx" path="res://resources/enemy_data/chocolate_enemy.tres" id="18_op4nk"]
-[ext_resource type="Resource" uid="uid://enusg5jloedi" path="res://resources/enemy_data/circle_enemy.tres" id="19_xpmto"]
-[ext_resource type="Resource" uid="uid://bqxvy5sr6pupv" path="res://resources/enemy_data/line_enemy.tres" id="20_aevx6"]
+[ext_resource type="PackedScene" uid="uid://w71vdmarcfl4" path="res://prefabs/blocks/butter_block.tscn" id="17_sqkwb"]
+[ext_resource type="PackedScene" uid="uid://d3ehj8cr7vohv" path="res://prefabs/blocks/flour_block.tscn" id="18_qvsnn"]
+[ext_resource type="PackedScene" uid="uid://cak1ydg84t0b0" path="res://prefabs/blocks/milk_block.tscn" id="19_iun3v"]
+[ext_resource type="Resource" uid="uid://c8oc0158ch2hx" path="res://resources/enemy_data/sugar_big_one_enemy.tres" id="19_nl4os"]
+[ext_resource type="Resource" uid="uid://enusg5jloedi" path="res://resources/enemy_data/sugar_circle_enemy.tres" id="19_xpmto"]
+[ext_resource type="Resource" uid="uid://ckd38jbf2n8c4" path="res://resources/enemy_data/sugar_trigger_enemy.tres" id="21_xtp5c"]
 [ext_resource type="PackedScene" uid="uid://dpx8ondyguda5" path="res://prefabs/enemies/basic_enemy.tscn" id="21_yobwi"]
 [ext_resource type="PackedScene" uid="uid://dylrycs1bm5q2" path="res://prefabs/pickups/bomb.tscn" id="23_b61ei"]
 [ext_resource type="Script" uid="uid://bsxc5d4jawjyr" path="res://src/level_data.gd" id="23_x8ew3"]
@@ -31,15 +34,15 @@
 script = ExtResource("23_x8ew3")
 level_name = "Sugar Land
 Level : 2"
-map_time = 60.0
-map_width = 40
-map_height = 30
+map_time = 30.0
+map_width = 80
+map_height = 60
 cluster_chance = 0.01
 cluster_size = 4
 border_scene = ExtResource("15_p2w6n")
-block_scenes = Array[PackedScene]([ExtResource("13_5po6n"), ExtResource("14_cnptq"), ExtResource("15_p2w6n")])
+block_scenes = Array[PackedScene]([ExtResource("13_5po6n"), ExtResource("14_cnptq"), ExtResource("15_p2w6n"), ExtResource("17_sqkwb"), ExtResource("18_qvsnn"), ExtResource("19_iun3v")])
 enemy_scene = ExtResource("21_yobwi")
-enemy_datas = Array[ExtResource("17_a52j8")]([ExtResource("18_op4nk"), ExtResource("19_xpmto"), ExtResource("20_aevx6")])
+enemy_datas = Array[ExtResource("17_a52j8")]([ExtResource("19_nl4os"), ExtResource("19_xpmto"), ExtResource("21_xtp5c")])
 background_tiles = Array[Texture]([ExtResource("1_h4hnp"), ExtResource("2_ml42g"), ExtResource("3_q7vog"), ExtResource("4_nl4os"), ExtResource("5_xtp5c"), ExtResource("6_b61ei"), ExtResource("7_sqkwb"), ExtResource("8_qvsnn"), ExtResource("9_iun3v"), ExtResource("10_rwhc4"), ExtResource("11_7wix1"), ExtResource("12_81tsg")])
 bgm = ExtResource("13_xtp5c")
 boss_scene = ExtResource("16_aaext")

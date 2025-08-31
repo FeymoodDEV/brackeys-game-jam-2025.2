@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://8qe1bhp35ve4" path="res://src/menu/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="PackedScene" uid="uid://2ads1o1pbagk" path="res://scenes/levels/level_1.tscn" id="2_ekxnf"]
-[ext_resource type="Texture2D" uid="uid://dvmelf1c58r5d" path="res://icon.jpg" id="3_bqqt6"]
-[ext_resource type="Texture2D" uid="uid://soy0ejrja2pr" path="res://assets/sprites/tile/tile2.png" id="3_flqon"]
 [ext_resource type="Theme" uid="uid://cu7dsieob1vx1" path="res://resources/themes/menu_theme.tres" id="4_5dd4i"]
 [ext_resource type="Texture2D" uid="uid://dj3abyu5tht7s" path="res://assets/sprites/player/nomdash.png" id="4_oa1go"]
 [ext_resource type="Texture2D" uid="uid://ogb51tdot7ho" path="res://assets/sprites/player/ship1.png" id="4_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://b0nxh1hick5ky" path="res://assets/sprites/tile/tile.png" id="5_a8gd2"]
+[ext_resource type="Texture2D" uid="uid://0ku1xafpcj6g" path="res://assets/ui/Misson_NOM_Title.png" id="5_j7ex8"]
 [ext_resource type="Texture2D" uid="uid://caotutblf4xvo" path="res://assets/sprites/bullet/player_bullet.png" id="5_lgwnu"]
 [ext_resource type="Texture2D" uid="uid://cb0h3dqmm5j15" path="res://assets/sprites/player/ship2.png" id="5_oa1go"]
 [ext_resource type="Texture2D" uid="uid://c7555gk2bxoa5" path="res://assets/sprites/logo-scaled.png" id="6_j7ex8"]
@@ -43,35 +43,31 @@ offset_left = -3032.0
 offset_top = -2232.0
 offset_right = 14493.0
 offset_bottom = 10167.0
-texture = ExtResource("3_flqon")
+texture = ExtResource("5_a8gd2")
 stretch_mode = 1
 
 [node name="MainLayer" type="CanvasLayer" parent="."]
 
 [node name="GameLogo" type="TextureRect" parent="MainLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -151.0
-offset_right = 280.0
-offset_bottom = 161.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.32, 0.36)
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("4_5dd4i")
-texture = ExtResource("3_bqqt6")
+texture = ExtResource("5_j7ex8")
+expand_mode = 1
 
 [node name="MenuButtons" type="VBoxContainer" parent="MainLayer"]
 anchors_preset = -1
-anchor_left = 0.359375
-anchor_top = 0.441667
-anchor_right = 0.640625
-anchor_bottom = 0.838889
+anchor_left = 0.664063
+anchor_top = 0.544444
+anchor_right = 0.945313
+anchor_bottom = 0.941666
+offset_top = 4.57764e-05
+offset_bottom = 3.05176e-05
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_5dd4i")
@@ -99,40 +95,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5dd4i")
 text = "Credits"
-
-[node name="Label" type="Label" parent="MainLayer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -74.0
-offset_top = 29.0
-offset_right = 84.0
-offset_bottom = 62.0
-grow_horizontal = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme = ExtResource("4_5dd4i")
-text = "Mission N.O.M"
-
-[node name="copyright" type="Label" parent="MainLayer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -28.0
-offset_right = 261.0
-offset_bottom = -3.0
-grow_vertical = 0
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme = ExtResource("4_5dd4i")
-theme_override_font_sizes/font_size = 24
-text = "FreshBrewed Games (c) 2025"
-
-[node name="Logo-scaled" type="Sprite2D" parent="MainLayer/copyright"]
-position = Vector2(32, -28)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("6_j7ex8")
 
 [node name="OptionsLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -362,19 +324,16 @@ metadata/_edit_use_anchors_ = true
 [node name="PlayerBullet2" type="Sprite2D" parent="IntroTutorial/MoveControls/Ship1"]
 position = Vector2(32.0482, 7.84603)
 rotation = -0.905114
-scale = Vector2(1, 1)
 texture = ExtResource("5_lgwnu")
 
 [node name="PlayerBullet4" type="Sprite2D" parent="IntroTutorial/MoveControls/Ship1"]
 position = Vector2(30.6589, -6.85329)
 rotation = -0.905114
-scale = Vector2(1, 1)
 texture = ExtResource("5_lgwnu")
 
 [node name="PlayerBullet5" type="Sprite2D" parent="IntroTutorial/MoveControls/Ship1"]
 position = Vector2(29.3955, -20.8064)
 rotation = -0.905114
-scale = Vector2(1, 1)
 texture = ExtResource("5_lgwnu")
 
 [node name="Label" type="Label" parent="IntroTutorial/MoveControls"]

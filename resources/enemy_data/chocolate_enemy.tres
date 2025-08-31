@@ -4,20 +4,20 @@
 [ext_resource type="PackedScene" uid="uid://dtjdj7nbtlxrr" path="res://prefabs/particles/explode_vfx.tscn" id="1_hkc0m"]
 [ext_resource type="Script" uid="uid://2pwnys3t54yw" path="res://src/enemy/EnemyData.gd" id="2_bnl3f"]
 [ext_resource type="AudioStream" uid="uid://cblbt71io5gvo" path="res://assets/sounds/enemy/dead.ogg" id="2_rtnyw"]
-[ext_resource type="Texture2D" uid="uid://cuungxd61dxw0" path="res://assets/sprites/bullet/chocolate_bullet.png" id="3_hkc0m"]
 [ext_resource type="AudioStream" uid="uid://cdijd6rih3cp2" path="res://assets/sounds/enemy/shoot.ogg" id="5_rtnyw"]
+[ext_resource type="Texture2D" uid="uid://du5fx2gysf3bw" path="res://assets/sprites/enemies/ship_0009.png" id="6_rtnyw"]
 
 [resource]
 script = ExtResource("2_bnl3f")
-pattern = "enemy_one"
+pattern = "chocolate_one"
 speed = 200.0
 health = 3.0
 damage = 10.0
 xp_worth = 10.0
 score_value = 100
-sprite = ExtResource("3_hkc0m")
+sprite = ExtResource("6_rtnyw")
 modulate_color = Color(1, 1, 1, 1)
-scale = 0.3
+scale = 1.0
 damage_sfx = ExtResource("1_3w8w6")
 death_vfx = ExtResource("1_hkc0m")
 death_sfx = ExtResource("2_rtnyw")

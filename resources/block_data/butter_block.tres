@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BlockData" load_steps=3 format=3 uid="uid://bemvnte6e8tve"]
+
+[ext_resource type="Script" uid="uid://8nf8txfcbwru" path="res://src/block/block_data.gd" id="1_mnpud"]
+[ext_resource type="Texture2D" uid="uid://bujk8uyn6hiub" path="res://assets/sprites/m13_bullets/butter.png" id="2_mnpud"]
+
+[resource]
+script = ExtResource("1_mnpud")
+health = 3
+isDestructable = false
+texture = ExtResource("2_mnpud")
+metadata/_custom_type_script = "uid://8nf8txfcbwru"

@@ -4,6 +4,8 @@ class_name LevelManager
 var player: PlayerController
 var chosen: Vector2i
 
+@export var blocks: Array[PackedScene]
+
 @export var levels: Array[LevelData];
 @export var level_scene: PackedScene;
 var level_node: Node2D;
@@ -83,6 +85,7 @@ func _on_game_started():
 	pass
 
 func _on_game_ended():
+	level_index = 0;
 	$BG.hide();
 	pass	
 
@@ -293,6 +296,7 @@ func _on_main_menu():
 	clear_everything()
 
 	player.reparent(self);
+	level_index = 0;
 	level_node.queue_free();
 	EventManager.game_ended.emit();
 

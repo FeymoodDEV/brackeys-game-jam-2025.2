@@ -334,7 +334,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Restart:self_modulate")
+tracks/2/path = NodePath("VBoxContainer/Restart:self_modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -346,7 +346,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Quit:self_modulate")
+tracks/3/path = NodePath("VBoxContainer/Quit:self_modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -385,7 +385,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Restart:self_modulate")
+tracks/2/path = NodePath("VBoxContainer/Restart:self_modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -397,7 +397,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Quit:self_modulate")
+tracks/3/path = NodePath("VBoxContainer/Quit:self_modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -592,39 +592,42 @@ grow_vertical = 2
 texture = ExtResource("2_2kqep")
 
 [node name="BossHud" type="TextureRect" parent="."]
-visible = false
-offset_right = 640.0
-offset_bottom = 360.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("3_c0vdx")
+expand_mode = 1
 
 [node name="BossHealthBar" type="ProgressBar" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -108.0
-offset_top = 16.0
-offset_right = 162.0
-offset_bottom = 53.0
+anchors_preset = -1
+anchor_left = 0.33125
+anchor_top = 0.0444444
+anchor_right = 0.66875
+anchor_bottom = 0.106111
+offset_right = 54.0003
+offset_bottom = 14.8
 grow_horizontal = 2
 scale = Vector2(0.799999, 0.6)
 theme_override_styles/fill = SubResource("StyleBoxTexture_wafl3")
 value = 50.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="BossName" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -108.0
-offset_top = 11.0
-offset_right = 108.0
-offset_bottom = 44.0
+anchors_preset = -1
+anchor_left = 0.33125
+anchor_top = 0.0277778
+anchor_right = 0.66875
+anchor_bottom = 0.119444
 grow_horizontal = 2
 theme = ExtResource("5_hj0ct")
 text = "BIG BAD GUY"
 label_settings = ExtResource("6_krprk")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Countdown" type="Label" parent="."]
 anchors_preset = 5
@@ -649,6 +652,7 @@ offset_right = 276.0
 offset_bottom = 33.0
 grow_horizontal = 2
 theme = ExtResource("5_hj0ct")
+theme_override_constants/outline_size = 12
 bbcode_enabled = true
 text = "52300 x [outline_size=5a][outline_color=white][color=purple]2[/color][/outline_color][/outline_size]"
 fit_content = true
@@ -739,6 +743,7 @@ text = "CHOCOLATE KING"
 metadata/_edit_use_anchors_ = true
 
 [node name="DeathScreeen" type="Control" parent="."]
+visible = false
 z_index = 1
 layout_mode = 3
 anchors_preset = 15
@@ -776,17 +781,24 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_hj0ct")
 theme_override_colors/font_color = Color(0.533326, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "YOU ARE DEAD BITCH"
+theme_override_font_sizes/font_size = 48
+text = "YOU GOT BURNED!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Restart" type="Button" parent="DeathScreeen"]
-layout_mode = 0
-offset_left = 247.0
-offset_top = 133.0
-offset_right = 354.0
-offset_bottom = 166.0
+[node name="VBoxContainer" type="VBoxContainer" parent="DeathScreeen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.416406
+anchor_top = 0.402778
+anchor_right = 0.583594
+anchor_bottom = 0.597222
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Restart" type="Button" parent="DeathScreeen/VBoxContainer"]
+layout_mode = 2
 theme = ExtResource("5_hj0ct")
 theme_override_colors/font_hover_color = Color(0.822013, 0.645975, 3.85046e-07, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wcejd")
@@ -795,12 +807,8 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_2kqep")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_svfv5")
 text = "RESPAWN"
 
-[node name="Quit" type="Button" parent="DeathScreeen"]
-layout_mode = 0
-offset_left = 248.0
-offset_top = 165.0
-offset_right = 313.0
-offset_bottom = 198.0
+[node name="Quit" type="Button" parent="DeathScreeen/VBoxContainer"]
+layout_mode = 2
 theme = ExtResource("5_hj0ct")
 theme_override_colors/font_hover_color = Color(0.822013, 0.645975, 3.85046e-07, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wcejd")
@@ -818,10 +826,10 @@ offset_bottom = 40.0
 
 [node name="Label" type="Label" parent="LevelLoad"]
 layout_mode = 0
-offset_left = 79.0
-offset_top = 49.0
-offset_right = 563.0
-offset_bottom = 152.0
+anchor_left = 1.975
+anchor_top = 1.225
+anchor_right = 14.075
+anchor_bottom = 3.8
 theme = ExtResource("5_hj0ct")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("10_krprk")
@@ -830,6 +838,7 @@ text = "Chocolate lair
 Level : 1"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelLoad"]
 libraries = {
@@ -850,5 +859,5 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6doxs")
 
-[connection signal="pressed" from="DeathScreeen/Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="DeathScreeen/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="DeathScreeen/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="DeathScreeen/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
