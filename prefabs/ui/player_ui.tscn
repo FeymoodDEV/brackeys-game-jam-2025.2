@@ -631,14 +631,28 @@ vertical_alignment = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -27.0
-offset_right = 27.0
+offset_left = -227.0
+offset_right = -173.0
 offset_bottom = 31.0
 grow_horizontal = 2
 scale = Vector2(1.05553, 1)
 theme = ExtResource("5_hj0ct")
 theme_override_font_sizes/font_size = 30
 text = "05:00"
+horizontal_alignment = 1
+
+[node name="Score" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 121.0
+offset_right = 276.0
+offset_bottom = 33.0
+grow_horizontal = 2
+theme = ExtResource("5_hj0ct")
+bbcode_enabled = true
+text = "52300 x [outline_size=5a][outline_color=white][color=purple]2[/color][/outline_color][/outline_size]"
+fit_content = true
 horizontal_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
@@ -712,10 +726,8 @@ anchor_left = 0.742188
 anchor_top = -0.205556
 anchor_right = 1.43961
 anchor_bottom = 0.0828203
-offset_left = -0.000305176
-offset_top = 0.000160217
-offset_right = -25.3504
-offset_bottom = -54.8153
+offset_right = -25.3501
+offset_bottom = -54.8155
 rotation = 0.112657
 scale = Vector2(1.08121, 1.08121)
 theme = ExtResource("5_hj0ct")

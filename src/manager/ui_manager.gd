@@ -4,6 +4,7 @@ class_name PlayerUI
 @onready var timer: Timer = $Timer
 @onready var countdown_label: Label = $Countdown
 @onready var health_bar: ProgressBar = $HealthBar
+@onready var score: RichTextLabel = $Score
 
 @onready var boss_health_bar: ProgressBar = $BossHealthBar
 @onready var boss_label: Label = $BossName
@@ -22,6 +23,7 @@ func _ready() -> void:
 	EventManager.level_started.connect(_on_level_started)
 	EventManager.show_death_screen.connect(_on_show_death_screen)
 	EventManager.boss_killed.connect(_on_boss_killed)
+	EventManager.score_changed.connect(_on_score_changed)
 	
 func _on_level_started(map_time, level_name):
 	$LevelLoad/Label.text = level_name
@@ -93,6 +95,17 @@ func _on_boss_killed() -> void:
 func _on_progress_changed(new_value: float, xp_to_level_up: float) -> void:
 	progress_bar.value = new_value
 	progress_bar.max_value = xp_to_level_up
+
+func _on_score_changed(new_value: int, new_multiplier: int):
+	score.text = "%s x [outline_size=5a][outline_color=white][color=%s]%s[/color][/outline_color][/outline_size]" % [
+		new_value, 
+		["gray", "purple", "red"][new_multiplier-1],
+		new_multiplier
+	]
+	
+	#var tween = get_tree().create_tween()
+	#tween.tween_property(score, "scale", 1.2, 0.1)
+	#tween.tween_property(score, "scale", 1.0, 0.1)
 
 func _on_show_death_screen() -> void:
 	print("Showing death screen")
