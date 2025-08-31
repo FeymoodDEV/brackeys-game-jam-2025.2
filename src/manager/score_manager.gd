@@ -19,7 +19,7 @@ func _ready() -> void:
 	EventManager.level_restart.connect(_on_level_restart)
 	EventManager.game_ended.connect(reset)
 
-func _on_level_started():
+func _on_level_started(time, level):
 	# Save score when level starts
 	previous_score = score
 

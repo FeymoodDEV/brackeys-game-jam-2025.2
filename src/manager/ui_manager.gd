@@ -22,7 +22,6 @@ func _ready() -> void:
 	EventManager.player_setup.connect(_on_setup)
 	EventManager.level_started.connect(_on_level_started)
 	EventManager.show_death_screen.connect(_on_show_death_screen)
-	EventManager.boss_killed.connect(_on_boss_killed)
 	EventManager.score_changed.connect(_on_score_changed)
 	
 func _on_level_started(map_time, level_name):

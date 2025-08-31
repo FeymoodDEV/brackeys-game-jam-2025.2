@@ -27,12 +27,7 @@ func _on_game_started():
 	menu_scene.hide()
 	
 func _deferred_ready():
-	Spawning.spawn({"position": -Vector2.INF, "rotation": 0, "source_node": self}, "player_level_1", "0")
-	Spawning.spawn({"position": -Vector2.INF, "rotation": 0, "source_node": self}, "player_level_1", "0")
-	Spawning.spawn({"position": -Vector2.INF, "rotation": 0, "source_node": self}, "player_level_1", "0")
-	Spawning.spawn({"position": -Vector2.INF, "rotation": 0, "source_node": self}, "player_level_1", "0")
-	Spawning.spawn({"position": -Vector2.INF, "rotation": 0, "source_node": self}, "player_level_1", "0")
-	Spawning.spawn({"position": -Vector2.INF, "rotation": 0, "source_node": self}, "player_level_1", "0")
+	pass
 	
 func _ready():	
 	$PlayerUI.hide();
