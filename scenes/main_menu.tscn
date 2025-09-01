@@ -214,7 +214,6 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_j7ex8")
 
 [node name="CreditsLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="CreditsTitle" type="Label" parent="CreditsLayer"]
 anchors_preset = 5
@@ -241,6 +240,7 @@ size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CreditsLayer/HBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 21
 
 [node name="Art" type="Label" parent="CreditsLayer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -258,8 +258,7 @@ Cabage, CybrNight, Trobador "
 [node name="Music" type="Label" parent="CreditsLayer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_5dd4i")
-text = "
-Music:
+text = "Music:
 VetNovice"
 
 [node name="CreditsBack" type="Button" parent="CreditsLayer"]
