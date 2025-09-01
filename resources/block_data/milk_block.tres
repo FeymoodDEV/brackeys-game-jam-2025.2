@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_7yydn")
 health = 3
-isDestructable = false
+isDestructable = true
 texture = ExtResource("2_7yydn")
 metadata/_custom_type_script = "uid://8nf8txfcbwru"
