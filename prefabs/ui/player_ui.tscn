@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://j4ljg2vl3nfv"]
+[gd_scene load_steps=31 format=3 uid="uid://j4ljg2vl3nfv"]
 
 [ext_resource type="Script" uid="uid://dsiawai5lafl8" path="res://src/manager/ui_manager.gd" id="1_jkj6h"]
 [ext_resource type="Texture2D" uid="uid://cvpcx48cuikco" path="res://assets/sprites/ui/hud.png" id="2_2kqep"]
@@ -487,99 +487,6 @@ _data = {
 &"show_level": SubResource("Animation_1354d")
 }
 
-[sub_resource type="Animation" id="Animation_wafl3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:theme_override_styles/panel:bg_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_krprk"]
-resource_name = "fade_in"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:theme_override_styles/panel:bg_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(3.13834, 3),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_sgkm8"]
-resource_name = "fade_out"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:theme_override_styles/panel:bg_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 3),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_sgkm8"]
-_data = {
-&"RESET": SubResource("Animation_wafl3"),
-&"fade_in": SubResource("Animation_krprk"),
-&"fade_out": SubResource("Animation_sgkm8")
-}
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6doxs"]
-bg_color = Color(0, 0, 0, 1)
-
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource("1_jkj6h")
 
@@ -844,20 +751,6 @@ metadata/_edit_use_anchors_ = true
 libraries = {
 &"": SubResource("AnimationLibrary_krprk")
 }
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Transition")
-libraries = {
-&"": SubResource("AnimationLibrary_sgkm8")
-}
-
-[node name="Transition" type="Panel" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_6doxs")
 
 [connection signal="pressed" from="DeathScreeen/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="DeathScreeen/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

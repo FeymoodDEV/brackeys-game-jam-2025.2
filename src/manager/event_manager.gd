@@ -36,8 +36,16 @@ signal main_menu()
 func _ready():
 	game_paused.connect(_on_game_paused)
 	
+	SceneManager.transition_finished.connect(func(): print('transition complete'))
+	SceneManager.fade_complete.connect(func(): print('fade complete'))
+	
 func _on_game_paused():
 	get_tree().paused = true;
 	
 func _on_game_unpaused():
 	get_tree().paused = false;
+
+func transition():
+	SceneManager.fade_out()
+	await SceneManager.fade_complete
+	SceneManager.fade_in()

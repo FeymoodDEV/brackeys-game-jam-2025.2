@@ -254,7 +254,6 @@ func place_player() -> void:
 		## delete enemies around player on start of the level
 	var player_aura_radius = 550
 	
-	print('asdgasdgsadg',get_tree().get_nodes_in_group("enemy"))
 	for enemy in get_tree().get_nodes_in_group("enemy"):
 		if enemy.global_position.distance_to(player.global_position) <= player_aura_radius:
 			enemy.queue_free()
@@ -269,14 +268,17 @@ func _on_boss_spawn() -> void:
 
 func _on_boss_killed() -> void:
 	await slow_motion(0.2, 1.0, 0.5)  # target_scale, duration, hold_time
+	await EventManager.transition()
 	Spawning.clear_all_bullets()
 	EventManager.level_ended.emit();
 
 func _on_player_killed() -> void:
+	timer.stop()
 	await slow_motion(0.2, 0.5, 0.2)
 	EventManager.show_death_screen.emit()
 	
-# Coroutine function for slow motion
+## Coroutine function for slow motion
+## SHOULD BE MOVED SOMEWHERE ELSE AS A GLOBAL FUNCTION
 func slow_motion(target_scale: float, duration: float, hold_time: float) -> void:
 	var start_scale = Engine.time_scale
 	var time_passed := 0.0

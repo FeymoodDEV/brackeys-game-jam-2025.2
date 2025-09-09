@@ -23,6 +23,7 @@ GameConfig="*res://src/manager/game_config.gd"
 Spawning="*res://addons/BulletUpHell/Spawning.tscn"
 BgmManager="*res://src/manager/bgm_manager.tscn"
 ScoreManager="*res://src/manager/score_manager.gd"
+SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 
 [debug]
 
@@ -42,7 +43,7 @@ window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg", "res://addons/xsm/plugin.cfg")
+enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/xsm/plugin.cfg")
 
 [global_group]
 

@@ -31,8 +31,6 @@ func _on_level_started(map_time, level_name):
 	if death_screen:
 		death_screen.hide();
 	
-	$AnimationPlayer.play("fade_out")
-	
 	print("LEVEL STARTED!")
 	timer.wait_time = map_time;
 	timer.one_shot = true;
@@ -88,7 +86,6 @@ func _on_boss_killed() -> void:
 	boss_label.hide()
 	boss_hud.hide()
 	countdown_label.show()
-	$AnimationPlayer.play("fade_in")
 	print("Boss is dead, long live the boss")
 
 func _on_progress_changed(new_value: float, xp_to_level_up: float) -> void:
@@ -113,11 +110,13 @@ func _on_show_death_screen() -> void:
 
 func _on_restart_pressed():
 	print("Button pressed: restart")
+	await EventManager.transition()
 	death_screen.hide()
 	EventManager.level_restart.emit();
 
 func _on_quit_pressed():
 	print("Button pressed: quit")
+	await EventManager.transition()
 	BgmManager.change_bgm(preload("res://assets/sounds/music/Biscuit_Intro.ogg"))
 	death_screen.hide()
 	EventManager.main_menu.emit()
