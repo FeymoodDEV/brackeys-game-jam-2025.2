@@ -89,6 +89,8 @@ func _ready():
 	intro_layer.hide();
 	credits_layer.hide();
 	play_btn.grab_focus();
+	
+	#SceneManager.fade_in()
 
 func _on_game_started():
 	$Background.hide();
@@ -106,36 +108,48 @@ func _on_game_ended():
 	main_layer.propagate_call("show")
 
 func _on_play_btn_pressed():
+	await EventManager.transition()
 	main_layer.hide();
 	intro_layer.show();
 	pass
 	
 func _on_intro_play_btn_pressed():
+	await EventManager.transition()
+	
 	intro_layer.hide();
 	EventManager.game_started.emit();
 	pass
 	
 func _on_options_btn_pressed():
-	options_layer.show();
-	main_layer.hide();
+	await EventManager.transition()
+	
+	options_layer.show()
+	main_layer.hide()
 	pass
 	
 func _on_options_back_btn_pressed():
+	await EventManager.transition()
+	
 	main_layer.show();
 	options_layer.hide();
 	pass
 	
 func _on_exit_button_pressed():
+	await EventManager.transition()
+	
 	main_layer.hide();
 	credits_layer.show();
 	pass
 	
 func _on_credits_back_btn_pressed():
+	await EventManager.transition()
+	
 	main_layer.show();
 	credits_layer.hide();
 
-
 func _on_end_screen_btn_pressed() -> void:
+	await EventManager.transition()
+	
 	set_end_screen_active(false)
 	end_screen_layer.propagate_call("hide")
 	EventManager.game_ended.emit()
