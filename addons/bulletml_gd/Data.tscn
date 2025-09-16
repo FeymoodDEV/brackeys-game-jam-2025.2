@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://f347m74hysvc"]
+
+[ext_resource type="Script" uid="uid://s4872f4fdnwh" path="res://addons/bulletml_gd/Data.cs" id="1_ohwdh"]
+[ext_resource type="Script" uid="uid://dlvt7qlclt08e" path="res://addons/bulletml_gd/Resource/GDPattern.cs" id="2_w5hwt"]
+[ext_resource type="Script" uid="uid://bw5djmvgcd0hd" path="res://addons/bulletml_gd/Resource/GDBullet.cs" id="4_agpwi"]
+[ext_resource type="PackedScene" uid="uid://5n63t5sul13o" path="res://addons/bulletml_gd/Example/Bullet/Bullet2.tscn" id="5_agpwi"]
+
+[sub_resource type="Resource" id="Resource_agpwi"]
+script = ExtResource("2_w5hwt")
+PatternID = "default"
+BulletRefID = ""
+SourceFile = "res://addons/bulletml_gd/Sample/patterns/[MDA]_circular_sun.xml"
+metadata/_custom_type_script = "uid://dlvt7qlclt08e"
+
+[sub_resource type="Resource" id="Resource_e1tlw"]
+script = ExtResource("2_w5hwt")
+PatternID = "maybe"
+BulletRefID = ""
+SourceFile = "res://addons/bulletml_gd/Sample/patterns/[MDA]_circular_sun.xml"
+metadata/_custom_type_script = "uid://dlvt7qlclt08e"
+
+[sub_resource type="Resource" id="Resource_qv5mu"]
+script = ExtResource("4_agpwi")
+BulletID = "default"
+BulletScene = ExtResource("5_agpwi")
+metadata/_custom_type_script = "uid://dj8ghlqq2wmyh"
+
+[node name="BulletMLData" type="Node"]
+script = ExtResource("1_ohwdh")
+patterns = Array[Object]([SubResource("Resource_agpwi"), SubResource("Resource_e1tlw")])
+bullets = Array[Object]([SubResource("Resource_qv5mu")])

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwt6hvxay2g66"]
+
+[ext_resource type="Texture2D" uid="uid://caotutblf4xvo" path="res://addons/bulletml_gd/Example/player_bullet.png" id="1_8vvmj"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 5.0
+
+[node name="Bullet" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8vvmj")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("1")

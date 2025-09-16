@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Mission N.O.M"
 run/main_scene="uid://cscfgbkbj3nb"
-config/features=PackedStringArray("4.4", "Mobile")
+config/features=PackedStringArray("4.4", "C#", "Mobile")
 boot_splash/image="uid://dx0ckk4s0dpu5"
 config/icon="uid://dvmelf1c58r5d"
 
@@ -23,6 +23,8 @@ GameConfig="*res://src/manager/game_config.gd"
 Spawning="*res://addons/BulletUpHell/Spawning.tscn"
 BgmManager="*res://src/manager/bgm_manager.tscn"
 ScoreManager="*res://src/manager/score_manager.gd"
+Data="*res://addons/bulletml_gd/Data.tscn"
+GlobalTime="*res://addons/bulletml_gd/Time/Time.cs"
 
 [debug]
 
@@ -39,6 +41,10 @@ window/size/window_height_override=720
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
+
+[dotnet]
+
+project/assembly_name="Mission N.O.M"
 
 [editor_plugins]
 

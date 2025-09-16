@@ -81,6 +81,7 @@ func handle_movement(delta: float) -> void:
 			var spawn_pos = global_position;
 			var rot = global_rotation
 			Spawning.spawn(self, pattern, "1")
+			$Spawner.SpawnFunction("acos", self.position.x, self.position.y);
 			#Spawning.spawn(self, "line")
 			shoot_counter = 0;
 	move_and_slide()
