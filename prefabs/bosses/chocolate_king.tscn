@@ -17,6 +17,21 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysfue"]
 size = Vector2(128, 128)
 
+[sub_resource type="Animation" id="Animation_521e7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.1931, 2.1931)]
+}
+
 [sub_resource type="Animation" id="Animation_cvyo1"]
 resource_name = "attack"
 length = 0.7
@@ -31,21 +46,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(2.82843, 0.517632, 0.517632),
 "update": 0,
 "values": [Vector2(2.1931, 2.1931), Vector2(1.9131, 2.5131), Vector2(2.1931, 2.1931)]
-}
-
-[sub_resource type="Animation" id="Animation_521e7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2.1931, 2.1931)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_woxuc"]

@@ -99,6 +99,7 @@ signal player_dead
 
 func set_active(value: bool = true):
 	isDead = !value;
+	gun.enabled = value
 	
 	propagate_call("set_process", [value])
 	propagate_call("set_physics_process", [value])
@@ -230,6 +231,8 @@ func respawn() -> void:
 		"health_max_value": max_health,
 	})
 	$Root/Upgrade.change_state("Level1")
+	# Handle iframes:
+	modifier_handler.add_child(InvulnModifier.new(IFRAME_DURATION*2))
 
 ## Reduces upgrade level by one. 
 func level_down() -> void:

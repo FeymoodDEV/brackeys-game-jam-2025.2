@@ -4,6 +4,8 @@ class_name LevelManager
 var player: PlayerController
 var chosen: Vector2i
 
+@export var blocks: Array[PackedScene]
+
 @export var levels: Array[LevelData];
 @export var level_scene: PackedScene;
 var level_node: Node2D;
@@ -98,6 +100,7 @@ func _on_level_restart():
 	EventManager.level_scene_instanced.emit(levels[level_index])
 	
 func _on_level_ended():
+	print("level_index: ",level_index)
 	level_index += 1;
 	# If there are still more levels to play load the next level
 	if level_index < levels.size():		
@@ -218,7 +221,7 @@ func spawn_enemies() -> void:
 				enemy.position = Vector2(x * cell_size, y * cell_size);
 				enemy.enemy_data = enemy_datas[randi() % enemy_datas.size()]
 				enemy.player = player;
-				level_node.add_child.call_deferred(enemy)
+				level_node.add_child(enemy)
 				
 				grid[y][x] = enemy
 
@@ -247,7 +250,15 @@ func place_player() -> void:
 
 	player.global_position = Vector2(chosen.x * cell_size, chosen.y * cell_size)
 	grid[chosen.y][chosen.x] = true
-
+	
+		## delete enemies around player on start of the level
+	var player_aura_radius = 550
+	
+	print('asdgasdgsadg',get_tree().get_nodes_in_group("enemy"))
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if enemy.global_position.distance_to(player.global_position) <= player_aura_radius:
+			enemy.queue_free()
+	
 func _on_boss_spawn() -> void:
 	clear_everything()
 	

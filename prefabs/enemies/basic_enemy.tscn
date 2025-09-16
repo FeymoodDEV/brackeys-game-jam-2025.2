@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d38sn8fofnvl0" path="res://src/enemy/enemy_controller.gd" id="1_8e3ao"]
 [ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="2_38ino"]
-[ext_resource type="Resource" uid="uid://bqxvy5sr6pupv" path="res://resources/enemy_data/line_enemy.tres" id="2_fcftc"]
+[ext_resource type="Resource" uid="uid://dj176567cocyw" path="res://resources/enemy_data/flour_enemy.tres" id="2_cdov0"]
 [ext_resource type="Script" uid="uid://3pk5lctqj4do" path="res://addons/bulletml_gd/BulletSpawner.cs" id="4_kfjhq"]
 [ext_resource type="Script" uid="uid://b8u0qkdnskny6" path="res://addons/bulletml_gd/Resource/BulletFunction.cs" id="5_cdov0"]
 
@@ -22,7 +22,7 @@ metadata/_custom_type_script = "uid://b8u0qkdnskny6"
 collision_layer = 34
 collision_mask = 12
 script = ExtResource("1_8e3ao")
-enemy_data = ExtResource("2_fcftc")
+enemy_data = ExtResource("2_cdov0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)

@@ -52,7 +52,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	handle_movement(delta)
-
+	look_at(player.global_position)
+	
 # This exists to ensure nodes attached to this one can avoid being freed alongside
 # this node (ex: target reticles). Sorry.
 signal freeing

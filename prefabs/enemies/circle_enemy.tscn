@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bhr507fppywxh"]
 
 [ext_resource type="Script" uid="uid://d38sn8fofnvl0" path="res://src/enemy/enemy_controller.gd" id="1_hiio1"]
-[ext_resource type="Resource" uid="uid://enusg5jloedi" path="res://resources/enemy_data/circle_enemy.tres" id="2_hiio1"]
+[ext_resource type="Resource" uid="uid://cg562m3d2h1hd" path="res://resources/enemy_data/chocolate_circle_enemy.tres" id="2_hiio1"]
 [ext_resource type="Texture2D" uid="uid://lfbfpe6bxvuc" path="res://icon.svg" id="3_uxd7r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
